@@ -1,0 +1,222 @@
+.modelTextArea {
+    z-index: 1000001 !important;
+}
+
+.modelTextArea div {
+    background:rgba(245, 245, 245, 0.4);
+    padding: 5px;
+    border: none;
+    border-radius: 20px;
+    transition: 0.15s ease-in-out;
+    position: relative;
+}
+
+.modelTextArea div * {
+    transition: 0.15s ease-in-out;
+}
+
+.modelTextArea div:hover {
+    background:#2b2b2b;
+    padding: 5px 30px;
+    padding-bottom: 15px;
+    box-shadow: 0px 0px 10px #2b2b2b;
+    transition: 0.15s ease-in-out;
+}
+
+.modelTextArea div:hover p {
+    color: #f0f0f0;
+    transition: 0.15s ease-in-out;
+}
+
+.modelTextArea div:hover .openModelButton {
+    color:#f0f0f0;
+    border: 1px solid rgba(245, 245, 245, 0.7);
+    background-color: #2b2b2b;
+}
+
+.openModelButton {
+    font-family: 'Lato';
+    font-weight: 400;
+    font-size: 16px;
+    text-transform: capitalize;
+    color:#2b2b2b;
+    padding: 12px 15px;
+    border: 1px solid #2b2b2b;
+    border-radius: 8px;
+    background-color:transparent;
+    transition: 0.15s ease-in-out;
+    cursor: pointer;
+}
+
+.openModelButton:hover,
+.modelTextArea div:hover .openModelButton:hover {
+    color:#2b2b2b;
+    border-radius: 12px;
+    background-color:#f0f0f0;
+    transition: 0.15s ease-in-out;
+}
+
+.modelText1 {
+    font-family: 'Lato';
+    font-weight: 300;
+    width: 39vw;
+    max-width: 700px;
+    color:#2b2b2b;
+    font-size: 18px;
+    letter-spacing:0.05ch;
+    line-height: 1.2;
+}
+
+.modelText2 {
+    font-family: 'Lato';
+    font-weight: 300;
+    width: 35vw;
+    max-width: 600px;
+    color:#2b2b2b;
+    font-size: 18px;
+    letter-spacing:0.05ch;
+    line-height: 1.2;
+}
+
+.modelText3 {
+    font-family: 'Lato';
+    font-weight: 300;
+    width: 35vw;
+    max-width: 600px;
+    color:#2b2b2b;
+    font-size: 18px;
+    letter-spacing:0.05ch;
+    line-height: 1.2;
+}
+
+.modelText4 {
+    font-family: 'Lato';
+    font-weight: 300;
+    width: 34vw;
+    max-width: 500px;
+    color:#2b2b2b;
+    font-size: 18px;
+    letter-spacing:0.05ch;
+    line-height: 1.2;
+}
+
+.modelText5 {
+    font-family: 'Lato';
+    font-weight: 300;
+    width: 34vw;
+    max-width: 580px;
+    color:#2b2b2b;
+    font-size: 18px;
+    letter-spacing:0.05ch;
+    line-height: 1.2;
+}
+
+.modelText6 {
+    font-family: 'Lato';
+    font-weight: 300;
+    width: 34vw;
+    max-width: 560px;
+    color:#2b2b2b;
+    font-size: 18px;
+    letter-spacing:0.05ch;
+    line-height: 1.2;
+}
+
+.modelText7 {
+    font-family: 'Lato';
+    font-weight: 300;
+    width: 34vw;
+    max-width: 580px;
+    color:#2b2b2b;
+    font-size: 18px;
+    letter-spacing:0.05ch;
+    line-height: 1.2;
+}
+
+.modelText8 {
+    font-family: 'Lato';
+    font-weight: 300;
+    width: 35vw;
+    max-width: 580px;
+    color:#2b2b2b;
+    font-size: 18px;
+    letter-spacing:0.05ch;
+    line-height: 1.2;
+}
+
+.modelText1 b,
+.modelText2 b,
+.modelText3 b,
+.modelText4 b,
+.modelText5 b,
+.modelText6 b,
+.modelText7 b,
+.modelText8 b {
+    font-weight: 500;
+}
+
+.modelText1 b:first-of-type,
+.modelText2 b:first-of-type,
+.modelText3 b:first-of-type,
+.modelText4 b:first-of-type,
+.modelText5 b:first-of-type,
+.modelText6 b:first-of-type,
+.modelText7 b:first-of-type {
+    font-weight: 700;
+    font-size: 24px;
+}
+
+.modelText8 b:first-of-type {
+    font-weight: 700;
+    font-size: 22px;
+}
+
+@media (max-width: 1100px) {
+    .modelText1 {
+        width: 37vw;
+        max-width: 500px;
+        font-size: 15px;
+    }
+    
+    .modelText2 {
+        width: 35vw;
+        max-width: 600px;
+        font-size: 15px;
+    }
+    
+    .modelText3 {
+        width: 35vw;
+        max-width: 500px;
+        font-size: 15px;
+    }
+    
+    .modelText4 {
+        width: 34vw;
+        max-width: 500px;
+        font-size: 15px;
+    }
+    
+    .modelText5 {
+        width: 34vw;
+        max-width: 500px;
+        font-size: 15px;
+    }
+    
+    .modelText6 {
+        width: 34vw;
+        max-width: 500px;
+        font-size: 15px;
+    }
+    
+    .modelText7 {
+        width: 34vw;
+        max-width: 500px;
+        font-size: 15px;
+    }
+    
+    .modelText8 {
+        width: 35vw;
+        max-width: 500px;
+        font-size: 15px;
+    }
+}

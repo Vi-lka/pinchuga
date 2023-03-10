@@ -1,0 +1,30 @@
+.main-container {
+    width: 100vw;
+    height: 100vh;
+    background: #fbfbfb;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  color: white;
+}
+
+.scrollArea {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  overflow: auto;
+  overflow-x: hidden;
+  z-index: 1000000;
+}
+
+.textArea {
+  z-index: 100 !important;
+}
