@@ -23,7 +23,14 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
   const deer = useGLTF('./models/low/horse_low.glb');
   const disk = useGLTF('./models/low/disk_low.glb');
 
-  // const bird11 = useGLTF('./models/low/Bird.glb')
+  const bird1Re = useGLTF('./models/low_re/bird1_low_re.glb');
+  const bird2Re = useGLTF('./models/low_re/bird2_low_re.glb');
+  const ceramicCupRe = useGLTF('./models/low_re/cup1_low_re.glb');
+  const halfCeramicCupRe = useGLTF('./models/low_re/cup2_low_re.glb');
+  const item1Re = useGLTF('./models/low_re/buckle1_low_re.glb');
+  const item2Re = useGLTF('./models/low_re/buckle2_low_re.glb');
+  const deerRe = useGLTF('./models/low_re/deer_low_re.glb');
+  const diskRe = useGLTF('./models/low_re/disk_low_re.glb');
 
   // const [colormap, normalmap, metalnessmap, roughnessmap, aomap] = useLoader(
   //   TextureLoader,
@@ -59,15 +66,6 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
   //     object.material.wireframe = true
   //   }
   // });
-
-  bird1.scene.traverse(function (object) {
-    if (object instanceof THREE.Mesh) {
-      // object.material.copy(myMaterial)
-      object.material.wireframe = true
-    }
-  });
-
-  const bird1Ref = useRef<any>()
 
   const modelText1Ref = createRef<any>()
   const modelText1PRef = createRef<any>()
@@ -140,31 +138,29 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
   return (
     <>
       <group position={[0, 0, 0]}>
-        <group ref={bird1Ref} position={[0, -15.5, -6]} rotation={[0, 1.5, 0]} >
+        <group position={[0, -15.5, -6]} rotation={[0, 1.5, 0]} >
           <directionalLight position={[-30, 20, 10]} />
           <directionalLight position={[-18, 12, 10]} />
-          <group>
-            {/* <primitive
-                visible={!zoom || state.selectedModel === 1}
-                ref={primitive}
-                object={bird11.scene}
-                position={[2, 9, -2]}
-                rotation={[0, -1.7, 0]}
-                scale={0.5}
-                receiveShadow
-                castShadow
-              /> */}
-            <primitive
-              visible={!zoom || state.selectedModel === 1}
-              ref={primitive}
-              object={bird1.scene}
-              position={[0, 0, 0]}
-              rotation={[0, 0, 0]}
-              scale={0.5}
-              receiveShadow
-              castShadow
-            />
-          </group>
+          {/* <primitive
+            visible={!zoom || state.selectedModel === 1}
+            ref={primitive}
+            object={bird1.scene}
+            position={[0, 0, 0]}
+            rotation={[0, 0, 0]}
+            scale={0.5}
+            receiveShadow
+            castShadow
+          /> */}
+          <primitive
+            visible={!zoom || state.selectedModel === 1}
+            ref={primitive}
+            object={bird1Re.scene}
+            position={[2.4, 9.2, -3.2]}
+            rotation={[0, -1.6, 0]}
+            scale={0.5}
+            receiveShadow
+            castShadow
+          />
 
           <group ref={modelText1Ref} position={[30, 9, 0]}>
             <Html
@@ -195,7 +191,7 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
           </group>
         </group>
         <group position={[2.4, -22, -11]} rotation={[0, 1.5, 0]} >
-          <primitive
+          {/* <primitive
             visible={!zoom || state.selectedModel === 2}
             ref={primitive}
             object={bird2.scene}
@@ -204,7 +200,18 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
             scale={2.5}
             receiveShadow
             castShadow
+          /> */}
+          <primitive
+            visible={!zoom || state.selectedModel === 2}
+            ref={primitive}
+            object={bird2Re.scene}
+            position={[-0.2, 21.2, 0.4]}
+            rotation={[0, 1.55, 0]}
+            scale={2.5}
+            receiveShadow
+            castShadow
           />
+
           <group ref={modelText2Ref} position={[30, 9, 0]}>
             <Html
               as='div' // Wrapping element (default: 'div')
@@ -235,7 +242,7 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
         </group>
         <group position={[6, -17, -15.7]} rotation={[0, 2.8, 0]} >
           <directionalLight position={[-10, 0, 10]} />
-          <primitive
+          {/* <primitive
             visible={!zoom || state.selectedModel === 3}
             ref={primitive}
             object={deer.scene}
@@ -244,7 +251,18 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
             scale={4}
             receiveShadow
             castShadow
+          /> */}
+          <primitive
+            visible={!zoom || state.selectedModel === 3}
+            ref={primitive}
+            object={deerRe.scene}
+            position={[2, 22.4, -1.5]}
+            rotation={[1, 3, -1.4]}
+            scale={4}
+            receiveShadow
+            castShadow
           />
+
           <group ref={modelText3Ref} position={[30, 9, 0]}>
             <Html
               as='div' // Wrapping element (default: 'div')
@@ -275,7 +293,7 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
         </group>
         <group position={[10, 2, -16]} rotation={[0, 3.8, 0]} >
           <directionalLight position={[-15, 40, 10]} />
-          <primitive
+          {/* <primitive
             visible={!zoom || state.selectedModel === 4}
             ref={primitive}
             object={item1.scene}
@@ -284,7 +302,18 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
             scale={1.2}
             receiveShadow
             castShadow
+          /> */}
+          <primitive
+            visible={!zoom || state.selectedModel === 4}
+            ref={primitive}
+            object={item1Re.scene}
+            position={[1.5, 11.9, 0.7]}
+            rotation={[1.3, 1.55, 0]}
+            scale={1.2}
+            receiveShadow
+            castShadow
           />
+
           <group ref={modelText4Ref} position={[30, 9, 0]}>
             <Html
               as='div' // Wrapping element (default: 'div')
@@ -316,7 +345,7 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
           </group>
         </group>
         <group position={[2, 2.5, -19]} rotation={[0, -1.5, 0]} >
-          <primitive
+          {/* <primitive
             visible={!zoom || state.selectedModel === 5}
             ref={primitive}
             object={item2.scene}
@@ -325,7 +354,18 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
             scale={0.8}
             receiveShadow
             castShadow
+          /> */}
+          <primitive
+            visible={!zoom || state.selectedModel === 5}
+            ref={primitive}
+            object={item2Re.scene}
+            position={[1.2, 16.9, 0.5]}
+            rotation={[1.6, -1.55, 0]}
+            scale={0.8}
+            receiveShadow
+            castShadow
           />
+
           <group ref={modelText5Ref} position={[30, 9, 0]}>
             <Html
               as='div' // Wrapping element (default: 'div')
@@ -356,7 +396,7 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
         </group>
         <group position={[-4, 1.4, -17.5]} rotation={[0, -1, 0]} >
           <directionalLight position={[25, 100, 5]} />
-          <primitive
+          {/* <primitive
             visible={!zoom || state.selectedModel === 6}
             ref={primitive}
             object={disk.scene}
@@ -365,7 +405,18 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
             scale={4.5}
             receiveShadow
             castShadow
+          /> */}
+          <primitive
+            visible={!zoom || state.selectedModel === 6}
+            ref={primitive}
+            object={diskRe.scene}
+            position={[-1.6, 24.8, 2.2]}
+            rotation={[1.5, 0, 0]}
+            scale={4.5}
+            receiveShadow
+            castShadow
           />
+
           <group ref={modelText6Ref} position={[30, 9, 0]}>
             <Html
               as='div' // Wrapping element (default: 'div')
@@ -399,7 +450,7 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
         </group>
         <group position={[-9.8, 23.5, -10]} rotation={[0, 0.3, 0]} >
           <directionalLight position={[-200, 40, 15]} />
-          <primitive
+          {/* <primitive
             visible={!zoom || state.selectedModel === 7}
             ref={primitive}
             object={halfCeramicCup.scene}
@@ -408,7 +459,18 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
             scale={1}
             receiveShadow
             castShadow
+          /> */}
+          <primitive
+            visible={!zoom || state.selectedModel === 7}
+            ref={primitive}
+            object={halfCeramicCupRe.scene}
+            position={[0.5, 10.8, -0.9]}
+            rotation={[0, -0.25, 0.1]}
+            scale={1}
+            receiveShadow
+            castShadow
           />
+
           <group ref={modelText7Ref} position={[30, 9, 0]}>
             <Html
               as='div' // Wrapping element (default: 'div')
@@ -440,7 +502,7 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
           </group>
         </group>
         <group position={[-10, 35.5, -7]} rotation={[0, 1.2, 0]}>
-          <primitive
+          {/* <primitive
             visible={!zoom || state.selectedModel === 8}
             ref={primitive}
             object={ceramicCup.scene}
@@ -449,7 +511,18 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
             scale={1.2}
             receiveShadow
             castShadow
+          /> */}
+          <primitive
+            visible={!zoom || state.selectedModel === 8}
+            ref={primitive}
+            object={ceramicCupRe.scene}
+            position={[0, 7.8, -1.5]}
+            rotation={[-1.55, 0.2, 1.5]}
+            scale={1.2}
+            receiveShadow
+            castShadow
           />
+
           <group ref={modelText8Ref} position={[30, 9, 0]}>
             <Html
               as='div' // Wrapping element (default: 'div')
