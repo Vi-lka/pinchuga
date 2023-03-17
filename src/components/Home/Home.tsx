@@ -41,6 +41,23 @@ export default function Home() {
     touchStart = e.touches[0].clientY
   }
 
+  const onTouchMove = (e: any) => {
+    let touchMove = e.targetTouches[0].clientY
+
+    if ((touchMove < touchStart) && (state.top < height)) {
+      state.top = state.top + ((touchStart - touchMove)/10)
+    } else if ((touchMove > touchStart) && (state.top > 0)) {
+      state.top = state.top - ((touchMove - touchStart)/10)
+    }
+
+    if (state.top < 0) state.top = 0
+    if (state.top > height) state.top = height
+    
+    console.log("touchStart:  " + touchStart)
+    console.log("touchMove: " + touchMove)
+    console.log(state.top)
+  }
+
   // const onTouchEnd = (e: any) => {
   //   let touchEnd = e.changedTouches[0].clientY
 
@@ -49,23 +66,6 @@ export default function Home() {
   //   } else if ((touchStart < touchEnd+5) && (state.top > 0)) {
   //     state.top = state.top - 50
   //   }
-  // }
-
-  // const onTouchMove = (e: any) => {
-  //   let touchMove = e.targetTouches[0].clientY
-
-  //   if ((touchMove < touchStart) && (state.top < height)) {
-  //     state.top = state.top + ((touchStart - touchMove)/10)
-  //   } else if ((touchMove > touchStart) && (state.top > 0)) {
-  //     state.top = state.top - ((touchMove - touchStart)/10)
-  //   }
-
-  //   if (state.top < 0) state.top = 0
-  //   if (state.top > height) state.top = height
-    
-  //   console.log("touchStart:  " + touchStart)
-  //   console.log("touchMove: " + touchMove)
-  //   console.log(state.top)
   // }
 
   return (
@@ -77,8 +77,8 @@ export default function Home() {
         onCreated={({ gl }) => gl.setClearColor('#fbfbfb')}
         onWheel={onScroll}
         onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
         // onTouchEnd={onTouchEnd}
-        // onTouchMove={onTouchMove}
       >
         <Suspense 
           fallback={
