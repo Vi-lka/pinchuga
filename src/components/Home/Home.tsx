@@ -25,15 +25,14 @@ export default function Home() {
   // }
 
   const onScroll = (e: any) => {
-    if (window.innerWidth > 1200) {
-      if ((e.deltaY > 0) && (state.top < height)) {
-        state.top = state.top + (e.deltaY/1.5)
-      } else if ((e.deltaY < 0) && (state.top > 0)) {
-        state.top = state.top + (e.deltaY/1.5)
-      }
+    if ((e.deltaY > 0) && (state.top < height)) {
+      state.top = state.top + (e.deltaY/1.5)
+    } else if ((e.deltaY < 0) && (state.top > 0)) {
+      state.top = state.top + (e.deltaY/1.5)
     }
-    console.log(state.top)
-    console.log(pages * window.innerHeight)
+
+    if (state.top < 0) state.top = 0
+    if (state.top > height) state.top = height
   }
 
   let touchStart: number
