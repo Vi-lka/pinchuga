@@ -45,9 +45,9 @@ export default function Home() {
     let touchMove = e.targetTouches[0].clientY
 
     if ((touchMove < touchStart) && (state.top < height)) {
-      state.top = state.top + ((touchStart - touchMove)/2)
+      state.top = state.top + ((touchStart - touchMove)/4)
     } else if ((touchMove > touchStart) && (state.top > 0)) {
-      state.top = state.top - ((touchMove - touchStart)/2)
+      state.top = state.top - ((touchMove - touchStart)/4)
     }
 
     if (state.top < 0) state.top = 0
