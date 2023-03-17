@@ -20,11 +20,11 @@ import './sceneHome.css'
 import { Box, Flex } from '@react-three/flex'
 import state from '../../utils/state'
 import disableScroll from 'disable-scroll'
-import { EffectComposer, Vignette } from '@react-three/postprocessing'
+import { EffectComposer, SMAA, SSAO, Vignette } from '@react-three/postprocessing'
 import OverlayHome from '../OverlayHome/OverlayHome'
 import Model from '../Models/Model'
 
-function SceneHome({onReflow, scrollTop} : {onReflow: any, scrollTop: any}) {
+function SceneHome({onReflow, scrollTop} : {onReflow: any, scrollTop?: any}) {
 
   const stateThree = useThree()
 
@@ -197,9 +197,9 @@ function SceneHome({onReflow, scrollTop} : {onReflow: any, scrollTop: any}) {
 
   zoom ? disableScroll.on() : disableScroll.off()
 
-  useEffect(() => {
-    document.getElementById('scrollArea')!.style.zIndex = zoom ? '-1' : '1000000'
-  }, [zoom])
+  // useEffect(() => {
+  //   document.getElementById('scrollArea')!.style.zIndex = zoom ? '-1' : '1000000'
+  // }, [zoom])
 
 
   function Title( {onReflow}: any ) {

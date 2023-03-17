@@ -14,14 +14,14 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
 
   const stateThree = useThree()
 
-  const bird1 = useGLTF('./models/low/bird1_low.glb');
-  const bird2 = useGLTF('./models/low/bird2_low.glb');
-  const ceramicCup = useGLTF('./models/low/cup1_low.glb');
-  const halfCeramicCup = useGLTF('./models/low/cup2_low.glb');
-  const item1 = useGLTF('./models/low/item1_low.glb');
-  const item2 = useGLTF('./models/low/item2_low.glb');
-  const deer = useGLTF('./models/low/horse_low.glb');
-  const disk = useGLTF('./models/low/disk_low.glb');
+  // const bird1 = useGLTF('./models/low/bird1_low.glb');
+  // const bird2 = useGLTF('./models/low/bird2_low.glb');
+  // const ceramicCup = useGLTF('./models/low/cup1_low.glb');
+  // const halfCeramicCup = useGLTF('./models/low/cup2_low.glb');
+  // const item1 = useGLTF('./models/low/item1_low.glb');
+  // const item2 = useGLTF('./models/low/item2_low.glb');
+  // const deer = useGLTF('./models/low/horse_low.glb');
+  // const disk = useGLTF('./models/low/disk_low.glb');
 
   const bird1Re = useGLTF('./models/low_re/bird1_low_re.glb');
   const bird2Re = useGLTF('./models/low_re/bird2_low_re.glb');
@@ -60,12 +60,54 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
   //   aoMap: aomap,
   // });
 
-  // bird11.scene.traverse( function (object) {
-  //   if (object instanceof THREE.Mesh) {
-  //     // object.material.copy(myMaterial)
-  //     object.material.wireframe = true
-  //   }
-  // });
+  bird1Re.scene.traverse( function (object) {
+    if (object instanceof THREE.Mesh) {
+      object.material.metalness = 0.95
+      object.material.roughness = 0.62
+    }
+  });
+  bird2Re.scene.traverse( function (object) {
+    if (object instanceof THREE.Mesh) {
+      object.material.metalness = 0.95
+      object.material.roughness = 0.6
+    }
+  });
+  deerRe.scene.traverse( function (object) {
+    if (object instanceof THREE.Mesh) {
+      object.material.metalness = 0.95
+      object.material.roughness = 0.64
+    }
+  });
+  item1Re.scene.traverse( function (object) {
+    if (object instanceof THREE.Mesh) {
+      object.material.metalness = 0.95
+      object.material.roughness = 0.88
+    }
+  });
+  item2Re.scene.traverse( function (object) {
+    if (object instanceof THREE.Mesh) {
+      object.material.metalness = 0.95
+      object.material.roughness = 0.88
+    }
+  });
+  diskRe.scene.traverse( function (object) {
+    if (object instanceof THREE.Mesh) {
+      object.material.metalness = 0.95
+      object.material.roughness = 0.74
+    }
+  });
+  halfCeramicCupRe.scene.traverse( function (object) {
+    if (object instanceof THREE.Mesh) {
+      object.material.metalness = 0.14
+      object.material.roughness = 1
+    }
+  });
+  ceramicCupRe.scene.traverse( function (object) {
+    if (object instanceof THREE.Mesh) {
+      object.material.metalness = 0.14
+      object.material.roughness = 1
+    }
+  });
 
   const modelText1Ref = createRef<any>()
   const modelText1PRef = createRef<any>()
@@ -131,8 +173,13 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
   })
 
   const onScroll = (e: any) => {
-    if (window.innerWidth > 1200) state.top = state.top + 100
-    console.log(Number(state.top))
+    if (window.innerWidth > 1200) {
+      if (e.deltaY > 0) {
+        state.top = state.top + 100
+      } else if (e.deltaY < 0) {
+        state.top = state.top - 100
+      }
+    }
   }
 
   return (
@@ -205,7 +252,7 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
             visible={!zoom || state.selectedModel === 2}
             ref={primitive}
             object={bird2Re.scene}
-            position={[-0.2, 21.2, 0.4]}
+            position={[-0.2, 21.4, 0.4]}
             rotation={[0, 1.55, 0]}
             scale={2.5}
             receiveShadow
@@ -241,7 +288,7 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
           </group>
         </group>
         <group position={[6, -17, -15.7]} rotation={[0, 2.8, 0]} >
-          <directionalLight position={[-10, 0, 10]} />
+          {/* <directionalLight position={[-10, 0, 10]} /> */}
           {/* <primitive
             visible={!zoom || state.selectedModel === 3}
             ref={primitive}
@@ -256,7 +303,7 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
             visible={!zoom || state.selectedModel === 3}
             ref={primitive}
             object={deerRe.scene}
-            position={[2, 22.4, -1.5]}
+            position={[2, 22.6, -1.5]}
             rotation={[1, 3, -1.4]}
             scale={4}
             receiveShadow
@@ -293,6 +340,7 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
         </group>
         <group position={[10, 2, -16]} rotation={[0, 3.8, 0]} >
           <directionalLight position={[-15, 40, 10]} />
+
           {/* <primitive
             visible={!zoom || state.selectedModel === 4}
             ref={primitive}
@@ -345,6 +393,7 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
           </group>
         </group>
         <group position={[2, 2.5, -19]} rotation={[0, -1.5, 0]} >
+        <directionalLight  position={[-10, 16.9, 0]} intensity={0.8} />
           {/* <primitive
             visible={!zoom || state.selectedModel === 5}
             ref={primitive}
@@ -359,7 +408,7 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
             visible={!zoom || state.selectedModel === 5}
             ref={primitive}
             object={item2Re.scene}
-            position={[1.2, 16.9, 0.5]}
+            position={[1.2, 17.1, 0.5]}
             rotation={[1.6, -1.55, 0]}
             scale={0.8}
             receiveShadow
@@ -410,7 +459,7 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
             visible={!zoom || state.selectedModel === 6}
             ref={primitive}
             object={diskRe.scene}
-            position={[-1.6, 24.8, 2.2]}
+            position={[-1.6, 24.7, 2.2]}
             rotation={[1.5, 0, 0]}
             scale={4.5}
             receiveShadow
@@ -449,7 +498,7 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
           </group>
         </group>
         <group position={[-9.8, 23.5, -10]} rotation={[0, 0.3, 0]} >
-          <directionalLight position={[-200, 40, 15]} />
+          <directionalLight position={[-200, 40, 15]} intensity={0.4} />
           {/* <primitive
             visible={!zoom || state.selectedModel === 7}
             ref={primitive}
@@ -464,7 +513,7 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
             visible={!zoom || state.selectedModel === 7}
             ref={primitive}
             object={halfCeramicCupRe.scene}
-            position={[0.5, 10.8, -0.9]}
+            position={[0.5, 10.9, -0.9]}
             rotation={[0, -0.25, 0.1]}
             scale={1}
             receiveShadow
