@@ -6,14 +6,14 @@ import HomeMobile from './components/HomeMobile/HomeMobile'
 
 function App() {
 
-  if (window.innerWidth <= 1200) {
+  // if (window.innerWidth <= 1200) {
 
-    return <HomeMobile />
+  //   return <HomeMobile />
 
-  } else {
+  // } else {
 
     return <Home />
     
-  }
+  // }
 }
 export default App;
