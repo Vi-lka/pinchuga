@@ -10,7 +10,7 @@ export default function Home() {
   const [pages, setPages] = useState(0)
   const scrollArea = useRef<HTMLDivElement>(null)
 
-  const height = pages * window.innerHeight
+  const height = pages * window.outerHeight
   
   // const onScroll = (e: any) => {
   //   if (window.innerWidth > 1200) state.top = e.target.scrollTop
@@ -45,9 +45,9 @@ export default function Home() {
     let touchMove = e.targetTouches[0].clientY
 
     if ((touchMove < touchStart) && (state.top < height)) {
-      state.top = state.top + ((touchStart - touchMove)/5)
+      state.top = state.top + ((touchStart - touchMove)/2)
     } else if ((touchMove > touchStart) && (state.top > 0)) {
-      state.top = state.top - ((touchMove - touchStart)/5)
+      state.top = state.top - ((touchMove - touchStart)/2)
     }
 
     if (state.top < 0) state.top = 0
