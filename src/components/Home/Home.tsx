@@ -8,9 +8,13 @@ import state from '../../utils/state'
 export default function Home() {
 
   const [pages, setPages] = useState(0)
-  const scrollArea = useRef<HTMLDivElement>(null)
+  // const scrollArea = useRef<HTMLDivElement>(null)
 
-  const height = pages * window.outerHeight
+  useEffect(() => {
+    console.log(state.zoomGlobal)
+  }, [state.zoomGlobal])
+
+  const height = pages * window.innerHeight
   
   // const onScroll = (e: any) => {
   //   if (window.innerWidth > 1200) state.top = e.target.scrollTop
@@ -18,21 +22,18 @@ export default function Home() {
 
   // useEffect(() => void onScroll({ target: scrollArea.current }), [])
 
-  // const scrollTop = (e: any) => {
-  //   console.log("scrollTop")
-  //   state.top = 0
-  //   scrollArea.current && scrollArea.current.scroll({top: 0})
-  // }
 
   const onScroll = (e: any) => {
-    if ((e.deltaY > 0) && (state.top < height)) {
-      state.top = state.top + (e.deltaY/1.5)
-    } else if ((e.deltaY < 0) && (state.top > 0)) {
-      state.top = state.top + (e.deltaY/1.5)
-    }
+    if (!state.zoomGlobal) {
+      if ((e.deltaY > 0) && (state.top < height)) {
+        state.top = state.top + (e.deltaY)
+      } else if ((e.deltaY < 0) && (state.top > 0)) {
+        state.top = state.top + (e.deltaY)
+      }
 
-    if (state.top < 0) state.top = 0
-    if (state.top > height) state.top = height
+      if (state.top < 0) state.top = 0
+      if (state.top > height) state.top = height
+    }
   }
 
   let touchStart: number
@@ -42,20 +43,18 @@ export default function Home() {
   }
 
   const onTouchMove = (e: any) => {
-    let touchMove = e.targetTouches[0].clientY
+    if (!state.zoomGlobal) {    
+      let touchMove = e.targetTouches[0].clientY
 
-    if ((touchMove < touchStart) && (state.top < height)) {
-      state.top = state.top + ((touchStart - touchMove)/4)
-    } else if ((touchMove > touchStart) && (state.top > 0)) {
-      state.top = state.top - ((touchMove - touchStart)/4)
+      if ((touchMove < touchStart) && (state.top < height)) {
+        state.top = state.top + ((touchStart - touchMove)/4)
+      } else if ((touchMove > touchStart) && (state.top > 0)) {
+        state.top = state.top - ((touchMove - touchStart)/4)
+      }
+
+      if (state.top < 0) state.top = 0
+      if (state.top > height) state.top = height
     }
-
-    if (state.top < 0) state.top = 0
-    if (state.top > height) state.top = height
-    
-    console.log("touchStart:  " + touchStart)
-    console.log("touchMove: " + touchMove)
-    console.log(state.top)
   }
 
   // const onTouchEnd = (e: any) => {
@@ -93,7 +92,6 @@ export default function Home() {
         >
           <SceneHome 
             onReflow={setPages} 
-            // scrollTop={scrollTop}
           />
 
           <Preload all />

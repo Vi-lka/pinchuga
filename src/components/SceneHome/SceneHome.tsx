@@ -24,7 +24,7 @@ import { EffectComposer, SMAA, SSAO, Vignette } from '@react-three/postprocessin
 import OverlayHome from '../OverlayHome/OverlayHome'
 import Model from '../Models/Model'
 
-function SceneHome({onReflow, scrollTop} : {onReflow: any, scrollTop?: any}) {
+function SceneHome({onReflow} : {onReflow: any}) {
 
   const stateThree = useThree()
 
@@ -36,11 +36,16 @@ function SceneHome({onReflow, scrollTop} : {onReflow: any, scrollTop?: any}) {
     return null
   }
 
+  const scrollTop = () => {
+    console.log("scrollTop")
+    state.top = 0
+  }
+
   const handleReflow = useCallback((w: any, h: any) => {
     onReflow((state.pages = h / stateThree.viewport.height + plusHeight))
-
-    // scrollTop()
-  }, [onReflow, stateThree.viewport.height])
+  
+    // if (state.top > ((state.pages * window.innerHeight) / 4)) scrollTop()
+  }, [stateThree.viewport.height])
   
   const groupFlex = createRef<THREE.Group>()
   const titleRef = createRef<THREE.Group>()
@@ -64,6 +69,14 @@ function SceneHome({onReflow, scrollTop} : {onReflow: any, scrollTop?: any}) {
 
   // stateThree.size.width * 0.0006 = 0.92
   // stateThree.size.width * 0.0009 = 1.38
+
+  const [zoom, setZoom] = useState(false)
+
+  useEffect(() => {
+    state.zoomGlobal = zoom
+  }, [zoom])
+
+  zoom ? disableScroll.on() : disableScroll.off()
 
   useFrame(() => {
     // Scroll value 
@@ -192,10 +205,6 @@ function SceneHome({onReflow, scrollTop} : {onReflow: any, scrollTop?: any}) {
 
     stateThree.camera.lookAt(ghostMeshRef.current!.position)
   })
-
-  const [zoom, setZoom] = useState(false);
-
-  zoom ? disableScroll.on() : disableScroll.off()
 
   // useEffect(() => {
   //   document.getElementById('scrollArea')!.style.zIndex = zoom ? '-1' : '1000000'

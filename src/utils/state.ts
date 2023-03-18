@@ -12,6 +12,7 @@ const state = {
     model7Pos: [-10.6, 40.5, -10.1],
     model8Pos: [-12.5, 49.5, -6.5],
     selectedModel: 0,
+    zoomGlobal: false,
   }
   
   export default state

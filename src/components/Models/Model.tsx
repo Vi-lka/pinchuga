@@ -1,9 +1,11 @@
 import { ContactShadows, Html, useGLTF } from '@react-three/drei';
 import { useFrame, useLoader, useThree } from '@react-three/fiber';
-import { createRef, useRef } from 'react'
+import { createRef, Suspense, useRef } from 'react'
 import * as THREE from 'three';
 import { TextureLoader } from 'three';
 import state from '../../utils/state';
+import { Bird1 } from './Bird1';
+import { Bird1Simpled } from './Bird1Simpled';
 import './model.css';
 
 function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
@@ -23,7 +25,7 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
   // const deer = useGLTF('./models/low/horse_low.glb');
   // const disk = useGLTF('./models/low/disk_low.glb');
 
-  const bird1Re = useGLTF('./models/low_re/bird1_low_re.glb');
+  // const bird1Re = useGLTF('./models/low_re/bird1_low_re.glb');
   const bird2Re = useGLTF('./models/low_re/bird2_low_re.glb');
   const ceramicCupRe = useGLTF('./models/low_re/cup1_low_re.glb');
   const halfCeramicCupRe = useGLTF('./models/low_re/cup2_low_re.glb');
@@ -32,40 +34,12 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
   const deerRe = useGLTF('./models/low_re/deer_low_re.glb');
   const diskRe = useGLTF('./models/low_re/disk_low_re.glb');
 
-  // const [colormap, normalmap, metalnessmap, roughnessmap, aomap] = useLoader(
-  //   TextureLoader,
-  //   [
-  //     "./models/textures/null-textures/null_texture.png",
-  //     "./models/textures/null-textures/null_texture_normal.png",
-  //     "./models/textures/null-textures/null_texture.png",
-  //     "./models/textures/null-textures/null_texture.png",
-  //     "./models/textures/null-textures/null_texture.png"
-  //   ]
-  // );
-
-  // // colormap!.flipY = false;
-  // normalmap!.flipY = false;
-  // metalnessmap!.flipY = false;
-  // roughnessmap!.flipY = false;
-  // aomap!.flipY = false;
-
-  // let myMaterial = new THREE.MeshPhysicalMaterial({
-  //   color: "#ffffff",
-  //   // map: colormap,
-  //   // normalMap: normalmap,
-  //   metalnessMap: metalnessmap,
-  //   metalness: 0.5,
-  //   roughnessMap: roughnessmap,
-  //   roughness: 0.7,
-  //   aoMap: aomap,
+  // bird1Re.scene.traverse( function (object) {
+  //   if (object instanceof THREE.Mesh) {
+  //     object.material.metalness = 0.95
+  //     object.material.roughness = 0.62
+  //   }
   // });
-
-  bird1Re.scene.traverse( function (object) {
-    if (object instanceof THREE.Mesh) {
-      object.material.metalness = 0.95
-      object.material.roughness = 0.62
-    }
-  });
   bird2Re.scene.traverse( function (object) {
     if (object instanceof THREE.Mesh) {
       object.material.metalness = 0.95
@@ -172,16 +146,6 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
 
   })
 
-  const onScroll = (e: any) => {
-    if (window.innerWidth > 1200) {
-      if (e.deltaY > 0) {
-        state.top = state.top + 100
-      } else if (e.deltaY < 0) {
-        state.top = state.top - 100
-      }
-    }
-  }
-
   return (
     <>
       <group position={[0, 0, 0]}>
@@ -198,16 +162,23 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
             receiveShadow
             castShadow
           /> */}
-          <primitive
-            visible={!zoom || state.selectedModel === 1}
-            ref={primitive}
-            object={bird1Re.scene}
-            position={[2.4, 9.2, -3.2]}
-            rotation={[0, -1.6, 0]}
-            scale={0.5}
-            receiveShadow
-            castShadow
-          />
+          <Suspense fallback={
+            <Bird1Simpled 
+              visible={!zoom || state.selectedModel === 1}
+              ref={primitive}
+              position={[2.4, 9.2, -3.2]}
+              rotation={[0, -1.6, 0]}
+              scale={0.5}
+            />
+          }>
+            <Bird1
+              visible={!zoom || state.selectedModel === 1}
+              ref={primitive}
+              position={[2.4, 9.2, -3.2]}
+              rotation={[0, -1.6, 0]}
+              scale={0.5}
+            />
+          </Suspense>
 
           <group ref={modelText1Ref} position={[30, 9, 0]}>
             <Html
@@ -216,7 +187,7 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
               center
               ref={modelText1PRef}
             >
-              <p className="modelText1" onWheel={onScroll}>
+              <p className="modelText1">
                 <b>Сокол</b>
                 <br /><br />
                 Одной из самых ярких находок на могильнике Пинчуга-6 стали <b>бронзовые изображения хищных птиц</b>.
