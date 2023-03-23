@@ -11,24 +11,22 @@ import img_draw_cup_1 from '../../assets/images/img_draw_cup_1.svg'
 import img_draw_cup_2 from '../../assets/images/img_draw_cup_2.svg'
 import img_draw_item_1 from '../../assets/images/img_draw_item_1.svg'
 import img_draw_item_2 from '../../assets/images/img_draw_item_2.svg'
+import great_migration from '../../assets/images/great_migration.svg'
+import big_map from '../../assets/images/big_map.svg'
 import angara_map from '../../assets/images/angara_map.svg'
-import great_migration from '../../assets/images/great_migration_fill.svg'
-import sfu_logo from '../../assets/images/sfu_logo.png'
 import funeral_pure from '../../assets/images/funeral_pure.svg'
 import Arrow_scroll from '../../assets/images/Arrow_scroll.png'
 import './sceneHome.css'
 import { Box, Flex } from '@react-three/flex'
 import state from '../../utils/state'
 import disableScroll from 'disable-scroll'
-import { EffectComposer, SMAA, SSAO, Vignette } from '@react-three/postprocessing'
+import { EffectComposer, Vignette } from '@react-three/postprocessing'
 import OverlayHome from '../OverlayHome/OverlayHome'
 import Model from '../Models/Model'
 
 function SceneHome({onReflow} : {onReflow: any}) {
 
   const stateThree = useThree()
-
-  const width = stateThree.viewport.width
 
   //For recalculate size of Flex
   function HeightReporter({ onReflow }:any) {
@@ -41,11 +39,42 @@ function SceneHome({onReflow} : {onReflow: any}) {
     state.top = 0
   }
 
+  const [zoom, setZoom] = useState(false)
+
+  useEffect(() => {
+    state.zoomGlobal = zoom
+  }, [zoom])
+
+  zoom ? disableScroll.on() : disableScroll.off()
+
+  const [wState, setwState] = useState(0)
+  const [hState, sethState] = useState(0)
+
   const handleReflow = useCallback((w: any, h: any) => {
+    // console.log('w:  ' + w)
+    // console.log('h:  ' + h)
+
+    // console.log('wState:  ' + wState)
+    // console.log('hState:  ' + hState)
+    
+
+    if (!zoom && ((wState !== w) || (hState !== h))) {
+      if (state.top > ((state.pages * window.innerHeight) / 5)) state.top = ((state.pages * window.innerHeight) / 6)
+      // console.log('handleReflow !zoom')
+    } else if (zoom && ((wState !== w) || (hState !== h))) {
+      setZoom(false)
+      // console.log('handleReflow zoom')
+    }
     onReflow((state.pages = h / stateThree.viewport.height + plusHeight))
-  
-    // if (state.top > ((state.pages * window.innerHeight) / 4)) scrollTop()
-  }, [stateThree.viewport.height])
+    setwState(w)
+    sethState(h)
+
+    // if ((state.top > ((state.pages * window.innerHeight) / 5)) && !zoom) {
+    //   state.top = ((state.pages * window.innerHeight) / 6)
+    // }
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [zoom, onReflow, stateThree.viewport.height, stateThree.viewport.width, stateThree.size])
   
   const groupFlex = createRef<THREE.Group>()
   const titleRef = createRef<THREE.Group>()
@@ -64,19 +93,11 @@ function SceneHome({onReflow} : {onReflow: any}) {
   const vec = new THREE.Vector3()
   const pageLerp = useRef(state.top / stateThree.size.height)
   const plusHeight = 28
-  const startMainText = 1.2
+  const startMainText = 0.9
   const startModelsArray = 6.2
 
   // stateThree.size.width * 0.0006 = 0.92
   // stateThree.size.width * 0.0009 = 1.38
-
-  const [zoom, setZoom] = useState(false)
-
-  useEffect(() => {
-    state.zoomGlobal = zoom
-  }, [zoom])
-
-  zoom ? disableScroll.on() : disableScroll.off()
 
   useFrame(() => {
     // Scroll value 
@@ -89,7 +110,7 @@ function SceneHome({onReflow} : {onReflow: any}) {
     
     // Position of Flex
     // groupFlex.current!.position.lerp(vec.set(0, page < state.threshold ? (page >= startMainText ? 11 : y) : sticky, page < state.threshold ? 0 : page * 2), 0.15)
-    groupFlex.current!.position.lerp(vec.set(0, (page >= startMainText ? 11 : y), 0), 0.15)
+    groupFlex.current!.position.lerp(vec.set(0, (page >= startMainText ? 11 : y), 0), 0.1)
 
     // Position and opacity of BackGround
     bgRef.current!.position.lerp(vec.set(
@@ -103,7 +124,7 @@ function SceneHome({onReflow} : {onReflow: any}) {
       -11,
 
       (page > 3 ? (page >= startModelsArray ? -20 : -page) : 5)
-    ), 0.1)
+    ), 0.09)
     bgMaterialRef.current!.opacity = ((page < 0.8) ? 0 : (0 + (page - 1)*2))
 
     // Inner Flex element positions
@@ -120,7 +141,7 @@ function SceneHome({onReflow} : {onReflow: any}) {
     
     // Position of Camera
     if (!zoom) {    
-      if (page < startModelsArray) {stateThree.camera.position.lerp(vec.set(0, 0, 10), 0.15)}
+      if (page < startModelsArray) {stateThree.camera.position.lerp(vec.set(0, 0, 10), 0.5)}
       if (page < startModelsArray) {ghostMeshRef.current!.position.lerp(vec.set(0, 0, 0), 0.1)}
 
       //1
@@ -306,13 +327,13 @@ function SceneHome({onReflow} : {onReflow: any}) {
 
       // console.log(stateThree.viewport.aspect)
 
-      dreiImage1Ref.current?.position.lerp(vec.set((page > 2) ? -20 : -0.22*stateThree.viewport.aspect, 1.2*page - 0.7, 4.4), 0.15)
-      mainText1Ref.current?.position.lerp(vec.set((page > 2) ? -20 : 1.3*stateThree.viewport.aspect, 1, 0 ), 0.2)
+      dreiImage1Ref.current?.position.lerp(vec.set((page > 2) ? -20 : -0.4*stateThree.viewport.aspect, 1.12, 3.9), 0.15)
+      mainText1Ref.current?.position.lerp(vec.set((page > 2) ? -20 : 1.45*stateThree.viewport.aspect, 1, 0 ), 0.2)
       mainText1PRef.current && 
         (mainText1PRef.current.style.display = (page > 0.4) ? (page > 6.21 ? 'none' : 'block') : 'none')
 
-      dreiImage2Ref.current?.position.lerp(vec.set((page > 2) ? (page > 3 ? 15 : 0.5*stateThree.viewport.aspect) : 15, 1.1, 3.5 ), 0.15)
-      mainText2Ref.current?.position.lerp(vec.set((page > 2) ? (page > 3 ? -20 : -1.3*stateThree.viewport.aspect) : -20 , 1, 0 ), 0.15)
+      dreiImage2Ref.current?.position.lerp(vec.set((page > 2) ? (page > 3 ? -15 : -0.5*stateThree.viewport.aspect) : -15, 1.1, 3*(page/2)), 0.15)
+      mainText2Ref.current?.position.lerp(vec.set((page > 2) ? (page > 3 ? 20 : 1.55*stateThree.viewport.aspect) : 20 , 1.05, 0 ), 0.15)
       mainText2PRef.current && 
         (mainText2PRef.current.style.display = (page > 0.4) ? (page > 6.21 ? 'none' : 'block') : 'none')
 
@@ -347,7 +368,7 @@ function SceneHome({onReflow} : {onReflow: any}) {
 
           <HeightReporter onReflow={onReflow} />
           
-          <DreiImage ref={dreiImage1Ref} url={angara_map} scale={[1.2, 2]} toneMapped={true} transparent opacity={1} position={[(pageLerp.current > 2) ? -20 : 0, pageLerp.current > 0.6 ? 1.2*pageLerp.current : -5, -4*pageLerp.current + 7.5]}/>
+          <DreiImage ref={dreiImage1Ref} url={great_migration} scale={[2, 1.8]} color={'white'} toneMapped={true} transparent opacity={1} position={[(pageLerp.current > 2) ? -20 : 0, pageLerp.current > 0.6 ? 1.2 : -5, -4*pageLerp.current + 7.5]}/>
           <group ref={mainText1Ref} position={[(pageLerp.current > 2) ? -20 : (window.innerWidth < 1000 ? (stateThree.size.width * 0.0006)*3 : 3), 1, -4*pageLerp.current]}>
             <Html
               as='div' // Wrapping element (default: 'div')
@@ -355,29 +376,37 @@ function SceneHome({onReflow} : {onReflow: any}) {
               center
             >
               <p ref={mainText1PRef} className="mainText1">
-                <b>Ангара</b> – одна из крупнейших рек Енисейской Сибири, на берегах которой археологи работают уже более ста лет. 
+                <strong>Эпоха Великого переселения народов</strong> – один из ключевых моментов истории Евразии вообще и Сибири в частности. 
                 <br/><br/>
-                За это время открыты памятники древности, получены яркие находки, написаны научные статьи и книги.
+                В период <b>со II по VI вв. н.э.</b> на большей части континента происходили масштабные миграции населения, что привело к формированию новых народов и государств. 
+                <br/><br/>
+                Толчком этого процесса стал разгром <b>Хуннской державы</b>, проигравшей в борьбе за гегемонию в Центральной Азии китайской империи Хань и её союзникам. 
+                <br/><br/> 
+                Племена хунну двинулись на запад, сметая по пути другие народы и привнося серьезные изменения в их культуру. 
+                <br/><br/>
+                Спустя почти полтора века, в 354 г. н.э., они стали известны в Европе под именем <b>«гунны»</b>, как суровые и безжалостные завоеватели. 
               </p>
             </Html>
           </group>
 
-          <DreiImage ref={dreiImage2Ref} scale={[1.5, 1]} url={great_migration} toneMapped={false} transparent opacity={1} position={[(pageLerp.current > 2) ? (pageLerp.current > 3 ? 15 : 1.2) : 15, 1.1, -1.4*(pageLerp.current)]}/>
+          <DreiImage ref={dreiImage2Ref} scale={[1.91, 1.8]} url={big_map} toneMapped={false} transparent opacity={1} position={[(pageLerp.current > 2) ? (pageLerp.current > 3 ? 15 : 1.2) : 15, 1.1, -1.4*(pageLerp.current)]}/>
           <group ref={mainText2Ref} position={[(pageLerp.current > 2) ? (pageLerp.current > 3 ? -20 : (window.innerWidth < 1000 ? (stateThree.size.width * 0.0006)*(-3) : -3)) : -20 , 1, -4*pageLerp.current]}>
             <Html
               as='div' // Wrapping element (default: 'div')
               wrapperClass="textArea" // The className of the wrapping element (default: undefined)
               center
             >
-              <p ref={mainText2PRef} className="mainText1">
-                Одной из темных страниц истории Приангарья долгое время оставалась эпоха <b>Великого переселения народов</b>.  
+              <p ref={mainText2PRef} className="mainText2">
+                Миграция хунну, начавшаяся в глубокой <b>Центральной Азии</b>, затронула большую часть <b>Евразии</b>.
+                <br/><br/> 
+                И хотя основные исторические события происходили в <b>степях</b>, но происходившие глобальные изменения коснулись и далёких <b>таёжных районов</b>.
                 <br/><br/>
-                В период <b>со II по VI вв. н.э.</b> в Сибири происходили масштабные миграции населения, развивалось кузнечество, появлялись новые типы вещей. 
+                Сейчас, на основании последних <b>полевых работ</b> мы можем говорить об этом уверенно.
               </p>
             </Html>
           </group>
 
-          <DreiImage ref={dreiImage3Ref} scale={[2.4, 2.62]} url={sfu_logo} toneMapped={false} transparent opacity={1} position={[(-pageLerp.current), pageLerp.current > 3 ? (pageLerp.current > 4 ? 10 : 1) : 22, (pageLerp.current > 3 ? (-4*pageLerp.current - 2) : (2))]}/>
+          <DreiImage ref={dreiImage3Ref} scale={[2.4, 2.62]} url={angara_map} toneMapped={false} transparent opacity={1} position={[(-pageLerp.current), pageLerp.current > 3 ? (pageLerp.current > 4 ? 10 : 1) : 22, (pageLerp.current > 3 ? (-4*pageLerp.current - 2) : (2))]}/>
           <group ref={mainText3Ref} position={[(pageLerp.current > 3) ? (pageLerp.current > 4 ? 20 : (window.innerWidth < 1000 ? (stateThree.size.width * 0.0006)*3 : 3.8)) : 20 , pageLerp.current > 4 ? -10 : 1.2, -4*pageLerp.current]}>
             <Html
               as='div' // Wrapping element (default: 'div')
@@ -385,9 +414,12 @@ function SceneHome({onReflow} : {onReflow: any}) {
               center
             >
               <p ref={mainText3PRef} className="mainText2">
-                Могильник III – IV вв. н.э. <br/><b>Пинчуга-6</b> – стал первым полностью раскопанным некрополем эпохи Великого переселения народов на Ангаре. 
+                Именно в это время на берегах <b>Ангары и Енисея</b> возникают и активно развиваются технологии получения и обработки <b>железа</b>, 
+                усиливается <b>обмен</b> с южными и западными территориями, получает распространение новая <b>керамическая посуда</b>, совершенствуется <b>оружие</b>. 
                 <br/><br/>
-                Он изучался археологами <b>Сибирского федерального университета</b> с 2018 по 2022 год. 
+                Все эти сведения получены археологами при изучении могильника <b>III – IV вв. н.э.</b> <strong>Пинчуга-6</strong>. 
+                <br/><br/>
+                Он изучался археологами <b>Сибирского федерального университета</b> с 2018 по 2022 год и стал первым полностью раскопанным некрополем эпохи Великого переселения народов на Ангаре.
               </p>
             </Html>
           </group>
@@ -400,9 +432,19 @@ function SceneHome({onReflow} : {onReflow: any}) {
               center
             >
               <p ref={mainText4PRef} className="mainText3">
-                Здесь найдено <b>18</b> погребений, выполненных по одному <b>обряду</b>. 
+                {/* Могильник <b>III – IV вв. н.э.</b> <strong>Пинчуга-6</strong> – стал первым полностью раскопанным некрополем эпохи Великого переселения народов на Ангаре.
+                <br/><br/> 
+                Он изучался археологами <b>Сибирского федерального университета</b> с 2018 по 2022 год. 
+                <br/><br/> */}
+                Здесь найдено <b>18 погребений</b>, выполненных по одному обряду. Тело умершего сжигали на погребальном огне, после чего остывший прах хоронили в небольших ямах или просто рассыпали по поверхности. 
                 <br/><br/>
-                Тело умершего сжигали на <b>погребальном огне</b>, после чего остывший прах хоронили в небольших ямах или просто рассыпали по поверхности. 
+                Вместе с прахом оставляли и некоторые вещи, необходимые в загробном мире: <b>посуду, ножи, иглы, тёсла, украшения, наконечники стрел, детали луков</b> и другие предметы.
+                <br/><br/>
+                На могильнике <b>Пинчуга-6</b> найдено более <b>500</b> разнообразных предметов. 
+                Все они важны для датировки памятника и реконструкции быта, оставивших его людей. 
+                <br/><br/> 
+                Но в этом проекте представлена только небольшая часть всех находок. 
+                Упор сделан на изделиях из бронзы, красивых, ярких и обладающих <b>художественной ценностью</b>. 
               </p>
             </Html>
           </group>
@@ -422,9 +464,11 @@ function SceneHome({onReflow} : {onReflow: any}) {
               center
             >
               <p ref={mainText5PRef} className="mainText4">
-                На могильнике найдены <b>украшения</b>, <b>предметы культового литья</b>, <b>наконечники стрел</b>, <b>кинжал</b>, <b>ножи</b>, <b>тесла</b>, <b>пряжки</b>, стеклянные и каменные <b>бусы</b>. 
-                <br/><br/>
-                Часть предметов попала на Ангару из других территорий Евразии.
+                Эти предметы попали на <b>Ангару</b> из разных регионов и позволяют проследить направления <b>культурных связей</b>, понять, что выступало предметом обмена. 
+                <br/><br/> 
+                Узнаваемые изображения <b>животных и птиц</b> позволяют нам заглянуть в мир идей и образов людей, живших на ангарских берегах более <b>1500 лет</b> назад. 
+                <br/><br/> 
+                Представленные <b>керамические сосуды</b> не относятся к могильнику, но найдены на этом же памятнике и характерны для раннего железного века и неолита Приангарья. 
               </p>
             </Html>
           </group>

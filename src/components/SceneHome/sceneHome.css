@@ -115,12 +115,12 @@
 }
 
 .mainText1 {
-    width: 31vw;
+    width: 35vw;
     color:#f6f6f6;
 }
 
 .mainText2 {
-    width: 32vw;
+    width: 30vw;
     color:#2b2b2b;
 }
 
@@ -144,21 +144,21 @@
 @media (max-width: 1100px) {
     .mainText1 {
         width: 30vw;
-        font-size: 16px;
+        font-size: 14px;
     }
     
     .mainText2 {
-        width: 30vw;
-        font-size: 16px;
+        width: 28vw;
+        font-size: 14px;
     }
     
     .mainText3 {
         width: 28vw;
-        font-size: 16px;
+        font-size: 14px;
     }
     
     .mainText4 {
         width: 28vw;
-        font-size: 16px;
+        font-size: 14px;
     }
 }

@@ -57,7 +57,7 @@
 .wrapperClass_logo button:hover {
     border: 1px solid #2b2b2b;
     border-radius: 12px;
-    color: #fbfbfb;
+    color: #f6f6f6;
     background: #2b2b2b;
     transition: 0.15s ease-in-out;
 }
@@ -76,7 +76,7 @@
     visibility: hidden;
     width: 100px;
     background-color: #2b2b2b;
-    color: #fbfbfb;
+    color: #f6f6f6;
     text-align: center;
     border-radius: 6px;
     padding: 5px 0;

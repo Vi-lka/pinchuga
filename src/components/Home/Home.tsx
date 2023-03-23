@@ -22,7 +22,6 @@ export default function Home() {
 
   // useEffect(() => void onScroll({ target: scrollArea.current }), [])
 
-
   const onScroll = (e: any) => {
     if (!state.zoomGlobal) {
       if ((e.deltaY > 0) && (state.top < height)) {
@@ -73,7 +72,7 @@ export default function Home() {
         className="canvas" 
         dpr={[1, 2]} 
         gl={{ preserveDrawingBuffer: true }}
-        onCreated={({ gl }) => gl.setClearColor('#fbfbfb')}
+        onCreated={({ gl }) => gl.setClearColor('#f6f6f6')}
         onWheel={onScroll}
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
