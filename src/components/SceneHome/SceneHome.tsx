@@ -332,8 +332,8 @@ function SceneHome({onReflow} : {onReflow: any}) {
       mainText1PRef.current && 
         (mainText1PRef.current.style.display = (page > 0.4) ? (page > 6.21 ? 'none' : 'block') : 'none')
 
-      dreiImage2Ref.current?.position.lerp(vec.set((page > 2) ? (page > 3 ? -15 : -0.5*stateThree.viewport.aspect) : -15, 1.1, 3*(page/2)), 0.15)
-      mainText2Ref.current?.position.lerp(vec.set((page > 2) ? (page > 3 ? 20 : 1.55*stateThree.viewport.aspect) : 20 , 1.05, 0 ), 0.15)
+      dreiImage2Ref.current?.position.lerp(vec.set(0.5*stateThree.viewport.aspect - page/25, 1.6+(-page/4), (page > 2 ? (page > 3 ? 15 : 3*(page/2)) : -15)), 0.1)
+      mainText2Ref.current?.position.lerp(vec.set((page > 2) ? (page > 3 ? -20 : -1.4*stateThree.viewport.aspect) : -20 , 1.05, 0 ), 0.15)
       mainText2PRef.current && 
         (mainText2PRef.current.style.display = (page > 0.4) ? (page > 6.21 ? 'none' : 'block') : 'none')
 
@@ -526,7 +526,7 @@ function SceneHome({onReflow} : {onReflow: any}) {
   return (
     <>
     <OverlayHome zoom={zoom} setZoom={setZoom} />
-    <PerspectiveCamera makeDefault fov={45} near={0.1} far={zoom ? 1000 : 25}  position={
+    <PerspectiveCamera makeDefault fov={45} near={0.2} far={zoom ? 200 : 20}  position={
       (pageLerp.current < startModelsArray) ? 
       [0, 0, 10]
       :
