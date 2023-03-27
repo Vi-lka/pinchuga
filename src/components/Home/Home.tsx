@@ -10,10 +10,6 @@ export default function Home() {
   const [pages, setPages] = useState(0)
   // const scrollArea = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    console.log(state.zoomGlobal)
-  }, [state.zoomGlobal])
-
   const height = pages * window.innerHeight
   
   // const onScroll = (e: any) => {
@@ -25,9 +21,17 @@ export default function Home() {
   const onScroll = (e: any) => {
     if (!state.zoomGlobal) {
       if ((e.deltaY > 0) && (state.top < height)) {
-        state.top = state.top + (e.deltaY)
+        if (state.top / window.innerHeight < 6.2) {
+          state.top = state.top + (e.deltaY / 2.3)
+        } else {
+          state.top = state.top + (e.deltaY)
+        }
       } else if ((e.deltaY < 0) && (state.top > 0)) {
-        state.top = state.top + (e.deltaY)
+        if (state.top / window.innerHeight < 6.2) {
+          state.top = state.top + (e.deltaY / 2.3)
+        } else {
+          state.top = state.top + (e.deltaY)
+        }
       }
 
       if (state.top < 0) state.top = 0

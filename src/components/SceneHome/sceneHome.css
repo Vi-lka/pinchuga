@@ -125,7 +125,8 @@
 }
 
 .mainText3 {
-    width: 29vw;
+    font-size: 17px;
+    width: 30vw;
     color:#f6f6f6;
 }
 
@@ -141,24 +142,46 @@
     font-weight: 500;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1280px) {
     .mainText1 {
         width: 30vw;
         font-size: 14px;
     }
     
     .mainText2 {
-        width: 28vw;
+        width: 30vw;
         font-size: 14px;
     }
     
     .mainText3 {
-        width: 28vw;
+        width: 30vw;
         font-size: 14px;
     }
     
     .mainText4 {
         width: 28vw;
         font-size: 14px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .mainText1 {
+        width: 30vw;
+        font-size: 12px;
+    }
+    
+    .mainText2 {
+        width: 30vw;
+        font-size: 12px;
+    }
+    
+    .mainText3 {
+        width: 30vw;
+        font-size: 12px;
+    }
+    
+    .mainText4 {
+        width: 28vw;
+        font-size: 12px;
     }
 }
