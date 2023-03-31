@@ -18,7 +18,7 @@ type GLTFResult = GLTF & {
 }
 
 export function Bird1Simpled(props: JSX.IntrinsicElements['group']) {
-  const { nodes, materials } = useGLTF('./models/low_re/bird1_low_re-transformed.glb') as GLTFResult
+  const { nodes, materials } = useGLTF('./models/low_re/transformed/bird1_low_re-transformed.glb') as GLTFResult
   return (
     <group {...props} dispose={null}>
       <mesh geometry={nodes.Model.geometry} material={materials.material0} material-metalness={0.95} material-roughness={0.62} rotation={[1.69, 0.2, -0.15]} />
@@ -26,4 +26,4 @@ export function Bird1Simpled(props: JSX.IntrinsicElements['group']) {
   )
 }
 
-useGLTF.preload('./models/low_re/bird1_low_re-transformed.glb')
+useGLTF.preload('./models/low_re/transformed/bird1_low_re-transformed.glb')

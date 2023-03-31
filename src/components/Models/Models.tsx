@@ -1,14 +1,28 @@
-import { ContactShadows, Html, useGLTF } from '@react-three/drei';
+import { ContactShadows, Html, PresentationControls, useGLTF } from '@react-three/drei';
 import { useFrame, useLoader, useThree } from '@react-three/fiber';
 import { createRef, Suspense, useRef } from 'react'
 import * as THREE from 'three';
 import { TextureLoader } from 'three';
 import state from '../../utils/state';
-import { Bird1 } from './Bird1';
-import { Bird1Simpled } from './Bird1Simpled';
-import './model.css';
+import { Bird1 } from './Bird1/Bird1';
+import { Bird1Simpled } from './Bird1/Bird1Simpled';
+import { Bird2 } from './Bird2/Bird2';
+import { Bird2Simpled } from './Bird2/Bird2Simpled';
+import { Buckle1 } from './Buckle1/Buckle1';
+import { Buckle1Simpled } from './Buckle1/Buckle1Simpled';
+import { Buckle2 } from './Buckle2/Buckle2';
+import { Buckle2Simpled } from './Buckle2/Buckle2Simpled';
+import { Cup1 } from './Cup1/Cup1';
+import { Cup1Simpled } from './Cup1/Cup1Simpled';
+import { Cup2 } from './Cup2/Cup2';
+import { Cup2Simpled } from './Cup2/Cup2Simpled';
+import { Deer } from './Deer/Deer';
+import { DeerSimpled } from './Deer/DeerSimpled';
+import { Disk } from './DIsk/Disk';
+import { DiskSimpled } from './DIsk/DiskSimpled';
+import './models.css';
 
-function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
+function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
 
   const primitive = useRef<any>()
 
@@ -16,23 +30,14 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
 
   const stateThree = useThree()
 
-  // const bird1 = useGLTF('./models/low/bird1_low.glb');
-  // const bird2 = useGLTF('./models/low/bird2_low.glb');
-  // const ceramicCup = useGLTF('./models/low/cup1_low.glb');
-  // const halfCeramicCup = useGLTF('./models/low/cup2_low.glb');
-  // const item1 = useGLTF('./models/low/item1_low.glb');
-  // const item2 = useGLTF('./models/low/item2_low.glb');
-  // const deer = useGLTF('./models/low/horse_low.glb');
-  // const disk = useGLTF('./models/low/disk_low.glb');
-
   // const bird1Re = useGLTF('./models/low_re/bird1_low_re.glb');
-  const bird2Re = useGLTF('./models/low_re/bird2_low_re.glb');
+  // const bird2Re = useGLTF('./models/low_re/bird2_low_re.glb');
   const ceramicCupRe = useGLTF('./models/low_re/cup1_low_re.glb');
   const halfCeramicCupRe = useGLTF('./models/low_re/cup2_low_re.glb');
-  const item1Re = useGLTF('./models/low_re/buckle1_low_re.glb');
-  const item2Re = useGLTF('./models/low_re/buckle2_low_re.glb');
-  const deerRe = useGLTF('./models/low_re/deer_low_re.glb');
-  const diskRe = useGLTF('./models/low_re/disk_low_re.glb');
+  // const item1Re = useGLTF('./models/low_re/buckle1_low_re.glb');
+  // const item2Re = useGLTF('./models/low_re/buckle2_low_re.glb');
+  // const deerRe = useGLTF('./models/low_re/deer_low_re.glb');
+  // const diskRe = useGLTF('./models/low_re/disk_low_re.glb');
 
   // bird1Re.scene.traverse( function (object) {
   //   if (object instanceof THREE.Mesh) {
@@ -40,36 +45,36 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
   //     object.material.roughness = 0.62
   //   }
   // });
-  bird2Re.scene.traverse( function (object) {
-    if (object instanceof THREE.Mesh) {
-      object.material.metalness = 0.95
-      object.material.roughness = 0.6
-    }
-  });
-  deerRe.scene.traverse( function (object) {
-    if (object instanceof THREE.Mesh) {
-      object.material.metalness = 0.95
-      object.material.roughness = 0.64
-    }
-  });
-  item1Re.scene.traverse( function (object) {
-    if (object instanceof THREE.Mesh) {
-      object.material.metalness = 0.95
-      object.material.roughness = 0.88
-    }
-  });
-  item2Re.scene.traverse( function (object) {
-    if (object instanceof THREE.Mesh) {
-      object.material.metalness = 0.95
-      object.material.roughness = 0.88
-    }
-  });
-  diskRe.scene.traverse( function (object) {
-    if (object instanceof THREE.Mesh) {
-      object.material.metalness = 0.95
-      object.material.roughness = 0.74
-    }
-  });
+  // bird2Re.scene.traverse( function (object) {
+  //   if (object instanceof THREE.Mesh) {
+  //     object.material.metalness = 0.95
+  //     object.material.roughness = 0.6
+  //   }
+  // });
+  // deerRe.scene.traverse( function (object) {
+  //   if (object instanceof THREE.Mesh) {
+  //     object.material.metalness = 0.95
+  //     object.material.roughness = 0.64
+  //   }
+  // });
+  // item1Re.scene.traverse( function (object) {
+  //   if (object instanceof THREE.Mesh) {
+  //     object.material.metalness = 0.95
+  //     object.material.roughness = 0.88
+  //   }
+  // });
+  // item2Re.scene.traverse( function (object) {
+  //   if (object instanceof THREE.Mesh) {
+  //     object.material.metalness = 0.95
+  //     object.material.roughness = 0.88
+  //   }
+  // });
+  // diskRe.scene.traverse( function (object) {
+  //   if (object instanceof THREE.Mesh) {
+  //     object.material.metalness = 0.95
+  //     object.material.roughness = 0.74
+  //   }
+  // });
   halfCeramicCupRe.scene.traverse( function (object) {
     if (object instanceof THREE.Mesh) {
       object.material.metalness = 0.14
@@ -143,42 +148,73 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
     modelText8PRef.current && (modelText8PRef.current.style.display = zoom ? 'none' : ((page > 27.5) ? (page > 31 ? 'none' : 'block') : 'none'))
     if (page < 27.7) modelText8Ref.current?.position.lerp(vec.set(0, 15, -page * 0.2 + 20), 0.06)
     if (page > 27.7 && page < 29.6) modelText8Ref.current?.position.lerp(vec.set(0, 8, 3.5), 0.06)
-
   })
+
+  function handlePointerOverModel(event: MouseEvent) {
+    if (!zoom) {
+      event.stopPropagation()
+      stateThree.gl.domElement.style.cursor = 'move'
+    }
+  }
+
+  function handlePointerOutModel(event: MouseEvent) {
+    event.stopPropagation()
+    stateThree.gl.domElement.style.cursor = 'default'
+  }
+
+  function handleDoubleClickModel(event: MouseEvent, index: number) {
+    event.stopPropagation()
+    setZoom(true)
+    state.selectedModel = index
+    stateThree.gl.domElement.style.cursor = 'default'
+  }
 
   return (
     <>
       <group position={[0, 0, 0]}>
-        <group position={[0, -15.5, -6]} rotation={[0, 1.5, 0]} >
+
+        {/* 
+          ******************************* MODEL 1 (Bird1) *******************************
+        */}
+        <group position={[0, -15.5, -6]} rotation={[0, 1.5, 0]}>
           <directionalLight position={[-30, 20, 10]} />
           <directionalLight position={[-18, 12, 10]} />
-          {/* <primitive
-            visible={!zoom || state.selectedModel === 1}
-            ref={primitive}
-            object={bird1.scene}
-            position={[0, 0, 0]}
-            rotation={[0, 0, 0]}
-            scale={0.5}
-            receiveShadow
-            castShadow
-          /> */}
-          <Suspense fallback={
-            <Bird1Simpled 
-              visible={!zoom || state.selectedModel === 1}
-              ref={primitive}
-              position={[2.4, 9.2, -3.2]}
-              rotation={[0, -1.6, 0]}
-              scale={0.5}
-            />
-          }>
-            <Bird1
-              visible={!zoom || state.selectedModel === 1}
-              ref={primitive}
-              position={[2.4, 9.2, -3.2]}
-              rotation={[0, -1.6, 0]}
-              scale={0.5}
-            />
-          </Suspense>
+          
+          <group position={[2.5, 9.2, -3.1]} rotation={[0, -1.5, 0]}>
+            <PresentationControls
+              enabled={!zoom} // the controls can be disabled by setting this to false
+              global={false} // Spin globally or by dragging the model
+              snap={true} // Snap-back to center (can also be a spring config)
+              speed={3} // Speed factor
+              zoom={1} // Zoom factor when half the polar-max is reached
+              rotation={[0, 0, 0]} // Default rotation
+              polar={[-Math.PI / 2, Math.PI / 2]} // Vertical limits
+              azimuth={[-Infinity, Infinity]} // Horizontal limits
+              config={{ mass: 1, tension: 170, friction: 26 }} // Spring config
+            >
+              <Suspense fallback={
+                <Bird1Simpled 
+                  visible={!zoom || state.selectedModel === 1}
+                  position={[0, 0, 0]}
+                  rotation={[0, 0, 0]}
+                  scale={0.52}
+                  onDoubleClick={ (e: any) => { handleDoubleClickModel(e, 1) } }
+                  onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
+                  onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
+                />
+              }>
+                  <Bird1
+                    visible={!zoom || state.selectedModel === 1}
+                    position={[0, 0, 0]}
+                    rotation={[0, 0, 0]}
+                    scale={0.52}
+                    onDoubleClick={ (e: any) => { handleDoubleClickModel(e, 1) } }
+                    onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
+                    onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
+                  />
+              </Suspense>
+            </PresentationControls>
+          </group>
 
           <group ref={modelText1Ref} position={[30, 9, 0]}>
             <Html
@@ -208,27 +244,46 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
             </Html>
           </group>
         </group>
+        
+        {/* 
+          ******************************* MODEL 2 (Bird2) *******************************
+        */}
         <group position={[2.4, -22, -11]} rotation={[0, 1.5, 0]} >
-          {/* <primitive
-            visible={!zoom || state.selectedModel === 2}
-            ref={primitive}
-            object={bird2.scene}
-            position={[0, 0, 0]}
-            rotation={[0, 0, 0]}
-            scale={2.5}
-            receiveShadow
-            castShadow
-          /> */}
-          <primitive
-            visible={!zoom || state.selectedModel === 2}
-            ref={primitive}
-            object={bird2Re.scene}
-            position={[-0.2, 21.4, 0.4]}
-            rotation={[0, 1.55, 0]}
-            scale={2.5}
-            receiveShadow
-            castShadow
-          />
+          <group position={[-0.2, 21.4, 0.4]} rotation={[0, -1.6, 0]}>
+            <PresentationControls
+              enabled={!zoom} // the controls can be disabled by setting this to false
+              global={false} // Spin globally or by dragging the model
+              snap={true} // Snap-back to center (can also be a spring config)
+              speed={3} // Speed factor
+              zoom={1} // Zoom factor when half the polar-max is reached
+              rotation={[0, 0, 0]} // Default rotation
+              polar={[-Math.PI / 2, Math.PI / 2]} // Vertical limits
+              azimuth={[-Infinity, Infinity]} // Horizontal limits
+              config={{ mass: 1, tension: 170, friction: 26 }} // Spring config
+            >
+              <Suspense fallback={
+                <Bird2Simpled 
+                  visible={!zoom || state.selectedModel === 2}
+                  position={[0, 0, 0]}
+                  rotation={[0, 3.3, 0]}
+                  scale={2.5}
+                  onDoubleClick={ (e: any) => { handleDoubleClickModel(e, 2) } }
+                  onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
+                  onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
+                />
+              }>
+                  <Bird2
+                    visible={!zoom || state.selectedModel === 2}
+                    position={[0, 0, 0]}
+                    rotation={[0, 3.3, 0]}
+                    scale={2.5}
+                    onDoubleClick={ (e: any) => { handleDoubleClickModel(e, 2) } }
+                    onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
+                    onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
+                  />
+              </Suspense>
+            </PresentationControls>
+          </group>
 
           <group ref={modelText2Ref} position={[30, 9, 0]}>
             <Html
@@ -258,28 +313,46 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
             </Html>
           </group>
         </group>
+
+        {/* 
+          ******************************* MODEL 3 (Deer) *******************************
+        */}
         <group position={[6, -17, -15.7]} rotation={[0, 2.8, 0]} >
-          {/* <directionalLight position={[-10, 0, 10]} /> */}
-          {/* <primitive
-            visible={!zoom || state.selectedModel === 3}
-            ref={primitive}
-            object={deer.scene}
-            position={[0, 0, 0]}
-            rotation={[0, 0, 0]}
-            scale={4}
-            receiveShadow
-            castShadow
-          /> */}
-          <primitive
-            visible={!zoom || state.selectedModel === 3}
-            ref={primitive}
-            object={deerRe.scene}
-            position={[2, 22.6, -1.5]}
-            rotation={[1, 3, -1.4]}
-            scale={4}
-            receiveShadow
-            castShadow
-          />
+          <group position={[2, 22.6, -1.5]} rotation={[0, -1.6, 0]}>
+            <PresentationControls
+              enabled={!zoom} // the controls can be disabled by setting this to false
+              global={false} // Spin globally or by dragging the model
+              snap={true} // Snap-back to center (can also be a spring config)
+              speed={3} // Speed factor
+              zoom={1} // Zoom factor when half the polar-max is reached
+              rotation={[0, 0, 0]} // Default rotation
+              polar={[-Math.PI / 2, Math.PI / 2]} // Vertical limits
+              azimuth={[-Infinity, Infinity]} // Horizontal limits
+              config={{ mass: 1, tension: 170, friction: 26 }} // Spring config
+            >
+              <Suspense fallback={
+                <DeerSimpled 
+                  visible={!zoom || state.selectedModel === 3}
+                  position={[0, 0, 0]}
+                  rotation={[0, 0, -1]}
+                  scale={3.8}
+                  onDoubleClick={ (e: any) => { handleDoubleClickModel(e, 3) } }
+                  onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
+                  onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
+                />
+              }>
+                  <Deer
+                    visible={!zoom || state.selectedModel === 3}
+                    position={[0, 0, 0]}
+                    rotation={[0, 0, -1]}
+                    scale={3.8}
+                    onDoubleClick={ (e: any) => { handleDoubleClickModel(e, 3) } }
+                    onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
+                    onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
+                  />
+              </Suspense>
+            </PresentationControls>
+          </group>
 
           <group ref={modelText3Ref} position={[30, 9, 0]}>
             <Html
@@ -309,29 +382,48 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
             </Html>
           </group>
         </group>
+
+        {/* 
+          ******************************* MODEL 4 (Buckle1) *******************************
+        */}
         <group position={[10, 2, -16]} rotation={[0, 3.8, 0]} >
           <directionalLight position={[-15, 40, 10]} />
 
-          {/* <primitive
-            visible={!zoom || state.selectedModel === 4}
-            ref={primitive}
-            object={item1.scene}
-            position={[0, 0, 0]}
-            rotation={[0, 0, 0]}
-            scale={1.2}
-            receiveShadow
-            castShadow
-          /> */}
-          <primitive
-            visible={!zoom || state.selectedModel === 4}
-            ref={primitive}
-            object={item1Re.scene}
-            position={[1.5, 11.9, 0.7]}
-            rotation={[1.3, 1.55, 0]}
-            scale={1.2}
-            receiveShadow
-            castShadow
-          />
+          <group position={[1.5, 11.9, 0.7]} rotation={[0, -1, 0]}>
+            <PresentationControls
+              enabled={!zoom} // the controls can be disabled by setting this to false
+              global={false} // Spin globally or by dragging the model
+              snap={true} // Snap-back to center (can also be a spring config)
+              speed={3} // Speed factor
+              zoom={1.05} // Zoom factor when half the polar-max is reached
+              rotation={[0, 0, 0]} // Default rotation
+              polar={[-Math.PI / 2, Math.PI / 2]} // Vertical limits
+              azimuth={[-Infinity, Infinity]} // Horizontal limits
+              config={{ mass: 1, tension: 170, friction: 26 }} // Spring config
+            >
+              <Suspense fallback={
+                <Buckle1Simpled 
+                  visible={!zoom || state.selectedModel === 4}
+                  position={[0, 0, 0]}
+                  rotation={[0, -0.6, 0]}
+                  scale={1.1}
+                  onDoubleClick={ (e: any) => { handleDoubleClickModel(e, 4) } }
+                  onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
+                  onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
+                />
+              }>
+                  <Buckle1
+                    visible={!zoom || state.selectedModel === 4}
+                    position={[0, 0, 0]}
+                    rotation={[0, -0.6, 0]}
+                    scale={1.1}
+                    onDoubleClick={ (e: any) => { handleDoubleClickModel(e, 4) } }
+                    onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
+                    onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
+                  />
+              </Suspense>
+            </PresentationControls>
+          </group>
 
           <group ref={modelText4Ref} position={[30, 9, 0]}>
             <Html
@@ -363,28 +455,49 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
             </Html>
           </group>
         </group>
+
+        
+        {/* 
+          ******************************* MODEL 5 (Buckle2) *******************************
+        */}
         <group position={[2, 2.5, -19]} rotation={[0, -1.5, 0]} >
-        <directionalLight  position={[-10, 16.9, 0]} intensity={0.8} />
-          {/* <primitive
-            visible={!zoom || state.selectedModel === 5}
-            ref={primitive}
-            object={item2.scene}
-            position={[0, 0, 0]}
-            rotation={[0, 0, 0]}
-            scale={0.8}
-            receiveShadow
-            castShadow
-          /> */}
-          <primitive
-            visible={!zoom || state.selectedModel === 5}
-            ref={primitive}
-            object={item2Re.scene}
-            position={[1.2, 17.1, 0.5]}
-            rotation={[1.6, -1.55, 0]}
-            scale={0.8}
-            receiveShadow
-            castShadow
-          />
+          <directionalLight  position={[-10, 16.9, 0]} intensity={0.8} />
+
+          <group position={[1.2, 17.1, 0.5]} rotation={[0, -1.8, 0]}>
+            <PresentationControls
+              enabled={!zoom} // the controls can be disabled by setting this to false
+              global={false} // Spin globally or by dragging the model
+              snap={true} // Snap-back to center (can also be a spring config)
+              speed={3} // Speed factor
+              zoom={1.05} // Zoom factor when half the polar-max is reached
+              rotation={[0, 0, 0]} // Default rotation
+              polar={[-Math.PI / 2, Math.PI / 2]} // Vertical limits
+              azimuth={[-Infinity, Infinity]} // Horizontal limits
+              config={{ mass: 1, tension: 170, friction: 26 }} // Spring config
+            >
+              <Suspense fallback={
+                <Buckle2Simpled 
+                  visible={!zoom || state.selectedModel === 5}
+                  position={[0, 0, 0]}
+                  rotation={[0, 0, -1.6]}
+                  scale={0.7}
+                  onDoubleClick={ (e: any) => { handleDoubleClickModel(e, 5) } }
+                  onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
+                  onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
+                />
+              }>
+                  <Buckle2
+                    visible={!zoom || state.selectedModel === 5}
+                    position={[0, 0, 0]}
+                    rotation={[0, 0, -1.6]}
+                    scale={0.7}
+                    onDoubleClick={ (e: any) => { handleDoubleClickModel(e, 5) } }
+                    onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
+                    onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
+                  />
+              </Suspense>
+            </PresentationControls>
+          </group>
 
           <group ref={modelText5Ref} position={[30, 9, 0]}>
             <Html
@@ -414,28 +527,48 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
             </Html>
           </group>
         </group>
+
+        {/* 
+          ******************************* MODEL 6 (Disk) *******************************
+        */}
         <group position={[-4, 1.4, -17.5]} rotation={[0, -1, 0]} >
           <directionalLight position={[25, 100, 5]} />
-          {/* <primitive
-            visible={!zoom || state.selectedModel === 6}
-            ref={primitive}
-            object={disk.scene}
-            position={[0, 0, 0]}
-            rotation={[0, 0, 0]}
-            scale={4.5}
-            receiveShadow
-            castShadow
-          /> */}
-          <primitive
-            visible={!zoom || state.selectedModel === 6}
-            ref={primitive}
-            object={diskRe.scene}
-            position={[-1.6, 24.7, 2.2]}
-            rotation={[1.5, 0, 0]}
-            scale={4.5}
-            receiveShadow
-            castShadow
-          />
+
+          <group position={[-1.6, 24.7, 2.2]} rotation={[0, -1.5, 0]}>
+            <PresentationControls
+              enabled={!zoom} // the controls can be disabled by setting this to false
+              global={false} // Spin globally or by dragging the model
+              snap={true} // Snap-back to center (can also be a spring config)
+              speed={3} // Speed factor
+              zoom={1.05} // Zoom factor when half the polar-max is reached
+              rotation={[0, 0, 0]} // Default rotation
+              polar={[-Math.PI / 2, Math.PI / 2]} // Vertical limits
+              azimuth={[-Infinity, Infinity]} // Horizontal limits
+              config={{ mass: 1, tension: 170, friction: 26 }} // Spring config
+            >
+              <Suspense fallback={
+                <DiskSimpled 
+                  visible={!zoom || state.selectedModel === 6}
+                  position={[0, 0, 0]}
+                  rotation={[1.55, 0, -1.5]}
+                  scale={4.5}
+                  onDoubleClick={ (e: any) => { handleDoubleClickModel(e, 6) } }
+                  onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
+                  onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
+                />
+              }>
+                  <Disk
+                    visible={!zoom || state.selectedModel === 6}
+                    position={[0, 0, 0]}
+                    rotation={[1.55, 0, -1.5]}
+                    scale={4.5}
+                    onDoubleClick={ (e: any) => { handleDoubleClickModel(e, 6) } }
+                    onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
+                    onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
+                  />
+              </Suspense>
+            </PresentationControls>
+          </group>
 
           <group ref={modelText6Ref} position={[30, 9, 0]}>
             <Html
@@ -468,28 +601,48 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
             </Html>
           </group>
         </group>
+
+        {/* 
+          ******************************* MODEL 7 (Cup2) *******************************
+        */}
         <group position={[-9.8, 23.5, -10]} rotation={[0, 0.3, 0]} >
-          <directionalLight position={[-200, 40, 15]} intensity={0.4} />
-          {/* <primitive
-            visible={!zoom || state.selectedModel === 7}
-            ref={primitive}
-            object={halfCeramicCup.scene}
-            position={[0, 1.7, 0]}
-            rotation={[0, 0, 0]}
-            scale={1}
-            receiveShadow
-            castShadow
-          /> */}
-          <primitive
-            visible={!zoom || state.selectedModel === 7}
-            ref={primitive}
-            object={halfCeramicCupRe.scene}
-            position={[0.5, 10.9, -0.9]}
-            rotation={[0, -0.25, 0.1]}
-            scale={1}
-            receiveShadow
-            castShadow
-          />
+          <directionalLight position={[-200, 40, 15]} intensity={0.6} />
+
+          <group position={[0.5, 10.95, -0.85]} rotation={[0, -1.5, 0]}>
+            <PresentationControls
+              enabled={!zoom} // the controls can be disabled by setting this to false
+              global={false} // Spin globally or by dragging the model
+              snap={true} // Snap-back to center (can also be a spring config)
+              speed={3} // Speed factor
+              zoom={1.05} // Zoom factor when half the polar-max is reached
+              rotation={[0, 0, 0]} // Default rotation
+              polar={[-Math.PI / 2, Math.PI / 2]} // Vertical limits
+              azimuth={[-Infinity, Infinity]} // Horizontal limits
+              config={{ mass: 1, tension: 170, friction: 26 }} // Spring config
+            >
+              <Suspense fallback={
+                <Cup2Simpled 
+                  visible={!zoom || state.selectedModel === 7}
+                  position={[0, 0, 0]}
+                  rotation={[0, 1.25, 0.1]}
+                  scale={1}
+                  onDoubleClick={ (e: any) => { handleDoubleClickModel(e, 7) } }
+                  onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
+                  onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
+                />
+              }>
+                  <Cup2
+                    visible={!zoom || state.selectedModel === 7}
+                    position={[0, 0, 0]}
+                    rotation={[0, 1.25, 0.1]}
+                    scale={1}
+                    onDoubleClick={ (e: any) => { handleDoubleClickModel(e, 7) } }
+                    onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
+                    onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
+                  />
+              </Suspense>
+            </PresentationControls>
+          </group>
 
           <group ref={modelText7Ref} position={[30, 9, 0]}>
             <Html
@@ -521,27 +674,47 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
             </Html>
           </group>
         </group>
+
+        {/* 
+          ******************************* MODEL 8 (Cup1) *******************************
+        */}
         <group position={[-10, 35.5, -7]} rotation={[0, 1.2, 0]}>
-          {/* <primitive
-            visible={!zoom || state.selectedModel === 8}
-            ref={primitive}
-            object={ceramicCup.scene}
-            position={[0, 0, -1]}
-            rotation={[0, 0, 0]}
-            scale={1.2}
-            receiveShadow
-            castShadow
-          /> */}
-          <primitive
-            visible={!zoom || state.selectedModel === 8}
-            ref={primitive}
-            object={ceramicCupRe.scene}
-            position={[0, 7.8, -1.5]}
-            rotation={[-1.55, 0.2, 1.5]}
-            scale={1.2}
-            receiveShadow
-            castShadow
-          />
+
+          <group position={[0, 7.8, -1.5]} rotation={[0, -1.5, 0]}>
+            <PresentationControls
+              enabled={!zoom} // the controls can be disabled by setting this to false
+              global={false} // Spin globally or by dragging the model
+              snap={true} // Snap-back to center (can also be a spring config)
+              speed={3} // Speed factor
+              zoom={1.05} // Zoom factor when half the polar-max is reached
+              rotation={[0, 0, 0]} // Default rotation
+              polar={[-Math.PI / 2, Math.PI / 2]} // Vertical limits
+              azimuth={[-Infinity, Infinity]} // Horizontal limits
+              config={{ mass: 1, tension: 170, friction: 26 }} // Spring config
+            >
+              <Suspense fallback={
+                <Cup1Simpled 
+                  visible={!zoom || state.selectedModel === 8}
+                  position={[0, 0, 0]}
+                  rotation={[-1.8, 0.05, 3]}
+                  scale={1.2}
+                  onDoubleClick={ (e: any) => { handleDoubleClickModel(e, 8) } }
+                  onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
+                  onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
+                />
+              }>
+                  <Cup1
+                    visible={!zoom || state.selectedModel === 8}
+                    position={[0, 0, 0]}
+                    rotation={[-1.8, 0.05, 3]}
+                    scale={1.2}
+                    onDoubleClick={ (e: any) => { handleDoubleClickModel(e, 8) } }
+                    onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
+                    onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
+                  />
+              </Suspense>
+            </PresentationControls>
+          </group>
 
           <group ref={modelText8Ref} position={[30, 9, 0]}>
             <Html
@@ -573,10 +746,8 @@ function Model({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
           </group>
         </group>
       </group>
-      {/* </PresentationControls> */}
-      {/* { clicked && <OrbitControls makeDefault />} */}
     </>
   )
 }
 
-export default Model
+export default Models

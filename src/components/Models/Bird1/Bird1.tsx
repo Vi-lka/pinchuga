@@ -26,4 +26,4 @@ export function Bird1(props: JSX.IntrinsicElements['group']) {
   )
 }
 
-useGLTF.preload('./models/low_re/bird1_low_re.glb')
+// useGLTF.preload('./models/low_re/bird1_low_re.glb')

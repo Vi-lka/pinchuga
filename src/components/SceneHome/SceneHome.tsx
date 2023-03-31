@@ -1,7 +1,7 @@
 import { Text, Html, OrbitControls, Stats, useAspect, PerspectiveCamera } from '@react-three/drei'
 import { Image as DreiImage  } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
-import { createRef, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { createRef, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import * as THREE from 'three'
 import img_draw_bird_1 from '../../assets/images/img_draw_bird_1.svg'
 import img_draw_bird_2 from '../../assets/images/img_draw_bird_2.svg'
@@ -22,7 +22,10 @@ import state from '../../utils/state'
 import disableScroll from 'disable-scroll'
 import { EffectComposer, Vignette } from '@react-three/postprocessing'
 import OverlayHome from '../OverlayHome/OverlayHome'
-import Model from '../Models/Model'
+import Models from '../Models/Models'
+import Shader1 from '../Shaders/Shader1'
+import fragmentShader from '../../utils/fragmentShader1'
+import vertexShader from '../../utils/vertexShader1'
 
 function SceneHome({onReflow} : {onReflow: any}) {
 
@@ -56,7 +59,6 @@ function SceneHome({onReflow} : {onReflow: any}) {
 
     // console.log('wState:  ' + wState)
     // console.log('hState:  ' + hState)
-    
 
     if (!zoom && ((wState !== w) || (hState !== h))) {
       if (state.top > ((state.pages * window.innerHeight) / 5)) state.top = ((state.pages * window.innerHeight) / 6)
@@ -318,14 +320,11 @@ function SceneHome({onReflow} : {onReflow: any}) {
     const mainText4Ref = createRef<any>()
     const mainText4PRef = createRef<any>()
 
-    
     const mainText5Ref = createRef<any>()
     const mainText5PRef = createRef<any>()
 
     useFrame(() => {
       const page = (pageLerp.current = THREE.MathUtils.lerp(pageLerp.current, state.top / stateThree.size.height, 0.15))
-
-      console.log(stateThree.viewport.aspect)
 
       dreiImage1Ref.current?.position.lerp(vec.set((page > 2) ? -20 : -0.4*stateThree.viewport.aspect, 1.12, 3.9), 0.06)
       mainText1Ref.current?.position.lerp(vec.set((page > 2) ? -20 : 1.45*stateThree.viewport.aspect, 1, 0 ), 0.06)
@@ -359,7 +358,6 @@ function SceneHome({onReflow} : {onReflow: any}) {
       mainText5Ref.current?.position.lerp(vec.set((page > 5) ? (page > 6.2 ? -20 : (-page*0.7*stateThree.viewport.aspect + 0.1)) : -20 , 1.1, -page - 3.9 ), 0.06)
       mainText5PRef.current && 
         (mainText5PRef.current.style.display = (page > 0.4) ? (page > 6.21 ? 'none' : 'block') : 'none')
-
     })
 
     return (
@@ -650,7 +648,6 @@ function SceneHome({onReflow} : {onReflow: any}) {
           <meshBasicMaterial ref={bgMaterialRef} color={"#2b2b2b"} toneMapped={false} transparent opacity={1} />
           {/* color #343434 */}
         </mesh>
-
         <Box dir="row" width="100%" height="100%" align="center" justify="center">
           <group ref={titleRef} position={[0, -(pageLerp.current), pageLerp.current * 5]}>
             <Title onReflow={(w: any, h: any) => {
@@ -681,7 +678,7 @@ function SceneHome({onReflow} : {onReflow: any}) {
       </Flex>
     </group>
     <group ref={modelsArrayRef} position={[pageLerp.current >= startModelsArray ? -1 : 25, 6.2, 1]}>
-      <Model 
+      <Models 
         zoom={zoom}
         setZoom={setZoom}
       />
