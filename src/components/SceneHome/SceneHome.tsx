@@ -1,4 +1,4 @@
-import { Text, Html, OrbitControls, Stats, useAspect, PerspectiveCamera, Loader } from '@react-three/drei'
+import { Text, Html, OrbitControls, Stats, useAspect, PerspectiveCamera, Loader, Sphere } from '@react-three/drei'
 import { Image as DreiImage  } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 import { Suspense, createRef, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
@@ -665,6 +665,11 @@ function SceneHome({onReflow} : {onReflow: any}) {
         <directionalLight  position={[0, -1, 10]} intensity={5} />
 
         <Suspense fallback={
+                <Sphere scale={0.25} position={[0, 0, 0]}>
+                  <meshStandardMaterial color="black" />
+                </Sphere>
+              }>
+        <Suspense fallback={
                 <Buckle2Simpled 
                   visible={!zoom || state.selectedModel === 5}
                   position={[0, 0, 0]}
@@ -678,6 +683,7 @@ function SceneHome({onReflow} : {onReflow: any}) {
                     rotation={[0, 0, -1.6]}
                     scale={0.7}
                   />
+              </Suspense>
               </Suspense>
 
         <Box dir="row" width="100%" height="100%" align="center" justify="center">
@@ -701,27 +707,21 @@ function SceneHome({onReflow} : {onReflow: any}) {
       </Flex>
     </group>
     
-    <Suspense 
-          fallback={
-            <Html>
-              <Loader
-                dataStyles={{ color: "#000000" }} // Text styles
-                dataInterpolation={(p) => `Loading ${p.toFixed(1)}%`} // Text
-                initialState={(active) => active} // Initial black out state
-              />
-            </Html>
-          }
-        >
     <group ref={modelsArrayRef} position={[pageLerp.current >= startModelsArray ? -1 : 25, 6.2, 1]}>
+    <Suspense fallback={
+                <Sphere scale={0.25} position={[0, 0, 0]}>
+                  <meshStandardMaterial color="black" />
+                </Sphere>
+              }>
       <Models 
         zoom={zoom}
         setZoom={setZoom}
       />
+      </Suspense>
       
       <directionalLight position={[-3, -15, -15]} />
       <directionalLight position={[-3, 15, 15]} />
     </group>
-    </Suspense>
 
     { zoom && 
       <EffectComposer>

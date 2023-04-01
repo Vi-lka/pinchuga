@@ -94,7 +94,7 @@ export default function Home() {
         onTouchMove={onTouchMove}
         // onTouchEnd={onTouchEnd}
       >
-        {/* <Suspense 
+        <Suspense 
           fallback={
             <Html>
               <Loader
@@ -104,13 +104,13 @@ export default function Home() {
               />
             </Html>
           }
-        > */}
+        >
           <SceneHome 
             onReflow={setPages} 
           />
 
           {/* <Preload all /> */}
-        {/* </Suspense> */}
+        </Suspense>
       </Canvas>
       {/* </Suspense> */}
         <div

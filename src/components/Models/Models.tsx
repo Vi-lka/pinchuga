@@ -1,4 +1,4 @@
-import { ContactShadows, Html, PresentationControls, useGLTF } from '@react-three/drei';
+import { ContactShadows, Html, PresentationControls, Sphere, useGLTF } from '@react-three/drei';
 import { useFrame, useLoader, useThree } from '@react-three/fiber';
 import { createRef, Suspense, useRef } from 'react'
 import * as THREE from 'three';
@@ -192,18 +192,14 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
               azimuth={[-Infinity, Infinity]} // Horizontal limits
               config={{ mass: 1, tension: 170, friction: 26 }} // Spring config
             >
+
               <Suspense fallback={
-                <Bird1Simpled 
-                  visible={!zoom || state.selectedModel === 1}
-                  position={[0, 0, 0]}
-                  rotation={[0, 0, 0]}
-                  scale={0.52}
-                  onDoubleClick={ (e: any) => { handleDoubleClickModel(e, 1) } }
-                  onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
-                  onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
-                />
+                <Sphere scale={0.25} position={[0, 0, 0]}>
+                  <meshStandardMaterial color="black" />
+                </Sphere>
               }>
-                  <Bird1
+                <Suspense fallback={
+                  <Bird1Simpled 
                     visible={!zoom || state.selectedModel === 1}
                     position={[0, 0, 0]}
                     rotation={[0, 0, 0]}
@@ -212,6 +208,17 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
                     onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
                     onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
                   />
+                }>
+                    <Bird1
+                      visible={!zoom || state.selectedModel === 1}
+                      position={[0, 0, 0]}
+                      rotation={[0, 0, 0]}
+                      scale={0.52}
+                      onDoubleClick={ (e: any) => { handleDoubleClickModel(e, 1) } }
+                      onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
+                      onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
+                    />
+                </Suspense>
               </Suspense>
             </PresentationControls>
           </group>
@@ -261,6 +268,11 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
               azimuth={[-Infinity, Infinity]} // Horizontal limits
               config={{ mass: 1, tension: 170, friction: 26 }} // Spring config
             >
+               <Suspense fallback={
+                <Sphere scale={0.25} position={[0, 0, 0]}>
+                  <meshStandardMaterial color="black" />
+                </Sphere>
+              }>
               <Suspense fallback={
                 <Bird2Simpled 
                   visible={!zoom || state.selectedModel === 2}
@@ -281,6 +293,7 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
                     onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
                     onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
                   />
+              </Suspense>
               </Suspense>
             </PresentationControls>
           </group>
@@ -331,6 +344,11 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
               config={{ mass: 1, tension: 170, friction: 26 }} // Spring config
             >
               <Suspense fallback={
+                <Sphere scale={0.25} position={[0, 0, 0]}>
+                  <meshStandardMaterial color="black" />
+                </Sphere>
+              }>
+              <Suspense fallback={
                 <DeerSimpled 
                   visible={!zoom || state.selectedModel === 3}
                   position={[0, 0, 0]}
@@ -350,6 +368,7 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
                     onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
                     onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
                   />
+              </Suspense>
               </Suspense>
             </PresentationControls>
           </group>
@@ -402,6 +421,11 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
               config={{ mass: 1, tension: 170, friction: 26 }} // Spring config
             >
               <Suspense fallback={
+                <Sphere scale={0.25} position={[0, 0, 0]}>
+                  <meshStandardMaterial color="black" />
+                </Sphere>
+              }>
+              <Suspense fallback={
                 <Buckle1Simpled 
                   visible={!zoom || state.selectedModel === 4}
                   position={[0, 0, 0]}
@@ -421,6 +445,7 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
                     onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
                     onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
                   />
+              </Suspense>
               </Suspense>
             </PresentationControls>
           </group>
@@ -476,6 +501,11 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
               config={{ mass: 1, tension: 170, friction: 26 }} // Spring config
             >
               <Suspense fallback={
+                <Sphere scale={0.25} position={[0, 0, 0]}>
+                  <meshStandardMaterial color="black" />
+                </Sphere>
+              }>
+              <Suspense fallback={
                 <Buckle2Simpled 
                   visible={!zoom || state.selectedModel === 5}
                   position={[0, 0, 0]}
@@ -495,6 +525,7 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
                     onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
                     onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
                   />
+              </Suspense>
               </Suspense>
             </PresentationControls>
           </group>
@@ -547,6 +578,11 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
               config={{ mass: 1, tension: 170, friction: 26 }} // Spring config
             >
               <Suspense fallback={
+                <Sphere scale={0.25} position={[0, 0, 0]}>
+                  <meshStandardMaterial color="black" />
+                </Sphere>
+              }>
+              <Suspense fallback={
                 <DiskSimpled 
                   visible={!zoom || state.selectedModel === 6}
                   position={[0, 0, 0]}
@@ -566,6 +602,7 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
                     onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
                     onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
                   />
+              </Suspense>
               </Suspense>
             </PresentationControls>
           </group>
@@ -621,6 +658,11 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
               config={{ mass: 1, tension: 170, friction: 26 }} // Spring config
             >
               <Suspense fallback={
+                <Sphere scale={0.25} position={[0, 0, 0]}>
+                  <meshStandardMaterial color="black" />
+                </Sphere>
+              }>
+              <Suspense fallback={
                 <Cup2Simpled 
                   visible={!zoom || state.selectedModel === 7}
                   position={[0, 0, 0]}
@@ -640,6 +682,7 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
                     onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
                     onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
                   />
+              </Suspense>
               </Suspense>
             </PresentationControls>
           </group>
@@ -693,6 +736,11 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
               config={{ mass: 1, tension: 170, friction: 26 }} // Spring config
             >
               <Suspense fallback={
+                <Sphere scale={0.25} position={[0, 0, 0]}>
+                  <meshStandardMaterial color="black" />
+                </Sphere>
+              }>
+              <Suspense fallback={
                 <Cup1Simpled 
                   visible={!zoom || state.selectedModel === 8}
                   position={[0, 0, 0]}
@@ -712,6 +760,7 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
                     onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
                     onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
                   />
+              </Suspense>
               </Suspense>
             </PresentationControls>
           </group>
