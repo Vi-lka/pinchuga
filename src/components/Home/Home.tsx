@@ -1,9 +1,10 @@
 import './home.css'
-import { Canvas } from '@react-three/fiber'
-import { Html, Loader, Preload } from '@react-three/drei'
-import { Suspense, useEffect, useRef, useState } from 'react'
+import { Canvas, useFrame } from '@react-three/fiber'
+import { Html, Line, Loader, Preload, meshBounds } from '@react-three/drei'
+import { Suspense, createRef, useEffect, useRef, useState } from 'react'
 import SceneHome from '../SceneHome/SceneHome'
 import state from '../../utils/state'
+import MiniMap from '../minimap/MiniMap'
 
 export default function Home() {
 
@@ -36,11 +37,11 @@ export default function Home() {
       } else if ((e.deltaY < 0) && (state.top > 0)) {
         // Models area or not
         if (state.top / window.innerHeight < 6.2) {
-          state.top = state.top + (e.deltaY / 2.3)
-          scrollArea.current?.scrollBy(0, e.deltaY / 2.3)
+          state.top = state.top + (e.deltaY / 1.5)
+          scrollArea.current?.scrollBy(0, e.deltaY / 1.5)
         } else {
-          state.top = state.top + (e.deltaY)
-          scrollArea.current?.scrollBy(0, e.deltaY)
+          state.top = state.top + (e.deltaY*1.5)
+          scrollArea.current?.scrollBy(0, e.deltaY*1.5)
         }
       }
 
@@ -61,9 +62,9 @@ export default function Home() {
       let touchMove = e.targetTouches[0].clientY
 
       if ((touchMove < touchStart) && (state.top < height)) {
-        state.top = state.top + ((touchStart - touchMove)/4)
+        state.top = state.top + ((touchStart - touchMove)/3)
       } else if ((touchMove > touchStart) && (state.top > 0)) {
-        state.top = state.top - ((touchMove - touchStart)/4)
+        state.top = state.top - ((touchMove - touchStart)/3)
       }
 
       if (state.top < 0) state.top = 0
@@ -80,6 +81,47 @@ export default function Home() {
   //     state.top = state.top - 50
   //   }
   // }
+
+//   function Block({ children, offset, factor, ...props }: any) {
+//     // const { offset: parentOffset, sectionWidth } = useBlock()
+//     const ref = createRef<any>()
+//     // offset = offset !== undefined ? offset : parentOffset
+//     useFrame(() => {
+//     //   const curY = ref.current.position.x
+//     //   const curTop = state.top.current
+//     //   ref.current.position.x = THREE.MathUtils.lerp(curY, (-curTop / state.zoom) * factor, 0.1)
+//     })
+//     return (
+//         <group {...props} position={[offset * factor, 0, 0]}>
+//           <group ref={ref}>{children}</group>
+//         </group>
+//     )
+//   }
+
+// function Rect({ scale, ...props }: any) {
+//     return (
+//       <group scale={scale}>
+//         <Line points={[-0.5, 0.5, 0, 0.5, 0.5, 0, 0.5, -0.5, 0, -0.5, -0.5, 0, -0.5, 0.5, 0]} color="red" linewidth={5} position={[0, 0, 0]} />
+//         <mesh {...props} raycast={meshBounds}>
+//           <planeGeometry />
+//           <meshBasicMaterial />
+//         </mesh>
+//       </group>
+//     )
+//   }
+
+// function Dot() {
+//     const [hovered, set] = useState(false)
+//     // const { offset, sectionWidth } = useBlock()
+//     useEffect(() => void (document.body.style.cursor = hovered ? "pointer" : "auto"), [hovered])
+
+//     return <Rect 
+//                 scale={0.15} 
+//                 onPointerOver={() => set(true)} 
+//                 onPointerOut={() => set(false)} 
+//                 // onClick={() => (state.ref.scrollLeft = offset * sectionWidth * state.zoom)} 
+//             />
+// }
 
   return (
     <>
@@ -107,6 +149,8 @@ export default function Home() {
           <SceneHome 
             onReflow={setPages} 
           />
+
+          <MiniMap />
 
         </Suspense>
       </Canvas>
