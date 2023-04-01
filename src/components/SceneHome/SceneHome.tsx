@@ -1,7 +1,7 @@
 import { Text, Html, OrbitControls, Stats, useAspect, PerspectiveCamera, Loader, Sphere } from '@react-three/drei'
 import { Image as DreiImage  } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
-import { Suspense, createRef, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { createRef, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import img_draw_bird_1 from '../../assets/images/img_draw_bird_1.svg'
 import img_draw_bird_2 from '../../assets/images/img_draw_bird_2.svg'
@@ -26,8 +26,6 @@ import Models from '../Models/Models'
 import Shader1 from '../Shaders/Shader1'
 import fragmentShader from '../../utils/fragmentShader1'
 import vertexShader from '../../utils/vertexShader1'
-import { Buckle2Simpled } from '../Models/Buckle2/Buckle2Simpled'
-import { Buckle2 } from '../Models/Buckle2/Buckle2'
 
 function SceneHome({onReflow} : {onReflow: any}) {
 
@@ -662,30 +660,6 @@ function SceneHome({onReflow} : {onReflow: any}) {
           </group>
         </Box>
 
-        <directionalLight  position={[0, -1, 10]} intensity={5} />
-
-        <Suspense fallback={
-                <Sphere scale={0.25} position={[0, 0, 0]}>
-                  <meshStandardMaterial color="black" />
-                </Sphere>
-              }>
-        <Suspense fallback={
-                <Buckle2Simpled 
-                  visible={!zoom || state.selectedModel === 5}
-                  position={[0, 0, 0]}
-                  rotation={[0, 0, -1.6]}
-                  scale={1}
-                />
-              }>
-                  <Buckle2
-                    visible={!zoom || state.selectedModel === 5}
-                    position={[0, -1, 4]}
-                    rotation={[0, 0, -1.6]}
-                    scale={0.7}
-                  />
-              </Suspense>
-              </Suspense>
-
         <Box dir="row" width="100%" height="100%" align="center" justify="center">
           <group ref={mainTextRef} position={[0, (pageLerp.current >= startMainText) ? -(3.85) : -(pageLerp.current * 2.5), (pageLerp.current >= startModelsArray) ? 35 : (pageLerp.current * 4) ]}>
             <MainText onReflow={(w: any, h: any) => {
@@ -708,16 +682,10 @@ function SceneHome({onReflow} : {onReflow: any}) {
     </group>
     
     <group ref={modelsArrayRef} position={[pageLerp.current >= startModelsArray ? -1 : 25, 6.2, 1]}>
-    <Suspense fallback={
-                <Sphere scale={0.25} position={[0, 0, 0]}>
-                  <meshStandardMaterial color="black" />
-                </Sphere>
-              }>
       <Models 
         zoom={zoom}
         setZoom={setZoom}
       />
-      </Suspense>
       
       <directionalLight position={[-3, -15, -15]} />
       <directionalLight position={[-3, 15, 15]} />
