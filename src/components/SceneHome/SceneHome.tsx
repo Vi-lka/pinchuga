@@ -1,4 +1,4 @@
-import { Text, Html, OrbitControls, Stats, useAspect, PerspectiveCamera } from '@react-three/drei'
+import { Text, Html, OrbitControls, Stats, useAspect, PerspectiveCamera, Loader } from '@react-three/drei'
 import { Image as DreiImage  } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 import { Suspense, createRef, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
@@ -700,14 +700,29 @@ function SceneHome({onReflow} : {onReflow: any}) {
         </Box>
       </Flex>
     </group>
+    
+    <Suspense 
+          fallback={
+            <Html>
+              <Loader
+                dataStyles={{ color: "#000000" }} // Text styles
+                dataInterpolation={(p) => `Loading ${p.toFixed(1)}%`} // Text
+                initialState={(active) => active} // Initial black out state
+              />
+            </Html>
+          }
+        >
     <group ref={modelsArrayRef} position={[pageLerp.current >= startModelsArray ? -1 : 25, 6.2, 1]}>
       <Models 
         zoom={zoom}
         setZoom={setZoom}
       />
+      
       <directionalLight position={[-3, -15, -15]} />
       <directionalLight position={[-3, 15, 15]} />
     </group>
+    </Suspense>
+
     { zoom && 
       <EffectComposer>
         <Vignette offset={0.25} darkness={0.55} />      
