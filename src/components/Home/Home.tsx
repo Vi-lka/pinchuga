@@ -83,7 +83,7 @@ export default function Home() {
 
   return (
     <>
-    <Suspense fallback={<span className='loading'>loading...</span>}>
+    {/* <Suspense fallback={<span className='loading'>loading...</span>}> */}
       <Canvas 
         className="canvas" 
         dpr={[1, 2]} 
@@ -112,7 +112,7 @@ export default function Home() {
           {/* <Preload all /> */}
         {/* </Suspense> */}
       </Canvas>
-      </Suspense>
+      {/* </Suspense> */}
         <div
           id='scrollArea'
           className="scrollArea"
