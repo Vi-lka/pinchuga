@@ -97,7 +97,7 @@ export default function Home() {
             onReflow={setPages} 
           />
 
-          <Preload all />
+          {/* <Preload all /> */}
         </Suspense>
       </Canvas>
       {/* <div
