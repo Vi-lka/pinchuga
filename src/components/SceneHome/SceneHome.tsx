@@ -1,7 +1,7 @@
 import { Text, Html, OrbitControls, Stats, useAspect, PerspectiveCamera } from '@react-three/drei'
 import { Image as DreiImage  } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
-import { createRef, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { Suspense, createRef, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import * as THREE from 'three'
 import img_draw_bird_1 from '../../assets/images/img_draw_bird_1.svg'
 import img_draw_bird_2 from '../../assets/images/img_draw_bird_2.svg'
@@ -26,6 +26,8 @@ import Models from '../Models/Models'
 import Shader1 from '../Shaders/Shader1'
 import fragmentShader from '../../utils/fragmentShader1'
 import vertexShader from '../../utils/vertexShader1'
+import { Buckle2Simpled } from '../Models/Buckle2/Buckle2Simpled'
+import { Buckle2 } from '../Models/Buckle2/Buckle2'
 
 function SceneHome({onReflow} : {onReflow: any}) {
 
@@ -61,7 +63,7 @@ function SceneHome({onReflow} : {onReflow: any}) {
     // console.log('hState:  ' + hState)
 
     if (!zoom && ((wState !== w) || (hState !== h))) {
-      
+
       if (state.top > ((state.pages * window.innerHeight) / 5)) {
         state.top = ((state.pages * window.innerHeight) / 6)
       }
@@ -659,6 +661,24 @@ function SceneHome({onReflow} : {onReflow: any}) {
             />
           </group>
         </Box>
+
+        <directionalLight  position={[0, -1, 10]} intensity={5} />
+
+        <Suspense fallback={
+                <Buckle2Simpled 
+                  visible={!zoom || state.selectedModel === 5}
+                  position={[0, 0, 0]}
+                  rotation={[0, 0, -1.6]}
+                  scale={1}
+                />
+              }>
+                  <Buckle2
+                    visible={!zoom || state.selectedModel === 5}
+                    position={[0, -1, 4]}
+                    rotation={[0, 0, -1.6]}
+                    scale={0.7}
+                  />
+              </Suspense>
 
         <Box dir="row" width="100%" height="100%" align="center" justify="center">
           <group ref={mainTextRef} position={[0, (pageLerp.current >= startMainText) ? -(3.85) : -(pageLerp.current * 2.5), (pageLerp.current >= startModelsArray) ? 35 : (pageLerp.current * 4) ]}>
