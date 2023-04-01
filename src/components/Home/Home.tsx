@@ -8,32 +8,43 @@ import state from '../../utils/state'
 export default function Home() {
 
   const [pages, setPages] = useState(0)
-  // const scrollArea = useRef<HTMLDivElement>(null)
+  const scrollArea = useRef<HTMLDivElement>(null)
 
   const height = pages * window.innerHeight
   
-  // const onScroll = (e: any) => {
-  //   if (window.innerWidth > 1200) state.top = e.target.scrollTop
-  // }
+  const onScrollHTML = (e: any) => {
+    state.top = e.target.scrollTop
+  }
 
-  // useEffect(() => void onScroll({ target: scrollArea.current }), [])
+  useEffect(() => void onScrollHTML({ target: scrollArea.current }), [])
 
   const onScroll = (e: any) => {
     if (!state.zoomGlobal) {
+
+      // UP
       if ((e.deltaY > 0) && (state.top < height)) {
+        // Models area or not
         if (state.top / window.innerHeight < 6.2) {
           state.top = state.top + (e.deltaY / 2.3)
+          scrollArea.current?.scrollBy(0, e.deltaY / 2.3)
         } else {
           state.top = state.top + (e.deltaY)
+          scrollArea.current?.scrollBy(0, e.deltaY)
         }
+
+      // DOWN
       } else if ((e.deltaY < 0) && (state.top > 0)) {
+        // Models area or not
         if (state.top / window.innerHeight < 6.2) {
           state.top = state.top + (e.deltaY / 2.3)
+          scrollArea.current?.scrollBy(0, e.deltaY / 2.3)
         } else {
           state.top = state.top + (e.deltaY)
+          scrollArea.current?.scrollBy(0, e.deltaY)
         }
       }
 
+      // Prevent over scroll
       if (state.top < 0) state.top = 0
       if (state.top > height) state.top = height
     }
@@ -72,6 +83,7 @@ export default function Home() {
 
   return (
     <>
+    <Suspense fallback={<span className='loading'>loading...</span>}>
       <Canvas 
         className="canvas" 
         dpr={[1, 2]} 
@@ -82,7 +94,7 @@ export default function Home() {
         onTouchMove={onTouchMove}
         // onTouchEnd={onTouchEnd}
       >
-        <Suspense 
+        {/* <Suspense 
           fallback={
             <Html>
               <Loader
@@ -92,23 +104,27 @@ export default function Home() {
               />
             </Html>
           }
-        >
+        > */}
           <SceneHome 
             onReflow={setPages} 
           />
 
           {/* <Preload all /> */}
-        </Suspense>
+        {/* </Suspense> */}
       </Canvas>
-      {/* <div
-        id='scrollArea'
-        className="scrollArea"
-        ref={scrollArea}
-        onScroll={onScroll}
-        onPointerMove={(e) => (state.mouse = [(e.clientX / window.innerWidth) * 2 - 1, (e.clientY / window.innerHeight) * 2 - 1])}
-      >
-          <div style={{ height: `${pages * 100}vh`, width: '100vw '}} />
-      </div> */}
+      </Suspense>
+        <div
+          id='scrollArea'
+          className="scrollArea"
+          ref={scrollArea}
+          onScroll={onScrollHTML}
+        >
+            <div style={{ 
+              height: `${pages * 100}vh`, 
+              width: '1px', 
+              background: '#f6f6f6'
+            }} />
+        </div>
     </>
   )
 }

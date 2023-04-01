@@ -61,7 +61,10 @@ function SceneHome({onReflow} : {onReflow: any}) {
     // console.log('hState:  ' + hState)
 
     if (!zoom && ((wState !== w) || (hState !== h))) {
-      if (state.top > ((state.pages * window.innerHeight) / 5)) state.top = ((state.pages * window.innerHeight) / 6)
+      
+      if (state.top > ((state.pages * window.innerHeight) / 5)) {
+        state.top = ((state.pages * window.innerHeight) / 6)
+      }
       // console.log('handleReflow !zoom')
     } else if (zoom && ((wState !== w) || (hState !== h))) {
       setZoom(false)
