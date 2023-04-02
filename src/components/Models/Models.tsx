@@ -75,13 +75,13 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
   //     object.material.roughness = 0.74
   //   }
   // });
-  halfCeramicCupRe.scene.traverse( function (object) {
+  halfCeramicCupRe.scene.traverse(function (object) {
     if (object instanceof THREE.Mesh) {
       object.material.metalness = 0.14
       object.material.roughness = 1
     }
   });
-  ceramicCupRe.scene.traverse( function (object) {
+  ceramicCupRe.scene.traverse(function (object) {
     if (object instanceof THREE.Mesh) {
       object.material.metalness = 0.14
       object.material.roughness = 1
@@ -127,11 +127,11 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
 
     modelText3PRef.current && (modelText3PRef.current.style.display = zoom ? 'none' : ((page > 12) ? (page > 16.21 ? 'none' : 'block') : 'none'))
     if (page < 13) modelText3Ref.current?.position.lerp(vec.set(0, -10, -page * 0.3 - 1.5), 0.06)
-    if (page > 13 && page < 16.2) modelText3Ref.current?.position.lerp(vec.set(1.5, 22.8, -6.3), 0.06)
+    if (page > 13 && page < 16.2) modelText3Ref.current?.position.lerp(vec.set(2, 22.8, -6.3), 0.06)
 
     modelText4PRef.current && (modelText4PRef.current.style.display = zoom ? 'none' : ((page > 16) ? (page > 19.4 ? 'none' : 'block') : 'none'))
     if (page < 16.2) modelText4Ref.current?.position.lerp(vec.set(0, 12, page * 0.3 + 5), 0.06)
-    if (page > 16.2 && page < 19.2) modelText4Ref.current?.position.lerp(vec.set(1.5, 11.8, page * 0.2 - 0.35), 0.06)
+    if (page > 16.2 && page < 19.2) modelText4Ref.current?.position.lerp(vec.set(2.5, 11.8, page * 0.2 - 0.36), 0.06)
 
     modelText5PRef.current && (modelText5PRef.current.style.display = zoom ? 'none' : ((page > 19) ? (page > 22.2 ? 'none' : 'block') : 'none'))
     if (page < 19.2) modelText5Ref.current?.position.lerp(vec.set(0, 16.8, -page * 0.3 + 2), 0.06)
@@ -139,7 +139,7 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
 
     modelText6PRef.current && (modelText6PRef.current.style.display = zoom ? 'none' : ((page > 21.8) ? (page > 25 ? 'none' : 'block') : 'none'))
     if (page < 22) modelText6Ref.current?.position.lerp(vec.set(0, 25, -page * 0.2 + 20), 0.06)
-    if (page > 22 && page < 24.8) modelText6Ref.current?.position.lerp(vec.set(0, 24.6, 7.5), 0.06)
+    if (page > 22 && page < 24.8) modelText6Ref.current?.position.lerp(vec.set(0, 24.6, 7.1), 0.06)
 
     modelText7PRef.current && (modelText7PRef.current.style.display = zoom ? 'none' : ((page > 24.6) ? (page > 27.8 ? 'none' : 'block') : 'none'))
     if (page < 24.8) modelText7Ref.current?.position.lerp(vec.set(0, 15, page * 0.2 - 10.5), 0.06)
@@ -147,7 +147,7 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
 
     modelText8PRef.current && (modelText8PRef.current.style.display = zoom ? 'none' : ((page > 27.5) ? (page > 31 ? 'none' : 'block') : 'none'))
     if (page < 27.7) modelText8Ref.current?.position.lerp(vec.set(0, 15, -page * 0.2 + 20), 0.06)
-    if (page > 27.7 && page < 29.6) modelText8Ref.current?.position.lerp(vec.set(0, 8, 3.5), 0.06)
+    if (page > 27.7 && page < 29.6) modelText8Ref.current?.position.lerp(vec.set(0, 8, 3.2), 0.06)
   })
 
   function handlePointerOverModel(event: MouseEvent) {
@@ -179,7 +179,7 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
         <group position={[0, -15.5, -6]} rotation={[0, 1.5, 0]}>
           <directionalLight position={[-30, 20, 10]} />
           <directionalLight position={[-18, 12, 10]} />
-          
+
           <group position={[2.5, 9.2, -3.1]} rotation={[0, -1.5, 0]}>
             <PresentationControls
               enabled={!zoom} // the controls can be disabled by setting this to false
@@ -195,18 +195,18 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
 
               <Suspense fallback={
                 <Sphere scale={1.2} position={[0, 0, 0]}>
-                  <meshStandardMaterial color='gray' roughness={0.4} metalness={0.2}/>
+                  <meshStandardMaterial color='gray' roughness={0.4} metalness={0.2} />
                 </Sphere>
               }>
                 <Suspense fallback={
-                  <Bird1Simpled 
+                  <Bird1Simpled
                     visible={!zoom || state.selectedModel === 1}
                     position={[0, 0, 0]}
                     rotation={[0, 0, 0]}
                     scale={0.52}
-                    onDoubleClick={ (e: any) => { handleDoubleClickModel(e, 1) } }
-                    onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
-                    onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
+                    onDoubleClick={(e: any) => { handleDoubleClickModel(e, 1) }}
+                    onPointerOver={(e: any) => { handlePointerOverModel(e) }}
+                    onPointerOut={(e: any) => { handlePointerOutModel(e) }}
                   />
                 }>
                   <Bird1
@@ -214,9 +214,9 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
                     position={[0, 0, 0]}
                     rotation={[0, 0, 0]}
                     scale={0.52}
-                    onDoubleClick={ (e: any) => { handleDoubleClickModel(e, 1) } }
-                    onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
-                    onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
+                    onDoubleClick={(e: any) => { handleDoubleClickModel(e, 1) }}
+                    onPointerOver={(e: any) => { handlePointerOverModel(e) }}
+                    onPointerOut={(e: any) => { handlePointerOutModel(e) }}
                   />
                 </Suspense>
               </Suspense>
@@ -251,7 +251,7 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
             </Html>
           </group>
         </group>
-        
+
         {/* 
           ******************************* MODEL 2 (Bird2) *******************************
         */}
@@ -270,18 +270,18 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
             >
               <Suspense fallback={
                 <Sphere scale={1.2} position={[0, 0, 0]}>
-                  <meshStandardMaterial color='gray' roughness={0.4} metalness={0.2}/>
+                  <meshStandardMaterial color='gray' roughness={0.4} metalness={0.2} />
                 </Sphere>
               }>
                 <Suspense fallback={
-                  <Bird2Simpled 
+                  <Bird2Simpled
                     visible={!zoom || state.selectedModel === 2}
                     position={[0, 0, 0]}
                     rotation={[0, 3.3, 0]}
                     scale={2.5}
-                    onDoubleClick={ (e: any) => { handleDoubleClickModel(e, 2) } }
-                    onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
-                    onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
+                    onDoubleClick={(e: any) => { handleDoubleClickModel(e, 2) }}
+                    onPointerOver={(e: any) => { handlePointerOverModel(e) }}
+                    onPointerOut={(e: any) => { handlePointerOutModel(e) }}
                   />
                 }>
                   <Bird2
@@ -289,9 +289,9 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
                     position={[0, 0, 0]}
                     rotation={[0, 3.3, 0]}
                     scale={2.5}
-                    onDoubleClick={ (e: any) => { handleDoubleClickModel(e, 2) } }
-                    onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
-                    onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
+                    onDoubleClick={(e: any) => { handleDoubleClickModel(e, 2) }}
+                    onPointerOver={(e: any) => { handlePointerOverModel(e) }}
+                    onPointerOut={(e: any) => { handlePointerOutModel(e) }}
                   />
                 </Suspense>
               </Suspense>
@@ -345,18 +345,18 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
             >
               <Suspense fallback={
                 <Sphere scale={1.2} position={[0, 0, 0]}>
-                  <meshStandardMaterial color='gray' roughness={0.4} metalness={0.2}/>
+                  <meshStandardMaterial color='gray' roughness={0.4} metalness={0.2} />
                 </Sphere>
               }>
                 <Suspense fallback={
-                  <DeerSimpled 
+                  <DeerSimpled
                     visible={!zoom || state.selectedModel === 3}
                     position={[0, 0, 0]}
                     rotation={[0, 0, -1]}
                     scale={3.8}
-                    onDoubleClick={ (e: any) => { handleDoubleClickModel(e, 3) } }
-                    onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
-                    onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
+                    onDoubleClick={(e: any) => { handleDoubleClickModel(e, 3) }}
+                    onPointerOver={(e: any) => { handlePointerOverModel(e) }}
+                    onPointerOut={(e: any) => { handlePointerOutModel(e) }}
                   />
                 }>
                   <Deer
@@ -364,9 +364,9 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
                     position={[0, 0, 0]}
                     rotation={[0, 0, -1]}
                     scale={3.8}
-                    onDoubleClick={ (e: any) => { handleDoubleClickModel(e, 3) } }
-                    onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
-                    onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
+                    onDoubleClick={(e: any) => { handleDoubleClickModel(e, 3) }}
+                    onPointerOver={(e: any) => { handlePointerOverModel(e) }}
+                    onPointerOut={(e: any) => { handlePointerOutModel(e) }}
                   />
                 </Suspense>
               </Suspense>
@@ -422,18 +422,18 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
             >
               <Suspense fallback={
                 <Sphere scale={1.2} position={[0, 0, 0]}>
-                  <meshStandardMaterial color='gray' roughness={0.4} metalness={0.2}/>
+                  <meshStandardMaterial color='gray' roughness={0.4} metalness={0.2} />
                 </Sphere>
               }>
                 <Suspense fallback={
-                  <Buckle1Simpled 
+                  <Buckle1Simpled
                     visible={!zoom || state.selectedModel === 4}
                     position={[0, 0, 0]}
                     rotation={[0, -0.6, 0]}
                     scale={1.1}
-                    onDoubleClick={ (e: any) => { handleDoubleClickModel(e, 4) } }
-                    onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
-                    onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
+                    onDoubleClick={(e: any) => { handleDoubleClickModel(e, 4) }}
+                    onPointerOver={(e: any) => { handlePointerOverModel(e) }}
+                    onPointerOut={(e: any) => { handlePointerOutModel(e) }}
                   />
                 }>
                   <Buckle1
@@ -441,9 +441,9 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
                     position={[0, 0, 0]}
                     rotation={[0, -0.6, 0]}
                     scale={1.1}
-                    onDoubleClick={ (e: any) => { handleDoubleClickModel(e, 4) } }
-                    onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
-                    onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
+                    onDoubleClick={(e: any) => { handleDoubleClickModel(e, 4) }}
+                    onPointerOver={(e: any) => { handlePointerOverModel(e) }}
+                    onPointerOut={(e: any) => { handlePointerOutModel(e) }}
                   />
                 </Suspense>
               </Suspense>
@@ -481,14 +481,14 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
           </group>
         </group>
 
-        
+
         {/* 
           ******************************* MODEL 5 (Buckle2) *******************************
         */}
         <group position={[2, 2.5, -19]} rotation={[0, -1.5, 0]} >
-          <directionalLight  position={[-10, 16.9, 0]} intensity={0.8} />
+          <directionalLight position={[-10, 16.9, 0]} intensity={0.8} />
 
-          <group position={[1.2, 17.1, 0.5]} rotation={[0, -1.8, 0]}>
+          <group position={[1.2, 17.1, 0.2]} rotation={[0, -1.8, 0]}>
             <PresentationControls
               enabled={!zoom} // the controls can be disabled by setting this to false
               global={false} // Spin globally or by dragging the model
@@ -502,18 +502,18 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
             >
               <Suspense fallback={
                 <Sphere scale={1.2} position={[0, 0, 0]}>
-                  <meshStandardMaterial color='gray' roughness={0.4} metalness={0.2}/>
+                  <meshStandardMaterial color='gray' roughness={0.4} metalness={0.2} />
                 </Sphere>
               }>
                 <Suspense fallback={
-                  <Buckle2Simpled 
+                  <Buckle2Simpled
                     visible={!zoom || state.selectedModel === 5}
                     position={[0, 0, 0]}
                     rotation={[0, 0, -1.6]}
                     scale={0.7}
-                    onDoubleClick={ (e: any) => { handleDoubleClickModel(e, 5) } }
-                    onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
-                    onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
+                    onDoubleClick={(e: any) => { handleDoubleClickModel(e, 5) }}
+                    onPointerOver={(e: any) => { handlePointerOverModel(e) }}
+                    onPointerOut={(e: any) => { handlePointerOutModel(e) }}
                   />
                 }>
                   <Buckle2
@@ -521,9 +521,9 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
                     position={[0, 0, 0]}
                     rotation={[0, 0, -1.6]}
                     scale={0.7}
-                    onDoubleClick={ (e: any) => { handleDoubleClickModel(e, 5) } }
-                    onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
-                    onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
+                    onDoubleClick={(e: any) => { handleDoubleClickModel(e, 5) }}
+                    onPointerOver={(e: any) => { handlePointerOverModel(e) }}
+                    onPointerOut={(e: any) => { handlePointerOutModel(e) }}
                   />
                 </Suspense>
               </Suspense>
@@ -579,18 +579,18 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
             >
               <Suspense fallback={
                 <Sphere scale={1.2} position={[0, 0, 0]}>
-                  <meshStandardMaterial color='gray' roughness={0.4} metalness={0.2}/>
+                  <meshStandardMaterial color='gray' roughness={0.4} metalness={0.2} />
                 </Sphere>
               }>
                 <Suspense fallback={
-                  <DiskSimpled 
+                  <DiskSimpled
                     visible={!zoom || state.selectedModel === 6}
                     position={[0, 0, 0]}
                     rotation={[1.55, 0, -1.5]}
                     scale={4.5}
-                    onDoubleClick={ (e: any) => { handleDoubleClickModel(e, 6) } }
-                    onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
-                    onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
+                    onDoubleClick={(e: any) => { handleDoubleClickModel(e, 6) }}
+                    onPointerOver={(e: any) => { handlePointerOverModel(e) }}
+                    onPointerOut={(e: any) => { handlePointerOutModel(e) }}
                   />
                 }>
                   <Disk
@@ -598,9 +598,9 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
                     position={[0, 0, 0]}
                     rotation={[1.55, 0, -1.5]}
                     scale={4.5}
-                    onDoubleClick={ (e: any) => { handleDoubleClickModel(e, 6) } }
-                    onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
-                    onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
+                    onDoubleClick={(e: any) => { handleDoubleClickModel(e, 6) }}
+                    onPointerOver={(e: any) => { handlePointerOverModel(e) }}
+                    onPointerOut={(e: any) => { handlePointerOutModel(e) }}
                   />
                 </Suspense>
               </Suspense>
@@ -659,18 +659,18 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
             >
               <Suspense fallback={
                 <Sphere scale={1.2} position={[0, 0, 0]}>
-                  <meshStandardMaterial color='gray' roughness={0.4} metalness={0.2}/>
+                  <meshStandardMaterial color='gray' roughness={0.4} metalness={0.2} />
                 </Sphere>
               }>
                 <Suspense fallback={
-                  <Cup2Simpled 
+                  <Cup2Simpled
                     visible={!zoom || state.selectedModel === 7}
                     position={[0, 0, 0]}
                     rotation={[0, 1.25, 0.1]}
                     scale={1}
-                    onDoubleClick={ (e: any) => { handleDoubleClickModel(e, 7) } }
-                    onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
-                    onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
+                    onDoubleClick={(e: any) => { handleDoubleClickModel(e, 7) }}
+                    onPointerOver={(e: any) => { handlePointerOverModel(e) }}
+                    onPointerOut={(e: any) => { handlePointerOutModel(e) }}
                   />
                 }>
                   <Cup2
@@ -678,9 +678,9 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
                     position={[0, 0, 0]}
                     rotation={[0, 1.25, 0.1]}
                     scale={1}
-                    onDoubleClick={ (e: any) => { handleDoubleClickModel(e, 7) } }
-                    onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
-                    onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
+                    onDoubleClick={(e: any) => { handleDoubleClickModel(e, 7) }}
+                    onPointerOver={(e: any) => { handlePointerOverModel(e) }}
+                    onPointerOut={(e: any) => { handlePointerOutModel(e) }}
                   />
                 </Suspense>
               </Suspense>
@@ -737,18 +737,18 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
             >
               <Suspense fallback={
                 <Sphere scale={1.2} position={[0, 0, 0]}>
-                  <meshStandardMaterial color='gray' roughness={0.4} metalness={0.2}/>
+                  <meshStandardMaterial color='gray' roughness={0.4} metalness={0.2} />
                 </Sphere>
               }>
                 <Suspense fallback={
-                  <Cup1Simpled 
+                  <Cup1Simpled
                     visible={!zoom || state.selectedModel === 8}
                     position={[0, 0, 0]}
                     rotation={[-1.8, 0.05, 3]}
                     scale={1.2}
-                    onDoubleClick={ (e: any) => { handleDoubleClickModel(e, 8) } }
-                    onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
-                    onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
+                    onDoubleClick={(e: any) => { handleDoubleClickModel(e, 8) }}
+                    onPointerOver={(e: any) => { handlePointerOverModel(e) }}
+                    onPointerOut={(e: any) => { handlePointerOutModel(e) }}
                   />
                 }>
                   <Cup1
@@ -756,9 +756,9 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
                     position={[0, 0, 0]}
                     rotation={[-1.8, 0.05, 3]}
                     scale={1.2}
-                    onDoubleClick={ (e: any) => { handleDoubleClickModel(e, 8) } }
-                    onPointerOver={ (e: any) => { handlePointerOverModel(e) } }
-                    onPointerOut={ (e: any) => { handlePointerOutModel(e) } }
+                    onDoubleClick={(e: any) => { handleDoubleClickModel(e, 8) }}
+                    onPointerOver={(e: any) => { handlePointerOverModel(e) }}
+                    onPointerOut={(e: any) => { handlePointerOutModel(e) }}
                   />
                 </Suspense>
               </Suspense>

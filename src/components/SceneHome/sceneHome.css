@@ -40,12 +40,12 @@
     position: relative;
     width: 50%;
     /* width: 100%; */
-    text-align:justify;
+    text-align: justify;
     font-family: "Lato";
     line-height: 30px;
     font-weight: 400;
     font-size: 1em;
-    color:#000;
+    color: #000;
     /* background-color: rgba(0, 0, 0, 0.05); */
     border-radius: 20px;
     padding: 0vw;
@@ -99,9 +99,7 @@
     margin: 15px auto;
 }
 
-.closeZoom {
-    
-}
+.closeZoom {}
 
 .mainText1,
 .mainText2,
@@ -111,28 +109,28 @@
     font-weight: 300;
     max-width: 800px;
     font-size: 18px;
-    letter-spacing:0.1ch;
+    letter-spacing: 0.1ch;
 }
 
 .mainText1 {
-    width: 35vw;
-    color:#f6f6f6;
+    width: 34vw;
+    color: #f6f6f6;
 }
 
 .mainText2 {
     width: 32vw;
-    color:#f6f6f6;
+    color: #f6f6f6;
 }
 
 .mainText3 {
     font-size: 17px;
     width: 30vw;
-    color:#f6f6f6;
+    color: #f6f6f6;
 }
 
 .mainText4 {
     width: 28vw;
-    color:#f6f6f6;
+    color: #f6f6f6;
 }
 
 .mainText1 b,
@@ -147,17 +145,17 @@
         width: 30vw;
         font-size: 14px;
     }
-    
+
     .mainText2 {
         width: 30vw;
         font-size: 14px;
     }
-    
+
     .mainText3 {
         width: 30vw;
         font-size: 14px;
     }
-    
+
     .mainText4 {
         width: 28vw;
         font-size: 14px;
@@ -169,17 +167,17 @@
         width: 30vw;
         font-size: 12px;
     }
-    
+
     .mainText2 {
         width: 30vw;
         font-size: 12px;
     }
-    
+
     .mainText3 {
         width: 30vw;
         font-size: 12px;
     }
-    
+
     .mainText4 {
         width: 28vw;
         font-size: 12px;
