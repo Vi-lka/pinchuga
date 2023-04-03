@@ -41,32 +41,32 @@ export default function MiniMap() {
 
     const posYAspect = -0.05 * value * (stateThree.viewport.height / 6)
 
-    useFrame(() => {
-      console.log(posYAspect)
-    })
+    // useFrame(() => {
+    //   console.log(posYAspect)
+    // })
 
     return (
       <group scale={0.016} position={[posXAspect, posYAspect, -1]}>
         <Line
           points={[-0.5, 0.5, 0, 0.5, 0.5, 0, 0.5, -0.5, 0, -0.5, -0.5, 0, -0.5, 0.5, 0]}
           color="#2b2b2b"
-          linewidth={hovered ? 10 : 0}
+          linewidth={hovered ? 6 : 3}
           position={[0, 0, 0]}
         />
         <Line
           points={[-0.5, 0.5, 0, 0.5, 0.5, 0, 0.5, -0.5, 0, -0.5, -0.5, 0, -0.5, 0.5, 0]}
           color="#ffffff"
-          linewidth={hovered ? 8 : 2}
+          linewidth={hovered ? 4 : 2}
           position={[0, 0, 0]}
         />
         <mesh
-          scale={hovered ? 1.3 : 1}
+          // scale={hovered ? 1.3 : 1}
           onPointerOver={(e: any) => { handlePointerOverDot(e) }}
           onPointerOut={(e: any) => handlePointerOutDot(e)}
           raycast={meshBounds}
         >
           <planeGeometry />
-          <meshPhongMaterial color={'#2b2b2b'} emissive={'#2b2b2b'} />
+          <meshPhongMaterial transparent color={'#2b2b2b'} emissive={'#2b2b2b'} opacity={hovered ? 1 : 0} />
         </mesh>
       </group>
     )
