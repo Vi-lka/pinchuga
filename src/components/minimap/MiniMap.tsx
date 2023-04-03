@@ -1,6 +1,7 @@
 import { Line, meshBounds } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 import React, { createRef, useEffect, useState } from 'react'
+import { MinimapLine } from './minimapLine'
 
 export default function MiniMap() {
   const stateThree = useThree()
@@ -20,6 +21,10 @@ export default function MiniMap() {
     };
   }, [stateThree.camera, mapRef])
 
+  const posXAspect = (stateThree.viewport.width / 300)
+
+  const lineOpas = 0.5
+
   function Dot({ value }: any) {
 
     const [hovered, setHovered] = useState(false)
@@ -36,8 +41,6 @@ export default function MiniMap() {
       setHovered(false)
       stateThree.gl.domElement.style.cursor = 'auto'
     }
-
-    const posXAspect = (stateThree.viewport.width / 300)
 
     const posYAspect = -0.05 * value * (stateThree.viewport.height / 6)
 
@@ -83,6 +86,55 @@ export default function MiniMap() {
           />
         ))
       }
+      {/* <Line
+        points={[[0, -0.06*(stateThree.viewport.height / 6), 0], [0, -0.09*(stateThree.viewport.height / 6), 0]]}
+        color="#2b2b2b"
+        transparent
+        opacity={0.3}
+        linewidth={2}
+        position={[posXAspect, 0, -1]}
+      /> */}
+
+      <Line
+        points={[[0, -0.06*(stateThree.viewport.height / 6), 0], [0, -0.09*(stateThree.viewport.height / 6), 0]]}
+        color="#2b2b2b"
+        transparent
+        opacity={0.3}
+        linewidth={2}
+        position={[posXAspect, 0, -1]}
+      />
+      <Line
+        points={[[0, -0.06*(stateThree.viewport.height / 6), 0], [0, -0.09*(stateThree.viewport.height / 6), 0]]}
+        color="#2b2b2b"
+        transparent
+        opacity={0.3}
+        linewidth={2}
+        position={[posXAspect, -0.05*1*(stateThree.viewport.height / 6), -1]}
+      />
+      <Line
+        points={[[0, -0.06*(stateThree.viewport.height / 6), 0], [0, -0.09*(stateThree.viewport.height / 6), 0]]}
+        color="#2b2b2b"
+        transparent
+        opacity={0.3}
+        linewidth={2}
+        position={[posXAspect, -0.05*2*(stateThree.viewport.height / 6), -1]}
+      />
+      <Line
+        points={[[0, -0.06*(stateThree.viewport.height / 6), 0], [0, -0.09*(stateThree.viewport.height / 6), 0]]}
+        color="#2b2b2b"
+        transparent
+        opacity={0.3}
+        linewidth={2}
+        position={[posXAspect, -0.05*3*(stateThree.viewport.height / 6), -1]}
+      />
+      <Line
+        points={[[0, -0.06*(stateThree.viewport.height / 6), 0], [0, -0.09*(stateThree.viewport.height / 6), 0]]}
+        color="#2b2b2b"
+        transparent
+        opacity={0.3}
+        linewidth={2}
+        position={[posXAspect, -0.05*4*(stateThree.viewport.height / 6), -1]}
+      />
     </group >
   )
 }
