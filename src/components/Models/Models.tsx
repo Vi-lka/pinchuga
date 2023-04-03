@@ -194,7 +194,7 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
             >
 
               <Suspense fallback={
-                <Sphere scale={1.2} position={[0, 0, 0]}>
+                <Sphere visible={!zoom || state.selectedModel === 1} scale={1.2} position={[0, 0, 0]}>
                   <meshStandardMaterial color='gray' roughness={0.4} metalness={0.2} />
                 </Sphere>
               }>
@@ -269,7 +269,7 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
               config={{ mass: 1, tension: 170, friction: 26 }} // Spring config
             >
               <Suspense fallback={
-                <Sphere scale={1.2} position={[0, 0, 0]}>
+                <Sphere visible={!zoom || state.selectedModel === 2} scale={1.2} position={[0, 0, 0]}>
                   <meshStandardMaterial color='gray' roughness={0.4} metalness={0.2} />
                 </Sphere>
               }>
@@ -344,7 +344,7 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
               config={{ mass: 1, tension: 170, friction: 26 }} // Spring config
             >
               <Suspense fallback={
-                <Sphere scale={1.2} position={[0, 0, 0]}>
+                <Sphere visible={!zoom || state.selectedModel === 3} scale={1.2} position={[0, 0, 0]}>
                   <meshStandardMaterial color='gray' roughness={0.4} metalness={0.2} />
                 </Sphere>
               }>
@@ -421,7 +421,7 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
               config={{ mass: 1, tension: 170, friction: 26 }} // Spring config
             >
               <Suspense fallback={
-                <Sphere scale={1.2} position={[0, 0, 0]}>
+                <Sphere visible={!zoom || state.selectedModel === 4} scale={1.2} position={[0, 0, 0]}>
                   <meshStandardMaterial color='gray' roughness={0.4} metalness={0.2} />
                 </Sphere>
               }>
@@ -501,7 +501,7 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
               config={{ mass: 1, tension: 170, friction: 26 }} // Spring config
             >
               <Suspense fallback={
-                <Sphere scale={1.2} position={[0, 0, 0]}>
+                <Sphere visible={!zoom || state.selectedModel === 5} scale={1.2} position={[0, 0, 0]}>
                   <meshStandardMaterial color='gray' roughness={0.4} metalness={0.2} />
                 </Sphere>
               }>
@@ -578,7 +578,7 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
               config={{ mass: 1, tension: 170, friction: 26 }} // Spring config
             >
               <Suspense fallback={
-                <Sphere scale={1.2} position={[0, 0, 0]}>
+                <Sphere visible={!zoom || state.selectedModel === 6} scale={1.2} position={[0, 0, 0]}>
                   <meshStandardMaterial color='gray' roughness={0.4} metalness={0.2} />
                 </Sphere>
               }>
@@ -658,7 +658,7 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
               config={{ mass: 1, tension: 170, friction: 26 }} // Spring config
             >
               <Suspense fallback={
-                <Sphere scale={1.2} position={[0, 0, 0]}>
+                <Sphere visible={!zoom || state.selectedModel === 7} scale={1.2} position={[0, 0, 0]}>
                   <meshStandardMaterial color='gray' roughness={0.4} metalness={0.2} />
                 </Sphere>
               }>
@@ -736,7 +736,7 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
               config={{ mass: 1, tension: 170, friction: 26 }} // Spring config
             >
               <Suspense fallback={
-                <Sphere scale={1.2} position={[0, 0, 0]}>
+                <Sphere visible={!zoom || state.selectedModel === 8} scale={1.2} position={[0, 0, 0]}>
                   <meshStandardMaterial color='gray' roughness={0.4} metalness={0.2} />
                 </Sphere>
               }>

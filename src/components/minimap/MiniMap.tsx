@@ -1,7 +1,7 @@
 import { Line, meshBounds } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 import React, { createRef, useEffect, useState } from 'react'
-import { MinimapLine } from './minimapLine'
+import MinimapLine from './minimapLine'
 
 export default function MiniMap() {
   const stateThree = useThree()
@@ -53,23 +53,27 @@ export default function MiniMap() {
         <Line
           points={[-0.5, 0.5, 0, 0.5, 0.5, 0, 0.5, -0.5, 0, -0.5, -0.5, 0, -0.5, 0.5, 0]}
           color="#2b2b2b"
-          linewidth={hovered ? 6 : 3}
+          transparent
+          opacity={0.75}
+          linewidth={hovered ? 2 : 0}
           position={[0, 0, 0]}
         />
-        <Line
+        {/* <Line
           points={[-0.5, 0.5, 0, 0.5, 0.5, 0, 0.5, -0.5, 0, -0.5, -0.5, 0, -0.5, 0.5, 0]}
           color="#ffffff"
+          // transparent
+          // opacity={0.3}
           linewidth={hovered ? 4 : 2}
           position={[0, 0, 0]}
-        />
+        /> */}
         <mesh
-          // scale={hovered ? 1.3 : 1}
+          scale={hovered ? 1.4 : 0.45}
           onPointerOver={(e: any) => { handlePointerOverDot(e) }}
           onPointerOut={(e: any) => handlePointerOutDot(e)}
           raycast={meshBounds}
         >
-          <planeGeometry />
-          <meshPhongMaterial transparent color={'#2b2b2b'} emissive={'#2b2b2b'} opacity={hovered ? 1 : 0} />
+          <circleGeometry />
+          <meshPhongMaterial transparent color={'#2b2b2b'} emissive={'#2b2b2b'} opacity={hovered ? 0.04 : 0.75} />
         </mesh>
       </group>
     )
@@ -86,54 +90,48 @@ export default function MiniMap() {
           />
         ))
       }
+
+      <MinimapLine />
+
       {/* <Line
-        points={[[0, -0.06*(stateThree.viewport.height / 6), 0], [0, -0.09*(stateThree.viewport.height / 6), 0]]}
+        points={[[0, -0.06 * (stateThree.viewport.height / 6), 0], [0, -0.09 * (stateThree.viewport.height / 6), 0]]}
         color="#2b2b2b"
         transparent
         opacity={0.3}
         linewidth={2}
         position={[posXAspect, 0, -1]}
       /> */}
-
       <Line
-        points={[[0, -0.06*(stateThree.viewport.height / 6), 0], [0, -0.09*(stateThree.viewport.height / 6), 0]]}
+        points={[[0, -0.06 * (stateThree.viewport.height / 6), 0], [0, -0.09 * (stateThree.viewport.height / 6), 0]]}
         color="#2b2b2b"
         transparent
         opacity={0.3}
         linewidth={2}
-        position={[posXAspect, 0, -1]}
+        position={[posXAspect, -0.05 * 1 * (stateThree.viewport.height / 6), -1]}
       />
       <Line
-        points={[[0, -0.06*(stateThree.viewport.height / 6), 0], [0, -0.09*(stateThree.viewport.height / 6), 0]]}
+        points={[[0, -0.06 * (stateThree.viewport.height / 6), 0], [0, -0.09 * (stateThree.viewport.height / 6), 0]]}
         color="#2b2b2b"
         transparent
         opacity={0.3}
         linewidth={2}
-        position={[posXAspect, -0.05*1*(stateThree.viewport.height / 6), -1]}
+        position={[posXAspect, -0.05 * 2 * (stateThree.viewport.height / 6), -1]}
       />
       <Line
-        points={[[0, -0.06*(stateThree.viewport.height / 6), 0], [0, -0.09*(stateThree.viewport.height / 6), 0]]}
+        points={[[0, -0.06 * (stateThree.viewport.height / 6), 0], [0, -0.09 * (stateThree.viewport.height / 6), 0]]}
         color="#2b2b2b"
         transparent
         opacity={0.3}
         linewidth={2}
-        position={[posXAspect, -0.05*2*(stateThree.viewport.height / 6), -1]}
+        position={[posXAspect, -0.05 * 3 * (stateThree.viewport.height / 6), -1]}
       />
       <Line
-        points={[[0, -0.06*(stateThree.viewport.height / 6), 0], [0, -0.09*(stateThree.viewport.height / 6), 0]]}
+        points={[[0, -0.06 * (stateThree.viewport.height / 6), 0], [0, -0.09 * (stateThree.viewport.height / 6), 0]]}
         color="#2b2b2b"
         transparent
         opacity={0.3}
         linewidth={2}
-        position={[posXAspect, -0.05*3*(stateThree.viewport.height / 6), -1]}
-      />
-      <Line
-        points={[[0, -0.06*(stateThree.viewport.height / 6), 0], [0, -0.09*(stateThree.viewport.height / 6), 0]]}
-        color="#2b2b2b"
-        transparent
-        opacity={0.3}
-        linewidth={2}
-        position={[posXAspect, -0.05*4*(stateThree.viewport.height / 6), -1]}
+        position={[posXAspect, -0.05 * 4 * (stateThree.viewport.height / 6), -1]}
       />
     </group >
   )
