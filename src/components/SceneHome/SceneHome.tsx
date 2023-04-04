@@ -28,7 +28,7 @@ import fragmentShader from '../../utils/fragmentShader1'
 import vertexShader from '../../utils/vertexShader1'
 import MiniMap from '../minimap/MiniMap'
 
-function SceneHome({ onReflow }: { onReflow: any }) {
+function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo(index: number): void }) {
 
   const stateThree = useThree()
 
@@ -124,7 +124,7 @@ function SceneHome({ onReflow }: { onReflow: any }) {
         page >= startModelsArray ?
           -50
           :
-          -page * 0.7 * stateThree.viewport.aspect
+          -page * 0.7 * stateThree.viewport.aspect - 0.5
         : 0,
 
       -11,
@@ -335,35 +335,35 @@ function SceneHome({ onReflow }: { onReflow: any }) {
       mainText1PRef.current &&
         (mainText1PRef.current.style.display = (page > 0.4) ? (page > 6.21 ? 'none' : 'block') : 'none')
 
-      dreiImage2Ref.current?.position.lerp(vec.set(stateThree.viewport.aspect > 1.9 ? (page > 2 ? (page > 3 ? -7 : (7.7 - page / 0.55)) : 15) : (page > 2 ? (page > 3 ? 1 : (6.8 - page / 0.6)) : 15), 1.7 + (-page / 3.8), (page > 2 ? (page > 3 ? 20 : (page / 0.5) - 5.2) : -15)), 0.15)
+      dreiImage2Ref.current?.position.lerp(vec.set(stateThree.viewport.aspect > 1.9 ? (page > 2 ? (page > 3 ? -7 : (7.2 - page / 0.55)) : 15) : (page > 2 ? (page > 3 ? 1 : (6.5 - page / 0.6)) : 15), 1.7 + (-page / 3.8), (page > 2 ? (page > 3 ? 20 : (page / 0.5) - 5.2) : -15)), 0.15)
       mainText2Ref.current?.position.lerp(vec.set((page > 2) ? (page > 3 ? -40 : -0.16 * stateThree.viewport.width) : 40, 1.05, 0), 0.15)
       mainText2PRef.current &&
         (mainText2PRef.current.style.display = (page > 1.9) ? (page > 6.21 ? 'none' : 'block') : 'none')
 
-      dreiImage3Ref.current?.position.lerp(vec.set(stateThree.viewport.aspect > 1.9 ? (page > 3 ? (page > 4 ? 2 : -page * 1.5 + 7.5) : 15) : (page > 3 ? (page > 4 ? 2 : -page * 1.2 + 6) : 15), (page / 2.45), (page > 3 ? (page > 4 ? 20 : (page / 0.35) - 9) : -20)), 0.15)
-      mainText3Ref.current?.position.lerp(vec.set((page > 3) ? (page > 4 ? -40 : (-page * 0.7 * stateThree.viewport.aspect + 0.15)) : -40, page > 4.5 ? -10 : 1.1, -page - 3.9), 0.1)
+      dreiImage3Ref.current?.position.lerp(vec.set(stateThree.viewport.aspect > 1.9 ? (page > 3 ? (page > 4 ? 2 : -page * 1.5 + 7.2) : 15) : (page > 3 ? (page > 4 ? 2 : -page * 1.2 + 5.9) : 15), (page / 2.45), (page > 3 ? (page > 4 ? 20 : (page / 0.35) - 9) : -20)), 0.15)
+      mainText3Ref.current?.position.lerp(vec.set((page > 3) ? (page > 4 ? -40 : (-page * 0.7 * stateThree.viewport.aspect - 0.35)) : -40, page > 4.5 ? -10 : 1.1, -page - 3.9), 0.1)
       mainText3PRef.current &&
         (mainText3PRef.current.style.display = (page > 2.9) ? (page > 6.21 ? 'none' : 'block') : 'none')
 
-      dreiImage4Ref.current?.position.lerp(vec.set(page > 2 ? (page > 4 ? -page * 0.47 + 3.15 : 12) : 30, page > 4 ? 1 : -1, (page > 4 ? (page > 5 ? 20 : (page / 0.7) - 3.6) : -20)), 0.15)
-      mainText4Ref.current?.position.lerp(vec.set((page > 4) ? (page > 5 ? -40 : (-page * 0.7 * stateThree.viewport.aspect + 0.1)) : -40, page > 5.5 ? -10 : 1.1, -page - 3.9), 0.1)
+      dreiImage4Ref.current?.position.lerp(vec.set(page > 2 ? (page > 4 ? -page * 0.47 + 3 : 12) : 30, page > 4 ? 1 : -1, (page > 4 ? (page > 5 ? 20 : (page / 0.7) - 3.6) : -20)), 0.15)
+      mainText4Ref.current?.position.lerp(vec.set((page > 4) ? (page > 5 ? -40 : (-page * 0.7 * stateThree.viewport.aspect - 0.4)) : -40, page > 5.5 ? -10 : 1.1, -page - 3.9), 0.1)
       mainText4PRef.current &&
         (mainText4PRef.current.style.display = (page > 3.9) ? (page > 6.21 ? 'none' : 'block') : 'none')
 
-      dreiImage6Ref.current?.position.lerp(vec.set(page > 5 ? (page > 6.2 ? -20 : 2.7 * stateThree.viewport.aspect * 0.75 - 0.5) : -7, page > 2 ? -1.8 : -20, page > 5 ? (2.5 * page - 15.5 * 1.15) : -15), 0.08)
-      dreiImage5Ref.current?.position.lerp(vec.set(page > 5 ? (page > 6.2 ? -20 : 4.4 * stateThree.viewport.aspect * 0.75 - 0.5) : -7, page > 2 ? -1.5 : -20, page > 5 ? (2.5 * page - 17.2 * 1.15) : -15), 0.08)
-      dreiImage11Ref.current?.position.lerp(vec.set(page > 5 ? (page > 6.2 ? -20 : 6.3 * stateThree.viewport.aspect * 0.75 - 0.5) : -7, page > 2 ? -0.6 : -20, page > 5 ? (2.5 * page - 19.5 * 1.15) : -15), 0.08)
-      dreiImage9Ref.current?.position.lerp(vec.set(page > 5 ? (page > 6.2 ? -20 : 5.4 * stateThree.viewport.aspect * 0.75 - 0.5) : -7, page > 2 ? 0.5 : -20, page > 5 ? (2.5 * page - 21.5 * 1.15) : -15), 0.08)
-      dreiImage10Ref.current?.position.lerp(vec.set(page > 5 ? (page > 6.2 ? -20 : 3.3 * stateThree.viewport.aspect * 0.75 - 0.5) : -7, page > 2 ? 1.3 : -20, page > 5 ? (2.5 * page - 22 * 1.15) : -15), 0.08)
-      dreiImage12Ref.current?.position.lerp(vec.set(page > 5 ? (page > 6.2 ? -20 : 1.3 * stateThree.viewport.aspect * 0.75 - 0.5) : -7, page > 2 ? 2.5 : -20, page > 5 ? (2.5 * page - 21.5 * 1.15) : -15), 0.08)
-      dreiImage8Ref.current?.position.lerp(vec.set(page > 5 ? (page > 6.2 ? -20 : 2 * stateThree.viewport.aspect * 0.75 - 0.5) : -7, page > 2 ? 3.7 : -20, page > 5 ? (2.5 * page - 18 * 1.15) : -15), 0.08)
-      dreiImage7Ref.current?.position.lerp(vec.set(page > 5 ? (page > 6.2 ? -20 : 2.7 * stateThree.viewport.aspect * 0.75 - 0.5) : -7, page > 2 ? 4.1 : -20, page > 5 ? (2.5 * page - 15.5 * 1.15) : -15), 0.08)
+      dreiImage6Ref.current?.position.lerp(vec.set(page > 5 ? (page > 6.2 ? -20 : 2.7 * stateThree.viewport.aspect * 0.75 - 1) : -7, page > 2 ? -1.8 : -20, page > 5 ? (2.5 * page - 15.5 * 1.15) : -15), 0.08)
+      dreiImage5Ref.current?.position.lerp(vec.set(page > 5 ? (page > 6.2 ? -20 : 4.4 * stateThree.viewport.aspect * 0.75 - 1) : -7, page > 2 ? -1.5 : -20, page > 5 ? (2.5 * page - 17.2 * 1.15) : -15), 0.08)
+      dreiImage11Ref.current?.position.lerp(vec.set(page > 5 ? (page > 6.2 ? -20 : 6.3 * stateThree.viewport.aspect * 0.75 - 1) : -7, page > 2 ? -0.6 : -20, page > 5 ? (2.5 * page - 19.5 * 1.15) : -15), 0.08)
+      dreiImage9Ref.current?.position.lerp(vec.set(page > 5 ? (page > 6.2 ? -20 : 5.4 * stateThree.viewport.aspect * 0.75 - 1) : -7, page > 2 ? 0.5 : -20, page > 5 ? (2.5 * page - 21.5 * 1.15) : -15), 0.08)
+      dreiImage10Ref.current?.position.lerp(vec.set(page > 5 ? (page > 6.2 ? -20 : 3.3 * stateThree.viewport.aspect * 0.75 - 1) : -7, page > 2 ? 1.3 : -20, page > 5 ? (2.5 * page - 22 * 1.15) : -15), 0.08)
+      dreiImage12Ref.current?.position.lerp(vec.set(page > 5 ? (page > 6.2 ? -20 : 1.3 * stateThree.viewport.aspect * 0.75 - 1) : -7, page > 2 ? 2.5 : -20, page > 5 ? (2.5 * page - 21.5 * 1.15) : -15), 0.08)
+      dreiImage8Ref.current?.position.lerp(vec.set(page > 5 ? (page > 6.2 ? -20 : 2 * stateThree.viewport.aspect * 0.75 - 1) : -7, page > 2 ? 3.7 : -20, page > 5 ? (2.5 * page - 18 * 1.15) : -15), 0.08)
+      dreiImage7Ref.current?.position.lerp(vec.set(page > 5 ? (page > 6.2 ? -20 : 2.7 * stateThree.viewport.aspect * 0.75 - 1) : -7, page > 2 ? 4.1 : -20, page > 5 ? (2.5 * page - 15.5 * 1.15) : -15), 0.08)
 
-      mainText5Ref.current?.position.lerp(vec.set((page > 5) ? (page > 6.2 ? -40 : (-page * 0.7 * stateThree.viewport.aspect + 0.1)) : -40, 1.1, -page - 3.9), 0.1)
+      mainText5Ref.current?.position.lerp(vec.set((page > 5) ? (page > 6.2 ? -40 : (-page * 0.7 * stateThree.viewport.aspect - 0.4)) : -40, 1.1, -page - 3.9), 0.1)
       mainText5PRef.current &&
         (mainText5PRef.current.style.display = (page > 4.9) ? (page > 6.21 ? 'none' : 'block') : 'none')
 
-      console.log(page)
+      // console.log(page)
     })
 
     return (
@@ -531,7 +531,9 @@ function SceneHome({ onReflow }: { onReflow: any }) {
     <>
       {/* <Stats /> */}
       <OverlayHome zoom={zoom} setZoom={setZoom} />
-      <MiniMap />
+      <MiniMap
+        handleScrollTo={handleScrollTo}
+      />
       <PerspectiveCamera makeDefault fov={45} near={0.2} far={zoom ? 200 : 20} position={
         (pageLerp.current < startModelsArray) ?
           [0, 0, 10]

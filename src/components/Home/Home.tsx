@@ -18,6 +18,42 @@ export default function Home() {
 
   useEffect(() => void onScrollHTML({ target: scrollArea.current }), [])
 
+  function handleScrollTo(index: number) {
+    const height = (state.pages * window.innerHeight)
+    switch(index) {
+      case 0:
+        state.top = 0
+        scrollArea.current?.scroll(0, 0)
+        break
+      case 1:
+        state.top = height/20
+        scrollArea.current?.scroll(0, height/20)
+        break
+      case 2:
+        state.top = height/13
+        scrollArea.current?.scroll(0, height/13)
+        break
+      case 3:
+        state.top = height/9.4
+        scrollArea.current?.scroll(0, height/9.4)
+        break
+      case 4:
+        state.top = height/7.2
+        scrollArea.current?.scroll(0, height/7.2)
+        break
+      case 5:
+        state.top = height/5.8
+        scrollArea.current?.scroll(0, height/5.8)
+        break
+      case 6:
+        state.top = height/4.8
+        scrollArea.current?.scroll(0, height/4.8)
+        break
+      default:
+        return null
+    }
+  }
+
   const onScroll = (e: any) => {
     if (!state.zoomGlobal) {
 
@@ -71,57 +107,6 @@ export default function Home() {
     }
   }
 
-  // const onTouchEnd = (e: any) => {
-  //   let touchEnd = e.changedTouches[0].clientY
-
-  //   if ((touchStart > touchEnd+5) && (state.top < height)) {
-  //     state.top = state.top + 50
-  //   } else if ((touchStart < touchEnd+5) && (state.top > 0)) {
-  //     state.top = state.top - 50
-  //   }
-  // }
-
-  //   function Block({ children, offset, factor, ...props }: any) {
-  //     // const { offset: parentOffset, sectionWidth } = useBlock()
-  //     const ref = createRef<any>()
-  //     // offset = offset !== undefined ? offset : parentOffset
-  //     useFrame(() => {
-  //     //   const curY = ref.current.position.x
-  //     //   const curTop = state.top.current
-  //     //   ref.current.position.x = THREE.MathUtils.lerp(curY, (-curTop / state.zoom) * factor, 0.1)
-  //     })
-  //     return (
-  //         <group {...props} position={[offset * factor, 0, 0]}>
-  //           <group ref={ref}>{children}</group>
-  //         </group>
-  //     )
-  //   }
-
-  // function Rect({ scale, ...props }: any) {
-  //     return (
-  //       <group scale={scale}>
-  //         <Line points={[-0.5, 0.5, 0, 0.5, 0.5, 0, 0.5, -0.5, 0, -0.5, -0.5, 0, -0.5, 0.5, 0]} color="red" linewidth={5} position={[0, 0, 0]} />
-  //         <mesh {...props} raycast={meshBounds}>
-  //           <planeGeometry />
-  //           <meshBasicMaterial />
-  //         </mesh>
-  //       </group>
-  //     )
-  //   }
-
-  // function Dot() {
-  //     const [hovered, set] = useState(false)
-  //     // const { offset, sectionWidth } = useBlock()
-  //     useEffect(() => void (document.body.style.cursor = hovered ? "pointer" : "auto"), [hovered])
-
-  //     return <Rect 
-  //                 scale={0.15} 
-  //                 onPointerOver={() => set(true)} 
-  //                 onPointerOut={() => set(false)} 
-  //                 // onClick={() => (state.ref.scrollLeft = offset * sectionWidth * state.zoom)} 
-  //             />
-  // }
-
   return (
     <>
       <Canvas
@@ -147,6 +132,7 @@ export default function Home() {
         >
           <SceneHome
             onReflow={setPages}
+            handleScrollTo={handleScrollTo}
           />
 
         </Suspense>
