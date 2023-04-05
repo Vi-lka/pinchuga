@@ -11,16 +11,18 @@ export default function MinimapLine(
     positionY, 
     scrollSpeed, 
     scrollDelay, 
+    color
   } : {
     positionX: number, 
     positionY: number, 
     scrollSpeed: number, 
     scrollDelay: number, 
+    color: any
   }
   ) {
   const stateThree = useThree()
 
-  const linesArray = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  const linesArray = [1, 2, 3, 4, 5, 6, 7]
 
   const ref = useRef<any>()
 
@@ -33,9 +35,9 @@ export default function MinimapLine(
     if (value1 === middle) {
       return 1;
     } else if (value1 < middle) {
-      return value1 / middle;
+      return value1 / middle
     } else {
-      return (value2 - value1) / middle;
+      return ((value2 - value1) / middle)
     }
   }
 
@@ -48,7 +50,8 @@ export default function MinimapLine(
         scrollPos = 0
       }
 
-      child.scale.x = THREE.MathUtils.damp(child.scale.x,  1 + scrollPos*5, 8, delta)
+
+      child.scale.x = THREE.MathUtils.damp(child.scale.x, 1 + scrollPos*10, 80, delta)
     })
   })
 
@@ -57,12 +60,12 @@ export default function MinimapLine(
       {linesArray.map((value: any, index: number) => (
         <Line
           key={index}
-          points={[[-0.003, 0, 0], [0.003, 0, 0]]}
-          color="#2b2b2b"
+          points={[[-0.002, 0, 0], [0.002, 0, 0]]}
+          color={color}
           transparent
-          opacity={0.4}
+          opacity={0.3}
           linewidth={1.5}
-          position={[positionX, -index * 0.0052 - positionY, -1]}
+          position={[positionX, -index * 0.0048 - positionY, -1]}
         />
       ))}
     </group>

@@ -46,8 +46,40 @@ export default function Home() {
         scrollArea.current?.scroll(0, height/5.8)
         break
       case 6:
-        state.top = height/4.8
-        scrollArea.current?.scroll(0, height/4.8)
+        state.top = height/4.2
+        scrollArea.current?.scroll(0, height/4.2)
+        break
+      case 7:
+        state.top = height/2.7
+        scrollArea.current?.scroll(0, height/2.7)
+        break
+      case 8:
+        state.top = height/2.3
+        scrollArea.current?.scroll(0, height/2.3)
+        break
+      case 9:
+        state.top = height/1.75
+        scrollArea.current?.scroll(0, height/1.75)
+        break
+      case 10:
+        state.top = height/1.58
+        scrollArea.current?.scroll(0, height/1.58)
+        break
+      case 11:
+        state.top = height/1.3
+        scrollArea.current?.scroll(0, height/1.3)
+        break
+      case 12:
+        state.top = height/1.18
+        scrollArea.current?.scroll(0, height/1.18)
+        break
+      case 13:
+        state.top = height/1.075
+        scrollArea.current?.scroll(0, height/1.075)
+        break
+      case 14:
+        state.top = height
+        scrollArea.current?.scroll(0, height)
         break
       default:
         return null
