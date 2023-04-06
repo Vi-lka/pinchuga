@@ -1,8 +1,7 @@
-import { ContactShadows, Html, PresentationControls, Sphere, useGLTF } from '@react-three/drei';
-import { useFrame, useLoader, useThree } from '@react-three/fiber';
+import { Html, PresentationControls, Sphere } from '@react-three/drei';
+import { useFrame, useThree } from '@react-three/fiber';
 import { createRef, Suspense, useRef } from 'react'
 import * as THREE from 'three';
-import { TextureLoader } from 'three';
 import state from '../../utils/state';
 import { Bird1 } from './Bird1/Bird1';
 import { Bird1Simpled } from './Bird1/Bird1Simpled';
@@ -18,75 +17,15 @@ import { Cup2 } from './Cup2/Cup2';
 import { Cup2Simpled } from './Cup2/Cup2Simpled';
 import { Deer } from './Deer/Deer';
 import { DeerSimpled } from './Deer/DeerSimpled';
-import { Disk } from './DIsk/Disk';
-import { DiskSimpled } from './DIsk/DiskSimpled';
+import { Disk } from './Disk/Disk';
+import { DiskSimpled } from './Disk/DiskSimpled';
 import './models.css';
 
 function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
 
-  const primitive = useRef<any>()
-
   const vec = new THREE.Vector3()
 
   const stateThree = useThree()
-
-  // const bird1Re = useGLTF('./models/low_re/bird1_low_re.glb');
-  // const bird2Re = useGLTF('./models/low_re/bird2_low_re.glb');
-  const ceramicCupRe = useGLTF('./models/low_re/cup1_low_re.glb');
-  const halfCeramicCupRe = useGLTF('./models/low_re/cup2_low_re.glb');
-  // const item1Re = useGLTF('./models/low_re/buckle1_low_re.glb');
-  // const item2Re = useGLTF('./models/low_re/buckle2_low_re.glb');
-  // const deerRe = useGLTF('./models/low_re/deer_low_re.glb');
-  // const diskRe = useGLTF('./models/low_re/disk_low_re.glb');
-
-  // bird1Re.scene.traverse( function (object) {
-  //   if (object instanceof THREE.Mesh) {
-  //     object.material.metalness = 0.95
-  //     object.material.roughness = 0.62
-  //   }
-  // });
-  // bird2Re.scene.traverse( function (object) {
-  //   if (object instanceof THREE.Mesh) {
-  //     object.material.metalness = 0.95
-  //     object.material.roughness = 0.6
-  //   }
-  // });
-  // deerRe.scene.traverse( function (object) {
-  //   if (object instanceof THREE.Mesh) {
-  //     object.material.metalness = 0.95
-  //     object.material.roughness = 0.64
-  //   }
-  // });
-  // item1Re.scene.traverse( function (object) {
-  //   if (object instanceof THREE.Mesh) {
-  //     object.material.metalness = 0.95
-  //     object.material.roughness = 0.88
-  //   }
-  // });
-  // item2Re.scene.traverse( function (object) {
-  //   if (object instanceof THREE.Mesh) {
-  //     object.material.metalness = 0.95
-  //     object.material.roughness = 0.88
-  //   }
-  // });
-  // diskRe.scene.traverse( function (object) {
-  //   if (object instanceof THREE.Mesh) {
-  //     object.material.metalness = 0.95
-  //     object.material.roughness = 0.74
-  //   }
-  // });
-  halfCeramicCupRe.scene.traverse(function (object) {
-    if (object instanceof THREE.Mesh) {
-      object.material.metalness = 0.14
-      object.material.roughness = 1
-    }
-  });
-  ceramicCupRe.scene.traverse(function (object) {
-    if (object instanceof THREE.Mesh) {
-      object.material.metalness = 0.14
-      object.material.roughness = 1
-    }
-  });
 
   const modelText1Ref = createRef<any>()
   const modelText1PRef = createRef<any>()
@@ -225,12 +164,13 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
 
           <group ref={modelText1Ref} position={[30, 9, 0]}>
             <Html
-              as='div' // Wrapping element (default: 'div')
-              wrapperClass="modelTextArea" // The className of the wrapping element (default: undefined)
+              as='div' 
+              wrapperClass="modelTextArea" 
               center
               ref={modelText1PRef}
+              style={{display: 'none'}}
             >
-              <p className="modelText1">
+              <p className="modelText1" >
                 <b>Сокол</b>
                 <br /><br />
                 Одной из самых ярких находок на могильнике Пинчуга-6 стали <b>бронзовые изображения хищных птиц</b>.
@@ -300,10 +240,11 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
 
           <group ref={modelText2Ref} position={[30, 9, 0]}>
             <Html
-              as='div' // Wrapping element (default: 'div')
-              wrapperClass="modelTextArea" // The className of the wrapping element (default: undefined)
+              as='div' 
+              wrapperClass="modelTextArea" 
               center
               ref={modelText2PRef}
+              style={{display: 'none'}}
             >
               <p className="modelText2">
                 <b>Орёл</b>
@@ -375,10 +316,11 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
 
           <group ref={modelText3Ref} position={[30, 9, 0]}>
             <Html
-              as='div' // Wrapping element (default: 'div')
-              wrapperClass="modelTextArea" // The className of the wrapping element (default: undefined)
+              as='div' 
+              wrapperClass="modelTextArea" 
               center
               ref={modelText3PRef}
+              style={{display: 'none'}}
             >
               <p className="modelText3">
                 <b>Олень</b>
@@ -452,10 +394,11 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
 
           <group ref={modelText4Ref} position={[30, 9, 0]}>
             <Html
-              as='div' // Wrapping element (default: 'div')
-              wrapperClass="modelTextArea" // The className of the wrapping element (default: undefined)
+              as='div' 
+              wrapperClass="modelTextArea" 
               center
               ref={modelText4PRef}
+              style={{display: 'none'}}
             >
               <p className="modelText4">
                 <b>Пряжка</b>
@@ -532,10 +475,11 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
 
           <group ref={modelText5Ref} position={[30, 9, 0]}>
             <Html
-              as='div' // Wrapping element (default: 'div')
-              wrapperClass="modelTextArea" // The className of the wrapping element (default: undefined)
+              as='div' 
+              wrapperClass="modelTextArea" 
               center
               ref={modelText5PRef}
+              style={{display: 'none'}}
             >
               <p className="modelText5">
                 <b>Прямоугольная Пряжка</b>
@@ -609,10 +553,11 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
 
           <group ref={modelText6Ref} position={[30, 9, 0]}>
             <Html
-              as='div' // Wrapping element (default: 'div')
-              wrapperClass="modelTextArea" // The className of the wrapping element (default: undefined)
+              as='div' 
+              wrapperClass="modelTextArea" 
               center
               ref={modelText6PRef}
+              style={{display: 'none'}}
             >
               <p className="modelText6">
                 <b>Диск с циркульным орнаментом</b>
@@ -689,10 +634,11 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
 
           <group ref={modelText7Ref} position={[30, 9, 0]}>
             <Html
-              as='div' // Wrapping element (default: 'div')
-              wrapperClass="modelTextArea" // The className of the wrapping element (default: undefined)
+              as='div' 
+              wrapperClass="modelTextArea" 
               center
               ref={modelText7PRef}
+              style={{display: 'none'}}
             >
               <p className="modelText7">
                 <b>Горшок с личиной</b>
@@ -767,10 +713,11 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
 
           <group ref={modelText8Ref} position={[30, 9, 0]}>
             <Html
-              as='div' // Wrapping element (default: 'div')
-              wrapperClass="modelTextArea" // The className of the wrapping element (default: undefined)
+              as='div' 
+              wrapperClass="modelTextArea" 
               center
               ref={modelText8PRef}
+              style={{display: 'none'}}
             >
               <p className="modelText8">
                 <b>Горшок с оттисками «сетки-плетенки»</b>

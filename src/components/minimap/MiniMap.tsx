@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import { Html, Line, meshBounds } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
-import React, { createRef, useEffect, useRef, useState } from 'react'
+import { createRef, useEffect, useRef, useState } from 'react'
 import MinimapLine from './minimapLine'
 import state from '../../utils/state'
 import './minimap.css'
@@ -53,11 +53,11 @@ export default function MiniMap({handleScrollTo}: {handleScrollTo(index: number)
     if (page > 1) {
       mapRef.current.position.x = THREE.MathUtils.damp(mapRef.current.position.x,  0.044 * stateThree.viewport.width, 20, delta)
     } else {
-      mapRef.current.position.x = THREE.MathUtils.damp(mapRef.current.position.x,  0.05 * stateThree.viewport.width, 20, delta)
+      mapRef.current.position.x = THREE.MathUtils.damp(mapRef.current.position.x,  0.1 * stateThree.viewport.width, 20, delta)
     }
 
     if (state.zoomGlobal) {
-      mapRef.current.position.x = THREE.MathUtils.damp(mapRef.current.position.x,  0.05 * stateThree.viewport.width, 20, delta)
+      mapRef.current.position.x = THREE.MathUtils.damp(mapRef.current.position.x,  0.1 * stateThree.viewport.width, 20, delta)
     } else {
       mapRef.current.position.x = THREE.MathUtils.damp(mapRef.current.position.x,  0.044 * stateThree.viewport.width, 20, delta)
     }
@@ -66,6 +66,10 @@ export default function MiniMap({handleScrollTo}: {handleScrollTo(index: number)
   function Dot({ value, index }: any) {
 
     const [hovered, setHovered] = useState(false)
+
+    useEffect(() => {
+      hovered ? stateThree.gl.domElement.style.cursor = 'pointer' : stateThree.gl.domElement.style.cursor = 'default'
+    }, [hovered])
 
     useFrame(() => {
       const page = (pageLerp.current = THREE.MathUtils.lerp(pageLerp.current, state.top / stateThree.size.height, 0.15))
@@ -145,8 +149,8 @@ export default function MiniMap({handleScrollTo}: {handleScrollTo(index: number)
         </mesh>
 
         <Html  
-          as='div' // Wrapping element (default: 'div')
-          wrapperClass='wrapperClass_miniMap' // The className of the wrapping element (default: undefined)
+          as='div'
+          wrapperClass='wrapperClass_miniMap'
           prepend
           center
         >

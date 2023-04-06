@@ -10,17 +10,7 @@
 
 .wrapperClass_info {
     width: 100vw;
-    /* display: flex;
-    justify-content: space-between;
-    align-items: stretch;
-    width: 100%;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
-    padding: 0 9vw; */
     margin-top: 180vh;
-    /* margin-left: 10vw;
-    margin-right: 50vw; */
 }
 
 .wrapperClass_info_cont {
@@ -31,22 +21,17 @@
     margin: 0 auto;
     position: relative;
     z-index: 1;
-    /* margin-top: 180vh; */
-    /* margin-left: 10vw;
-    margin-right: 50vw; */
 }
 
 .wrapperClass_info p {
     position: relative;
     width: 50%;
-    /* width: 100%; */
     text-align: justify;
     font-family: "Lato";
     line-height: 30px;
     font-weight: 400;
     font-size: 1em;
     color: #000;
-    /* background-color: rgba(0, 0, 0, 0.05); */
     border-radius: 20px;
     padding: 0vw;
     align-self: center;
@@ -98,8 +83,6 @@
     scale: 0.85;
     margin: 15px auto;
 }
-
-.closeZoom {}
 
 .mainText1,
 .mainText2,

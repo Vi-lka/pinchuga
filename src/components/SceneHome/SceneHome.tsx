@@ -1,4 +1,4 @@
-import { Text, Html, OrbitControls, Stats, useAspect, PerspectiveCamera, Loader, Sphere } from '@react-three/drei'
+import { Text, Html, OrbitControls, useAspect, PerspectiveCamera } from '@react-three/drei'
 import { Image as DreiImage } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 import { createRef, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
@@ -23,9 +23,6 @@ import disableScroll from 'disable-scroll'
 import { EffectComposer, Vignette } from '@react-three/postprocessing'
 import OverlayHome from '../OverlayHome/OverlayHome'
 import Models from '../Models/Models'
-import Shader1 from '../Shaders/Shader1'
-import fragmentShader from '../../utils/fragmentShader1'
-import vertexShader from '../../utils/vertexShader1'
 import MiniMap from '../minimap/MiniMap'
 
 function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo(index: number): void }) {
@@ -55,29 +52,18 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
   const [hState, sethState] = useState(0)
 
   const handleReflow = useCallback((w: any, h: any) => {
-    // console.log('w:  ' + w)
-    // console.log('h:  ' + h)
-
-    // console.log('wState:  ' + wState)
-    // console.log('hState:  ' + hState)
 
     if (!zoom && ((wState !== w) || (hState !== h))) {
 
       if (state.top > ((state.pages * window.innerHeight) / 5)) {
         state.top = ((state.pages * window.innerHeight) / 6)
       }
-      // console.log('handleReflow !zoom')
     } else if (zoom && ((wState !== w) || (hState !== h))) {
       setZoom(false)
-      // console.log('handleReflow zoom')
     }
     onReflow((state.pages = h / stateThree.viewport.height + plusHeight))
     setwState(w)
     sethState(h)
-
-    // if ((state.top > ((state.pages * window.innerHeight) / 5)) && !zoom) {
-    //   state.top = ((state.pages * window.innerHeight) / 6)
-    // }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [zoom, onReflow, stateThree.viewport.height, stateThree.viewport.width, stateThree.size])
@@ -102,9 +88,6 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
   const startMainText = 0.9
   const startModelsArray = 6.2
 
-  // stateThree.size.width * 0.0006 = 0.92
-  // stateThree.size.width * 0.0009 = 1.38
-
   useFrame(() => {
     // Scroll value 
     const page = (pageLerp.current = THREE.MathUtils.lerp(pageLerp.current, state.top / stateThree.size.height, 0.15))
@@ -115,7 +98,6 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
     const sticky = state.threshold * stateThree.viewport.height
 
     // Position of Flex
-    // groupFlex.current!.position.lerp(vec.set(0, page < state.threshold ? (page >= startMainText ? 11 : y) : sticky, page < state.threshold ? 0 : page * 2), 0.15)
     groupFlex.current!.position.lerp(vec.set(0, (page >= startMainText ? 11 : y), 0), 0.1)
 
     // Position and opacity of BackGround
@@ -141,7 +123,7 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
 
     titleRef.current!.visible = (page > 6.21) ? false : true
     mainTextRef.current!.visible = (page > 0.4) ? (page > 6.21 ? false : true) : false
-    modelsArrayRef.current!.visible = (page > 5) ? true : false
+    modelsArrayRef.current!.visible = (page > 6.19) ? true : false
     bgRef.current!.visible = (page > 6.21) ? false : true
     footerTitleRef.current!.visible = (page > 29.4) ? true : false
 
@@ -232,11 +214,6 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
 
     stateThree.camera.lookAt(ghostMeshRef.current!.position)
   })
-
-  // useEffect(() => {
-  //   document.getElementById('scrollArea')!.style.zIndex = zoom ? '-1' : '1000000'
-  // }, [zoom])
-
 
   function Title({ onReflow }: any) {
 
@@ -362,8 +339,6 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
       mainText5Ref.current?.position.lerp(vec.set((page > 5) ? (page > 6.2 ? -40 : (-page * 0.7 * stateThree.viewport.aspect - 0.4)) : -40, 1.1, -page - 3.9), 0.1)
       mainText5PRef.current &&
         (mainText5PRef.current.style.display = (page > 4.9) ? (page > 6.21 ? 'none' : 'block') : 'none')
-
-      // console.log(page)
     })
 
     return (
@@ -372,14 +347,23 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
 
           <HeightReporter onReflow={onReflow} />
 
-          <DreiImage ref={dreiImage1Ref} url={great_migration} scale={[2, 1.8]} color={'white'} toneMapped={true} transparent opacity={1} position={[(pageLerp.current > 2) ? -20 : 0, pageLerp.current > 0.6 ? 1.2 : -5, -4 * pageLerp.current + 7.5]} />
-          <group ref={mainText1Ref} position={[(pageLerp.current > 2) ? -20 : (window.innerWidth < 1000 ? (stateThree.size.width * 0.0006) * 3 : 3), 1, -4 * pageLerp.current]}>
+          <DreiImage 
+            ref={dreiImage1Ref} 
+            url={great_migration} 
+            scale={[2, 1.8]} 
+            color={'white'} 
+            toneMapped={true} 
+            transparent 
+            opacity={1} 
+            position={[(pageLerp.current > 2) ? -40 : -0.06 * stateThree.viewport.width, 1.12, 3.9]} 
+          />
+          <group ref={mainText1Ref} position={[(pageLerp.current > 2) ? -40 : 0.16 * stateThree.viewport.width, 1, 0]}>
             <Html
-              as='div' // Wrapping element (default: 'div')
-              wrapperClass="textArea" // The className of the wrapping element (default: undefined)
+              as='div'
+              wrapperClass="textArea"
               center
             >
-              <p ref={mainText1PRef} className="mainText1">
+              <p ref={mainText1PRef} className="mainText1" style={{display: 'none'}}>
                 <strong>Эпоха Великого переселения народов</strong> – один из ключевых моментов истории Евразии вообще и Сибири в частности.
                 <br /><br />
                 В период <b>со II по VI вв. н.э.</b> на большей части континента происходили масштабные миграции населения, что привело к формированию новых народов и государств.
@@ -393,14 +377,22 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
             </Html>
           </group>
 
-          <DreiImage ref={dreiImage2Ref} scale={stateThree.viewport.aspect > 1.9 ? [4, 3.78] : [3.6, 3.4]} url={big_map} toneMapped={false} transparent opacity={1} position={[(pageLerp.current > 2) ? (pageLerp.current > 3 ? 15 : 1.2) : 15, 1.1, -1.4 * (pageLerp.current)]} />
-          <group ref={mainText2Ref} position={[(pageLerp.current > 2) ? (pageLerp.current > 3 ? -20 : (window.innerWidth < 1000 ? (stateThree.size.width * 0.0006) * (-3) : -3)) : -20, 1, -4 * pageLerp.current]}>
+          <DreiImage 
+            ref={dreiImage2Ref} 
+            scale={stateThree.viewport.aspect > 1.9 ? [4, 3.78] : [3.6, 3.4]} 
+            url={big_map} 
+            toneMapped={false} 
+            transparent 
+            opacity={1} 
+            position={[stateThree.viewport.aspect > 1.9 ? (pageLerp.current > 2 ? (pageLerp.current > 3 ? -7 : (7.2 - pageLerp.current / 0.55)) : 15) : (pageLerp.current > 2 ? (pageLerp.current > 3 ? 1 : (6.5 - pageLerp.current / 0.6)) : 15), 1.7 + (-pageLerp.current / 3.8), (pageLerp.current > 2 ? (pageLerp.current > 3 ? 20 : (pageLerp.current / 0.5) - 5.2) : -15)]} 
+          />
+          <group ref={mainText2Ref} position={[(pageLerp.current > 2) ? (pageLerp.current > 3 ? -40 : -0.16 * stateThree.viewport.width) : 40, 1.05, 0]}>
             <Html
-              as='div' // Wrapping element (default: 'div')
-              wrapperClass="textArea" // The className of the wrapping element (default: undefined)
+              as='div'
+              wrapperClass="textArea"
               center
             >
-              <p ref={mainText2PRef} className="mainText2">
+              <p ref={mainText2PRef} className="mainText2" style={{display: 'none'}}>
                 Миграция хунну, начавшаяся в глубокой <b>Центральной Азии</b>, затронула большую часть <b>Евразии</b>.
                 <br /><br />
                 И хотя основные исторические события происходили в <b>степях</b>, но происходившие глобальные изменения коснулись и далёких <b>таёжных районов</b>.
@@ -410,14 +402,22 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
             </Html>
           </group>
 
-          <DreiImage ref={dreiImage3Ref} scale={[3, 4.05]} url={angara_map} toneMapped={false} transparent opacity={1} position={[(-pageLerp.current), pageLerp.current > 3 ? (pageLerp.current > 4 ? 10 : 1) : 22, (pageLerp.current > 3 ? (-4 * pageLerp.current - 2) : (2))]} />
-          <group ref={mainText3Ref} position={[(pageLerp.current > 3) ? (pageLerp.current > 4 ? 20 : (window.innerWidth < 1000 ? (stateThree.size.width * 0.0006) * 3 : 3.8)) : 20, pageLerp.current > 4 ? -10 : 1.2, -4 * pageLerp.current]}>
+          <DreiImage 
+            ref={dreiImage3Ref} 
+            scale={[3, 4.05]} 
+            url={angara_map} 
+            toneMapped={false} 
+            transparent 
+            opacity={1} 
+            position={[stateThree.viewport.aspect > 1.9 ? (pageLerp.current > 3 ? (pageLerp.current > 4 ? 2 : -pageLerp.current * 1.5 + 7.2) : 15) : (pageLerp.current > 3 ? (pageLerp.current > 4 ? 2 : -pageLerp.current * 1.2 + 5.9) : 15), (pageLerp.current / 2.45), (pageLerp.current > 3 ? (pageLerp.current > 4 ? 20 : (pageLerp.current / 0.35) - 9) : -20)]} 
+          />
+          <group ref={mainText3Ref} position={[(pageLerp.current > 3) ? (pageLerp.current > 4 ? -40 : (-pageLerp.current * 0.7 * stateThree.viewport.aspect - 0.35)) : -40, pageLerp.current > 4.5 ? -10 : 1.1, -pageLerp.current - 3.9]}>
             <Html
-              as='div' // Wrapping element (default: 'div')
-              wrapperClass="textArea" // The className of the wrapping element (default: undefined)
+              as='div' 
+              wrapperClass="textArea" 
               center
             >
-              <p ref={mainText3PRef} className="mainText2">
+              <p ref={mainText3PRef} className="mainText2" style={{display: 'none'}}>
                 Именно в это время на берегах <b>Ангары и Енисея</b> возникают и активно развиваются технологии получения и обработки <b>железа</b>,
                 усиливается <b>обмен</b> с южными и западными территориями, получает распространение новая <b>керамическая посуда</b>, совершенствуется <b>оружие</b>.
                 <br /><br />
@@ -428,18 +428,22 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
             </Html>
           </group>
 
-          <DreiImage ref={dreiImage4Ref} scale={[1.7 * stateThree.viewport.aspect * 0.6, 1.2 * stateThree.viewport.aspect * 0.6]} url={funeral_pure} toneMapped={false} transparent opacity={1} position={[pageLerp.current > 2 ? (pageLerp.current > 4 ? 1.1 : 7) : 27, pageLerp.current > 4 ? (pageLerp.current > 5 ? -2 : 1.1) : 10, (-pageLerp.current - 7.4)]} />
-          <group ref={mainText4Ref} position={[(pageLerp.current > 4) ? (pageLerp.current > 5 ? 20 : (window.innerWidth < 1000 ? (stateThree.size.width * 0.0006) * (-pageLerp.current) : (-pageLerp.current))) : 20, pageLerp.current > 5 ? -10 : 1.2, -4 * pageLerp.current - 3]}>
+          <DreiImage 
+            ref={dreiImage4Ref} 
+            scale={[1.7 * stateThree.viewport.aspect * 0.6, 1.2 * stateThree.viewport.aspect * 0.6]} 
+            url={funeral_pure} 
+            toneMapped={false} 
+            transparent 
+            opacity={1} 
+            position={[pageLerp.current > 2 ? (pageLerp.current > 4 ? -pageLerp.current * 0.47 + 3 : 12) : 30, pageLerp.current > 4 ? 1 : -1, (pageLerp.current > 4 ? (pageLerp.current > 5 ? 20 : (pageLerp.current / 0.7) - 3.6) : -20)]} 
+          />
+          <group ref={mainText4Ref} position={[(pageLerp.current > 4) ? (pageLerp.current > 5 ? -40 : (-pageLerp.current * 0.7 * stateThree.viewport.aspect - 0.4)) : -40, pageLerp.current > 5.5 ? -10 : 1.1, -pageLerp.current - 3.9]}>
             <Html
-              as='div' // Wrapping element (default: 'div')
-              wrapperClass="textArea" // The className of the wrapping element (default: undefined)
+              as='div' 
+              wrapperClass="textArea" 
               center
             >
-              <p ref={mainText4PRef} className="mainText3">
-                {/* Могильник <b>III – IV вв. н.э.</b> <strong>Пинчуга-6</strong> – стал первым полностью раскопанным некрополем эпохи Великого переселения народов на Ангаре.
-                <br/><br/> 
-                Он изучался археологами <b>Сибирского федерального университета</b> с 2018 по 2022 год. 
-                <br/><br/> */}
+              <p ref={mainText4PRef} className="mainText3" style={{display: 'none'}}>
                 Здесь найдено <b>18 погребений</b>, выполненных по одному обряду. Тело умершего сжигали на погребальном огне, после чего остывший прах хоронили в небольших ямах или просто рассыпали по поверхности.
                 <br /><br />
                 Вместе с прахом оставляли и некоторые вещи, необходимые в загробном мире: <b>посуду, ножи, иглы, тёсла, украшения, наконечники стрел, детали луков</b> и другие предметы.
@@ -453,21 +457,70 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
             </Html>
           </group>
 
-          <DreiImage ref={dreiImage5Ref} transparent scale={[1, 1.3]} url={img_draw_bird_1} position={[pageLerp.current > 5 ? (pageLerp.current > 6.2 ? 20 : 4.6) : -7, pageLerp.current > 2 ? -1.8 : -20, pageLerp.current > 5 ? pageLerp.current - 32 : pageLerp.current - 35]} />
-          <DreiImage ref={dreiImage6Ref} transparent scale={[0.84, 1.3]} url={img_draw_bird_2} position={[pageLerp.current > 5 ? (pageLerp.current > 6.2 ? 20 : 2.76) : -7, pageLerp.current > 2 ? -2 : -20, pageLerp.current > 5 ? pageLerp.current - 30 : pageLerp.current - 35]} />
-          <DreiImage ref={dreiImage7Ref} transparent scale={[1.2, 1.21]} url={img_draw_cup_1} position={[pageLerp.current > 5 ? (pageLerp.current > 6.2 ? 20 : 3) : -7, pageLerp.current > 2 ? 4 : -20, pageLerp.current > 5 ? pageLerp.current - 30 : pageLerp.current - 35]} />
-          <DreiImage ref={dreiImage8Ref} transparent scale={[1.48, 1.32]} url={img_draw_cup_2} position={[pageLerp.current > 5 ? (pageLerp.current > 6.2 ? 20 : 2.2) : -7, pageLerp.current > 2 ? 3.6 : -20, pageLerp.current > 5 ? pageLerp.current - 33 : pageLerp.current - 35]} />
-          <DreiImage ref={dreiImage9Ref} transparent scale={[1.8, 1.16]} url={img_draw_item_1} position={[pageLerp.current > 5 ? (pageLerp.current > 6.2 ? 20 : 5.52) : -7, pageLerp.current > 2 ? 0.4 : -20, pageLerp.current > 5 ? pageLerp.current - 36 : pageLerp.current - 35]} />
-          <DreiImage ref={dreiImage10Ref} transparent scale={[1.8, 1.05]} url={img_draw_item_2} position={[pageLerp.current > 5 ? (pageLerp.current > 6.2 ? 20 : 3.68) : -7, pageLerp.current > 2 ? 1.2 : -20, pageLerp.current > 5 ? pageLerp.current - 38 : pageLerp.current - 35]} />
-          <DreiImage ref={dreiImage11Ref} transparent scale={[1.48, 1.2]} url={img_draw_horse} position={[pageLerp.current > 5 ? (pageLerp.current > 6.2 ? 20 : 6.44) : -7, pageLerp.current > 2 ? -0.8 : -20, pageLerp.current > 5 ? pageLerp.current - 34 : pageLerp.current - 35]} />
-          <DreiImage ref={dreiImage12Ref} transparent scale={[1.5, 1.51]} url={img_draw_disk} position={[pageLerp.current > 5 ? (pageLerp.current > 6.2 ? 20 : 1.56) : -7, pageLerp.current > 2 ? 2.4 : -20, pageLerp.current > 5 ? pageLerp.current - 36 : pageLerp.current - 35]} />
-          <group ref={mainText5Ref} position={[(pageLerp.current > 5) ? (pageLerp.current > 6.2 ? -20 : (window.innerWidth < 1000 ? (stateThree.size.width * 0.0006) * (-pageLerp.current * 0.92) : (-pageLerp.current * 0.92))) : -20, 1.2, -4 * pageLerp.current - 3]}>
+          <DreiImage 
+            ref={dreiImage6Ref} 
+            transparent 
+            scale={[0.84, 1.3]} 
+            url={img_draw_bird_2} 
+            position={[pageLerp.current > 5 ? (pageLerp.current > 6.2 ? -20 : 2.7 * stateThree.viewport.aspect * 0.75 - 1) : -7, pageLerp.current > 2 ? -1.8 : -20, pageLerp.current > 5 ? (2.5 * pageLerp.current - 15.5 * 1.15) : -15]} 
+          />
+          <DreiImage 
+            ref={dreiImage5Ref} 
+            transparent 
+            scale={[1, 1.3]} 
+            url={img_draw_bird_1} 
+            position={[pageLerp.current > 5 ? (pageLerp.current > 6.2 ? -20 : 4.4 * stateThree.viewport.aspect * 0.75 - 1) : -7, pageLerp.current > 2 ? -1.5 : -20, pageLerp.current > 5 ? (2.5 * pageLerp.current - 17.2 * 1.15) : -15]} 
+          />
+          <DreiImage 
+            ref={dreiImage11Ref} 
+            transparent 
+            scale={[1.48, 1.2]} 
+            url={img_draw_horse} 
+            position={[pageLerp.current > 5 ? (pageLerp.current > 6.2 ? -20 : 6.3 * stateThree.viewport.aspect * 0.75 - 1) : -7, pageLerp.current > 2 ? -0.6 : -20, pageLerp.current > 5 ? (2.5 * pageLerp.current - 19.5 * 1.15) : -15]} 
+          />
+          <DreiImage 
+            ref={dreiImage9Ref} 
+            transparent 
+            scale={[1.8, 1.16]} 
+            url={img_draw_item_1} 
+            position={[pageLerp.current > 5 ? (pageLerp.current > 6.2 ? -20 : 5.4 * stateThree.viewport.aspect * 0.75 - 1) : -7, pageLerp.current > 2 ? 0.5 : -20, pageLerp.current > 5 ? (2.5 * pageLerp.current - 21.5 * 1.15) : -15]} 
+          />
+          <DreiImage 
+            ref={dreiImage10Ref} 
+            transparent 
+            scale={[1.8, 1.05]} 
+            url={img_draw_item_2} 
+            position={[pageLerp.current > 5 ? (pageLerp.current > 6.2 ? -20 : 3.3 * stateThree.viewport.aspect * 0.75 - 1) : -7, pageLerp.current > 2 ? 1.3 : -20, pageLerp.current > 5 ? (2.5 * pageLerp.current - 22 * 1.15) : -15]} 
+          />
+          <DreiImage 
+            ref={dreiImage12Ref} 
+            transparent 
+            scale={[1.5, 1.51]} 
+            url={img_draw_disk} 
+            position={[pageLerp.current > 5 ? (pageLerp.current > 6.2 ? -20 : 1.3 * stateThree.viewport.aspect * 0.75 - 1) : -7, pageLerp.current > 2 ? 2.5 : -20, pageLerp.current > 5 ? (2.5 * pageLerp.current - 21.5 * 1.15) : -15]} 
+          />
+          <DreiImage 
+            ref={dreiImage8Ref} 
+            transparent 
+            scale={[1.48, 1.32]} 
+            url={img_draw_cup_2} 
+            position={[pageLerp.current > 5 ? (pageLerp.current > 6.2 ? -20 : 2 * stateThree.viewport.aspect * 0.75 - 1) : -7, pageLerp.current > 2 ? 3.7 : -20, pageLerp.current > 5 ? (2.5 * pageLerp.current - 18 * 1.15) : -15]} 
+          />
+          <DreiImage 
+            ref={dreiImage7Ref} 
+            transparent 
+            scale={[1.2, 1.21]} 
+            url={img_draw_cup_1} 
+            position={[pageLerp.current > 5 ? (pageLerp.current > 6.2 ? -20 : 2.7 * stateThree.viewport.aspect * 0.75 - 1) : -7, pageLerp.current > 2 ? 4.1 : -20, pageLerp.current > 5 ? (2.5 * pageLerp.current - 15.5 * 1.15) : -15]} 
+          />
+
+          <group ref={mainText5Ref} position={[(pageLerp.current > 5) ? (pageLerp.current > 6.2 ? -40 : (-pageLerp.current * 0.7 * stateThree.viewport.aspect - 0.4)) : -40, 1.1, -pageLerp.current - 3.9]}>
             <Html
-              as='div' // Wrapping element (default: 'div')
-              wrapperClass="textArea" // The className of the wrapping element (default: undefined)
+              as='div' 
+              wrapperClass="textArea" 
               center
             >
-              <p ref={mainText5PRef} className="mainText4">
+              <p ref={mainText5PRef} className="mainText4" style={{display: 'none'}}>
                 Эти предметы попали на <b>Ангару</b> из разных регионов и позволяют проследить направления <b>культурных связей</b>, понять, что выступало предметом обмена.
                 <br /><br />
                 Узнаваемые изображения <b>животных и птиц</b> позволяют нам заглянуть в мир идей и образов людей, живших на ангарских берегах более <b>1500 лет</b> назад.
@@ -529,7 +582,6 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
   // SceneHome RETURN
   return (
     <>
-      {/* <Stats /> */}
       <OverlayHome zoom={zoom} setZoom={setZoom} />
       <MiniMap
         handleScrollTo={handleScrollTo}
@@ -628,13 +680,10 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
       }>
         <planeBufferGeometry args={[1, 1]} />
         <meshBasicMaterial toneMapped={false} transparent opacity={0} />
-        {/* <boxBufferGeometry args={[1, 1, 1]} />
-      <meshBasicMaterial color={"#000000"} toneMapped={false} /> */}
       </mesh>
       <group ref={groupFlex} position={[0, ((pageLerp.current >= startMainText) ? 11 : (pageLerp.current * stateThree.viewport.height)), pageLerp.current < (state.threshold + plusHeight) ? 0 : 0]}>
         <Flex
           dir="column"
-          // position={[-stateThree.viewport.width / 2, stateThree.viewport.height / 2, 0]} 
           size={[stateThree.viewport.width, stateThree.viewport.height, 10]}
           onReflow={handleReflow}
         >
@@ -656,7 +705,6 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
           ]}>
             <planeBufferGeometry args={[bW, bH]} />
             <meshBasicMaterial ref={bgMaterialRef} color={"#2b2b2b"} toneMapped={false} transparent opacity={1} />
-            {/* color #343434 */}
           </mesh>
           <Box dir="row" width="100%" height="100%" align="center" justify="center">
             <group ref={titleRef} position={[0, -(pageLerp.current), pageLerp.current * 5]}>

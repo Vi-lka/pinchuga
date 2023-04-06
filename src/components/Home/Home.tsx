@@ -1,7 +1,7 @@
 import './home.css'
-import { Canvas, useFrame } from '@react-three/fiber'
-import { Html, Line, Loader, Preload, meshBounds } from '@react-three/drei'
-import { Suspense, createRef, useEffect, useRef, useState } from 'react'
+import { Canvas } from '@react-three/fiber'
+import { Html, Loader } from '@react-three/drei'
+import { Suspense, useEffect, useRef, useState } from 'react'
 import SceneHome from '../SceneHome/SceneHome'
 import state from '../../utils/state'
 
