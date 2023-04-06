@@ -7,24 +7,24 @@ import state from '../../utils/state'
 import './minimap.css'
 import 'cooltipz-css'
 
-export default function MiniMap({handleScrollTo}: {handleScrollTo(index: number): void}) {
+export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: number): void }) {
   const stateThree = useThree()
 
   const mapArray = [
-    'Начало', 
-    'Великое переселение народов', 
-    'Миграция', 
-    'Ангара и Енисей', 
-    'Пинчуга-6', 
-    'Предметы', 
-    'Сокол', 
-    'Орёл', 
-    'Олень', 
-    'Пряжка', 
-    'Прямоугольная Пряжка', 
-    'Диск с циркулярным орнаментом', 
-    'Горшок с личиной', 
-    'Горшок с оттисками «сетки-плетенки»', 
+    'Начало',
+    'Великое переселение народов',
+    'Миграция',
+    'Ангара и Енисей',
+    'Пинчуга-6',
+    'Предметы',
+    'Сокол',
+    'Орёл',
+    'Олень',
+    'Пряжка',
+    'Прямоугольная Пряжка',
+    'Диск с циркулярным орнаментом',
+    'Горшок с личиной',
+    'Горшок с оттисками «сетки-плетенки»',
     'О проекте'
   ]
 
@@ -51,15 +51,15 @@ export default function MiniMap({handleScrollTo}: {handleScrollTo(index: number)
     const page = (pageLerp.current = THREE.MathUtils.lerp(pageLerp.current, state.top / stateThree.size.height, 0.15))
 
     if (page > 1) {
-      mapRef.current.position.x = THREE.MathUtils.lerp(mapRef.current.position.x,  0.044 * stateThree.viewport.width, 0.15)
+      mapRef.current.position.x = THREE.MathUtils.lerp(mapRef.current.position.x, 0.044 * stateThree.viewport.width, 0.15)
     } else {
-      mapRef.current.position.x = THREE.MathUtils.lerp(mapRef.current.position.x,  0.1 * stateThree.viewport.width, 0.15)
+      mapRef.current.position.x = THREE.MathUtils.lerp(mapRef.current.position.x, 0.1 * stateThree.viewport.width, 0.15)
     }
 
     if (state.zoomGlobal) {
-      mapRef.current.position.x = THREE.MathUtils.lerp(mapRef.current.position.x,  0.1 * stateThree.viewport.width, 0.15)
+      mapRef.current.position.x = THREE.MathUtils.lerp(mapRef.current.position.x, 0.1 * stateThree.viewport.width, 0.15)
     } else {
-      mapRef.current.position.x = THREE.MathUtils.lerp(mapRef.current.position.x,  0.044 * stateThree.viewport.width, 0.15)
+      mapRef.current.position.x = THREE.MathUtils.lerp(mapRef.current.position.x, 0.044 * stateThree.viewport.width, 0.15)
     }
   })
 
@@ -74,21 +74,21 @@ export default function MiniMap({handleScrollTo}: {handleScrollTo(index: number)
     useFrame(() => {
       const page = (pageLerp.current = THREE.MathUtils.lerp(pageLerp.current, state.top / stateThree.size.height, 0.15))
 
-      if (page > 0 && page < 1) startTransition(() => setCurrentArea(0))
-      if (page > 1 && page < 2) startTransition(() => setCurrentArea(1))
-      if (page > 2 && page < 3) startTransition(() => setCurrentArea(2))
-      if (page > 3 && page < 4) startTransition(() => setCurrentArea(3))
-      if (page > 4 && page < 5) startTransition(() => setCurrentArea(4))
-      if (page > 5 && page < 6.2) startTransition(() => setCurrentArea(5))
-      if (page >= 6.2 && page < 10) startTransition(() => setCurrentArea(6))
-      if (page > 10 && page < 13) startTransition(() => setCurrentArea(7))
-      if (page > 13 && page < 16.2) startTransition(() => setCurrentArea(8))
-      if (page > 16.2 && page < 19.2) startTransition(() => setCurrentArea(9))
-      if (page > 19.2 && page < 22) startTransition(() => setCurrentArea(10))
-      if (page > 22 && page < 24.8) startTransition(() => setCurrentArea(11))
-      if (page > 24.8 && page < 27.7) startTransition(() => setCurrentArea(12))
-      if (page > 27.7 && page < 29.6) startTransition(() => setCurrentArea(13))
-      if (page > 29.6) startTransition(() => setCurrentArea(14))
+      if (page > 0 && page < 1) setCurrentArea(0)
+      if (page > 1 && page < 2) setCurrentArea(1)
+      if (page > 2 && page < 3) setCurrentArea(2)
+      if (page > 3 && page < 4) setCurrentArea(3)
+      if (page > 4 && page < 5) setCurrentArea(4)
+      if (page > 5 && page < 6.2) setCurrentArea(5)
+      if (page >= 6.2 && page < 10) setCurrentArea(6)
+      if (page > 10 && page < 13) setCurrentArea(7)
+      if (page > 13 && page < 16.2) setCurrentArea(8)
+      if (page > 16.2 && page < 19.2) setCurrentArea(9)
+      if (page > 19.2 && page < 22) setCurrentArea(10)
+      if (page > 22 && page < 24.8) setCurrentArea(11)
+      if (page > 24.8 && page < 27.7) setCurrentArea(12)
+      if (page > 27.7 && page < 29.6) setCurrentArea(13)
+      if (page > 29.6) setCurrentArea(14)
     })
 
     const posYAspect = -0.04 * (index + 1) * (stateThree.viewport.height / 6)
@@ -124,11 +124,11 @@ export default function MiniMap({handleScrollTo}: {handleScrollTo(index: number)
           raycast={meshBounds}
         >
           <circleGeometry />
-          <meshPhongMaterial 
-            transparent 
-            color={pageLerp.current > 1 ? (pageLerp.current > 2 ? "#ffffff" : "#2b2b2b") : "#ffffff"} 
-            emissive={pageLerp.current > 1 ? (pageLerp.current > 2 ? "#ffffff" : "#2b2b2b") : "#ffffff"} 
-            opacity={(hovered || currentArea === index) ? 0 : 0.01} 
+          <meshPhongMaterial
+            transparent
+            color={pageLerp.current > 1 ? (pageLerp.current > 2 ? "#ffffff" : "#2b2b2b") : "#ffffff"}
+            emissive={pageLerp.current > 1 ? (pageLerp.current > 2 ? "#ffffff" : "#2b2b2b") : "#ffffff"}
+            opacity={(hovered || currentArea === index) ? 0 : 0.01}
           />
         </mesh>
 
@@ -140,15 +140,15 @@ export default function MiniMap({handleScrollTo}: {handleScrollTo(index: number)
           raycast={meshBounds}
         >
           <circleGeometry />
-          <meshPhongMaterial 
-            transparent 
-            color={pageLerp.current > 1 ? (pageLerp.current > 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"} 
-            emissive={pageLerp.current > 1 ? (pageLerp.current > 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"} 
-            opacity={(hovered || currentArea === index) ? 0.05 : 0.75} 
+          <meshPhongMaterial
+            transparent
+            color={pageLerp.current > 1 ? (pageLerp.current > 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
+            emissive={pageLerp.current > 1 ? (pageLerp.current > 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
+            opacity={(hovered || currentArea === index) ? 0.05 : 0.75}
           />
         </mesh>
 
-        <Html  
+        <Html
           as='div'
           wrapperClass='wrapperClass_miniMap'
           prepend
@@ -163,7 +163,7 @@ export default function MiniMap({handleScrollTo}: {handleScrollTo(index: number)
 
   return (
     <group
-      ref={mapRef} 
+      ref={mapRef}
       position={[0.05 * stateThree.viewport.width, 0.32 * (stateThree.viewport.height / 6), 0]}
     >
       {
@@ -178,11 +178,11 @@ export default function MiniMap({handleScrollTo}: {handleScrollTo(index: number)
 
       {/* *********************** 1 *********************** */}
       <MinimapLine
-        positionY={ 0.05 * (stateThree.viewport.height / 6) }
-        positionX={ posXAspect }
-        scrollSpeed={ 29 }
-        scrollDelay={ 0 }
-        color={ currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b" }
+        positionY={0.05 * (stateThree.viewport.height / 6)}
+        positionX={posXAspect}
+        scrollSpeed={29}
+        scrollDelay={0}
+        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
       />
       <Line
         points={[[0, -0.06 * (stateThree.viewport.height / 6), 0], [0, -0.09 * (stateThree.viewport.height / 6), 0]]}
@@ -195,11 +195,11 @@ export default function MiniMap({handleScrollTo}: {handleScrollTo(index: number)
 
       {/* *********************** 2 *********************** */}
       <MinimapLine
-        positionY={ 0.089 * (stateThree.viewport.height / 6) }
-        positionX={ posXAspect }
-        scrollSpeed={ 24 }
-        scrollDelay={ 0.85 }
-        color={ currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b" }
+        positionY={0.089 * (stateThree.viewport.height / 6)}
+        positionX={posXAspect}
+        scrollSpeed={24}
+        scrollDelay={0.85}
+        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
       />
       <Line
         points={[[0, -0.06 * (stateThree.viewport.height / 6), 0], [0, -0.09 * (stateThree.viewport.height / 6), 0]]}
@@ -212,11 +212,11 @@ export default function MiniMap({handleScrollTo}: {handleScrollTo(index: number)
 
       {/* *********************** 3 *********************** */}
       <MinimapLine
-        positionY={ 0.129 * (stateThree.viewport.height / 6) }
-        positionX={ posXAspect }
-        scrollSpeed={ 29 }
-        scrollDelay={ 1.95 }
-        color={ currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b" }
+        positionY={0.129 * (stateThree.viewport.height / 6)}
+        positionX={posXAspect}
+        scrollSpeed={29}
+        scrollDelay={1.95}
+        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
       />
       <Line
         points={[[0, -0.06 * (stateThree.viewport.height / 6), 0], [0, -0.09 * (stateThree.viewport.height / 6), 0]]}
@@ -229,11 +229,11 @@ export default function MiniMap({handleScrollTo}: {handleScrollTo(index: number)
 
       {/* *********************** 4 *********************** */}
       <MinimapLine
-        positionY={ 0.169 * (stateThree.viewport.height / 6) }
-        positionX={ posXAspect }
-        scrollSpeed={ 28.5 }
-        scrollDelay={ 2.98 }
-        color={ currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b" }
+        positionY={0.169 * (stateThree.viewport.height / 6)}
+        positionX={posXAspect}
+        scrollSpeed={28.5}
+        scrollDelay={2.98}
+        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
       />
       <Line
         points={[[0, -0.06 * (stateThree.viewport.height / 6), 0], [0, -0.09 * (stateThree.viewport.height / 6), 0]]}
@@ -246,11 +246,11 @@ export default function MiniMap({handleScrollTo}: {handleScrollTo(index: number)
 
       {/* *********************** 5 *********************** */}
       <MinimapLine
-        positionY={ 0.209 * (stateThree.viewport.height / 6) }
-        positionX={ posXAspect }
-        scrollSpeed={ 27.5 }
-        scrollDelay={ 3.98 }
-        color={ currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b" }
+        positionY={0.209 * (stateThree.viewport.height / 6)}
+        positionX={posXAspect}
+        scrollSpeed={27.5}
+        scrollDelay={3.98}
+        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
       />
       <Line
         points={[[0, -0.06 * (stateThree.viewport.height / 6), 0], [0, -0.09 * (stateThree.viewport.height / 6), 0]]}
@@ -263,11 +263,11 @@ export default function MiniMap({handleScrollTo}: {handleScrollTo(index: number)
 
       {/* *********************** 6 *********************** */}
       <MinimapLine
-        positionY={ 0.249 * (stateThree.viewport.height / 6) }
-        positionX={ posXAspect }
-        scrollSpeed={ 24 }
-        scrollDelay={ 4.98 }
-        color={ currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b" }
+        positionY={0.249 * (stateThree.viewport.height / 6)}
+        positionX={posXAspect}
+        scrollSpeed={24}
+        scrollDelay={4.98}
+        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
       />
       <Line
         points={[[0, -0.06 * (stateThree.viewport.height / 6), 0], [0, -0.09 * (stateThree.viewport.height / 6), 0]]}
@@ -280,11 +280,11 @@ export default function MiniMap({handleScrollTo}: {handleScrollTo(index: number)
 
       {/* *********************** 7 *********************** */}
       <MinimapLine
-        positionY={ 0.289 * (stateThree.viewport.height / 6) }
-        positionX={ posXAspect }
-        scrollSpeed={ 7.5 }
-        scrollDelay={ 6.15 }
-        color={ currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b" }
+        positionY={0.289 * (stateThree.viewport.height / 6)}
+        positionX={posXAspect}
+        scrollSpeed={7.5}
+        scrollDelay={6.15}
+        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
       />
       <Line
         points={[[0, -0.06 * (stateThree.viewport.height / 6), 0], [0, -0.09 * (stateThree.viewport.height / 6), 0]]}
@@ -297,11 +297,11 @@ export default function MiniMap({handleScrollTo}: {handleScrollTo(index: number)
 
       {/* *********************** 8 *********************** */}
       <MinimapLine
-        positionY={ 0.329 * (stateThree.viewport.height / 6) }
-        positionX={ posXAspect }
-        scrollSpeed={ 9.8 }
-        scrollDelay={ 10 }
-        color={ currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b" }
+        positionY={0.329 * (stateThree.viewport.height / 6)}
+        positionX={posXAspect}
+        scrollSpeed={9.8}
+        scrollDelay={10}
+        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
       />
       <Line
         points={[[0, -0.06 * (stateThree.viewport.height / 6), 0], [0, -0.09 * (stateThree.viewport.height / 6), 0]]}
@@ -314,11 +314,11 @@ export default function MiniMap({handleScrollTo}: {handleScrollTo(index: number)
 
       {/* *********************** 9 *********************** */}
       <MinimapLine
-        positionY={ 0.369 * (stateThree.viewport.height / 6) }
-        positionX={ posXAspect }
-        scrollSpeed={ 9.5 }
-        scrollDelay={ 13 }
-        color={ currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b" }
+        positionY={0.369 * (stateThree.viewport.height / 6)}
+        positionX={posXAspect}
+        scrollSpeed={9.5}
+        scrollDelay={13}
+        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
       />
       <Line
         points={[[0, -0.06 * (stateThree.viewport.height / 6), 0], [0, -0.09 * (stateThree.viewport.height / 6), 0]]}
@@ -331,11 +331,11 @@ export default function MiniMap({handleScrollTo}: {handleScrollTo(index: number)
 
       {/* *********************** 10 *********************** */}
       <MinimapLine
-        positionY={ 0.41 * (stateThree.viewport.height / 6) }
-        positionX={ posXAspect }
-        scrollSpeed={ 9.5 }
-        scrollDelay={ 16.2 }
-        color={ currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b" }
+        positionY={0.41 * (stateThree.viewport.height / 6)}
+        positionX={posXAspect}
+        scrollSpeed={9.5}
+        scrollDelay={16.2}
+        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
       />
       <Line
         points={[[0, -0.06 * (stateThree.viewport.height / 6), 0], [0, -0.09 * (stateThree.viewport.height / 6), 0]]}
@@ -348,11 +348,11 @@ export default function MiniMap({handleScrollTo}: {handleScrollTo(index: number)
 
       {/* *********************** 11 *********************** */}
       <MinimapLine
-        positionY={ 0.45 * (stateThree.viewport.height / 6) }
-        positionX={ posXAspect }
-        scrollSpeed={ 9.8 }
-        scrollDelay={ 19.1 }
-        color={ currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b" }
+        positionY={0.45 * (stateThree.viewport.height / 6)}
+        positionX={posXAspect}
+        scrollSpeed={9.8}
+        scrollDelay={19.1}
+        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
       />
       <Line
         points={[[0, -0.06 * (stateThree.viewport.height / 6), 0], [0, -0.09 * (stateThree.viewport.height / 6), 0]]}
@@ -365,11 +365,11 @@ export default function MiniMap({handleScrollTo}: {handleScrollTo(index: number)
 
       {/* *********************** 12 *********************** */}
       <MinimapLine
-        positionY={ 0.49 * (stateThree.viewport.height / 6) }
-        positionX={ posXAspect }
-        scrollSpeed={ 9.8 }
-        scrollDelay={ 21.9 }
-        color={ currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b" }
+        positionY={0.49 * (stateThree.viewport.height / 6)}
+        positionX={posXAspect}
+        scrollSpeed={9.8}
+        scrollDelay={21.9}
+        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
       />
       <Line
         points={[[0, -0.06 * (stateThree.viewport.height / 6), 0], [0, -0.09 * (stateThree.viewport.height / 6), 0]]}
@@ -382,11 +382,11 @@ export default function MiniMap({handleScrollTo}: {handleScrollTo(index: number)
 
       {/* *********************** 13 *********************** */}
       <MinimapLine
-        positionY={ 0.53 * (stateThree.viewport.height / 6) }
-        positionX={ posXAspect }
-        scrollSpeed={ 9.6 }
-        scrollDelay={ 24.7 }
-        color={ currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b" }
+        positionY={0.53 * (stateThree.viewport.height / 6)}
+        positionX={posXAspect}
+        scrollSpeed={9.6}
+        scrollDelay={24.7}
+        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
       />
       <Line
         points={[[0, -0.06 * (stateThree.viewport.height / 6), 0], [0, -0.09 * (stateThree.viewport.height / 6), 0]]}
@@ -399,11 +399,11 @@ export default function MiniMap({handleScrollTo}: {handleScrollTo(index: number)
 
       {/* *********************** 14 *********************** */}
       <MinimapLine
-        positionY={ 0.57 * (stateThree.viewport.height / 6) }
-        positionX={ posXAspect }
-        scrollSpeed={ 14 }
-        scrollDelay={ 27.6 }
-        color={ currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b" }
+        positionY={0.57 * (stateThree.viewport.height / 6)}
+        positionX={posXAspect}
+        scrollSpeed={14}
+        scrollDelay={27.6}
+        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
       />
       <Line
         points={[[0, -0.06 * (stateThree.viewport.height / 6), 0], [0, -0.09 * (stateThree.viewport.height / 6), 0]]}
