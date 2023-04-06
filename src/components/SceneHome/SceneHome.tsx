@@ -1,7 +1,7 @@
-import { Text, Html, OrbitControls, useAspect, PerspectiveCamera } from '@react-three/drei'
+import { Text, Html, OrbitControls, useAspect, PerspectiveCamera, Stats } from '@react-three/drei'
 import { Image as DreiImage } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
-import { createRef, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { createRef, startTransition, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import img_draw_bird_1 from '../../assets/images/img_draw_bird_1.svg'
 import img_draw_bird_2 from '../../assets/images/img_draw_bird_2.svg'
@@ -35,11 +35,6 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
     return null
   }
 
-  const scrollTop = () => {
-    console.log("scrollTop")
-    state.top = 0
-  }
-
   const [zoom, setZoom] = useState(false)
 
   useEffect(() => {
@@ -48,23 +43,43 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
 
   zoom ? disableScroll.on() : disableScroll.off()
 
+  const regress = useThree(state => state.performance.regress)
+  useEffect(() => {
+    // if (!zoom) {
+    //   stateThree.controls?.addEventListener('change', regress)
+    // } else {
+    //   stateThree.controls?.removeEventListener('change', regress)
+    // }
+    stateThree.controls?.addEventListener('change', regress)
+    // stateThree.controls?.removeEventListener('change', regress)
+  })
+
+  function AdaptivePixelRatio() {
+    const current = useThree(state => state.performance.current)
+    useEffect(() => {
+      stateThree.gl.setPixelRatio(0.9 * (window.devicePixelRatio * current))
+    })
+    return null
+  }
+
   const [wState, setwState] = useState(0)
   const [hState, sethState] = useState(0)
 
   const handleReflow = useCallback((w: any, h: any) => {
 
-    if (!zoom && ((wState !== w) || (hState !== h))) {
+      if (!zoom && ((wState !== w) || (hState !== h))) {
 
-      if (state.top > ((state.pages * window.innerHeight) / 5)) {
-        state.top = ((state.pages * window.innerHeight) / 6)
+        if (state.top > ((state.pages * window.innerHeight) / 5)) {
+          state.top = ((state.pages * window.innerHeight) / 6)
+        }
+
+      } else if (zoom && ((wState !== w) || (hState !== h))) {
+        setZoom(false)
       }
-    } else if (zoom && ((wState !== w) || (hState !== h))) {
-      setZoom(false)
-    }
-    onReflow((state.pages = h / stateThree.viewport.height + plusHeight))
-    setwState(w)
-    sethState(h)
 
+      onReflow((state.pages = h / stateThree.viewport.height + plusHeight))
+      setwState(w)
+      sethState(h)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [zoom, onReflow, stateThree.viewport.height, stateThree.viewport.width, stateThree.size])
 
@@ -76,8 +91,6 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
 
   const bgRef = createRef<any>()
   const bgMaterialRef = createRef<any>()
-
-  const depth = createRef<any>()
 
   const ghostMeshRef = createRef<THREE.Mesh<THREE.BufferGeometry, THREE.Material | THREE.Material[]>>()
 
@@ -95,8 +108,6 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
     // Page value
     const y = page * stateThree.viewport.height
 
-    const sticky = state.threshold * stateThree.viewport.height
-
     // Position of Flex
     groupFlex.current!.position.lerp(vec.set(0, (page >= startMainText ? 11 : y), 0), 0.1)
 
@@ -113,7 +124,8 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
 
       (page > 3 ? (page >= startModelsArray ? -20 : -page) : 5)
     ), 0.1)
-    bgMaterialRef.current!.opacity = ((page < 0.8) ? 0 : (0 + (page - 1) * 2))
+    // bgMaterialRef.current!.opacity = ((page < 0.8) ? 0 : (0 + (page - 1) * 2))
+    bgMaterialRef.current!.opacity = ((page < 0.8) ? 0 : THREE.MathUtils.lerp(bgMaterialRef.current.opacity, 0 + (page - 1) * 2, 0.1))
 
     // Inner Flex element positions
     titleRef.current!.position.lerp(vec.set(0, -(page), page * 5), 0.15)
@@ -582,6 +594,7 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
   // SceneHome RETURN
   return (
     <>
+      <Stats />
       <OverlayHome zoom={zoom} setZoom={setZoom} />
       <MiniMap
         handleScrollTo={handleScrollTo}
@@ -746,11 +759,7 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
         <directionalLight position={[-3, 15, 15]} />
       </group>
 
-      {zoom &&
-        <EffectComposer>
-          <Vignette offset={0.25} darkness={0.55} />
-        </EffectComposer>
-      }
+      <AdaptivePixelRatio />
     </>
   )
 }

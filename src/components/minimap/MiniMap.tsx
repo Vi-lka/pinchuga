@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import { Html, Line, meshBounds } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
-import { createRef, useEffect, useRef, useState } from 'react'
+import { createRef, startTransition, useEffect, useRef, useState } from 'react'
 import MinimapLine from './minimapLine'
 import state from '../../utils/state'
 import './minimap.css'
@@ -51,15 +51,15 @@ export default function MiniMap({handleScrollTo}: {handleScrollTo(index: number)
     const page = (pageLerp.current = THREE.MathUtils.lerp(pageLerp.current, state.top / stateThree.size.height, 0.15))
 
     if (page > 1) {
-      mapRef.current.position.x = THREE.MathUtils.damp(mapRef.current.position.x,  0.044 * stateThree.viewport.width, 20, delta)
+      mapRef.current.position.x = THREE.MathUtils.lerp(mapRef.current.position.x,  0.044 * stateThree.viewport.width, 0.15)
     } else {
-      mapRef.current.position.x = THREE.MathUtils.damp(mapRef.current.position.x,  0.1 * stateThree.viewport.width, 20, delta)
+      mapRef.current.position.x = THREE.MathUtils.lerp(mapRef.current.position.x,  0.1 * stateThree.viewport.width, 0.15)
     }
 
     if (state.zoomGlobal) {
-      mapRef.current.position.x = THREE.MathUtils.damp(mapRef.current.position.x,  0.1 * stateThree.viewport.width, 20, delta)
+      mapRef.current.position.x = THREE.MathUtils.lerp(mapRef.current.position.x,  0.1 * stateThree.viewport.width, 0.15)
     } else {
-      mapRef.current.position.x = THREE.MathUtils.damp(mapRef.current.position.x,  0.044 * stateThree.viewport.width, 20, delta)
+      mapRef.current.position.x = THREE.MathUtils.lerp(mapRef.current.position.x,  0.044 * stateThree.viewport.width, 0.15)
     }
   })
 
@@ -74,34 +74,34 @@ export default function MiniMap({handleScrollTo}: {handleScrollTo(index: number)
     useFrame(() => {
       const page = (pageLerp.current = THREE.MathUtils.lerp(pageLerp.current, state.top / stateThree.size.height, 0.15))
 
-      if (page > 0 && page < 1) setCurrentArea(0)
-      if (page > 1 && page < 2) setCurrentArea(1)
-      if (page > 2 && page < 3) setCurrentArea(2)
-      if (page > 3 && page < 4) setCurrentArea(3)
-      if (page > 4 && page < 5) setCurrentArea(4)
-      if (page > 5 && page < 6.2) setCurrentArea(5)
-      if (page >= 6.2 && page < 10) setCurrentArea(6)
-      if (page > 10 && page < 13) setCurrentArea(7)
-      if (page > 13 && page < 16.2) setCurrentArea(8)
-      if (page > 16.2 && page < 19.2) setCurrentArea(9)
-      if (page > 19.2 && page < 22) setCurrentArea(10)
-      if (page > 22 && page < 24.8) setCurrentArea(11)
-      if (page > 24.8 && page < 27.7) setCurrentArea(12)
-      if (page > 27.7 && page < 29.6) setCurrentArea(13)
-      if (page > 29.6) setCurrentArea(14)
+      if (page > 0 && page < 1) startTransition(() => setCurrentArea(0))
+      if (page > 1 && page < 2) startTransition(() => setCurrentArea(1))
+      if (page > 2 && page < 3) startTransition(() => setCurrentArea(2))
+      if (page > 3 && page < 4) startTransition(() => setCurrentArea(3))
+      if (page > 4 && page < 5) startTransition(() => setCurrentArea(4))
+      if (page > 5 && page < 6.2) startTransition(() => setCurrentArea(5))
+      if (page >= 6.2 && page < 10) startTransition(() => setCurrentArea(6))
+      if (page > 10 && page < 13) startTransition(() => setCurrentArea(7))
+      if (page > 13 && page < 16.2) startTransition(() => setCurrentArea(8))
+      if (page > 16.2 && page < 19.2) startTransition(() => setCurrentArea(9))
+      if (page > 19.2 && page < 22) startTransition(() => setCurrentArea(10))
+      if (page > 22 && page < 24.8) startTransition(() => setCurrentArea(11))
+      if (page > 24.8 && page < 27.7) startTransition(() => setCurrentArea(12))
+      if (page > 27.7 && page < 29.6) startTransition(() => setCurrentArea(13))
+      if (page > 29.6) startTransition(() => setCurrentArea(14))
     })
 
     const posYAspect = -0.04 * (index + 1) * (stateThree.viewport.height / 6)
 
     function handlePointerOverDot(event: MouseEvent) {
       event.stopPropagation()
-      setHovered(true)
+      startTransition(() => setHovered(true))
       stateThree.gl.domElement.style.cursor = 'pointer'
     }
 
     function handlePointerOutDot(event: MouseEvent) {
       event.stopPropagation()
-      setHovered(false)
+      startTransition(() => setHovered(false))
       stateThree.gl.domElement.style.cursor = 'default'
     }
 
@@ -118,9 +118,9 @@ export default function MiniMap({handleScrollTo}: {handleScrollTo(index: number)
 
         <mesh
           scale={1.5}
-          onPointerOver={(e: any) => { handlePointerOverDot(e) }}
-          onPointerOut={(e: any) => handlePointerOutDot(e)}
-          onClick={(e: any) => handleScrollTo(index)}
+          onPointerOver={(e: any) => { startTransition(() => handlePointerOverDot(e)) }}
+          onPointerOut={(e: any) => { startTransition(() => handlePointerOutDot(e)) }}
+          onClick={(e: any) => { startTransition(() => handleScrollTo(index)) }}
           raycast={meshBounds}
         >
           <circleGeometry />
@@ -134,9 +134,9 @@ export default function MiniMap({handleScrollTo}: {handleScrollTo(index: number)
 
         <mesh
           scale={(hovered || currentArea === index) ? 1.2 : 0.25}
-          onPointerOver={(e: any) => { handlePointerOverDot(e) }}
-          onPointerOut={(e: any) => handlePointerOutDot(e)}
-          onClick={(e: any) => handleScrollTo(index)}
+          onPointerOver={(e: any) => { startTransition(() => handlePointerOverDot(e)) }}
+          onPointerOut={(e: any) => { startTransition(() => handlePointerOutDot(e)) }}
+          onClick={(e: any) => { startTransition(() => handleScrollTo(index)) }}
           raycast={meshBounds}
         >
           <circleGeometry />
@@ -144,7 +144,7 @@ export default function MiniMap({handleScrollTo}: {handleScrollTo(index: number)
             transparent 
             color={pageLerp.current > 1 ? (pageLerp.current > 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"} 
             emissive={pageLerp.current > 1 ? (pageLerp.current > 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"} 
-            opacity={(hovered || currentArea === index) ? 0.04 : 0.75} 
+            opacity={(hovered || currentArea === index) ? 0.05 : 0.75} 
           />
         </mesh>
 

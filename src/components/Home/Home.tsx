@@ -8,6 +8,7 @@ import state from '../../utils/state'
 export default function Home() {
 
   const [pages, setPages] = useState(0)
+
   const scrollArea = useRef<HTMLDivElement>(null)
 
   let height = pages * window.innerHeight
@@ -121,7 +122,9 @@ export default function Home() {
   let touchStart: number
 
   const onTouchStart = (e: any) => {
-    touchStart = e.touches[0].clientY
+    if (!state.zoomGlobal) {
+      touchStart = e.touches[0].clientY
+    }
   }
 
   const onTouchMove = (e: any) => {
@@ -143,8 +146,10 @@ export default function Home() {
     <>
       <Canvas
         className="canvas"
-        dpr={[1, 2]}
-        gl={{ preserveDrawingBuffer: true }}
+        shadows={true}
+        gl={{ preserveDrawingBuffer: true, antialias: true }}
+        dpr={[0.8, 2]}
+        performance={{ min: 0.8 }}
         onCreated={({ gl }) => gl.setClearColor('#f6f6f6')}
         onWheel={onScroll}
         onTouchStart={onTouchStart}

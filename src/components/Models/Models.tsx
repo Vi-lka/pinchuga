@@ -1,6 +1,6 @@
 import { Html, PresentationControls, Sphere } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
-import { createRef, Suspense, useRef } from 'react'
+import { createRef, startTransition, Suspense, useRef } from 'react'
 import * as THREE from 'three';
 import state from '../../utils/state';
 import { Bird1 } from './Bird1/Bird1';
@@ -103,7 +103,7 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
 
   function handleDoubleClickModel(event: MouseEvent, index: number) {
     event.stopPropagation()
-    setZoom(true)
+    startTransition(() => setZoom(true))
     state.selectedModel = index
     stateThree.gl.domElement.style.cursor = 'default'
   }
@@ -143,9 +143,9 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
                     position={[0, 0, 0]}
                     rotation={[0, 0, 0]}
                     scale={0.52}
-                    onDoubleClick={(e: any) => { handleDoubleClickModel(e, 1) }}
-                    onPointerOver={(e: any) => { handlePointerOverModel(e) }}
-                    onPointerOut={(e: any) => { handlePointerOutModel(e) }}
+                    onDoubleClick={(e: any) => { startTransition(() => handleDoubleClickModel(e, 1)) }}
+                    onPointerOver={(e: any) => { startTransition(() => handlePointerOverModel(e)) }}
+                    onPointerOut={(e: any) => { startTransition(() => handlePointerOutModel(e)) }}
                   />
                 }>
                   <Bird1
@@ -153,9 +153,9 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
                     position={[0, 0, 0]}
                     rotation={[0, 0, 0]}
                     scale={0.52}
-                    onDoubleClick={(e: any) => { handleDoubleClickModel(e, 1) }}
-                    onPointerOver={(e: any) => { handlePointerOverModel(e) }}
-                    onPointerOut={(e: any) => { handlePointerOutModel(e) }}
+                    onDoubleClick={(e: any) => { startTransition(() => handleDoubleClickModel(e, 1)) }}
+                    onPointerOver={(e: any) => { startTransition(() => handlePointerOverModel(e)) }}
+                    onPointerOut={(e: any) => { startTransition(() => handlePointerOutModel(e)) }}
                   />
                 </Suspense>
               </Suspense>
@@ -219,9 +219,9 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
                     position={[0, 0, 0]}
                     rotation={[0, 3.3, 0]}
                     scale={2.5}
-                    onDoubleClick={(e: any) => { handleDoubleClickModel(e, 2) }}
-                    onPointerOver={(e: any) => { handlePointerOverModel(e) }}
-                    onPointerOut={(e: any) => { handlePointerOutModel(e) }}
+                    onDoubleClick={(e: any) => { startTransition(() => handleDoubleClickModel(e, 2)) }}
+                    onPointerOver={(e: any) => { startTransition(() => handlePointerOverModel(e)) }}
+                    onPointerOut={(e: any) => { startTransition(() => handlePointerOutModel(e)) }}
                   />
                 }>
                   <Bird2
@@ -229,9 +229,9 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
                     position={[0, 0, 0]}
                     rotation={[0, 3.3, 0]}
                     scale={2.5}
-                    onDoubleClick={(e: any) => { handleDoubleClickModel(e, 2) }}
-                    onPointerOver={(e: any) => { handlePointerOverModel(e) }}
-                    onPointerOut={(e: any) => { handlePointerOutModel(e) }}
+                    onDoubleClick={(e: any) => { startTransition(() => handleDoubleClickModel(e, 2)) }}
+                    onPointerOver={(e: any) => { startTransition(() => handlePointerOverModel(e)) }}
+                    onPointerOut={(e: any) => { startTransition(() => handlePointerOutModel(e)) }}
                   />
                 </Suspense>
               </Suspense>
@@ -295,9 +295,9 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
                     position={[0, 0, 0]}
                     rotation={[0, 0, -1]}
                     scale={3.8}
-                    onDoubleClick={(e: any) => { handleDoubleClickModel(e, 3) }}
-                    onPointerOver={(e: any) => { handlePointerOverModel(e) }}
-                    onPointerOut={(e: any) => { handlePointerOutModel(e) }}
+                    onDoubleClick={(e: any) => { startTransition(() => handleDoubleClickModel(e, 3)) }}
+                    onPointerOver={(e: any) => { startTransition(() => handlePointerOverModel(e)) }}
+                    onPointerOut={(e: any) => { startTransition(() => handlePointerOutModel(e)) }}
                   />
                 }>
                   <Deer
@@ -305,9 +305,9 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
                     position={[0, 0, 0]}
                     rotation={[0, 0, -1]}
                     scale={3.8}
-                    onDoubleClick={(e: any) => { handleDoubleClickModel(e, 3) }}
-                    onPointerOver={(e: any) => { handlePointerOverModel(e) }}
-                    onPointerOut={(e: any) => { handlePointerOutModel(e) }}
+                    onDoubleClick={(e: any) => { startTransition(() => handleDoubleClickModel(e, 3)) }}
+                    onPointerOver={(e: any) => { startTransition(() => handlePointerOverModel(e)) }}
+                    onPointerOut={(e: any) => { startTransition(() => handlePointerOutModel(e)) }}
                   />
                 </Suspense>
               </Suspense>
@@ -373,9 +373,9 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
                     position={[0, 0, 0]}
                     rotation={[0, -0.6, 0]}
                     scale={1.1}
-                    onDoubleClick={(e: any) => { handleDoubleClickModel(e, 4) }}
-                    onPointerOver={(e: any) => { handlePointerOverModel(e) }}
-                    onPointerOut={(e: any) => { handlePointerOutModel(e) }}
+                    onDoubleClick={(e: any) => { startTransition(() => handleDoubleClickModel(e, 4)) }}
+                    onPointerOver={(e: any) => { startTransition(() => handlePointerOverModel(e)) }}
+                    onPointerOut={(e: any) => { startTransition(() => handlePointerOutModel(e)) }}
                   />
                 }>
                   <Buckle1
@@ -383,9 +383,9 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
                     position={[0, 0, 0]}
                     rotation={[0, -0.6, 0]}
                     scale={1.1}
-                    onDoubleClick={(e: any) => { handleDoubleClickModel(e, 4) }}
-                    onPointerOver={(e: any) => { handlePointerOverModel(e) }}
-                    onPointerOut={(e: any) => { handlePointerOutModel(e) }}
+                    onDoubleClick={(e: any) => { startTransition(() => handleDoubleClickModel(e, 4)) }}
+                    onPointerOver={(e: any) => { startTransition(() => handlePointerOverModel(e)) }}
+                    onPointerOut={(e: any) => { startTransition(() => handlePointerOutModel(e)) }}
                   />
                 </Suspense>
               </Suspense>
@@ -454,9 +454,9 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
                     position={[0, 0, 0]}
                     rotation={[0, 0, -1.6]}
                     scale={0.7}
-                    onDoubleClick={(e: any) => { handleDoubleClickModel(e, 5) }}
-                    onPointerOver={(e: any) => { handlePointerOverModel(e) }}
-                    onPointerOut={(e: any) => { handlePointerOutModel(e) }}
+                    onDoubleClick={(e: any) => { startTransition(() => handleDoubleClickModel(e, 5)) }}
+                    onPointerOver={(e: any) => { startTransition(() => handlePointerOverModel(e)) }}
+                    onPointerOut={(e: any) => { startTransition(() => handlePointerOutModel(e)) }}
                   />
                 }>
                   <Buckle2
@@ -464,9 +464,9 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
                     position={[0, 0, 0]}
                     rotation={[0, 0, -1.6]}
                     scale={0.7}
-                    onDoubleClick={(e: any) => { handleDoubleClickModel(e, 5) }}
-                    onPointerOver={(e: any) => { handlePointerOverModel(e) }}
-                    onPointerOut={(e: any) => { handlePointerOutModel(e) }}
+                    onDoubleClick={(e: any) => { startTransition(() => handleDoubleClickModel(e, 5)) }}
+                    onPointerOver={(e: any) => { startTransition(() => handlePointerOverModel(e)) }}
+                    onPointerOut={(e: any) => { startTransition(() => handlePointerOutModel(e)) }}
                   />
                 </Suspense>
               </Suspense>
@@ -532,9 +532,9 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
                     position={[0, 0, 0]}
                     rotation={[1.55, 0, -1.5]}
                     scale={4.5}
-                    onDoubleClick={(e: any) => { handleDoubleClickModel(e, 6) }}
-                    onPointerOver={(e: any) => { handlePointerOverModel(e) }}
-                    onPointerOut={(e: any) => { handlePointerOutModel(e) }}
+                    onDoubleClick={(e: any) => { startTransition(() => handleDoubleClickModel(e, 6)) }}
+                    onPointerOver={(e: any) => { startTransition(() => handlePointerOverModel(e)) }}
+                    onPointerOut={(e: any) => { startTransition(() => handlePointerOutModel(e)) }}
                   />
                 }>
                   <Disk
@@ -542,9 +542,9 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
                     position={[0, 0, 0]}
                     rotation={[1.55, 0, -1.5]}
                     scale={4.5}
-                    onDoubleClick={(e: any) => { handleDoubleClickModel(e, 6) }}
-                    onPointerOver={(e: any) => { handlePointerOverModel(e) }}
-                    onPointerOut={(e: any) => { handlePointerOutModel(e) }}
+                    onDoubleClick={(e: any) => { startTransition(() => handleDoubleClickModel(e, 6)) }}
+                    onPointerOver={(e: any) => { startTransition(() => handlePointerOverModel(e)) }}
+                    onPointerOut={(e: any) => { startTransition(() => handlePointerOutModel(e)) }}
                   />
                 </Suspense>
               </Suspense>
@@ -613,9 +613,9 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
                     position={[0, 0, 0]}
                     rotation={[0, 1.25, 0.1]}
                     scale={1}
-                    onDoubleClick={(e: any) => { handleDoubleClickModel(e, 7) }}
-                    onPointerOver={(e: any) => { handlePointerOverModel(e) }}
-                    onPointerOut={(e: any) => { handlePointerOutModel(e) }}
+                    onDoubleClick={(e: any) => { startTransition(() => handleDoubleClickModel(e, 7)) }}
+                    onPointerOver={(e: any) => { startTransition(() => handlePointerOverModel(e)) }}
+                    onPointerOut={(e: any) => { startTransition(() => handlePointerOutModel(e)) }}
                   />
                 }>
                   <Cup2
@@ -623,9 +623,9 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
                     position={[0, 0, 0]}
                     rotation={[0, 1.25, 0.1]}
                     scale={1}
-                    onDoubleClick={(e: any) => { handleDoubleClickModel(e, 7) }}
-                    onPointerOver={(e: any) => { handlePointerOverModel(e) }}
-                    onPointerOut={(e: any) => { handlePointerOutModel(e) }}
+                    onDoubleClick={(e: any) => { startTransition(() => handleDoubleClickModel(e, 7)) }}
+                    onPointerOver={(e: any) => { startTransition(() => handlePointerOverModel(e)) }}
+                    onPointerOut={(e: any) => { startTransition(() => handlePointerOutModel(e)) }}
                   />
                 </Suspense>
               </Suspense>
@@ -692,9 +692,9 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
                     position={[0, 0, 0]}
                     rotation={[-1.8, 0.05, 3]}
                     scale={1.2}
-                    onDoubleClick={(e: any) => { handleDoubleClickModel(e, 8) }}
-                    onPointerOver={(e: any) => { handlePointerOverModel(e) }}
-                    onPointerOut={(e: any) => { handlePointerOutModel(e) }}
+                    onDoubleClick={(e: any) => { startTransition(() => handleDoubleClickModel(e, 8)) }}
+                    onPointerOver={(e: any) => { startTransition(() => handlePointerOverModel(e)) }}
+                    onPointerOut={(e: any) => { startTransition(() => handlePointerOutModel(e)) }}
                   />
                 }>
                   <Cup1
@@ -702,9 +702,9 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
                     position={[0, 0, 0]}
                     rotation={[-1.8, 0.05, 3]}
                     scale={1.2}
-                    onDoubleClick={(e: any) => { handleDoubleClickModel(e, 8) }}
-                    onPointerOver={(e: any) => { handlePointerOverModel(e) }}
-                    onPointerOut={(e: any) => { handlePointerOutModel(e) }}
+                    onDoubleClick={(e: any) => { startTransition(() => handleDoubleClickModel(e, 8)) }}
+                    onPointerOver={(e: any) => { startTransition(() => handlePointerOverModel(e)) }}
+                    onPointerOut={(e: any) => { startTransition(() => handlePointerOutModel(e)) }}
                   />
                 </Suspense>
               </Suspense>
