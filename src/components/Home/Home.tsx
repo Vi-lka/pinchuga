@@ -21,62 +21,62 @@ export default function Home() {
 
   function handleScrollTo(index: number) {
     const height = (state.pages * window.innerHeight)
-    switch(index) {
+    switch (index) {
       case 0:
         state.top = 0
         scrollArea.current?.scroll(0, 0)
         break
       case 1:
-        state.top = height/20
-        scrollArea.current?.scroll(0, height/20)
+        state.top = height / 20
+        scrollArea.current?.scroll(0, height / 20)
         break
       case 2:
-        state.top = height/13
-        scrollArea.current?.scroll(0, height/13)
+        state.top = height / 13
+        scrollArea.current?.scroll(0, height / 13)
         break
       case 3:
-        state.top = height/9.4
-        scrollArea.current?.scroll(0, height/9.4)
+        state.top = height / 9.4
+        scrollArea.current?.scroll(0, height / 9.4)
         break
       case 4:
-        state.top = height/7.2
-        scrollArea.current?.scroll(0, height/7.2)
+        state.top = height / 7.2
+        scrollArea.current?.scroll(0, height / 7.2)
         break
       case 5:
-        state.top = height/5.8
-        scrollArea.current?.scroll(0, height/5.8)
+        state.top = height / 5.8
+        scrollArea.current?.scroll(0, height / 5.8)
         break
       case 6:
-        state.top = height/4.2
-        scrollArea.current?.scroll(0, height/4.2)
+        state.top = height / 4.2
+        scrollArea.current?.scroll(0, height / 4.2)
         break
       case 7:
-        state.top = height/2.7
-        scrollArea.current?.scroll(0, height/2.7)
+        state.top = height / 2.7
+        scrollArea.current?.scroll(0, height / 2.7)
         break
       case 8:
-        state.top = height/2.3
-        scrollArea.current?.scroll(0, height/2.3)
+        state.top = height / 2.3
+        scrollArea.current?.scroll(0, height / 2.3)
         break
       case 9:
-        state.top = height/1.75
-        scrollArea.current?.scroll(0, height/1.75)
+        state.top = height / 1.75
+        scrollArea.current?.scroll(0, height / 1.75)
         break
       case 10:
-        state.top = height/1.58
-        scrollArea.current?.scroll(0, height/1.58)
+        state.top = height / 1.58
+        scrollArea.current?.scroll(0, height / 1.58)
         break
       case 11:
-        state.top = height/1.3
-        scrollArea.current?.scroll(0, height/1.3)
+        state.top = height / 1.3
+        scrollArea.current?.scroll(0, height / 1.3)
         break
       case 12:
-        state.top = height/1.18
-        scrollArea.current?.scroll(0, height/1.18)
+        state.top = height / 1.18
+        scrollArea.current?.scroll(0, height / 1.18)
         break
       case 13:
-        state.top = height/1.075
-        scrollArea.current?.scroll(0, height/1.075)
+        state.top = height / 1.075
+        scrollArea.current?.scroll(0, height / 1.075)
         break
       case 14:
         state.top = height
