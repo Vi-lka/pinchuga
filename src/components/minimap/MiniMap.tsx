@@ -1,14 +1,32 @@
 import * as THREE from 'three'
-import { Line, meshBounds } from '@react-three/drei'
+import { Html, Line, meshBounds } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 import React, { createRef, useEffect, useRef, useState } from 'react'
 import MinimapLine from './minimapLine'
 import state from '../../utils/state'
+import './minimap.css'
+import 'cooltipz-css'
 
 export default function MiniMap({handleScrollTo}: {handleScrollTo(index: number): void}) {
   const stateThree = useThree()
 
-  const mapArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10 , 11, 12, 13, 14, 15]
+  const mapArray = [
+    'Начало', 
+    'Великое переселение народов', 
+    'Миграция', 
+    'Ангара и Енисей', 
+    'Пинчуга-6', 
+    'Предметы', 
+    'Сокол', 
+    'Орёл', 
+    'Олень', 
+    'Пряжка', 
+    'Прямоугольная Пряжка', 
+    'Диск с циркулярным орнаментом', 
+    'Горшок с личиной', 
+    'Горшок с оттисками «сетки-плетенки»', 
+    'О проекте'
+  ]
 
   const [currentArea, setCurrentArea] = useState(0)
 
@@ -33,9 +51,15 @@ export default function MiniMap({handleScrollTo}: {handleScrollTo(index: number)
     const page = (pageLerp.current = THREE.MathUtils.lerp(pageLerp.current, state.top / stateThree.size.height, 0.15))
 
     if (page > 1) {
-      mapRef.current.position.x = THREE.MathUtils.damp(mapRef.current.position.x,  0.0441 * stateThree.viewport.width, 20, delta)
+      mapRef.current.position.x = THREE.MathUtils.damp(mapRef.current.position.x,  0.044 * stateThree.viewport.width, 20, delta)
     } else {
       mapRef.current.position.x = THREE.MathUtils.damp(mapRef.current.position.x,  0.05 * stateThree.viewport.width, 20, delta)
+    }
+
+    if (state.zoomGlobal) {
+      mapRef.current.position.x = THREE.MathUtils.damp(mapRef.current.position.x,  0.05 * stateThree.viewport.width, 20, delta)
+    } else {
+      mapRef.current.position.x = THREE.MathUtils.damp(mapRef.current.position.x,  0.044 * stateThree.viewport.width, 20, delta)
     }
   })
 
@@ -63,7 +87,7 @@ export default function MiniMap({handleScrollTo}: {handleScrollTo(index: number)
       if (page > 29.6) setCurrentArea(14)
     })
 
-    const posYAspect = -0.04 * value * (stateThree.viewport.height / 6)
+    const posYAspect = -0.04 * (index + 1) * (stateThree.viewport.height / 6)
 
     function handlePointerOverDot(event: MouseEvent) {
       event.stopPropagation()
@@ -74,7 +98,7 @@ export default function MiniMap({handleScrollTo}: {handleScrollTo(index: number)
     function handlePointerOutDot(event: MouseEvent) {
       event.stopPropagation()
       setHovered(false)
-      stateThree.gl.domElement.style.cursor = 'auto'
+      stateThree.gl.domElement.style.cursor = 'default'
     }
 
     return (
@@ -119,6 +143,16 @@ export default function MiniMap({handleScrollTo}: {handleScrollTo(index: number)
             opacity={(hovered || currentArea === index) ? 0.04 : 0.75} 
           />
         </mesh>
+
+        <Html  
+          as='div' // Wrapping element (default: 'div')
+          wrapperClass='wrapperClass_miniMap' // The className of the wrapping element (default: undefined)
+          prepend
+          center
+        >
+          <div className={hovered ? 'cooltipz--custom cooltipz--left cooltipz--visible' : 'cooltipz--custom cooltipz--left'} aria-label={value}>
+          </div>
+        </Html>
       </group>
     )
   }

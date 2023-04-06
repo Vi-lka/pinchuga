@@ -1,0 +1,25 @@
+.wrapperClass_miniMap {
+    color: #2b2b2b;
+}
+
+:root {
+    --cooltipz-font-family: 'Lato' !important;
+    --cooltipz-font-size: 0.9rem !important;
+    --cooltipz-bg-color: #2b2b2b !important;
+    --cooltipz-border-color: #2b2b2b !important;
+    --cooltipz-border-radius: 0.3rem !important;
+}
+  
+
+/* Tooltip container */
+.cooltipz--custom {
+    margin-right: 30px;
+}
+
+.cooltipz--custom::after {
+    background-color: #2b2b2b !important;
+}
+
+.cooltipz--custom::before {
+    border-left-color: #2b2b2b !important;
+}

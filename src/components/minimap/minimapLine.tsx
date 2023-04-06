@@ -51,7 +51,7 @@ export default function MinimapLine(
       }
 
 
-      child.scale.x = THREE.MathUtils.damp(child.scale.x, 1 + scrollPos*10, 80, delta)
+      child.scale.x = THREE.MathUtils.damp(child.scale.x, 1 + scrollPos*8, 80, delta)
     })
   })
 
