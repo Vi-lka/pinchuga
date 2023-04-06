@@ -17,8 +17,8 @@ import { Cup2 } from './Cup2/Cup2';
 import { Cup2Simpled } from './Cup2/Cup2Simpled';
 import { Deer } from './Deer/Deer';
 import { DeerSimpled } from './Deer/DeerSimpled';
-import { Disk } from './Disk/Disk';
-import { DiskSimpled } from './Disk/DiskSimpled';
+import { Disk } from './DIsk/Disk';
+import { DiskSimpled } from './DIsk/DiskSimpled';
 import './models.css';
 
 function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
