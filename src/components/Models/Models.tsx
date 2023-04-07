@@ -53,40 +53,40 @@ function Models({ zoom, setZoom }: { zoom: boolean, setZoom: any }) {
 
   const pageLerp = useRef(state.top / stateThree.size.height)
 
-  useFrame(() => {
-    const page = (pageLerp.current = THREE.MathUtils.lerp(pageLerp.current, state.top / stateThree.size.height, 0.15))
+  useFrame((s, delta) => {
+    const page = (pageLerp.current = THREE.MathUtils.lerp(pageLerp.current, state.top / stateThree.size.height, delta * 6))
 
     modelText1PRef.current && (modelText1PRef.current.style.display = zoom ? 'none' : ((page > 6) ? (page > 11 ? 'none' : 'block') : 'none'))
-    if (page < 6.2) modelText1Ref.current?.position.lerp(vec.set(-20, 9, -page * 0.2 + 1), 0.06)
-    if (page > 6.2 && page < 10) modelText1Ref.current?.position.lerp(vec.set(0, 9, -page * 0.2 - 6), 0.06)
+    if (page < 6.2) modelText1Ref.current?.position.lerp(vec.set(-20, 9, -page * 0.2 + 1), delta * 4)
+    if (page > 6.2 && page < 10) modelText1Ref.current?.position.lerp(vec.set(0, 9, -page * 0.2 - 6), delta * 4)
 
     modelText2PRef.current && (modelText2PRef.current.style.display = zoom ? 'none' : ((page > 9) ? (page > 13.00005 ? 'none' : 'block') : 'none'))
-    if (page < 10) modelText2Ref.current?.position.lerp(vec.set(0, 40, -page * 0.2 + 1), 0.06)
-    if (page > 10 && page < 13) modelText2Ref.current?.position.lerp(vec.set(-1.2, 21.2, -page * 0.08 - 2.5), 0.06)
+    if (page < 10) modelText2Ref.current?.position.lerp(vec.set(0, 40, -page * 0.2 + 1), delta * 10)
+    if (page > 10 && page < 13) modelText2Ref.current?.position.lerp(vec.set(-1.2, 21.2, -page * 0.08 - 2.5), delta * 10)
 
     modelText3PRef.current && (modelText3PRef.current.style.display = zoom ? 'none' : ((page > 12) ? (page > 16.21 ? 'none' : 'block') : 'none'))
-    if (page < 13) modelText3Ref.current?.position.lerp(vec.set(0, -10, -page * 0.3 - 1.5), 0.06)
-    if (page > 13 && page < 16.2) modelText3Ref.current?.position.lerp(vec.set(2, 22.8, -6.3), 0.06)
+    if (page < 13) modelText3Ref.current?.position.lerp(vec.set(-10, 22.8, -page * 0.3 - 1.5), delta * 8)
+    if (page > 13 && page < 16.2) modelText3Ref.current?.position.lerp(vec.set(2, 22.8, -6.3), delta * 8)
 
     modelText4PRef.current && (modelText4PRef.current.style.display = zoom ? 'none' : ((page > 16) ? (page > 19.4 ? 'none' : 'block') : 'none'))
-    if (page < 16.2) modelText4Ref.current?.position.lerp(vec.set(0, 12, page * 0.3 + 5), 0.06)
-    if (page > 16.2 && page < 19.2) modelText4Ref.current?.position.lerp(vec.set(2.5, 11.8, page * 0.2 - 0.36), 0.06)
+    if (page < 16.2) modelText4Ref.current?.position.lerp(vec.set(0, 12, page * 0.3 + 5), delta * 6)
+    if (page > 16.2 && page < 19.2) modelText4Ref.current?.position.lerp(vec.set(2.5, 11.8, page * 0.2 - 0.36), delta * 6)
 
     modelText5PRef.current && (modelText5PRef.current.style.display = zoom ? 'none' : ((page > 19) ? (page > 22.2 ? 'none' : 'block') : 'none'))
-    if (page < 19.2) modelText5Ref.current?.position.lerp(vec.set(0, 16.8, -page * 0.3 + 2), 0.06)
-    if (page > 19.2 && page < 22) modelText5Ref.current?.position.lerp(vec.set(-0.5, 17.1, -3), 0.06)
+    if (page < 19.2) modelText5Ref.current?.position.lerp(vec.set(0, 16.8, -page * 0.3 + 2), delta * 4)
+    if (page > 19.2 && page < 22) modelText5Ref.current?.position.lerp(vec.set(-0.5, 17.1, -3), delta * 4)
 
     modelText6PRef.current && (modelText6PRef.current.style.display = zoom ? 'none' : ((page > 21.8) ? (page > 25 ? 'none' : 'block') : 'none'))
-    if (page < 22) modelText6Ref.current?.position.lerp(vec.set(0, 25, -page * 0.2 + 20), 0.06)
-    if (page > 22 && page < 24.8) modelText6Ref.current?.position.lerp(vec.set(0, 24.6, 7.1), 0.06)
+    if (page < 22) modelText6Ref.current?.position.lerp(vec.set(0, 25, -page * 0.2 + 20), delta * 4)
+    if (page > 22 && page < 24.8) modelText6Ref.current?.position.lerp(vec.set(0, 24.6, 7.1), delta * 4)
 
     modelText7PRef.current && (modelText7PRef.current.style.display = zoom ? 'none' : ((page > 24.6) ? (page > 27.8 ? 'none' : 'block') : 'none'))
-    if (page < 24.8) modelText7Ref.current?.position.lerp(vec.set(0, 15, page * 0.2 - 10.5), 0.06)
-    if (page > 24.8 && page < 27.7) modelText7Ref.current?.position.lerp(vec.set(1, 10.6, -5), 0.06)
+    if (page < 24.8) modelText7Ref.current?.position.lerp(vec.set(0, 15, page * 0.2 - 10.5), delta * 4)
+    if (page > 24.8 && page < 27.7) modelText7Ref.current?.position.lerp(vec.set(1, 10.6, -5), delta * 4)
 
-    modelText8PRef.current && (modelText8PRef.current.style.display = zoom ? 'none' : ((page > 27.5) ? (page > 29.6 ? 'none' : 'block') : 'none'))
-    if (page < 27.7) modelText8Ref.current?.position.lerp(vec.set(0, 15, -page * 0.2 + 20), 0.06)
-    if (page > 27.7 && page < 29.6) modelText8Ref.current?.position.lerp(vec.set(0, 8, 3.2), 0.06)
+    modelText8PRef.current && (modelText8PRef.current.style.display = zoom ? 'none' : ((page > 27.5) ? (page > 30.8 ? 'none' : 'block') : 'none'))
+    if (page < 27.7) modelText8Ref.current?.position.lerp(vec.set(0, 15, -page * 0.2 + 20), delta * 4)
+    if (page > 27.7 && page < 30.8) modelText8Ref.current?.position.lerp(vec.set(0, 8, 3.2), delta * 4)
   })
 
   function handlePointerOverModel(event: MouseEvent) {

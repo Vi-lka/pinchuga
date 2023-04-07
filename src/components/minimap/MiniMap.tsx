@@ -105,8 +105,6 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
       stateThree.gl.domElement.style.cursor = 'default'
     }
 
-    const sphere = new THREE.SphereGeometry(1, 28, 28)
-
     return (
       <group scale={0.016} position={[posXAspect, posYAspect, -1]}>
         <Line
