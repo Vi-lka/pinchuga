@@ -144,8 +144,9 @@ export default function Home() {
   }
 
   function PerfHook() {
-    // getPerf() is also available for non-reactive way
+
     const [gl, log, getReport]: any = usePerf((s) => [s.gl, s.log, s.getReport])
+    console.log(gl, log, getReport())
 
     if (log && (log.fps < 40)) {
       console.log("Warning! Low FPS: " + Math.round(log.fps))
@@ -167,7 +168,7 @@ export default function Home() {
         onTouchMove={onTouchMove}
       // onTouchEnd={onTouchEnd}
       >
-        
+
         <Suspense
           fallback={
             <Html>
@@ -179,12 +180,14 @@ export default function Home() {
             </Html>
           }
         >
-          
-            <SceneHome
-              onReflow={setPages}
-              handleScrollTo={handleScrollTo}
-            />
-          <PerfHook />
+
+          <SceneHome
+            onReflow={setPages}
+            handleScrollTo={handleScrollTo}
+          />
+          {/* <PerfHook /> */}
+
+          {/* <Perf /> */}
         </Suspense>
       </Canvas>
       <div

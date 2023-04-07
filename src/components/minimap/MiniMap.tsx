@@ -48,18 +48,18 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
   const pageLerp = useRef(state.top / stateThree.size.height)
 
   useFrame((s, delta) => {
-    const page = (pageLerp.current = THREE.MathUtils.lerp(pageLerp.current, state.top / stateThree.size.height, delta*6))
+    const page = (pageLerp.current = THREE.MathUtils.lerp(pageLerp.current, state.top / stateThree.size.height, delta * 6))
 
     if (page > 1) {
-      mapRef.current.position.x = THREE.MathUtils.lerp(mapRef.current.position.x, 0.044 * stateThree.viewport.width, delta*6)
+      mapRef.current.position.x = THREE.MathUtils.lerp(mapRef.current.position.x, 0.044 * stateThree.viewport.width, delta * 6)
     } else {
-      mapRef.current.position.x = THREE.MathUtils.lerp(mapRef.current.position.x, 0.1 * stateThree.viewport.width, delta*6)
+      mapRef.current.position.x = THREE.MathUtils.lerp(mapRef.current.position.x, 0.1 * stateThree.viewport.width, delta * 6)
     }
 
     if (state.zoomGlobal) {
-      mapRef.current.position.x = THREE.MathUtils.lerp(mapRef.current.position.x, 0.1 * stateThree.viewport.width, delta*6)
+      mapRef.current.position.x = THREE.MathUtils.lerp(mapRef.current.position.x, 0.1 * stateThree.viewport.width, delta * 6)
     } else {
-      mapRef.current.position.x = THREE.MathUtils.lerp(mapRef.current.position.x, 0.044 * stateThree.viewport.width, delta*6)
+      mapRef.current.position.x = THREE.MathUtils.lerp(mapRef.current.position.x, 0.044 * stateThree.viewport.width, delta * 6)
     }
   })
 
@@ -72,7 +72,7 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
     }, [hovered])
 
     useFrame((s, delta) => {
-      const page = (pageLerp.current = THREE.MathUtils.lerp(pageLerp.current, state.top / stateThree.size.height, delta*6))
+      const page = (pageLerp.current = THREE.MathUtils.lerp(pageLerp.current, state.top / stateThree.size.height, delta * 6))
 
       if (page > 0 && page < 1) setCurrentArea(0)
       if (page > 1 && page < 2) setCurrentArea(1)
@@ -104,6 +104,8 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
       startTransition(() => setHovered(false))
       stateThree.gl.domElement.style.cursor = 'default'
     }
+
+    const sphere = new THREE.SphereGeometry(1, 28, 28)
 
     return (
       <group scale={0.016} position={[posXAspect, posYAspect, -1]}>
