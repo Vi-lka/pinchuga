@@ -1,9 +1,10 @@
 import './home.css'
 import { Canvas } from '@react-three/fiber'
-import { Html, Loader } from '@react-three/drei'
+import { Html, Loader, PerformanceMonitor } from '@react-three/drei'
 import { Suspense, useEffect, useRef, useState } from 'react'
 import SceneHome from '../SceneHome/SceneHome'
 import state from '../../utils/state'
+import { Perf, PerfHeadless, usePerf } from 'r3f-perf'
 
 export default function Home() {
 
@@ -142,6 +143,16 @@ export default function Home() {
     }
   }
 
+  function PerfHook() {
+    // getPerf() is also available for non-reactive way
+    const [gl, log, getReport]: any = usePerf((s) => [s.gl, s.log, s.getReport])
+
+    if (log && (log.fps < 40)) {
+      console.log("Warning! Low FPS: " + Math.round(log.fps))
+    }
+    return <PerfHeadless />
+  }
+
   return (
     <>
       <Canvas
@@ -156,6 +167,7 @@ export default function Home() {
         onTouchMove={onTouchMove}
       // onTouchEnd={onTouchEnd}
       >
+        
         <Suspense
           fallback={
             <Html>
@@ -167,11 +179,12 @@ export default function Home() {
             </Html>
           }
         >
-          <SceneHome
-            onReflow={setPages}
-            handleScrollTo={handleScrollTo}
-          />
-
+          
+            <SceneHome
+              onReflow={setPages}
+              handleScrollTo={handleScrollTo}
+            />
+          <PerfHook />
         </Suspense>
       </Canvas>
       <div

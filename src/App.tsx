@@ -3,17 +3,18 @@ import './fonts/Lato/stylesheet.css'
 import './App.css'
 import Home from './components/Home/Home'
 import HomeMobile from './components/HomeMobile/HomeMobile'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 function App() {
 
-  // if (window.innerWidth <= 1200) {
+    return (
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={window.innerWidth <= 1200 ? <HomeMobile /> : <Home />} />
+          <Route path="/low" element={<HomeMobile />} />
+        </Routes>
+    </BrowserRouter>
+    )
 
-  //   return <HomeMobile />
-
-  // } else {
-
-    return <Home />
-    
-  // }
 }
 export default App;

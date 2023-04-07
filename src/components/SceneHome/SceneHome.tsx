@@ -1,4 +1,4 @@
-import { Text, Html, OrbitControls, useAspect, PerspectiveCamera, Stats } from '@react-three/drei'
+import { Text, Html, OrbitControls, useAspect, PerspectiveCamera, Stats, usePerformanceMonitor } from '@react-three/drei'
 import { Image as DreiImage } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 import { createRef, startTransition, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
@@ -96,6 +96,7 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
   const startModelsArray = 6.2
 
   useFrame(() => {
+    // console.log(stateThree.get())
     // Scroll value 
     const page = (pageLerp.current = THREE.MathUtils.lerp(pageLerp.current, state.top / stateThree.size.height, 0.15))
 
