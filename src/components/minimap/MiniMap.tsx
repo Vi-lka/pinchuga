@@ -48,18 +48,18 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
   const pageLerp = useRef(state.top / stateThree.size.height)
 
   useFrame((s, delta) => {
-    const page = (pageLerp.current = THREE.MathUtils.lerp(pageLerp.current, state.top / stateThree.size.height, 0.15))
+    const page = (pageLerp.current = THREE.MathUtils.lerp(pageLerp.current, state.top / stateThree.size.height, delta*6))
 
     if (page > 1) {
-      mapRef.current.position.x = THREE.MathUtils.lerp(mapRef.current.position.x, 0.044 * stateThree.viewport.width, 0.15)
+      mapRef.current.position.x = THREE.MathUtils.lerp(mapRef.current.position.x, 0.044 * stateThree.viewport.width, delta*6)
     } else {
-      mapRef.current.position.x = THREE.MathUtils.lerp(mapRef.current.position.x, 0.1 * stateThree.viewport.width, 0.15)
+      mapRef.current.position.x = THREE.MathUtils.lerp(mapRef.current.position.x, 0.1 * stateThree.viewport.width, delta*6)
     }
 
     if (state.zoomGlobal) {
-      mapRef.current.position.x = THREE.MathUtils.lerp(mapRef.current.position.x, 0.1 * stateThree.viewport.width, 0.15)
+      mapRef.current.position.x = THREE.MathUtils.lerp(mapRef.current.position.x, 0.1 * stateThree.viewport.width, delta*6)
     } else {
-      mapRef.current.position.x = THREE.MathUtils.lerp(mapRef.current.position.x, 0.044 * stateThree.viewport.width, 0.15)
+      mapRef.current.position.x = THREE.MathUtils.lerp(mapRef.current.position.x, 0.044 * stateThree.viewport.width, delta*6)
     }
   })
 
@@ -71,8 +71,8 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
       hovered ? stateThree.gl.domElement.style.cursor = 'pointer' : stateThree.gl.domElement.style.cursor = 'default'
     }, [hovered])
 
-    useFrame(() => {
-      const page = (pageLerp.current = THREE.MathUtils.lerp(pageLerp.current, state.top / stateThree.size.height, 0.15))
+    useFrame((s, delta) => {
+      const page = (pageLerp.current = THREE.MathUtils.lerp(pageLerp.current, state.top / stateThree.size.height, delta*6))
 
       if (page > 0 && page < 1) setCurrentArea(0)
       if (page > 1 && page < 2) setCurrentArea(1)
@@ -87,8 +87,8 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
       if (page > 19.2 && page < 22) setCurrentArea(10)
       if (page > 22 && page < 24.8) setCurrentArea(11)
       if (page > 24.8 && page < 27.7) setCurrentArea(12)
-      if (page > 27.7 && page < 29.6) setCurrentArea(13)
-      if (page > 29.6) setCurrentArea(14)
+      if (page > 27.7 && page < 30.8) setCurrentArea(13)
+      if (page > 30.8) setCurrentArea(14)
     })
 
     const posYAspect = -0.04 * (index + 1) * (stateThree.viewport.height / 6)
@@ -401,7 +401,7 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
       <MinimapLine
         positionY={0.57 * (stateThree.viewport.height / 6)}
         positionX={posXAspect}
-        scrollSpeed={14}
+        scrollSpeed={9}
         scrollDelay={27.6}
         color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
       />

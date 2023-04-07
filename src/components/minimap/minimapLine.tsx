@@ -42,7 +42,7 @@ export default function MinimapLine(
   }
 
   useFrame((s, delta) => {
-    const page = (pageLerp.current = THREE.MathUtils.lerp(pageLerp.current, state.top / stateThree.size.height, 0.04))
+    const page = (pageLerp.current = THREE.MathUtils.lerp(pageLerp.current, state.top / stateThree.size.height, delta*6))
     ref.current.children.forEach((child: any, index: any) => {
       let scrollPos = ratioFromMiddle((page - scrollDelay) / (index + 1), height / linesArray.length)
 

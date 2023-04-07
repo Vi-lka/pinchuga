@@ -95,19 +95,19 @@ export default function Home() {
       if ((e.deltaY > 0) && (state.top < height)) {
         // Models area or not
         if (state.top / window.innerHeight < 6.2) {
-          state.top = state.top + (e.deltaY / 2.3)
-          scrollArea.current?.scrollBy(0, e.deltaY / 2.3)
+          state.top = state.top + (e.deltaY / 1.8)
+          scrollArea.current?.scrollBy(0, e.deltaY / 1.8)
         } else {
-          state.top = state.top + (e.deltaY)
-          scrollArea.current?.scrollBy(0, e.deltaY)
+          state.top = state.top + (e.deltaY * 1.5)
+          scrollArea.current?.scrollBy(0, e.deltaY * 1.5)
         }
 
         // DOWN
       } else if ((e.deltaY < 0) && (state.top > 0)) {
         // Models area or not
         if (state.top / window.innerHeight < 6.2) {
-          state.top = state.top + (e.deltaY / 1.5)
-          scrollArea.current?.scrollBy(0, e.deltaY / 1.5)
+          state.top = state.top + (e.deltaY / 1.8)
+          scrollArea.current?.scrollBy(0, e.deltaY / 1.8)
         } else {
           state.top = state.top + (e.deltaY * 1.5)
           scrollArea.current?.scrollBy(0, e.deltaY * 1.5)
@@ -194,7 +194,7 @@ export default function Home() {
         onScroll={onScrollHTML}
       >
         <div style={{
-          height: `${pages * 100}vh`,
+          height: `${pages * 105}vh`,
           width: '1px',
           background: '#f6f6f6'
         }} />

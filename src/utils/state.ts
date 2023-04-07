@@ -3,7 +3,7 @@ const state = {
   pages: 0,
   threshold: 1,
   mouse: [0, 0],
-  model1Pos: [-4.1, 0.2, -7.6],
+  model1Pos: [-3.9, 0.2, -7.6],
   model2Pos: [1.8, 5.8, -9.8],
   model3Pos: [2.6, 12, -14],
   model4Pos: [7.5, 20.15, -14.5],
