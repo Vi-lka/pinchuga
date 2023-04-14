@@ -4,8 +4,11 @@ Command: npx gltfjsx@6.1.4 disk_low_re.glb -t -d
 */
 
 import * as THREE from 'three'
-import { useGLTF } from '@react-three/drei'
+import { meshBounds, useGLTF } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
+import { createRef, useRef } from 'react'
+import { useFrame, useThree } from '@react-three/fiber'
+import state from '../../../utils/state'
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -18,9 +21,10 @@ type GLTFResult = GLTF & {
 
 export function Disk(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('./models/low_re/disk_low_re.glb') as GLTFResult
+  
   return (
     <group {...props} dispose={null}>
-      <mesh geometry={nodes.Model.geometry} material={materials['material0.007']} material-metalness={0.95} material-roughness={0.74} rotation={[0, 0, -0.94]} />
+      <mesh geometry={nodes.Model.geometry} material={materials['material0.007']} material-metalness={0.95} material-roughness={0.74} rotation={[0, 0, -0.94]} raycast={meshBounds}/>
     </group>
   )
 }

@@ -4,9 +4,11 @@ Command: npx gltfjsx@6.1.4 bird1_low_re.glb -t -d
 */
 
 import * as THREE from 'three'
-import React, { useRef } from 'react'
-import { useGLTF } from '@react-three/drei'
+import React, { createRef, useEffect, useRef, useState } from 'react'
+import { meshBounds, useGLTF } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
+import { useFrame, useThree } from '@react-three/fiber'
+import state from '../../../utils/state'
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -19,9 +21,10 @@ type GLTFResult = GLTF & {
 
 export function Bird1(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('./models/low_re/bird1_low_re.glb') as GLTFResult
+
   return (
     <group {...props} dispose={null}>
-      <mesh geometry={nodes.Model.geometry} material={materials.material0} material-metalness={0.95} material-roughness={0.62} rotation={[1.69, 0.2, -0.15]} />
+      <mesh geometry={nodes.Model.geometry} material={materials.material0} material-metalness={0.95} material-roughness={0.62} rotation={[1.69, 0.2, -0.15]} raycast={meshBounds}/>
     </group>
   )
 }

@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { startTransition, useRef } from 'react'
+import { startTransition, useEffect, useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import { Line, useScroll } from '@react-three/drei'
 import { ReactThreeFiber, extend } from '@react-three/fiber'
@@ -11,20 +11,44 @@ export default function MinimapLine(
     positionY, 
     scrollSpeed, 
     scrollDelay, 
-    color
+    color,
+    temp = new THREE.Object3D()
   } : {
     positionX: number, 
     positionY: number, 
     scrollSpeed: number, 
     scrollDelay: number, 
-    color: any
+    color: any,
+    temp: THREE.Object3D
   }
   ) {
   const stateThree = useThree()
 
   const linesArray = [1, 2, 3, 4, 5, 6, 7]
 
+  const material = new THREE.LineBasicMaterial({
+    color: "red"
+  })
+  const points = []
+  points.push( new THREE.Vector3( - 10, 0, 0 ) );
+  points.push( new THREE.Vector3( 0, 10, 0 ) );
+  points.push( new THREE.Vector3( 10, 0, 0 ) );
+  
+  const geometry = new THREE.BoxGeometry( 0.5, 0.5, 0.5 )
+
   const ref = useRef<any>()
+
+  useEffect(() => {
+    // Set positions
+    for (let i = 0; i < linesArray.length; i++) {
+      temp.position.set(positionX, -i * 0.0048 - positionY, -1)
+      temp.updateMatrix()
+      ref.current.setMatrixAt(i, temp.matrix)
+    }
+    // Update the instance
+    ref.current.instanceMatrix.needsUpdate = true
+  }, [])
+
 
   const pageLerp = useRef(state.top / stateThree.size.height)
 
@@ -56,18 +80,19 @@ export default function MinimapLine(
   })
 
   return (
-    <group ref={ref}>
-      {linesArray.map((value: any, index: number) => (
-        <Line
-          key={index}
-          points={[[-0.002, 0, 0], [0.002, 0, 0]]}
-          color={color}
-          transparent
-          opacity={0.3}
-          linewidth={1.5}
-          position={[positionX, -index * 0.0048 - positionY, -1]}
-        />
-      ))}
-    </group>
+    // <group ref={ref}>
+    //   {linesArray.map((value: any, index: number) => (
+    //     <Line
+    //       key={index}
+    //       points={[[-0.002, 0, 0], [0.002, 0, 0]]}
+    //       color={color}
+    //       transparent
+    //       opacity={0.3}
+    //       linewidth={1.5}
+    //       position={[positionX, -index * 0.0048 - positionY, -1]}
+    //     />
+    //   ))}
+    // </group>
+    <instancedMesh ref={ref} args={[geometry, material, linesArray.length]}/>
   )
 }

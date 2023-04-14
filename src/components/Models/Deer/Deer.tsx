@@ -4,9 +4,11 @@ Command: npx gltfjsx@6.1.4 deer_low_re.glb -t -d
 */
 
 import * as THREE from 'three'
-import React, { useRef } from 'react'
-import { useGLTF } from '@react-three/drei'
+import React, { createRef, useRef } from 'react'
+import { meshBounds, useGLTF } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
+import { useFrame, useThree } from '@react-three/fiber'
+import state from '../../../utils/state'
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -19,9 +21,10 @@ type GLTFResult = GLTF & {
 
 export function Deer(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('./models/low_re/deer_low_re.glb') as GLTFResult
+
   return (
     <group {...props} dispose={null}>
-      <mesh geometry={nodes.Model.geometry} material={materials['material0.006']} material-metalness={0.95} material-roughness={0.64} rotation={[Math.PI, 1.7, 1.5]} />
+      <mesh geometry={nodes.Model.geometry} material={materials['material0.006']} material-metalness={0.95} material-roughness={0.64} rotation={[Math.PI, 1.7, 1.5]} raycast={meshBounds}/>
     </group>
   )
 }

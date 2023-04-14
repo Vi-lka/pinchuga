@@ -10,7 +10,7 @@ function App() {
     return (
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={window.innerWidth <= 1200 ? <HomeMobile /> : <Home />} />
+          <Route path="/" element={window.innerWidth <= 1100 ? <HomeMobile /> : <Home />} />
           <Route path="/low" element={<HomeMobile />} />
         </Routes>
     </BrowserRouter>

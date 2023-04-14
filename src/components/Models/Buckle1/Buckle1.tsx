@@ -4,9 +4,11 @@ Command: npx gltfjsx@6.1.4 buckle1_low_re.glb -t -d
 */
 
 import * as THREE from 'three'
-import React, { useRef } from 'react'
-import { useGLTF } from '@react-three/drei'
+import React, { createRef, useRef } from 'react'
+import { meshBounds, useGLTF } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
+import { useFrame, useThree } from '@react-three/fiber'
+import state from '../../../utils/state'
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -19,9 +21,10 @@ type GLTFResult = GLTF & {
 
 export function Buckle1(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('./models/low_re/buckle1_low_re.glb') as GLTFResult
+  
   return (
     <group {...props} dispose={null}>
-      <mesh geometry={nodes.Model001.geometry} material={materials['material0.002']} material-metalness={0.95} material-roughness={0.88} rotation={[0.8, -1.1, 2.8]} />
+      <mesh geometry={nodes.Model001.geometry} material={materials['material0.002']} material-metalness={0.95} material-roughness={0.88} rotation={[0.8, -1.1, 2.8]} raycast={meshBounds} />
     </group>
   )
 }

@@ -6,9 +6,12 @@ import MinimapLine from './minimapLine'
 import state from '../../utils/state'
 import './minimap.css'
 import 'cooltipz-css'
+import Boxes from './boxes'
 
 export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: number): void }) {
   const stateThree = useThree()
+
+  const temp = new THREE.Object3D()
 
   const mapArray = [
     'Начало',
@@ -161,11 +164,14 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
     )
   }
 
+  const tempBoxes = new THREE.Object3D();
+
   return (
     <group
       ref={mapRef}
       position={[0.05 * stateThree.viewport.width, 0.32 * (stateThree.viewport.height / 6), 0]}
     >
+      <Boxes tempBoxes={tempBoxes} i={100} j={10} />
       {
         mapArray.map((value, index) => (
           <Dot
@@ -178,6 +184,7 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
 
       {/* *********************** 1 *********************** */}
       <MinimapLine
+        temp={temp}
         positionY={0.05 * (stateThree.viewport.height / 6)}
         positionX={posXAspect}
         scrollSpeed={29}
@@ -195,6 +202,7 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
 
       {/* *********************** 2 *********************** */}
       <MinimapLine
+        temp={temp}
         positionY={0.089 * (stateThree.viewport.height / 6)}
         positionX={posXAspect}
         scrollSpeed={24}
@@ -212,6 +220,7 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
 
       {/* *********************** 3 *********************** */}
       <MinimapLine
+        temp={temp}
         positionY={0.129 * (stateThree.viewport.height / 6)}
         positionX={posXAspect}
         scrollSpeed={29}
@@ -229,6 +238,7 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
 
       {/* *********************** 4 *********************** */}
       <MinimapLine
+        temp={temp}
         positionY={0.169 * (stateThree.viewport.height / 6)}
         positionX={posXAspect}
         scrollSpeed={28.5}
@@ -246,6 +256,7 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
 
       {/* *********************** 5 *********************** */}
       <MinimapLine
+        temp={temp}
         positionY={0.209 * (stateThree.viewport.height / 6)}
         positionX={posXAspect}
         scrollSpeed={27.5}
@@ -263,6 +274,7 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
 
       {/* *********************** 6 *********************** */}
       <MinimapLine
+        temp={temp}
         positionY={0.249 * (stateThree.viewport.height / 6)}
         positionX={posXAspect}
         scrollSpeed={24}
@@ -280,6 +292,7 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
 
       {/* *********************** 7 *********************** */}
       <MinimapLine
+        temp={temp}
         positionY={0.289 * (stateThree.viewport.height / 6)}
         positionX={posXAspect}
         scrollSpeed={7.5}
@@ -297,6 +310,7 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
 
       {/* *********************** 8 *********************** */}
       <MinimapLine
+        temp={temp}
         positionY={0.329 * (stateThree.viewport.height / 6)}
         positionX={posXAspect}
         scrollSpeed={9.8}
@@ -314,6 +328,7 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
 
       {/* *********************** 9 *********************** */}
       <MinimapLine
+        temp={temp}
         positionY={0.369 * (stateThree.viewport.height / 6)}
         positionX={posXAspect}
         scrollSpeed={9.5}
@@ -331,6 +346,7 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
 
       {/* *********************** 10 *********************** */}
       <MinimapLine
+        temp={temp}
         positionY={0.41 * (stateThree.viewport.height / 6)}
         positionX={posXAspect}
         scrollSpeed={9.5}
@@ -348,6 +364,7 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
 
       {/* *********************** 11 *********************** */}
       <MinimapLine
+        temp={temp}
         positionY={0.45 * (stateThree.viewport.height / 6)}
         positionX={posXAspect}
         scrollSpeed={9.8}
@@ -365,6 +382,7 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
 
       {/* *********************** 12 *********************** */}
       <MinimapLine
+        temp={temp}
         positionY={0.49 * (stateThree.viewport.height / 6)}
         positionX={posXAspect}
         scrollSpeed={9.8}
@@ -382,6 +400,7 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
 
       {/* *********************** 13 *********************** */}
       <MinimapLine
+        temp={temp}
         positionY={0.53 * (stateThree.viewport.height / 6)}
         positionX={posXAspect}
         scrollSpeed={9.6}
@@ -399,6 +418,7 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
 
       {/* *********************** 14 *********************** */}
       <MinimapLine
+        temp={temp}
         positionY={0.57 * (stateThree.viewport.height / 6)}
         positionX={posXAspect}
         scrollSpeed={9}

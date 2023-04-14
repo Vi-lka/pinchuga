@@ -4,9 +4,11 @@ Command: npx gltfjsx@6.1.4 bird2_low_re.glb -t -d -TRS
 */
 
 import * as THREE from 'three'
-import React, { useRef } from 'react'
-import { useGLTF } from '@react-three/drei'
+import React, { createRef, useRef } from 'react'
+import { meshBounds, useGLTF } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
+import { useFrame, useThree } from '@react-three/fiber'
+import state from '../../../utils/state'
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -19,9 +21,22 @@ type GLTFResult = GLTF & {
 
 export function Bird2Simpled(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('./models/low_re/transformed/bird2_low_re-transformed.glb') as GLTFResult
+
+  const modelRef = createRef<any>()
+
+  const stateThree = useThree()
+
+  const pageLerp = useRef(state.top / stateThree.size.height)
+
+  useFrame((s, delta) => {
+    const page = (pageLerp.current = THREE.MathUtils.lerp(pageLerp.current, state.top / stateThree.size.height, delta * 6))
+
+    modelRef.current.visible = page > 10 ? (page > 13.5 ? false : true) : false
+  })
+
   return (
     <group {...props} dispose={null}>
-      <mesh geometry={nodes.Model.geometry} material={materials['material0.001']} material-metalness={0.95} material-roughness={0.62} position={[0, 0.01, 0]} rotation={[0.96, 0, 0]} />
+      <mesh ref={modelRef} geometry={nodes.Model.geometry} material={materials['material0.001']} material-metalness={0.95} material-roughness={0.62} position={[0, 0.01, 0]} rotation={[0.96, 0, 0]} raycast={meshBounds}/>
     </group>
   )
 }

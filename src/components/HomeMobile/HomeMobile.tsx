@@ -3,8 +3,12 @@ import './homeMobile.css';
 
 export default function HomeMobile() {
   return (
-    <div>
-        <p style={{color: 'black'}}>HomeMobile</p>
-    </div>
+    <section className="sec-title">
+      <div className="container-title">
+        <div className="title-imgs">
+          {/* <img src=""/> */}
+        </div>
+      </div>
+    </section>
   )
 }
