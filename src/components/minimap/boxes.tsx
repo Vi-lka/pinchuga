@@ -2,23 +2,23 @@ import { useFrame } from '@react-three/fiber';
 import React, { createRef } from 'react'
 import * as THREE from 'three';
 
-export default function Boxes({ tempBoxes, i, j }:{ tempBoxes: THREE.Object3D, i: number, j: number }) {
-    const material = new THREE.MeshLambertMaterial({ color: "red" });
-    const boxesGeometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
-    const ref = createRef<any>();
+export default function Boxes({ tempLines, positionX, positionY }:{ tempLines: THREE.Object3D, positionX: number, positionY: number }) {
+  const material = new THREE.LineBasicMaterial({ color: "red" })
+  const geometry = new THREE.PlaneGeometry(0.01, 0.002)
+  const ref = createRef<any>()
+
+  const linesArray = [1, 2, 3, 4, 5, 6, 7]
   
-    useFrame(() => {
-      let counter = 0;
-      for (let x = 0; x < i; x++) {
-        for (let z = 0; z < j; z++) {
-          const id = counter++;
-          tempBoxes.position.set(i / 2 - x, 0, j / 2 - z);
-          tempBoxes.updateMatrix();
-          ref.current.setMatrixAt(id, tempBoxes.matrix);
-        }
-      }
-      // ref.current.instanceMatrix.needsUpdate = true;
-    });
-  
-    return <instancedMesh ref={ref} args={[boxesGeometry, material, i * j]} />;
+  useFrame(() => {
+    let counter = 0
+    for (let i = 0; i < linesArray.length; i++) {
+      const id = counter++
+      tempLines.position.set(positionX, -i * 0.0048 - positionY, -1)
+      tempLines.updateMatrix()
+      ref.current.setMatrixAt(id, tempLines.matrix)
+    }
+    ref.current.instanceMatrix.needsUpdate = true;
+  });
+
+  return <instancedMesh ref={ref} args={[geometry, material, linesArray.length]} />;
 }
