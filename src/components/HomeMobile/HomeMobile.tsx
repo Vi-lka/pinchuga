@@ -118,7 +118,7 @@ export default function HomeMobile() {
               </div>
 
               <div className="migration-text">
-                <AnimTextD>
+                <p>
                   <strong>Эпоха Великого переселения народов</strong> – один из ключевых моментов истории Евразии вообще и Сибири в частности.
                   <br /><br />
                   В период <b>со II по VI вв. н.э.</b> на большей части континента происходили масштабные миграции населения, что привело к формированию новых народов и государств.
@@ -128,7 +128,7 @@ export default function HomeMobile() {
                   Племена хунну двинулись на запад, сметая по пути другие народы и привнося серьезные изменения в их культуру.
                   <br /><br />
                   Спустя почти полтора века, в 354 г. н.э., они стали известны в Европе под именем <b>«гунны»</b>, как суровые и безжалостные завоеватели.
-                </AnimTextD>
+                </p>
               </div>
             </div>
           </section>
@@ -140,7 +140,7 @@ export default function HomeMobile() {
         </ParallaxLayer>
 
 
-        <ParallaxLayer offset={window.innerWidth < 768 ? 1.9999 : 1.9} speed={0.6} factor={0.5} style={{ textAlign: 'center' }}>
+        <ParallaxLayer offset={window.innerWidth < 768 ? 1.88 : 1.9} speed={0.6} factor={0.5} style={{ textAlign: 'center' }}>
           <img src={angara_map} alt='Ангара и Енисей' className='angara-map-img' />
         </ParallaxLayer>
 
@@ -148,30 +148,30 @@ export default function HomeMobile() {
           <section className="section">
             <div className="container-big-map">
               <div className="big-map-text">
-                <AnimTextD>
+                <p>
                   Миграция хунну, начавшаяся в глубокой <b>Центральной Азии</b>, затронула большую часть <b>Евразии</b>.
                   <br /><br />
                   И хотя основные исторические события происходили в <b>степях</b>, но происходившие глобальные изменения коснулись и далёких <b>таёжных районов</b>.
                   <br /><br />
                   Сейчас, на основании последних <b>полевых работ</b> мы можем говорить об этом уверенно.
-                </AnimTextD>
+                </p>
               </div>
             </div>
           </section>
         </ParallaxLayer>
 
-        <ParallaxLayer offset={window.innerWidth < 768 ? 1.78 : 2} speed={1.4} factor={0.5} style={{ background: '#2b2b2b' }}>
+        <ParallaxLayer offset={window.innerWidth < 768 ? 2 : 2} speed={1.4} factor={0.5} style={{ background: '#2b2b2b' }}>
           <section className="section">
             <div className="container-angara-map">
               <div className="angara-map-text">
-                <AnimTextD>
+                <p>
                   Именно в это время на берегах <b>Ангары и Енисея</b> возникают и активно развиваются технологии получения и обработки <b>железа</b>,
                   усиливается <b>обмен</b> с южными и западными территориями, получает распространение новая <b>керамическая посуда</b>, совершенствуется <b>оружие</b>.
                   <br /><br />
                   Все эти сведения получены археологами при изучении могильника <b>III – IV вв. н.э.</b> <strong>Пинчуга-6</strong>.
                   <br /><br />
                   Он изучался археологами <b>Сибирского федерального университета</b> с 2018 по 2022 год и стал первым полностью раскопанным некрополем эпохи Великого переселения народов на Ангаре.
-                </AnimTextD>
+                </p>
               </div>
             </div>
           </section>
