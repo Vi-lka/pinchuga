@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { Suspense, useEffect, useRef, useState } from 'react'
 import './homeMobile.css';
 import './css/title.css';
 import './css/migration.css';
@@ -21,8 +21,10 @@ import { IParallax, Parallax, ParallaxLayer } from '@react-spring/parallax';
 import { animated as anim, useSpring } from '@react-spring/web';
 import { AnimTextD } from './componentsMobile/AnimTextD';
 import { AnimImgD } from './componentsMobile/AnimImgD';
+import SuspenseImage from '../../utils/SuspenseImage';
 
 export default function HomeMobile() {
+
   const parallaxRef = useRef<IParallax>(null!)
 
   const propsH1 = useSpring({
@@ -70,114 +72,116 @@ export default function HomeMobile() {
   })
 
   return (
-    <div className="homeMobile-container">
-      <Parallax ref={parallaxRef} pages={4}>
-        <ParallaxLayer offset={0} speed={0.1} factor={1}>
-          <section className="section">
-            <div className="container-title">
-              <ParallaxLayer offset={0.15} speed={0.6} factor={0.15}>
-                <anim.div className="title-imgs" style={propsImgs}>
-                  <img src={img_draw_bird_1} alt='Орёл' />
-                  <img src={img_draw_disk} alt='Диск' />
-                  <img src={img_draw_bird_2} alt='Сокол' />
-                </anim.div>
-              </ParallaxLayer>
+    <Suspense fallback={<h1 style={{ color: 'black' }}>Loading...</h1>}>
+      <div className="homeMobile-container">
+        <Parallax ref={parallaxRef} pages={4}>
+          <ParallaxLayer offset={0} speed={0.1} factor={1}>
+            <section className="section">
+              <div className="container-title">
+                <ParallaxLayer offset={0.15} speed={0.6} factor={0.15}>
+                  <anim.div className="title-imgs" style={propsImgs}>
+                    <SuspenseImage src={img_draw_bird_1} alt='Орёл' />
+                    <SuspenseImage src={img_draw_disk} alt='Диск' />
+                    <SuspenseImage src={img_draw_bird_2} alt='Сокол' />
+                  </anim.div>
+                </ParallaxLayer>
 
-              <ParallaxLayer offset={0.4} speed={0.6} factor={0.3}>
-                <div className="title-text">
-                  <ParallaxLayer offset={0} speed={0.2} factor={0.2}>
-                    <anim.h1 style={propsH1}>
-                      Пункт<br />Прошлого
-                    </anim.h1>
-                  </ParallaxLayer>
-                  <ParallaxLayer offset={0.2} speed={0.1} factor={0.1}>
-                    <anim.h6 style={propsH6}>
-                      3D ОБЗОР НАХОДОК ИЗ АРХЕОЛОГИЧЕСКОГО КОМПЛЕКСА ПИНЧУГА-6
-                    </anim.h6>
-                  </ParallaxLayer>
+                <ParallaxLayer offset={0.4} speed={0.6} factor={0.3}>
+                  <div className="title-text">
+                    <ParallaxLayer offset={0} speed={0.2} factor={0.2}>
+                      <anim.h1 style={propsH1}>
+                        Пункт<br />Прошлого
+                      </anim.h1>
+                    </ParallaxLayer>
+                    <ParallaxLayer offset={0.2} speed={0.1} factor={0.1}>
+                      <anim.h6 style={propsH6}>
+                        3D ОБЗОР НАХОДОК ИЗ АРХЕОЛОГИЧЕСКОГО КОМПЛЕКСА ПИНЧУГА-6
+                      </anim.h6>
+                    </ParallaxLayer>
+                  </div>
+                </ParallaxLayer>
+
+                <ParallaxLayer offset={0.9} speed={1} factor={0.1}>
+                  <anim.div className="title-scroll" style={propsScroll}>
+                    <p>
+                      ПРОКРУТИТЕ, ЧТОБЫ ПРОДОЛЖИТЬ
+                    </p>
+                    <SuspenseImage src={Arrow_scroll} alt='scroll' />
+                  </anim.div>
+                </ParallaxLayer>
+              </div>
+            </section>
+          </ParallaxLayer>
+
+          <ParallaxLayer offset={0.999999999} speed={1.6} factor={1.3} style={{ background: '#2b2b2b' }}>
+            <section className="section">
+              <div className="container-migration">
+                <div className="migration-img">
+                  <SuspenseImage src={great_migration} alt='Великое переселение народов' />
                 </div>
-              </ParallaxLayer>
 
-              <ParallaxLayer offset={0.9} speed={1} factor={0.1}>
-                <anim.div className="title-scroll" style={propsScroll}>
+                <div className="migration-text">
                   <p>
-                    ПРОКРУТИТЕ, ЧТОБЫ ПРОДОЛЖИТЬ
+                    <strong>Эпоха Великого переселения народов</strong> – один из ключевых моментов истории Евразии вообще и Сибири в частности.
+                    <br /><br />
+                    В период <b>со II по VI вв. н.э.</b> на большей части континента происходили масштабные миграции населения, что привело к формированию новых народов и государств.
+                    <br /><br />
+                    Толчком этого процесса стал разгром <b>Хуннской державы</b>, проигравшей в борьбе за гегемонию в Центральной Азии китайской империи Хань и её союзникам.
+                    <br /><br />
+                    Племена хунну двинулись на запад, сметая по пути другие народы и привнося серьезные изменения в их культуру.
+                    <br /><br />
+                    Спустя почти полтора века, в 354 г. н.э., они стали известны в Европе под именем <b>«гунны»</b>, как суровые и безжалостные завоеватели.
                   </p>
-                  <img src={Arrow_scroll} alt='scroll' />
-                </anim.div>
-              </ParallaxLayer>
-            </div>
-          </section>
-        </ParallaxLayer>
-
-        <ParallaxLayer offset={0.999999999} speed={1.6} factor={1.3} style={{ background: '#2b2b2b' }}>
-          <section className="section">
-            <div className="container-migration">
-              <div className="migration-img">
-                <img src={great_migration} alt='Великое переселение народов' />
+                </div>
               </div>
+            </section>
+          </ParallaxLayer>
 
-              <div className="migration-text">
-                <p>
-                  <strong>Эпоха Великого переселения народов</strong> – один из ключевых моментов истории Евразии вообще и Сибири в частности.
-                  <br /><br />
-                  В период <b>со II по VI вв. н.э.</b> на большей части континента происходили масштабные миграции населения, что привело к формированию новых народов и государств.
-                  <br /><br />
-                  Толчком этого процесса стал разгром <b>Хуннской державы</b>, проигравшей в борьбе за гегемонию в Центральной Азии китайской империи Хань и её союзникам.
-                  <br /><br />
-                  Племена хунну двинулись на запад, сметая по пути другие народы и привнося серьезные изменения в их культуру.
-                  <br /><br />
-                  Спустя почти полтора века, в 354 г. н.э., они стали известны в Европе под именем <b>«гунны»</b>, как суровые и безжалостные завоеватели.
-                </p>
+
+          <ParallaxLayer offset={window.innerWidth < 768 ? 1 : 1.08} speed={0.7} factor={0.7} style={{ textAlign: 'center' }}>
+            <SuspenseImage src={big_map} alt='Центральная Азия' className='big-map-img' />
+          </ParallaxLayer>
+
+
+          <ParallaxLayer offset={window.innerWidth < 768 ? 1.88 : 1.9} speed={0.6} factor={0.5} style={{ textAlign: 'center' }}>
+            <SuspenseImage src={angara_map} alt='Ангара и Енисей' className='angara-map-img' />
+          </ParallaxLayer>
+
+          <ParallaxLayer offset={window.innerWidth < 768 ? 1.4 : 1.95} speed={1.4} factor={0.4} style={{ background: '#2b2b2b' }}>
+            <section className="section">
+              <div className="container-big-map">
+                <div className="big-map-text">
+                  <p>
+                    Миграция хунну, начавшаяся в глубокой <b>Центральной Азии</b>, затронула большую часть <b>Евразии</b>.
+                    <br /><br />
+                    И хотя основные исторические события происходили в <b>степях</b>, но происходившие глобальные изменения коснулись и далёких <b>таёжных районов</b>.
+                    <br /><br />
+                    Сейчас, на основании последних <b>полевых работ</b> мы можем говорить об этом уверенно.
+                  </p>
+                </div>
               </div>
-            </div>
-          </section>
-        </ParallaxLayer>
+            </section>
+          </ParallaxLayer>
 
-
-        <ParallaxLayer offset={window.innerWidth < 768 ? 1 : 1.08} speed={0.7} factor={0.7} style={{ textAlign: 'center' }}>
-          <img src={big_map} alt='Центральная Азия' className='big-map-img' />
-        </ParallaxLayer>
-
-
-        <ParallaxLayer offset={window.innerWidth < 768 ? 1.88 : 1.9} speed={0.6} factor={0.5} style={{ textAlign: 'center' }}>
-          <img src={angara_map} alt='Ангара и Енисей' className='angara-map-img' />
-        </ParallaxLayer>
-
-        <ParallaxLayer offset={window.innerWidth < 768 ? 1.4 : 1.95} speed={1.4} factor={0.4} style={{ background: '#2b2b2b' }}>
-          <section className="section">
-            <div className="container-big-map">
-              <div className="big-map-text">
-                <p>
-                  Миграция хунну, начавшаяся в глубокой <b>Центральной Азии</b>, затронула большую часть <b>Евразии</b>.
-                  <br /><br />
-                  И хотя основные исторические события происходили в <b>степях</b>, но происходившие глобальные изменения коснулись и далёких <b>таёжных районов</b>.
-                  <br /><br />
-                  Сейчас, на основании последних <b>полевых работ</b> мы можем говорить об этом уверенно.
-                </p>
+          <ParallaxLayer offset={window.innerWidth < 768 ? 2 : 2} speed={1.4} factor={0.5} style={{ background: '#2b2b2b' }}>
+            <section className="section">
+              <div className="container-angara-map">
+                <div className="angara-map-text">
+                  <p>
+                    Именно в это время на берегах <b>Ангары и Енисея</b> возникают и активно развиваются технологии получения и обработки <b>железа</b>,
+                    усиливается <b>обмен</b> с южными и западными территориями, получает распространение новая <b>керамическая посуда</b>, совершенствуется <b>оружие</b>.
+                    <br /><br />
+                    Все эти сведения получены археологами при изучении могильника <b>III – IV вв. н.э.</b> <strong>Пинчуга-6</strong>.
+                    <br /><br />
+                    Он изучался археологами <b>Сибирского федерального университета</b> с 2018 по 2022 год и стал первым полностью раскопанным некрополем эпохи Великого переселения народов на Ангаре.
+                  </p>
+                </div>
               </div>
-            </div>
-          </section>
-        </ParallaxLayer>
+            </section>
+          </ParallaxLayer>
 
-        <ParallaxLayer offset={window.innerWidth < 768 ? 2 : 2} speed={1.4} factor={0.5} style={{ background: '#2b2b2b' }}>
-          <section className="section">
-            <div className="container-angara-map">
-              <div className="angara-map-text">
-                <p>
-                  Именно в это время на берегах <b>Ангары и Енисея</b> возникают и активно развиваются технологии получения и обработки <b>железа</b>,
-                  усиливается <b>обмен</b> с южными и западными территориями, получает распространение новая <b>керамическая посуда</b>, совершенствуется <b>оружие</b>.
-                  <br /><br />
-                  Все эти сведения получены археологами при изучении могильника <b>III – IV вв. н.э.</b> <strong>Пинчуга-6</strong>.
-                  <br /><br />
-                  Он изучался археологами <b>Сибирского федерального университета</b> с 2018 по 2022 год и стал первым полностью раскопанным некрополем эпохи Великого переселения народов на Ангаре.
-                </p>
-              </div>
-            </div>
-          </section>
-        </ParallaxLayer>
-
-      </Parallax>
-    </div>
+        </Parallax>
+      </div>
+    </Suspense>
   )
 }
