@@ -1,8 +1,6 @@
 import * as THREE from 'three'
-import { startTransition, useRef } from 'react'
+import { useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
-import { Line, useScroll } from '@react-three/drei'
-import { ReactThreeFiber, extend } from '@react-three/fiber'
 import state from '../../utils/state'
 
 export default function MinimapLine(
@@ -68,34 +66,9 @@ export default function MinimapLine(
       ref.current.setMatrixAt(id, tempLines.matrix)
     }
     ref.current.instanceMatrix.needsUpdate = true
-
-    // const page = (pageLerp.current = THREE.MathUtils.lerp(pageLerp.current, state.top / stateThree.size.height, delta*6))
-    // ref.current.children.forEach((child: any, index: any) => {
-    //   let scrollPos = ratioFromMiddle((page - scrollDelay) / (index + 1), height / linesArray.length)
-
-    //   if (scrollPos < 0) {
-    //     scrollPos = 0
-    //   }
-
-
-    //   child.scale.x = THREE.MathUtils.damp(child.scale.x, 1 + scrollPos*8, 80, delta)
-    // })
   })
 
   return (
     <instancedMesh ref={ref} args={[geometry, material, linesArray.length]} />
-    // <group ref={ref}>
-    //   {linesArray.map((value: any, index: number) => (
-    //     <Line
-    //       key={index}
-    //       points={[[-0.002, 0, 0], [0.002, 0, 0]]}
-    //       color={color}
-    //       transparent
-    //       opacity={0.3}
-    //       linewidth={1.5}
-    //       position={[positionX, -index * 0.0048 - positionY, -1]}
-    //     />
-    //   ))}
-    // </group>
   )
 }

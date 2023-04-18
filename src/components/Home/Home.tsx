@@ -187,9 +187,9 @@ export default function Home() {
           />
           {/* <PerfHook /> */}
 
-          <Perf
+          {/* <Perf
             // deepAnalyze
-          />
+          /> */}
         </Suspense>
       </Canvas>
       <div

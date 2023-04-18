@@ -21,7 +21,7 @@ function OverlayHome({zoom, setZoom} : {zoom: boolean, setZoom: any}) {
           prepend
         >
           <a className='dhLab' href='https://dh-lab.ru/' target="__blank">
-            <img src={DHLab_logo} alt="DHLab"/>
+            <img src={DHLab_logo} alt="Digital Humanities Lab"/>
           </a>
 
           <button 

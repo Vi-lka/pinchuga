@@ -6,7 +6,6 @@ import MinimapLine from './minimapLine'
 import state from '../../utils/state'
 import './minimap.css'
 import 'cooltipz-css'
-import Boxes from './boxes'
 
 export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: number): void }) {
   const stateThree = useThree()
@@ -182,7 +181,7 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
       {/* *********************** 1 *********************** */}
       <MinimapLine
         tempLines={tempLines}
-        positionY={0.05 * (stateThree.viewport.height / 6)}
+        positionY={0.049 * (stateThree.viewport.height / 6)}
         positionX={posXAspect}
         scrollSpeed={29}
         scrollDelay={0}
