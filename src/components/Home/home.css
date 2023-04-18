@@ -12,6 +12,7 @@ body,
   width: 100vw;
   height: 100%;
   color: white;
+  background-color: #f6f6f6;
 }
 
 .canvas {
@@ -20,7 +21,7 @@ body,
 }
 
 .loading {
-  color:black;
+  color: black;
   position: absolute;
   top: 50%;
   left: 50%;
