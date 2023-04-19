@@ -4,6 +4,8 @@ import './css/title.css';
 import './css/migration.css';
 import './css/big-map.css';
 import './css/angara-map.css';
+import './css/funeral-pure.css';
+import './css/items.css';
 import Arrow_scroll from '../../assets/images/Arrow_scroll.png'
 import img_draw_bird_1 from '../../assets/images/img_draw_bird_1.svg'
 import img_draw_bird_2 from '../../assets/images/img_draw_bird_2.svg'
@@ -74,7 +76,7 @@ export default function HomeMobile() {
   return (
     <Suspense fallback={<h1 style={{ color: 'black' }}>Loading...</h1>}>
       <div className="homeMobile-container">
-        <Parallax ref={parallaxRef} pages={4}>
+        <Parallax ref={parallaxRef} pages={6}>
           <ParallaxLayer offset={0} speed={0.1} factor={1}>
             <section className="section">
               <div className="container-title">
@@ -113,7 +115,11 @@ export default function HomeMobile() {
             </section>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={0.999999999} speed={1.6} factor={1.3} style={{ background: '#2b2b2b' }}>
+          <ParallaxLayer offset={window.innerWidth < 768 ? 1 : 1} speed={0.5} factor={0.5} style={{ textAlign: 'center' }}>
+            <SuspenseImage src={big_map} alt='Центральная Азия' className='big-map-img' />
+          </ParallaxLayer>
+
+          <ParallaxLayer offset={0.999999999} speed={1.6} factor={1.1} style={{ background: '#2b2b2b' }}>
             <section className="section">
               <div className="container-migration">
                 <div className="migration-img">
@@ -137,17 +143,11 @@ export default function HomeMobile() {
             </section>
           </ParallaxLayer>
 
-
-          <ParallaxLayer offset={window.innerWidth < 768 ? 1 : 1.08} speed={0.7} factor={0.7} style={{ textAlign: 'center' }}>
-            <SuspenseImage src={big_map} alt='Центральная Азия' className='big-map-img' />
-          </ParallaxLayer>
-
-
-          <ParallaxLayer offset={window.innerWidth < 768 ? 1.88 : 1.9} speed={0.6} factor={0.5} style={{ textAlign: 'center' }}>
+          <ParallaxLayer offset={window.innerWidth < 768 ? 1.9 : 1.9} speed={0.5} factor={0.7} style={{ textAlign: 'center' }}>
             <SuspenseImage src={angara_map} alt='Ангара и Енисей' className='angara-map-img' />
           </ParallaxLayer>
 
-          <ParallaxLayer offset={window.innerWidth < 768 ? 1.4 : 1.95} speed={1.4} factor={0.4} style={{ background: '#2b2b2b' }}>
+          <ParallaxLayer offset={window.innerWidth < 768 ? 1.5 : 1.8} speed={1.4} factor={0.4} style={{ background: '#2b2b2b' }}>
             <section className="section">
               <div className="container-big-map">
                 <div className="big-map-text">
@@ -163,7 +163,11 @@ export default function HomeMobile() {
             </section>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={window.innerWidth < 768 ? 2 : 2} speed={1.4} factor={0.5} style={{ background: '#2b2b2b' }}>
+          <ParallaxLayer offset={window.innerWidth < 768 ? 2.9 : 2.9} speed={0.5} factor={0.5} style={{ textAlign: 'center' }}>
+            <SuspenseImage src={funeral_pure} alt='Могильник Пинчуга-6' className='funeral-pure-img' />
+          </ParallaxLayer>
+
+          <ParallaxLayer offset={window.innerWidth < 768 ? 2 : 2.3} speed={1.4} factor={0.5} style={{ background: '#2b2b2b' }}>
             <section className="section">
               <div className="container-angara-map">
                 <div className="angara-map-text">
@@ -174,6 +178,63 @@ export default function HomeMobile() {
                     Все эти сведения получены археологами при изучении могильника <b>III – IV вв. н.э.</b> <strong>Пинчуга-6</strong>.
                     <br /><br />
                     Он изучался археологами <b>Сибирского федерального университета</b> с 2018 по 2022 год и стал первым полностью раскопанным некрополем эпохи Великого переселения народов на Ангаре.
+                  </p>
+                </div>
+              </div>
+            </section>
+          </ParallaxLayer>
+
+          <ParallaxLayer offset={window.innerWidth < 768 ? 3.7 : 3.7} speed={0.5} factor={0.5} style={{ textAlign: 'center' }}>
+            <div className="items-img-container">
+              <div>
+                <SuspenseImage src={img_draw_bird_2} alt='Сокол' className='items-img' />
+                <SuspenseImage src={img_draw_bird_1} alt='Орёл' className='items-img' />
+              </div>
+              <div>
+                <SuspenseImage src={img_draw_horse} alt='Олень' className='items-img' />
+                <SuspenseImage src={img_draw_disk} alt='Диск с циркульным орнаментом' className='items-img' />
+              </div>
+              <div>
+                <SuspenseImage src={img_draw_item_2} alt='Прямоугольная Пряжка' className='items-img' />
+                <SuspenseImage src={img_draw_item_1} alt='Пряжка' className='items-img' />
+              </div>
+              <div>
+                <SuspenseImage src={img_draw_cup_2} alt='Горшок с личиной' className='items-img' />
+                <SuspenseImage src={img_draw_cup_1} alt='Горшок с оттисками «сетки-плетенки»' className='items-img' />
+              </div>
+            </div>
+          </ParallaxLayer>
+
+          <ParallaxLayer offset={window.innerWidth < 768 ? 3 : 3} speed={1.4} factor={0.5} style={{ background: '#2b2b2b' }}>
+            <section className="section">
+              <div className="container-funeral-pure">
+                <div className="funeral-pure-text">
+                  <p>
+                    Здесь найдено <b>18 погребений</b>, выполненных по одному обряду. Тело умершего сжигали на погребальном огне, после чего остывший прах хоронили в небольших ямах или просто рассыпали по поверхности.
+                    <br /><br />
+                    Вместе с прахом оставляли и некоторые вещи, необходимые в загробном мире: <b>посуду, ножи, иглы, тёсла, украшения, наконечники стрел, детали луков</b> и другие предметы.
+                    <br /><br />
+                    На могильнике <b>Пинчуга-6</b> найдено более <b>500</b> разнообразных предметов.
+                    Все они важны для датировки памятника и реконструкции быта, оставивших его людей.
+                    <br /><br />
+                    Но в этом проекте представлена только небольшая часть всех находок.
+                    Упор сделан на изделиях из бронзы, красивых, ярких и обладающих <b>художественной ценностью</b>.
+                  </p>
+                </div>
+              </div>
+            </section>
+          </ParallaxLayer>
+
+          <ParallaxLayer offset={window.innerWidth < 768  ? (window.innerWidth < 440 ? 5 : 4.2) : 4.9} speed={1.4} factor={0.5} style={{ background: '#2b2b2b' }}>
+            <section className="section">
+              <div className="container-items">
+                <div className="items-text">
+                  <p>
+                    Эти предметы попали на <b>Ангару</b> из разных регионов и позволяют проследить направления <b>культурных связей</b>, понять, что выступало предметом обмена.
+                    <br /><br />
+                    Узнаваемые изображения <b>животных и птиц</b> позволяют нам заглянуть в мир идей и образов людей, живших на ангарских берегах более <b>1500 лет</b> назад.
+                    <br /><br />
+                    Представленные <b>керамические сосуды</b> не относятся к могильнику, но найдены на этом же памятнике и характерны для раннего железного века и неолита Приангарья.
                   </p>
                 </div>
               </div>
