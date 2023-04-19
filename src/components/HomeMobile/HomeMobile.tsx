@@ -266,7 +266,7 @@ export default function HomeMobile() {
             </section>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={window.innerWidth < 685  ? (window.innerWidth < 440 ? 5.3 : 5.8) : 4.99} speed={1.4} factor={0.5} style={{ background: '#2b2b2b' }}>
+          <ParallaxLayer offset={window.innerWidth < 685  ? (window.innerWidth < 440 ? 5 : 5.6) : 4.8} speed={1.4} factor={0.5} style={{ background: '#2b2b2b' }}>
             <section className="section">
               <div className="container-items">
                 <div className="items-text">

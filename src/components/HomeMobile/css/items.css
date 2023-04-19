@@ -30,7 +30,11 @@
     gap: 0.1em;
     justify-content: space-around;
     align-items:center;
-    margin-top: 20vh;
+    margin-top: 16vh;
+}
+
+.items-img-container div div:first-of-type {
+    margin-top: 16vh;
 }
 
 .items-img-container div div p {
