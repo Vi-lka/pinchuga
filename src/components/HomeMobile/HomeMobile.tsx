@@ -76,7 +76,7 @@ export default function HomeMobile() {
   return (
     <Suspense fallback={<h1 style={{ color: 'black' }}>Loading...</h1>}>
       <div className="homeMobile-container">
-        <Parallax ref={parallaxRef} pages={6}>
+        <Parallax ref={parallaxRef} pages={7}>
           <ParallaxLayer offset={0} speed={0.1} factor={1}>
             <section className="section">
               <div className="container-title">
@@ -184,23 +184,56 @@ export default function HomeMobile() {
             </section>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={window.innerWidth < 768 ? 3.7 : 3.7} speed={0.5} factor={0.5} style={{ textAlign: 'center' }}>
+          <ParallaxLayer offset={window.innerWidth < 768 ? 3.5 : 3.6} speed={0.5} factor={0.5} style={{ textAlign: 'center' }}>
             <div className="items-img-container">
               <div>
-                <SuspenseImage src={img_draw_bird_2} alt='Сокол' className='items-img' />
-                <SuspenseImage src={img_draw_bird_1} alt='Орёл' className='items-img' />
+                <div>
+                  <p>Сокол</p>
+                  <hr className='hr-line'/>
+                  <SuspenseImage src={img_draw_bird_2} alt='Сокол' className='items-img' />
+                </div>
+                <div>
+                  <SuspenseImage src={img_draw_bird_1} alt='Орёл' className='items-img' />
+                  <hr className='hr-line'/>
+                  <p>Орёл</p>
+                </div>
               </div>
               <div>
-                <SuspenseImage src={img_draw_horse} alt='Олень' className='items-img' />
-                <SuspenseImage src={img_draw_disk} alt='Диск с циркульным орнаментом' className='items-img' />
+                <div>
+                  <p>Олень</p>
+                  <hr className='hr-line'/>
+                  <SuspenseImage src={img_draw_horse} alt='Олень' className='items-img' />
+                </div>
+                <div>
+                  <SuspenseImage src={img_draw_disk} alt='Диск с циркульным орнаментом' className='items-img' />
+                  <hr className='hr-line'/>
+                  <p>Диск с циркульным орнаментом</p>
+                </div>
               </div>
               <div>
-                <SuspenseImage src={img_draw_item_2} alt='Прямоугольная Пряжка' className='items-img' />
-                <SuspenseImage src={img_draw_item_1} alt='Пряжка' className='items-img' />
+                <div>
+                  <p>Прямоугольная Пряжка</p>
+                  <hr className='hr-line'/>
+                  <SuspenseImage src={img_draw_item_2} alt='Прямоугольная Пряжка' className='items-img' />
+                </div>
+                <div>
+                  <SuspenseImage src={img_draw_item_1} alt='Пряжка' className='items-img' />
+                  <hr className='hr-line'/>
+                  <p>Пряжка</p>
+                </div>
               </div>
               <div>
-                <SuspenseImage src={img_draw_cup_2} alt='Горшок с личиной' className='items-img' />
-                <SuspenseImage src={img_draw_cup_1} alt='Горшок с оттисками «сетки-плетенки»' className='items-img' />
+                <div>
+                  <p>Горшок «личина»</p>
+                  <hr className='hr-line'/>
+                  <SuspenseImage src={img_draw_cup_2} alt='Горшок с личиной' className='items-img' />
+                </div>
+                <div>
+                  <SuspenseImage src={img_draw_cup_1} alt='Горшок с оттисками «сетки-плетенки»' className='items-img' />
+                  <hr className='hr-line'/>
+                  <p>Горшок «сетка-плетенка»</p>
+                </div>
+
               </div>
             </div>
           </ParallaxLayer>
@@ -225,7 +258,7 @@ export default function HomeMobile() {
             </section>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={window.innerWidth < 768  ? (window.innerWidth < 440 ? 5 : 4.2) : 4.9} speed={1.4} factor={0.5} style={{ background: '#2b2b2b' }}>
+          <ParallaxLayer offset={window.innerWidth < 685  ? (window.innerWidth < 440 ? 5.3 : 5.8) : 4.99} speed={1.4} factor={0.5} style={{ background: '#2b2b2b' }}>
             <section className="section">
               <div className="container-items">
                 <div className="items-text">
