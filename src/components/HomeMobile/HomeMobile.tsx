@@ -21,9 +21,11 @@ import angara_map from '../../assets/images/angara_map.svg'
 import funeral_pure from '../../assets/images/funeral_pure.svg'
 import { IParallax, Parallax, ParallaxLayer } from '@react-spring/parallax';
 import { animated as anim, useSpring } from '@react-spring/web';
-import { AnimTextD } from './componentsMobile/AnimTextD';
-import { AnimImgD } from './componentsMobile/AnimImgD';
+import { AnimTextR } from './componentsMobile/AnimTextR';
 import SuspenseImage from '../../utils/SuspenseImage';
+import { AnimTextL } from './componentsMobile/AnimTextL';
+import { AnimHrR } from './componentsMobile/AnimHrR';
+import { AnimHrL } from './componentsMobile/AnimHrL';
 
 export default function HomeMobile() {
 
@@ -194,50 +196,50 @@ export default function HomeMobile() {
             <div className="items-img-container">
               <div>
                 <div>
-                  <p>Сокол</p>
-                  <hr className='hr-line'/>
+                  <AnimTextR>Сокол</AnimTextR>
+                  <AnimHrR />
                   <SuspenseImage src={img_draw_bird_2} alt='Сокол' className='items-img' />
                 </div>
                 <div>
                   <SuspenseImage src={img_draw_bird_1} alt='Орёл' className='items-img' />
-                  <hr className='hr-line'/>
-                  <p>Орёл</p>
+                  <AnimHrL />
+                  <AnimTextL>Орёл</AnimTextL>
                 </div>
               </div>
               <div>
                 <div>
-                  <p>Олень</p>
-                  <hr className='hr-line'/>
+                  <AnimTextR>Олень</AnimTextR>
+                  <AnimHrR />
                   <SuspenseImage src={img_draw_horse} alt='Олень' className='items-img' />
                 </div>
                 <div>
                   <SuspenseImage src={img_draw_disk} alt='Диск с циркульным орнаментом' className='items-img' />
-                  <hr className='hr-line'/>
-                  <p>Диск с циркульным орнаментом</p>
+                  <AnimHrL />
+                  <AnimTextL>Диск с циркульным орнаментом</AnimTextL>
                 </div>
               </div>
               <div>
                 <div>
-                  <p>Прямоугольная Пряжка</p>
-                  <hr className='hr-line'/>
+                  <AnimTextR>Прямоугольная Пряжка</AnimTextR>
+                  <AnimHrR />
                   <SuspenseImage src={img_draw_item_2} alt='Прямоугольная Пряжка' className='items-img' />
                 </div>
                 <div>
                   <SuspenseImage src={img_draw_item_1} alt='Пряжка' className='items-img' />
-                  <hr className='hr-line'/>
-                  <p>Пряжка</p>
+                  <AnimHrL />
+                  <AnimTextL>Пряжка</AnimTextL>
                 </div>
               </div>
               <div>
                 <div>
-                  <p>Горшок «личина»</p>
-                  <hr className='hr-line'/>
+                  <AnimTextR>Горшок «личина»</AnimTextR>
+                  <AnimHrR />
                   <SuspenseImage src={img_draw_cup_2} alt='Горшок с личиной' className='items-img' />
                 </div>
                 <div>
                   <SuspenseImage src={img_draw_cup_1} alt='Горшок с оттисками «сетки-плетенки»' className='items-img' />
-                  <hr className='hr-line'/>
-                  <p>Горшок «сетка-плетенка»</p>
+                  <AnimHrL />
+                  <AnimTextL>Горшок «сетка-плетенка»</AnimTextL>
                 </div>
 
               </div>

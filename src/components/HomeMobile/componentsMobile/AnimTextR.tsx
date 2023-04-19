@@ -3,31 +3,33 @@ import { useInView, animated } from '@react-spring/web'
 import { buildInteractionObserverThreshold } from '../../../utils/threshold'
 
 
-export const AnimImgD = ({ src, alt, className }: { src: any, alt: string, className?: string }) => {
+export const AnimTextR = ({ children }: { children: React.ReactNode }) => {
   const [ref, springs] = useInView(
     () => ({
       from: {
         opacity: 0,
-        y: 15,
+        x: 40,
       },
       to: {
         opacity: 1,
-        y: 0,
+        x: 0,
       },
       config: {
-        mass: 2,
-        friction: 60,
+        mass: 3,
+        friction: 35,
         tension: 180,
       },
-      delay: 100
+      delay: 150
     }),
     {
-      rootMargin: '-15% 0px -50% 0px',
+      rootMargin: '0% 0px -20% 0px',
       amount: buildInteractionObserverThreshold(),
     }
   )
 
   return (
-    <animated.img ref={ref} style={springs} src={src} alt={alt} className={className}/>
+    <animated.p ref={ref} style={springs}>
+      {children}
+    </animated.p>
   )
 }
