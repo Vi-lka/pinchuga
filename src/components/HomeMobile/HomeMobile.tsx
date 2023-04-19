@@ -73,10 +73,16 @@ export default function HomeMobile() {
     delay: 800
   })
 
+  const config = {
+    mass: 3,
+    friction: 35,
+    tension: 180,
+  }
+
   return (
     <Suspense fallback={<h1 style={{ color: 'black' }}>Loading...</h1>}>
       <div className="homeMobile-container">
-        <Parallax ref={parallaxRef} pages={7}>
+        <Parallax ref={parallaxRef} pages={7} config={config}>
           <ParallaxLayer offset={0} speed={0.1} factor={1}>
             <section className="section">
               <div className="container-title">
