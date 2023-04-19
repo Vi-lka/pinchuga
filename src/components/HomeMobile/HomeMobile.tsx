@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useRef, useState } from 'react'
+import React, { Suspense, createRef, useEffect, useRef, useState } from 'react'
 import './homeMobile.css';
 import './css/title.css';
 import './css/migration.css';
@@ -28,6 +28,9 @@ import { AnimHrR } from './componentsMobile/AnimHrR';
 import { AnimHrL } from './componentsMobile/AnimHrL';
 
 export default function HomeMobile() {
+
+  const mainContainer = createRef<HTMLDivElement>()
+
 
   const parallaxRef = useRef<IParallax>(null!)
 
@@ -81,11 +84,22 @@ export default function HomeMobile() {
     tension: 180,
   }
 
+  useEffect(() => {
+    const space = parallaxRef.current.space;
+
+    console.log(space*7, "space");
+  }, [parallaxRef])
+
   return (
     <Suspense fallback={<h1 style={{ color: 'black' }}>Loading...</h1>}>
       <div className="homeMobile-container">
-        <Parallax ref={parallaxRef} pages={7} config={config}>
-          <ParallaxLayer offset={0} speed={0.1} factor={1}>
+        <Parallax 
+          ref={parallaxRef} 
+          pages={7} 
+          config={config} 
+          className='parallax-container'
+        >
+          <ParallaxLayer offset={0} speed={0.1} factor={1} onClick={() => parallaxRef.current.scrollTo(0.5)}>
             <section className="section">
               <div className="container-title">
                 <ParallaxLayer offset={0.15} speed={0.6} factor={0.15}>

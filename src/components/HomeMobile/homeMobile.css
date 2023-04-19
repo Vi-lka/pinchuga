@@ -5,6 +5,9 @@
     height: 100%;
     color: black;
     background-color: #f6f6f6;
+    scroll-snap-type: mandatory;
+    scroll-snap-points-y: repeat(300px);
+    scroll-snap-type: y mandatory;
 }
 
 .section {
