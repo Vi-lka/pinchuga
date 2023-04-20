@@ -26,7 +26,6 @@ import SuspenseImage from '../../utils/SuspenseImage';
 import { AnimTextL } from './componentsMobile/AnimTextL';
 import { AnimHrR } from './componentsMobile/AnimHrR';
 import { AnimHrL } from './componentsMobile/AnimHrL';
-import GreatMigrationDiv from './componentsMobile/GreatMigrationDiv';
 
 export default function HomeMobile() {
 
@@ -95,7 +94,7 @@ export default function HomeMobile() {
           className='parallax-container'
         >
 
-          <ParallaxLayer offset={0.12} speed={-0.15} factor={0.15} >
+          <ParallaxLayer offset={0.12} speed={0.8} factor={0.15} >
             <anim.div className="title-imgs" style={propsImgs}>
               <SuspenseImage src={img_draw_bird_1} alt='Орёл' />
               <SuspenseImage src={img_draw_disk} alt='Диск' />
@@ -103,7 +102,7 @@ export default function HomeMobile() {
             </anim.div>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={0.4} speed={-0.2} factor={0.15}>
+          <ParallaxLayer offset={0.4} speed={0.4} factor={0.15}>
             <div className="title-text">
               <anim.h1 style={propsH1}>
                 Пункт<br />Прошлого
@@ -111,7 +110,7 @@ export default function HomeMobile() {
             </div>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={0.58} speed={-0.3} factor={0.15}>
+          <ParallaxLayer offset={0.58} speed={0.1} factor={0.15}>
             <div className="title-text">
               <anim.h6 style={propsH6}>
                 3D ОБЗОР НАХОДОК ИЗ АРХЕОЛОГИЧЕСКОГО КОМПЛЕКСА ПИНЧУГА-6
@@ -119,7 +118,7 @@ export default function HomeMobile() {
             </div>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={0.9} speed={-0.35} factor={0.1} className="title-scroll" onClick={() => parallaxRef.current.scrollTo(1.4)} >
+          <ParallaxLayer offset={0.9} speed={-0.35} factor={0.1} className="title-scroll" onClick={() => parallaxRef.current.scrollTo(1.45)} >
             <anim.div style={propsScroll}>
               <p>
                 ПРОКРУТИТЕ ИЛИ НАЖМИТЕ, ЧТОБЫ ПРОДОЛЖИТЬ
@@ -132,7 +131,7 @@ export default function HomeMobile() {
             <SuspenseImage src={big_map} alt='Центральная Азия' className='big-map-img' />
           </ParallaxLayer> */}
 
-          <ParallaxLayer offset={1.5} speed={0.5} factor={1.2} style={{background: '#2b2b2b'}}>
+          <ParallaxLayer offset={1.6} speed={0.5} factor={1.2} style={{background: '#2b2b2b'}}>
             <section className="section">
               <div className="container-migration">
                 <div className="migration-img">
