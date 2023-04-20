@@ -8,9 +8,8 @@
 }
 
 .funeral-pure-img {
-    width: 50%;
+    width: 45%;
     margin: 0 auto;
-    margin-top: 10vh;
 }
 
 .funeral-pure-text {
@@ -32,7 +31,6 @@
     .funeral-pure-img {
         width: 50%;
         margin: 0 auto;
-        margin-top: 20vh;
     }
 
     .funeral-pure-text p {
@@ -45,7 +43,6 @@
     .funeral-pure-img {
         width: 50%;
         margin: 0 auto;
-        margin-top: 20vh;
     }
 
     .funeral-pure-text p {
@@ -59,7 +56,6 @@
     .funeral-pure-img {
         width: 70%;
         margin: 0 auto;
-        margin-top: 20vh;
     }
 
     .funeral-pure-text {
@@ -76,7 +72,6 @@
     .funeral-pure-img {
         width: 75%;
         margin: 0 auto;
-        margin-top: 14vh;
     }
 }
 
@@ -84,7 +79,6 @@
     .funeral-pure-img {
         width: 80%;
         margin: 0 auto;
-        margin-top: 12vh;
     }
 }
 
@@ -92,6 +86,5 @@
     .funeral-pure-img {
         width: 95%;
         margin: 0 auto;
-        margin-top: 10vh;
     }
 }

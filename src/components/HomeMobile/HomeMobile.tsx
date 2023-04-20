@@ -7,6 +7,7 @@ import './css/angara-map.css';
 import './css/funeral-pure.css';
 import './css/items.css';
 import Arrow_scroll from '../../assets/images/Arrow_scroll.png'
+import Arrow_scroll_white from '../../assets/images/Arrow_scroll_white.png'
 import img_draw_bird_1 from '../../assets/images/img_draw_bird_1.svg'
 import img_draw_bird_2 from '../../assets/images/img_draw_bird_2.svg'
 import img_draw_disk from '../../assets/images/img_draw_disk.svg'
@@ -26,6 +27,7 @@ import SuspenseImage from '../../utils/SuspenseImage';
 import { AnimTextL } from './componentsMobile/AnimTextL';
 import { AnimHrR } from './componentsMobile/AnimHrR';
 import { AnimHrL } from './componentsMobile/AnimHrL';
+import ScrollArrow from './componentsMobile/ScrollArrow';
 
 export default function HomeMobile() {
 
@@ -89,12 +91,12 @@ export default function HomeMobile() {
       <anim.div ref={mainContainer} className="homeMobile-container">
         <Parallax 
           ref={parallaxRef} 
-          pages={7} 
+          pages={10} 
           config={config} 
           className='parallax-container'
         >
 
-          <ParallaxLayer offset={0.12} speed={0.8} factor={0.15} >
+          <ParallaxLayer offset={0.12} speed={0.4} factor={0.2} >
             <anim.div className="title-imgs" style={propsImgs}>
               <SuspenseImage src={img_draw_bird_1} alt='Орёл' />
               <SuspenseImage src={img_draw_disk} alt='Диск' />
@@ -102,7 +104,7 @@ export default function HomeMobile() {
             </anim.div>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={0.4} speed={0.4} factor={0.15}>
+          <ParallaxLayer offset={0.4} speed={0.2} factor={0.2}>
             <div className="title-text">
               <anim.h1 style={propsH1}>
                 Пункт<br />Прошлого
@@ -110,7 +112,7 @@ export default function HomeMobile() {
             </div>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={0.58} speed={0.1} factor={0.15}>
+          <ParallaxLayer offset={0.58} speed={0.1} factor={0.2}>
             <div className="title-text">
               <anim.h6 style={propsH6}>
                 3D ОБЗОР НАХОДОК ИЗ АРХЕОЛОГИЧЕСКОГО КОМПЛЕКСА ПИНЧУГА-6
@@ -118,7 +120,7 @@ export default function HomeMobile() {
             </div>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={0.9} speed={-0.35} factor={0.1} className="title-scroll" onClick={() => parallaxRef.current.scrollTo(1.45)} >
+          <ParallaxLayer offset={0.9} speed={0} factor={0.15} className="title-scroll" onClick={() => parallaxRef.current.scrollTo(1.52)} >
             <anim.div style={propsScroll}>
               <p>
                 ПРОКРУТИТЕ ИЛИ НАЖМИТЕ, ЧТОБЫ ПРОДОЛЖИТЬ
@@ -127,9 +129,10 @@ export default function HomeMobile() {
             </anim.div>
           </ParallaxLayer>
 
-          {/* <ParallaxLayer offset={window.innerWidth < 768 ? 1 : 1} speed={0.5} factor={0.5} style={{ textAlign: 'center' }}>
+          <ParallaxLayer offset={window.innerWidth < 768 ? 2.5 : 2.4} speed={0.1} factor={0.5} style={{ textAlign: 'center' }}>
             <SuspenseImage src={big_map} alt='Центральная Азия' className='big-map-img' />
-          </ParallaxLayer> */}
+            <ScrollArrow src={Arrow_scroll} className={'scroll-arrow second'} onClick={() => parallaxRef.current.scrollTo(2.85)}/>
+          </ParallaxLayer>
 
           <ParallaxLayer offset={1.6} speed={0.5} factor={1.2} style={{background: '#2b2b2b'}}>
             <section className="section">
@@ -150,16 +153,20 @@ export default function HomeMobile() {
                     <br /><br />
                     Спустя почти полтора века, в 354 г. н.э., они стали известны в Европе под именем <b>«гунны»</b>, как суровые и безжалостные завоеватели.
                   </p>
+
+                  <ScrollArrow src={Arrow_scroll_white} className={'scroll-arrow first'} onClick={() => parallaxRef.current.scrollTo(2.25)}/>
+
                 </div>
+
               </div>
             </section>
           </ParallaxLayer>
 
-          {/* <ParallaxLayer offset={window.innerWidth < 768 ? 1.9 : 1.9} speed={0.5} factor={0.7} style={{ textAlign: 'center' }}>
+           <ParallaxLayer offset={3.5} speed={0.1} factor={0.7} style={{ textAlign: 'center' }}>
             <SuspenseImage src={angara_map} alt='Ангара и Енисей' className='angara-map-img' />
           </ParallaxLayer>
 
-          <ParallaxLayer offset={window.innerWidth < 768 ? 1.5 : 1.8} speed={1.4} factor={0.4} style={{ background: '#2b2b2b' }}>
+          <ParallaxLayer offset={3} speed={0.5} factor={0.4} style={{ background: '#2b2b2b' }}>
             <section className="section">
               <div className="container-big-map">
                 <div className="big-map-text">
@@ -175,11 +182,11 @@ export default function HomeMobile() {
             </section>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={window.innerWidth < 768 ? 2.9 : 2.9} speed={0.5} factor={0.5} style={{ textAlign: 'center' }}>
+          <ParallaxLayer offset={window.innerWidth < 768 ? 4.9 : 4.9} speed={0.1} factor={0.5} style={{ textAlign: 'center' }}>
             <SuspenseImage src={funeral_pure} alt='Могильник Пинчуга-6' className='funeral-pure-img' />
           </ParallaxLayer>
 
-          <ParallaxLayer offset={window.innerWidth < 768 ? 2 : 2.3} speed={1.4} factor={0.5} style={{ background: '#2b2b2b' }}>
+          <ParallaxLayer offset={window.innerWidth < 768 ? 4.2 : 4.3} speed={0.5} factor={0.5} style={{ background: '#2b2b2b' }}>
             <section className="section">
               <div className="container-angara-map">
                 <div className="angara-map-text">
@@ -196,7 +203,7 @@ export default function HomeMobile() {
             </section>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={window.innerWidth < 768 ? 3.5 : 3.6} speed={0.5} factor={0.5} style={{ textAlign: 'center' }}>
+          <ParallaxLayer offset={window.innerWidth < 768 ? 5.85 : 5.9} speed={0.2} factor={window.innerWidth < 685 ? 2.7 : 1.5} style={{ textAlign: 'center' }}>
             <div className="items-img-container">
               <div>
                 <div>
@@ -250,7 +257,7 @@ export default function HomeMobile() {
             </div>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={window.innerWidth < 768 ? 3 : 3} speed={1.4} factor={0.5} style={{ background: '#2b2b2b' }}>
+          <ParallaxLayer offset={window.innerWidth < 768 ? 5.3 : 5.5} speed={0.5} factor={0.6} style={{ background: '#2b2b2b' }}>
             <section className="section">
               <div className="container-funeral-pure">
                 <div className="funeral-pure-text">
@@ -270,7 +277,7 @@ export default function HomeMobile() {
             </section>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={window.innerWidth < 685  ? (window.innerWidth < 440 ? 5 : 5.6) : 4.8} speed={1.4} factor={0.5} style={{ background: '#2b2b2b' }}>
+          <ParallaxLayer offset={window.innerWidth < 685  ? 8 : 7.2} speed={0.5} factor={0.5} style={{ background: '#2b2b2b' }}>
             <section className="section">
               <div className="container-items">
                 <div className="items-text">
@@ -284,7 +291,7 @@ export default function HomeMobile() {
                 </div>
               </div>
             </section>
-          </ParallaxLayer> */}
+          </ParallaxLayer>
 
         </Parallax>
       </anim.div>
