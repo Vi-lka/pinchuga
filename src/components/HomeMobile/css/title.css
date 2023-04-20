@@ -84,6 +84,7 @@
 }
 
 .title-scroll p {
+    user-select: none;
     font-family: 'Lato';
     font-weight: 300;
     font-size: 1vw;
