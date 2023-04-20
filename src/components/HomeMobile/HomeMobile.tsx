@@ -20,16 +20,17 @@ import big_map from '../../assets/images/big_map.svg'
 import angara_map from '../../assets/images/angara_map.svg'
 import funeral_pure from '../../assets/images/funeral_pure.svg'
 import { IParallax, Parallax, ParallaxLayer } from '@react-spring/parallax';
-import { animated as anim, useSpring } from '@react-spring/web';
+import { animated as anim, useInView, useScroll, useSpring } from '@react-spring/web';
 import { AnimTextR } from './componentsMobile/AnimTextR';
 import SuspenseImage from '../../utils/SuspenseImage';
 import { AnimTextL } from './componentsMobile/AnimTextL';
 import { AnimHrR } from './componentsMobile/AnimHrR';
 import { AnimHrL } from './componentsMobile/AnimHrL';
+import GreatMigrationDiv from './componentsMobile/GreatMigrationDiv';
 
 export default function HomeMobile() {
 
-  const mainContainer = createRef<HTMLDivElement>()
+  const mainContainer = useRef<HTMLDivElement>(null!)
 
 
   const parallaxRef = useRef<IParallax>(null!)
@@ -81,91 +82,59 @@ export default function HomeMobile() {
   const config = {
     mass: 3,
     friction: 35,
-    tension: 180,
+    tension: 200,
   }
-
-  useEffect(() => {
-    const space = parallaxRef.current.space;
-
-    console.log(space*7, "space");
-  }, [parallaxRef])
 
   return (
     <Suspense fallback={<h1 style={{ color: 'black' }}>Loading...</h1>}>
-      <div className="homeMobile-container">
+      <anim.div ref={mainContainer} className="homeMobile-container">
         <Parallax 
           ref={parallaxRef} 
           pages={7} 
           config={config} 
           className='parallax-container'
         >
-          <ParallaxLayer offset={0} speed={0.1} factor={1} onClick={() => parallaxRef.current.scrollTo(0.5)}>
-            <section className="section">
-              <div className="container-title">
-                <ParallaxLayer offset={0.15} speed={0.6} factor={0.15}>
-                  <anim.div className="title-imgs" style={propsImgs}>
-                    <SuspenseImage src={img_draw_bird_1} alt='Орёл' />
-                    <SuspenseImage src={img_draw_disk} alt='Диск' />
-                    <SuspenseImage src={img_draw_bird_2} alt='Сокол' />
-                  </anim.div>
-                </ParallaxLayer>
 
-                <ParallaxLayer offset={0.4} speed={0.6} factor={0.3}>
-                  <div className="title-text">
-                    <ParallaxLayer offset={0} speed={0.2} factor={0.2}>
-                      <anim.h1 style={propsH1}>
-                        Пункт<br />Прошлого
-                      </anim.h1>
-                    </ParallaxLayer>
-                    <ParallaxLayer offset={0.2} speed={0.1} factor={0.1}>
-                      <anim.h6 style={propsH6}>
-                        3D ОБЗОР НАХОДОК ИЗ АРХЕОЛОГИЧЕСКОГО КОМПЛЕКСА ПИНЧУГА-6
-                      </anim.h6>
-                    </ParallaxLayer>
-                  </div>
-                </ParallaxLayer>
-
-                <ParallaxLayer offset={0.9} speed={1} factor={0.1}>
-                  <anim.div className="title-scroll" style={propsScroll}>
-                    <p>
-                      ПРОКРУТИТЕ, ЧТОБЫ ПРОДОЛЖИТЬ
-                    </p>
-                    <SuspenseImage src={Arrow_scroll} alt='scroll' />
-                  </anim.div>
-                </ParallaxLayer>
-              </div>
-            </section>
+          <ParallaxLayer offset={0.12} speed={0.5} factor={0.15} onClick={() => parallaxRef.current.scrollTo(1)}>
+            <anim.div className="title-imgs" style={propsImgs}>
+              <SuspenseImage src={img_draw_bird_1} alt='Орёл' />
+              <SuspenseImage src={img_draw_disk} alt='Диск' />
+              <SuspenseImage src={img_draw_bird_2} alt='Сокол' />
+            </anim.div>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={window.innerWidth < 768 ? 1 : 1} speed={0.5} factor={0.5} style={{ textAlign: 'center' }}>
+          <ParallaxLayer offset={0.4} speed={0.6} factor={0.15}>
+            <div className="title-text">
+              <anim.h1 style={propsH1}>
+                Пункт<br />Прошлого
+              </anim.h1>
+            </div>
+          </ParallaxLayer>
+
+          <ParallaxLayer offset={0.58} speed={0.7} factor={0.15}>
+            <div className="title-text">
+              <anim.h6 style={propsH6}>
+                3D ОБЗОР НАХОДОК ИЗ АРХЕОЛОГИЧЕСКОГО КОМПЛЕКСА ПИНЧУГА-6
+              </anim.h6>
+            </div>
+          </ParallaxLayer>
+
+          <ParallaxLayer offset={0.9} speed={0.8} factor={0.1}>
+            <anim.div className="title-scroll" style={propsScroll}>
+              <p>
+                ПРОКРУТИТЕ, ЧТОБЫ ПРОДОЛЖИТЬ
+              </p>
+              <SuspenseImage src={Arrow_scroll} alt='scroll' />
+            </anim.div>
+          </ParallaxLayer>
+
+          {/* <ParallaxLayer offset={window.innerWidth < 768 ? 1 : 1} speed={0.5} factor={0.5} style={{ textAlign: 'center' }}>
             <SuspenseImage src={big_map} alt='Центральная Азия' className='big-map-img' />
-          </ParallaxLayer>
+          </ParallaxLayer> */}
 
-          <ParallaxLayer offset={0.999999999} speed={1.6} factor={1.1} style={{ background: '#2b2b2b' }}>
-            <section className="section">
-              <div className="container-migration">
-                <div className="migration-img">
-                  <SuspenseImage src={great_migration} alt='Великое переселение народов' />
-                </div>
+          <GreatMigrationDiv offset={0.999} speed={1} factor={1.5}/>
 
-                <div className="migration-text">
-                  <p>
-                    <strong>Эпоха Великого переселения народов</strong> – один из ключевых моментов истории Евразии вообще и Сибири в частности.
-                    <br /><br />
-                    В период <b>со II по VI вв. н.э.</b> на большей части континента происходили масштабные миграции населения, что привело к формированию новых народов и государств.
-                    <br /><br />
-                    Толчком этого процесса стал разгром <b>Хуннской державы</b>, проигравшей в борьбе за гегемонию в Центральной Азии китайской империи Хань и её союзникам.
-                    <br /><br />
-                    Племена хунну двинулись на запад, сметая по пути другие народы и привнося серьезные изменения в их культуру.
-                    <br /><br />
-                    Спустя почти полтора века, в 354 г. н.э., они стали известны в Европе под именем <b>«гунны»</b>, как суровые и безжалостные завоеватели.
-                  </p>
-                </div>
-              </div>
-            </section>
-          </ParallaxLayer>
-
-          <ParallaxLayer offset={window.innerWidth < 768 ? 1.9 : 1.9} speed={0.5} factor={0.7} style={{ textAlign: 'center' }}>
+          {/* <ParallaxLayer offset={window.innerWidth < 768 ? 1.9 : 1.9} speed={0.5} factor={0.7} style={{ textAlign: 'center' }}>
             <SuspenseImage src={angara_map} alt='Ангара и Енисей' className='angara-map-img' />
           </ParallaxLayer>
 
@@ -294,10 +263,10 @@ export default function HomeMobile() {
                 </div>
               </div>
             </section>
-          </ParallaxLayer>
+          </ParallaxLayer> */}
 
         </Parallax>
-      </div>
+      </anim.div>
     </Suspense>
   )
 }
