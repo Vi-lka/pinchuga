@@ -79,6 +79,10 @@
     text-align: center;
 }
 
+.title-scroll:hover {
+    cursor: pointer;
+}
+
 .title-scroll p {
     font-family: 'Lato';
     font-weight: 300;

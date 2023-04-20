@@ -39,7 +39,7 @@ export default function HomeMobile() {
     from: { opacity: 0, y: 15 },
     to: { opacity: 1, y: 0 },
     config: {
-      mass: 7,
+      mass: 1,
       friction: 120,
       tension: 200,
     },
@@ -50,7 +50,7 @@ export default function HomeMobile() {
     from: { opacity: 0, y: 15 },
     to: { opacity: 1, y: 0 },
     config: {
-      mass: 7,
+      mass: 1,
       friction: 120,
       tension: 200,
     },
@@ -61,7 +61,7 @@ export default function HomeMobile() {
     from: { opacity: 0, y: 15 },
     to: { opacity: 1, y: 0 },
     config: {
-      mass: 7,
+      mass: 1,
       friction: 120,
       tension: 200,
     },
@@ -72,7 +72,7 @@ export default function HomeMobile() {
     from: { opacity: 0, y: 15, },
     to: { opacity: 1, y: 0, },
     config: {
-      mass: 7,
+      mass: 1,
       friction: 120,
       tension: 200,
     },
@@ -80,7 +80,7 @@ export default function HomeMobile() {
   })
 
   const config = {
-    mass: 3,
+    mass: 2,
     friction: 35,
     tension: 200,
   }
@@ -95,7 +95,7 @@ export default function HomeMobile() {
           className='parallax-container'
         >
 
-          <ParallaxLayer offset={0.12} speed={0.5} factor={0.15} onClick={() => parallaxRef.current.scrollTo(1)}>
+          <ParallaxLayer offset={0.12} speed={-0.15} factor={0.15} >
             <anim.div className="title-imgs" style={propsImgs}>
               <SuspenseImage src={img_draw_bird_1} alt='Орёл' />
               <SuspenseImage src={img_draw_disk} alt='Диск' />
@@ -103,7 +103,7 @@ export default function HomeMobile() {
             </anim.div>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={0.4} speed={0.6} factor={0.15}>
+          <ParallaxLayer offset={0.4} speed={-0.2} factor={0.15}>
             <div className="title-text">
               <anim.h1 style={propsH1}>
                 Пункт<br />Прошлого
@@ -111,7 +111,7 @@ export default function HomeMobile() {
             </div>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={0.58} speed={0.7} factor={0.15}>
+          <ParallaxLayer offset={0.58} speed={-0.3} factor={0.15}>
             <div className="title-text">
               <anim.h6 style={propsH6}>
                 3D ОБЗОР НАХОДОК ИЗ АРХЕОЛОГИЧЕСКОГО КОМПЛЕКСА ПИНЧУГА-6
@@ -119,10 +119,10 @@ export default function HomeMobile() {
             </div>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={0.9} speed={0.8} factor={0.1}>
-            <anim.div className="title-scroll" style={propsScroll}>
+          <ParallaxLayer offset={0.9} speed={-0.35} factor={0.1} className="title-scroll" onClick={() => parallaxRef.current.scrollTo(1.4)} >
+            <anim.div style={propsScroll}>
               <p>
-                ПРОКРУТИТЕ, ЧТОБЫ ПРОДОЛЖИТЬ
+                ПРОКРУТИТЕ ИЛИ НАЖМИТЕ, ЧТОБЫ ПРОДОЛЖИТЬ
               </p>
               <SuspenseImage src={Arrow_scroll} alt='scroll' />
             </anim.div>
@@ -132,7 +132,29 @@ export default function HomeMobile() {
             <SuspenseImage src={big_map} alt='Центральная Азия' className='big-map-img' />
           </ParallaxLayer> */}
 
-          <GreatMigrationDiv offset={0.999} speed={1} factor={1.5}/>
+          <ParallaxLayer offset={1.5} speed={0.5} factor={1.2} style={{background: '#2b2b2b'}}>
+            <section className="section">
+              <div className="container-migration">
+                <div className="migration-img">
+                  <SuspenseImage src={great_migration} alt='Великое переселение народов' />
+                </div>
+                
+                <div className="migration-text">
+                  <p>
+                    <strong>Эпоха Великого переселения народов</strong> – один из ключевых моментов истории Евразии вообще и Сибири в частности.
+                    <br /><br />
+                    В период <b>со II по VI вв. н.э.</b> на большей части континента происходили масштабные миграции населения, что привело к формированию новых народов и государств.
+                    <br /><br />
+                    Толчком этого процесса стал разгром <b>Хуннской державы</b>, проигравшей в борьбе за гегемонию в Центральной Азии китайской империи Хань и её союзникам.
+                    <br /><br />
+                    Племена хунну двинулись на запад, сметая по пути другие народы и привнося серьезные изменения в их культуру.
+                    <br /><br />
+                    Спустя почти полтора века, в 354 г. н.э., они стали известны в Европе под именем <b>«гунны»</b>, как суровые и безжалостные завоеватели.
+                  </p>
+                </div>
+              </div>
+            </section>
+          </ParallaxLayer>
 
           {/* <ParallaxLayer offset={window.innerWidth < 768 ? 1.9 : 1.9} speed={0.5} factor={0.7} style={{ textAlign: 'center' }}>
             <SuspenseImage src={angara_map} alt='Ангара и Енисей' className='angara-map-img' />
