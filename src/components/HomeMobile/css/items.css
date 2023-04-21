@@ -30,7 +30,7 @@
     gap: 0.1em;
     justify-content: space-around;
     align-items:center;
-    margin-top: 18vh;
+    margin-top: 22vh;
 }
 
 .items-img-container div div p {
@@ -48,7 +48,7 @@
     padding-right: 20px;
     border: none;
     border-radius: 6px;
-    box-shadow: 0px 0px 4px #2b2b2b;
+    box-shadow: 0px 0px 4px rgba(43, 43, 43, 0.5);
     margin-right: 5px;
     margin-left: 5px;
 }

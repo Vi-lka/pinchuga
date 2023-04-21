@@ -53,7 +53,7 @@
 @media (max-width: 768px) {
     .container-migration {
         flex-direction: column;
-        justify-content: space-evenly;
+        justify-content: center;
     }
 /* 
     .container-migration div {
