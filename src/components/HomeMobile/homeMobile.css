@@ -13,7 +13,12 @@
     margin-top: 1vh;
 }
 
+.margin-top {
+    margin-top: 18vh !important;
+}
+
 .scroll-arrow {
+    display: block !important;
     width: 80%;
     margin: 0 auto;
     margin-top: 3vh;
@@ -70,7 +75,7 @@
         font-size: 8px !important;
         /* padding-left: 0.1em; */
     }
-    
+
     .scroll-arrow img {
         width: 1.5vw !important;
     }
@@ -81,7 +86,7 @@
         font-size: 9px !important;
         /* padding-left: 0.1em; */
     }
-    
+
     .scroll-arrow img {
         width: 6px !important;
     }
@@ -92,7 +97,7 @@
         font-size: 10px !important;
         /* padding-left: 0.1em; */
     }
-    
+
     .scroll-arrow img {
         width: 6px !important;
     }

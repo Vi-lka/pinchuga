@@ -89,10 +89,10 @@ export default function HomeMobile() {
   return (
     <Suspense fallback={<h1 style={{ color: 'black' }}>Loading...</h1>}>
       <anim.div ref={mainContainer} className="homeMobile-container">
-        <Parallax 
-          ref={parallaxRef} 
-          pages={10} 
-          config={config} 
+        <Parallax
+          ref={parallaxRef}
+          pages={10}
+          config={config}
           className='parallax-container'
         >
 
@@ -132,16 +132,16 @@ export default function HomeMobile() {
 
           <ParallaxLayer offset={window.innerWidth < 768 ? 2 : 1.999} speed={0.1} factor={0.7} style={{ textAlign: 'center' }}>
             <SuspenseImage src={big_map} alt='Центральная Азия' className='big-map-img' />
-            <ScrollArrow src={Arrow_scroll} className={'scroll-arrow black'} onClick={() => parallaxRef.current.scrollTo(2.35)}/>
+            <ScrollArrow src={Arrow_scroll} className={'scroll-arrow black'} onClick={() => parallaxRef.current.scrollTo(2.35)} />
           </ParallaxLayer>
 
-          <ParallaxLayer offset={1} speed={0.5} factor={1.05} style={{background: '#2b2b2b'}}>
+          <ParallaxLayer offset={1} speed={0.5} factor={1.05} style={{ background: '#2b2b2b' }}>
             <section className="section">
               <div className="container-migration">
                 <div className="migration-img">
                   <SuspenseImage src={great_migration} alt='Великое переселение народов' />
                 </div>
-                
+
                 <div className="migration-text">
                   <p>
                     <strong>Эпоха Великого переселения народов</strong> – один из ключевых моментов истории Евразии вообще и Сибири в частности.
@@ -155,7 +155,7 @@ export default function HomeMobile() {
                     Спустя почти полтора века, в 354 г. н.э., они стали известны в Европе под именем <b>«гунны»</b>, как суровые и безжалостные завоеватели.
                   </p>
 
-                  <ScrollArrow src={Arrow_scroll_white} className={'scroll-arrow white'} onClick={() => parallaxRef.current.scrollTo(1.82)}/>
+                  <ScrollArrow src={Arrow_scroll_white} className={'scroll-arrow white'} onClick={() => parallaxRef.current.scrollTo(1.82)} />
 
                 </div>
 
@@ -163,9 +163,9 @@ export default function HomeMobile() {
             </section>
           </ParallaxLayer>
 
-           <ParallaxLayer offset={window.innerWidth < 768 ? 3 : 2.999} speed={0.1} factor={0.7} style={{ textAlign: 'center' }}>
+          <ParallaxLayer offset={window.innerWidth < 768 ? 3 : 2.999} speed={0.1} factor={0.7} style={{ textAlign: 'center' }}>
             <SuspenseImage src={angara_map} alt='Ангара и Енисей' className='angara-map-img' />
-            <ScrollArrow src={Arrow_scroll} className={'scroll-arrow black'} onClick={() => parallaxRef.current.scrollTo(3.5)}/>
+            <ScrollArrow src={Arrow_scroll} className={'scroll-arrow black'} onClick={() => parallaxRef.current.scrollTo(3.5)} />
           </ParallaxLayer>
 
           <ParallaxLayer offset={2.75} speed={0.5} factor={0.4} style={{ background: '#2b2b2b' }}>
@@ -180,7 +180,7 @@ export default function HomeMobile() {
                     Сейчас, на основании последних <b>полевых работ</b> мы можем говорить об этом уверенно.
                   </p>
 
-                  <ScrollArrow src={Arrow_scroll_white} className={'scroll-arrow white'} onClick={() => parallaxRef.current.scrollTo(2.9)}/>
+                  <ScrollArrow src={Arrow_scroll_white} className={'scroll-arrow white'} onClick={() => parallaxRef.current.scrollTo(2.9)} />
                 </div>
               </div>
             </section>
@@ -188,7 +188,7 @@ export default function HomeMobile() {
 
           <ParallaxLayer offset={window.innerWidth < 768 ? 4.3 : 4.15} speed={0.1} factor={0.5} style={{ textAlign: 'center' }}>
             <SuspenseImage src={funeral_pure} alt='Могильник Пинчуга-6' className='funeral-pure-img' />
-            <ScrollArrow src={Arrow_scroll} className={'scroll-arrow black'} onClick={() => parallaxRef.current.scrollTo(4.55)}/>
+            <ScrollArrow src={Arrow_scroll} className={'scroll-arrow black'} onClick={() => parallaxRef.current.scrollTo(4.55)} />
           </ParallaxLayer>
 
           <ParallaxLayer offset={3.9} speed={0.5} factor={0.55} style={{ background: '#2b2b2b' }}>
@@ -204,7 +204,7 @@ export default function HomeMobile() {
                     Он изучался археологами <b>Сибирского федерального университета</b> с 2018 по 2022 год и стал первым полностью раскопанным некрополем эпохи Великого переселения народов на Ангаре.
                   </p>
 
-                  <ScrollArrow src={Arrow_scroll_white} className={'scroll-arrow white'} onClick={() => parallaxRef.current.scrollTo(4)}/>
+                  <ScrollArrow src={Arrow_scroll_white} className={'scroll-arrow white'} onClick={() => parallaxRef.current.scrollTo(4)} />
                 </div>
               </div>
             </section>
@@ -259,8 +259,9 @@ export default function HomeMobile() {
                   <AnimHrL />
                   <AnimTextL>Горшок «сетка-плетенка»</AnimTextL>
                 </div>
-
               </div>
+
+              <ScrollArrow src={Arrow_scroll} className={'scroll-arrow black margin-top'} onClick={() => parallaxRef.current.scrollTo(window.innerWidth < 685 ? 8.05 : 6.85)} />
             </div>
           </ParallaxLayer>
 
@@ -280,13 +281,13 @@ export default function HomeMobile() {
                     Упор сделан на изделиях из бронзы, красивых, ярких и обладающих <b>художественной ценностью</b>.
                   </p>
 
-                  <ScrollArrow src={Arrow_scroll_white} className={'scroll-arrow white'} onClick={() => parallaxRef.current.scrollTo(5.35)}/>
+                  <ScrollArrow src={Arrow_scroll_white} className={'scroll-arrow white'} onClick={() => parallaxRef.current.scrollTo(5.35)} />
                 </div>
               </div>
             </section>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={window.innerWidth < 685  ? 8.3 : 7} speed={0.5} factor={0.55} style={{ background: '#2b2b2b' }}>
+          <ParallaxLayer offset={window.innerWidth < 685 ? 8.3 : 7} speed={0.5} factor={0.55} style={{ background: '#2b2b2b' }}>
             <section className="section">
               <div className="container-items">
                 <div className="items-text">

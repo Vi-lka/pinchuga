@@ -11,11 +11,11 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    align-items:center;
+    align-items: center;
     justify-content: center;
 }
 
-.items-img-container > div {
+.items-img-container>div {
     display: flex;
     flex-wrap: wrap;
     gap: 10em;
@@ -29,8 +29,8 @@
     flex-wrap: nowrap;
     gap: 0.1em;
     justify-content: space-around;
-    align-items:center;
-    margin-top: 22vh;
+    align-items: center;
+    margin-top: 20vh;
 }
 
 .items-img-container div div p {
@@ -77,24 +77,31 @@
 .items-img-container div:nth-child(1) div:nth-child(1) .items-img {
     width: 24%;
 }
+
 .items-img-container div:nth-child(1) div:nth-child(2) .items-img {
     width: 27%;
 }
+
 .items-img-container div:nth-child(2) div:nth-child(1) .items-img {
     width: 30%;
 }
+
 .items-img-container div:nth-child(2) div:nth-child(2) .items-img {
     width: 30%;
 }
+
 .items-img-container div:nth-child(3) div:nth-child(1) .items-img {
     width: 30%;
 }
+
 .items-img-container div:nth-child(3) div:nth-child(2) .items-img {
     width: 32%;
 }
+
 .items-img-container div:nth-child(4) div:nth-child(1) .items-img {
     width: 30%;
 }
+
 .items-img-container div:nth-child(4) div:nth-child(2) .items-img {
     width: 30%;
 }
@@ -132,7 +139,7 @@
 
 @media (max-width: 800px) {
 
-    .items-img-container > div {
+    .items-img-container>div {
         gap: 5em;
     }
 
@@ -144,7 +151,7 @@
 
 @media (max-width: 768px) {
 
-    .items-img-container > div {
+    .items-img-container>div {
         gap: 5em;
     }
 
@@ -156,24 +163,31 @@
     .items-img-container div:nth-child(1) div:nth-child(1) .items-img {
         width: 32%;
     }
+
     .items-img-container div:nth-child(1) div:nth-child(2) .items-img {
         width: 35%;
     }
+
     .items-img-container div:nth-child(2) div:nth-child(1) .items-img {
         width: 38%;
     }
+
     .items-img-container div:nth-child(2) div:nth-child(2) .items-img {
         width: 38%;
     }
+
     .items-img-container div:nth-child(3) div:nth-child(1) .items-img {
         width: 36%;
     }
+
     .items-img-container div:nth-child(3) div:nth-child(2) .items-img {
         width: 40%;
     }
+
     .items-img-container div:nth-child(4) div:nth-child(1) .items-img {
         width: 40%;
     }
+
     .items-img-container div:nth-child(4) div:nth-child(2) .items-img {
         width: 40%;
     }
@@ -189,7 +203,7 @@
 }
 
 @media (max-width: 685px) {
-    .items-img-container > div {
+    .items-img-container>div {
         gap: 0em;
         flex-direction: column;
     }
@@ -202,24 +216,31 @@
     .items-img-container div:nth-child(1) div:nth-child(1) .items-img {
         width: 50%;
     }
+
     .items-img-container div:nth-child(1) div:nth-child(2) .items-img {
         width: 52%;
     }
+
     .items-img-container div:nth-child(2) div:nth-child(1) .items-img {
         width: 60%;
     }
+
     .items-img-container div:nth-child(2) div:nth-child(2) .items-img {
         width: 60%;
     }
+
     .items-img-container div:nth-child(3) div:nth-child(1) .items-img {
         width: 58%;
     }
+
     .items-img-container div:nth-child(3) div:nth-child(2) .items-img {
         width: 62%;
     }
+
     .items-img-container div:nth-child(4) div:nth-child(1) .items-img {
         width: 60%;
     }
+
     .items-img-container div:nth-child(4) div:nth-child(2) .items-img {
         width: 60%;
     }
@@ -240,24 +261,31 @@
     .items-img-container div:nth-child(1) div:nth-child(1) .items-img {
         width: 68%;
     }
+
     .items-img-container div:nth-child(1) div:nth-child(2) .items-img {
         width: 70%;
     }
+
     .items-img-container div:nth-child(2) div:nth-child(1) .items-img {
         width: 78%;
     }
+
     .items-img-container div:nth-child(2) div:nth-child(2) .items-img {
         width: 78%;
     }
+
     .items-img-container div:nth-child(3) div:nth-child(1) .items-img {
         width: 78%;
     }
+
     .items-img-container div:nth-child(3) div:nth-child(2) .items-img {
         width: 80%;
     }
+
     .items-img-container div:nth-child(4) div:nth-child(1) .items-img {
         width: 80%;
     }
+
     .items-img-container div:nth-child(4) div:nth-child(2) .items-img {
         width: 80%;
     }
