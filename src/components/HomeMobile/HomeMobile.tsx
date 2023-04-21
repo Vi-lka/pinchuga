@@ -186,7 +186,7 @@ export default function HomeMobile() {
             <SuspenseImage src={funeral_pure} alt='Могильник Пинчуга-6' className='funeral-pure-img' />
           </ParallaxLayer>
 
-          <ParallaxLayer offset={window.innerWidth < 768 ? 4.2 : 4.3} speed={0.5} factor={0.5} style={{ background: '#2b2b2b' }}>
+          <ParallaxLayer offset={window.innerWidth < 768 ? 4.2 : 4.3} speed={0.5} factor={0.6} style={{ background: '#2b2b2b' }}>
             <section className="section">
               <div className="container-angara-map">
                 <div className="angara-map-text">
@@ -203,7 +203,7 @@ export default function HomeMobile() {
             </section>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={window.innerWidth < 768 ? 5.85 : 5.9} speed={0.2} factor={window.innerWidth < 685 ? 2.7 : 1.5} style={{ textAlign: 'center' }}>
+          <ParallaxLayer offset={window.innerWidth < 768 ? 5.85 : 5.99} speed={0.2} factor={window.innerWidth < 685 ? 2.7 : 1.5} style={{ textAlign: 'center' }}>
             <div className="items-img-container">
               <div>
                 <div>
@@ -257,7 +257,7 @@ export default function HomeMobile() {
             </div>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={window.innerWidth < 768 ? 5.3 : 5.5} speed={0.5} factor={0.6} style={{ background: '#2b2b2b' }}>
+          <ParallaxLayer offset={window.innerWidth < 768 ? 5.3 : 5.5} speed={0.5} factor={0.7} style={{ background: '#2b2b2b' }}>
             <section className="section">
               <div className="container-funeral-pure">
                 <div className="funeral-pure-text">
@@ -277,7 +277,7 @@ export default function HomeMobile() {
             </section>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={window.innerWidth < 685  ? 8 : 7.2} speed={0.5} factor={0.5} style={{ background: '#2b2b2b' }}>
+          <ParallaxLayer offset={window.innerWidth < 685  ? 8 : 7.4} speed={0.5} factor={0.55} style={{ background: '#2b2b2b', marginTop: '20vh' }}>
             <section className="section">
               <div className="container-items">
                 <div className="items-text">

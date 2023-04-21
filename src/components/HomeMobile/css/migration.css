@@ -28,6 +28,8 @@
 
 .migration-text {
     width: 50%;
+    background: #2b2b2b;
+    padding-bottom: 5px;
 }
 
 .migration-text > p {
