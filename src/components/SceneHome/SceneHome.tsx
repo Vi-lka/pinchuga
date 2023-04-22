@@ -15,7 +15,7 @@ import great_migration from '../../assets/images/great_migration.svg'
 import big_map from '../../assets/images/big_map.svg'
 import angara_map from '../../assets/images/angara_map.svg'
 import funeral_pure from '../../assets/images/funeral_pure.svg'
-import Arrow_scroll from '../../assets/images/Arrow_scroll.png'
+import Arrow_scroll from '../../assets/images/Arrow_scroll.webp'
 import './sceneHome.css'
 import { Box, Flex } from '@react-three/flex'
 import state from '../../utils/state'
@@ -23,6 +23,7 @@ import disableScroll from 'disable-scroll'
 import OverlayHome from '../OverlayHome/OverlayHome'
 import Models from '../Models/Models'
 import MiniMap from '../minimap/MiniMap'
+import { button, useControls } from 'leva'
 
 function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo(index: number): void }) {
 
@@ -584,6 +585,16 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
       </>
     )
   }
+
+  // const gl = useThree((state) => state.gl)
+  // useControls({
+  //   screenshot: button(() => {
+  //     const link = document.createElement('a')
+  //     link.setAttribute('download', 'canvas.png')
+  //     link.setAttribute('href', gl.domElement.toDataURL('image/png').replace('image/png', 'image/octet-stream'))
+  //     link.click()
+  //   })
+  // })
 
   // SceneHome RETURN
   return (

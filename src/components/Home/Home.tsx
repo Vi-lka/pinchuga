@@ -162,7 +162,7 @@ export default function Home() {
         gl={{ preserveDrawingBuffer: true, antialias: true }}
         dpr={[0.8, 2]}
         performance={{ min: 0.8 }}
-        onCreated={({ gl }) => gl.setClearColor('#f6f6f6')}
+        // onCreated={({ gl }) => gl.setClearColor('#f6f6f6')}
         onWheel={onScroll}
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}

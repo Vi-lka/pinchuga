@@ -1,4 +1,7 @@
 import React, { Suspense, createRef, useEffect, useRef, useState } from 'react'
+import { IParallax, Parallax, ParallaxLayer } from '@react-spring/parallax';
+import { animated as anim, useInView, useScroll, useSpring } from '@react-spring/web';
+
 import './homeMobile.css';
 import './css/title.css';
 import './css/migration.css';
@@ -6,8 +9,10 @@ import './css/big-map.css';
 import './css/angara-map.css';
 import './css/funeral-pure.css';
 import './css/items.css';
-import Arrow_scroll from '../../assets/images/Arrow_scroll.png'
-import Arrow_scroll_white from '../../assets/images/Arrow_scroll_white.png'
+
+import Arrow_scroll from '../../assets/images/Arrow_scroll.webp'
+import Arrow_scroll_white from '../../assets/images/Arrow_scroll_white.webp'
+
 import img_draw_bird_1 from '../../assets/images/img_draw_bird_1.svg'
 import img_draw_bird_2 from '../../assets/images/img_draw_bird_2.svg'
 import img_draw_disk from '../../assets/images/img_draw_disk.svg'
@@ -20,14 +25,14 @@ import great_migration from '../../assets/images/great_migration.svg'
 import big_map from '../../assets/images/big_map.svg'
 import angara_map from '../../assets/images/angara_map.svg'
 import funeral_pure from '../../assets/images/funeral_pure.svg'
-import { IParallax, Parallax, ParallaxLayer } from '@react-spring/parallax';
-import { animated as anim, useInView, useScroll, useSpring } from '@react-spring/web';
+
 import { AnimTextR } from './componentsMobile/AnimTextR';
 import SuspenseImage from '../../utils/SuspenseImage';
 import { AnimTextL } from './componentsMobile/AnimTextL';
 import { AnimHrR } from './componentsMobile/AnimHrR';
 import { AnimHrL } from './componentsMobile/AnimHrL';
 import ScrollArrow from './componentsMobile/ScrollArrow';
+import ModelsArray from './componentsMobile/ModelsArray';
 
 export default function HomeMobile() {
 
@@ -91,7 +96,8 @@ export default function HomeMobile() {
       <anim.div ref={mainContainer} className="homeMobile-container">
         <Parallax
           ref={parallaxRef}
-          pages={10}
+          // pages={window.innerWidth < 685 ? 9.725 : 8.6}
+          pages={window.innerWidth < 685 ? 11 : 10}
           config={config}
           className='parallax-container'
         >
@@ -287,6 +293,10 @@ export default function HomeMobile() {
             </section>
           </ParallaxLayer>
 
+          <ParallaxLayer offset={window.innerWidth < 768 ? 8.8 : 7.6} speed={0.1} factor={1} style={{ textAlign: 'center' }}>
+            <ModelsArray />
+          </ParallaxLayer>
+
           <ParallaxLayer offset={window.innerWidth < 685 ? 8.3 : 7} speed={0.5} factor={0.55} style={{ background: '#2b2b2b' }}>
             <section className="section">
               <div className="container-items">
@@ -298,6 +308,8 @@ export default function HomeMobile() {
                     <br /><br />
                     Представленные <b>керамические сосуды</b> не относятся к могильнику, но найдены на этом же памятнике и характерны для раннего железного века и неолита Приангарья.
                   </p>
+
+                  <ScrollArrow src={Arrow_scroll_white} className={'scroll-arrow white'} onClick={() => parallaxRef.current.scrollTo(window.innerWidth < 685 ? 8.7 : 7.5)} />
                 </div>
               </div>
             </section>

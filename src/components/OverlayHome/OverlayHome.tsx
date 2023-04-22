@@ -2,10 +2,11 @@ import './overlayHome.css'
 import DHLab_logo from '../../assets/images/DHLab_logo.svg'
 import arch_lab from '../../assets/images/arch_lab.svg'
 import { createRef } from 'react'
-import { useFrame } from '@react-three/fiber'
+import { useFrame, useThree } from '@react-three/fiber'
 import { Html } from '@react-three/drei'
 
 function OverlayHome({zoom, setZoom} : {zoom: boolean, setZoom: any}) {
+  const gl = useThree((state) => state.gl)
 
   const closeZoomRef = createRef<any>()
 
