@@ -3,7 +3,7 @@
     margin: 0 auto;
 }
 
-.models-img-container > div {
+.models-img-container>div {
     display: block;
     width: 100%;
     margin: 0;
@@ -11,70 +11,76 @@
 }
 
 
-.models-img-container > div .models-img {
+.models-img-container>div .models-img {
     width: 35%;
 }
 
-.models-img-container > div:nth-of-type(1) .models-img {
+.models-img-container>div:nth-of-type(1) .models-img {
     width: 30%;
 }
-.models-img-container > div:nth-of-type(2) .models-img {
+
+.models-img-container>div:nth-of-type(2) .models-img {
     width: 34%;
 }
-.models-img-container > div:nth-of-type(3) .models-img {
+
+.models-img-container>div:nth-of-type(3) .models-img {
     width: 45%;
 }
-.models-img-container > div:nth-of-type(4) .models-img {
+
+.models-img-container>div:nth-of-type(4) .models-img {
     width: 40%;
 }
-.models-img-container > div:nth-of-type(5) .models-img {
+
+.models-img-container>div:nth-of-type(5) .models-img {
     width: 45%;
 }
-.models-img-container > div:nth-of-type(6) .models-img {
+
+.models-img-container>div:nth-of-type(6) .models-img {
     width: 45%;
 }
-.models-img-container > div:nth-of-type(7) .models-img {
+
+.models-img-container>div:nth-of-type(7) .models-img {
     width: 41%;
 }
-.models-img-container > div:nth-of-type(8) .models-img {
+
+.models-img-container>div:nth-of-type(8) .models-img {
     width: 40%;
 }
 
 
 
-.container {
-    cursor:grab;
+.container-models {
+    cursor: grab;
     display: flex;
     align-items: center;
     height: 100%;
     justify-content: center;
-  }
-  .container.grab {
-    cursor:grabbing;
-  }
-  .deck {
+}
+
+.container-models.grab {
+    cursor: grabbing;
+}
+
+.deck {
     position: absolute;
-    width: 300px;
-    height: 200px;
+    width: 30%;
+    height: 30%;
+    max-height: 250px;
     will-change: transform;
     display: flex;
     align-items: center;
     justify-content: center;
     touch-action: none;
-  }
-  
-  .deck > div {
-    background-color: white;
-    background-size: auto 85%;
+}
+
+.deck>div {
+    background-color: transparent;
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
-    width: 45vh;
-    max-width: 150px;
-    height: 85vh;
-    max-height: 285px;
+    width: 100%;
+    height: 100%;
     will-change: transform;
-    border-radius: 10px;
-    box-shadow: 0 12.5px 100px -10px rgba(50, 50, 73, 0.4), 0 10px 10px -10px rgba(50, 50, 73, 0.3);
+    /* box-shadow: 0 12.5px 100px -10px rgba(50, 50, 73, 0.4), 0 10px 10px -10px rgba(50, 50, 73, 0.3); */
     touch-action: none;
-  }
-  
+}
