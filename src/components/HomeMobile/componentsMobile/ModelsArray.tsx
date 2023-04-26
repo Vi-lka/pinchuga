@@ -30,11 +30,28 @@ export default function ModelsArray() {
   let currentImg = 0
 
   const to = (i: number) => ({
-    x: Math.round(window.innerWidth / 3 * (Math.cos(theta(i - currentImg + 2, 8)))),
-    y: Math.round(window.innerWidth / 6 * (Math.sin(theta(i - currentImg + 2, 8)))),
+    x: Math.round(window.innerWidth > 1024 ? 
+      (
+        window.innerWidth > 1400 ?  
+          window.innerWidth / 6 * (Math.cos(theta(i - currentImg + 2, 8))) 
+          : 
+          window.innerWidth / 4 * (Math.cos(theta(i - currentImg + 2, 8)))
+      ) 
+      : 
+      window.innerWidth / 3 * (Math.cos(theta(i - currentImg + 2, 8)))),
+
+    y: Math.round(window.innerWidth > 1024 ? 
+      (
+        window.innerWidth > 1400 ? 
+        window.innerWidth / 12 * (Math.sin(theta(i - currentImg + 2, 8)))
+        :
+        window.innerWidth / 8 * (Math.sin(theta(i - currentImg + 2, 8)))
+      ) 
+      : 
+      window.innerWidth / 6 * (Math.sin(theta(i - currentImg + 2, 8)))),
     zIndex: i === currentImg ? 10 : 1,
     rot: 0,
-    scale: i === currentImg ? 1 : 0.4,
+    scale: i === currentImg ? 1 : 0.35,
     delay: i * 10,
   })
   const from = (_i: number) => ({ x: 0, y: -1000, zIndex: 1, scale: 1 })
