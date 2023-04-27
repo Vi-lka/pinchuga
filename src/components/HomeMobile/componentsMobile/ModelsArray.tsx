@@ -10,6 +10,7 @@ import pot_with_mesh_webp from '../../../assets/images/models/pot_with_mesh.webp
 import '../css/models.css';
 
 import { animated, useSprings } from '@react-spring/web'
+import InfiniteSlider from './InfiniteSlider'
 
 export default function ModelsArray() {
   const cards = [
@@ -30,22 +31,22 @@ export default function ModelsArray() {
   let currentImg = 0
 
   const to = (i: number) => ({
-    x: Math.round(window.innerWidth > 1024 ? 
+    x: Math.round(window.innerWidth > 1000 ? 
       (
         window.innerWidth > 1400 ?  
           window.innerWidth / 6 * (Math.cos(theta(i - currentImg + 2, 8))) 
           : 
-          window.innerWidth / 4 * (Math.cos(theta(i - currentImg + 2, 8)))
+          window.innerWidth / 5 * (Math.cos(theta(i - currentImg + 2, 8)))
       ) 
       : 
       window.innerWidth / 3 * (Math.cos(theta(i - currentImg + 2, 8)))),
 
-    y: Math.round(window.innerWidth > 1024 ? 
+    y: Math.round(window.innerWidth > 1000 ? 
       (
         window.innerWidth > 1400 ? 
         window.innerWidth / 12 * (Math.sin(theta(i - currentImg + 2, 8)))
         :
-        window.innerWidth / 8 * (Math.sin(theta(i - currentImg + 2, 8)))
+        window.innerWidth / 10 * (Math.sin(theta(i - currentImg + 2, 8)))
       ) 
       : 
       window.innerWidth / 6 * (Math.sin(theta(i - currentImg + 2, 8)))),
@@ -67,16 +68,19 @@ export default function ModelsArray() {
   }
 
   return (
-    <div className={'container-models'}>
-      {props.map(({ x, y, zIndex, scale }, i) => (
-        <animated.div className='deck' key={i} style={{ x, y, zIndex, scale }} onClick={(e) => nextImg(i)}>
-          <animated.div
-            style={{
-              backgroundImage: `url(${cards[i]})`,
-            }}
-          />
-        </animated.div>
-      ))}
+    <div className='models-array'>
+      <InfiniteSlider className={'models-text-slider'}/>
+      <div className={'container-models'}>
+        {props.map(({ x, y, zIndex, scale }, i) => (
+          <animated.div className='deck' key={i} style={{ x, y, zIndex, scale }} onClick={(e) => nextImg(i)}>
+            <animated.div
+              style={{
+                backgroundImage: `url(${cards[i]})`,
+              }}
+            />
+          </animated.div>
+        ))}
+      </div>
     </div>
   )
 }
