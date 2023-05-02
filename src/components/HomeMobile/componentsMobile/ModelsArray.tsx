@@ -10,7 +10,9 @@ import pot_with_mesh_webp from '../../../assets/images/models/pot_with_mesh.webp
 import '../css/models.css';
 
 import { animated, useSprings } from '@react-spring/web'
-import InfiniteSlider from './InfiniteSlider'
+import { useSpringCarousel } from 'react-spring-carousel'
+import mockedItems from '../../../utils/modelsItems'
+import parse from 'html-react-parser';
 
 export default function ModelsArray() {
   const cards = [
@@ -24,6 +26,17 @@ export default function ModelsArray() {
     pot_with_mesh_webp
   ]
 
+  // const cards = [
+  //   falcon_webp,
+  //   pot_with_mesh_webp,
+  //   pot_with_face_webp,
+  //   rectangular_buckle_webp,
+  //   disk_webp,
+  //   deer_webp,
+  //   buckle_webp,
+  //   eagle_webp, 
+  // ]
+
   function theta(i: number, count: number) {
     return 2 * Math.PI * (i / count)
   }
@@ -34,22 +47,22 @@ export default function ModelsArray() {
     x: Math.round(window.innerWidth > 1000 ? 
       (
         window.innerWidth > 1400 ?  
-          window.innerWidth / 6 * (Math.cos(theta(i - currentImg + 2, 8))) 
+          window.innerWidth / 6 * (Math.sin(theta(i - currentImg , 8))) 
           : 
-          window.innerWidth / 5 * (Math.cos(theta(i - currentImg + 2, 8)))
+          window.innerWidth / 5 * (Math.sin(theta(i - currentImg , 8)))
       ) 
       : 
-      window.innerWidth / 3 * (Math.cos(theta(i - currentImg + 2, 8)))),
+      window.innerWidth / 3 * (Math.sin(theta(i - currentImg , 8)))),
 
     y: Math.round(window.innerWidth > 1000 ? 
       (
         window.innerWidth > 1400 ? 
-        window.innerWidth / 12 * (Math.sin(theta(i - currentImg + 2, 8)))
+        window.innerWidth / 12 * (Math.cos(theta(i - currentImg , 8)))
         :
-        window.innerWidth / 10 * (Math.sin(theta(i - currentImg + 2, 8)))
+        window.innerWidth / 10 * (Math.cos(theta(i - currentImg , 8)))
       ) 
       : 
-      window.innerWidth / 6 * (Math.sin(theta(i - currentImg + 2, 8)))),
+      window.innerWidth / 6 * (Math.cos(theta(i - currentImg , 8)))),
     zIndex: i === currentImg ? 10 : 1,
     rot: 0,
     scale: i === currentImg ? 1 : 0.35,
@@ -65,11 +78,35 @@ export default function ModelsArray() {
   function nextImg(i: number) {
     currentImg = i
     api.start(i => to(i))
+    slideToItem(i)
   }
+
+  const { carouselFragment, slideToItem } = useSpringCarousel({
+    disableGestures: true,
+    withLoop: true,
+    items: mockedItems.map((i) => ({
+      id: i.id,
+      renderItem: (
+          <div className='models-text-slider-item'>
+              <b className='title-models'>{i.title}</b>
+              <p>
+                {parse(i.text)}
+              </p>
+              <button className='open-model-mobile' onClick={
+                  (e: any) => {
+                  }
+                }>3D модель</button>
+          </div>
+      ),
+    })),
+  });
 
   return (
     <div className='models-array'>
-      <InfiniteSlider className={'models-text-slider'}/>
+      <div className={'models-text-slider'}>
+        {carouselFragment}
+      </div>
+
       <div className={'container-models'}>
         {props.map(({ x, y, zIndex, scale }, i) => (
           <animated.div className='deck' key={i} style={{ x, y, zIndex, scale }} onClick={(e) => nextImg(i)}>
