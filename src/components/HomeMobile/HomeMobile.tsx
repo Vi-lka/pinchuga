@@ -309,7 +309,7 @@ export default function HomeMobile() {
                     Представленные <b>керамические сосуды</b> не относятся к могильнику, но найдены на этом же памятнике и характерны для раннего железного века и неолита Приангарья.
                   </p>
 
-                  <ScrollArrow src={Arrow_scroll_white} className={'scroll-arrow white'} onClick={() => parallaxRef.current.scrollTo(window.innerWidth < 685 ? 8.7 : 7.5)} />
+                  <ScrollArrow src={Arrow_scroll_white} className={'scroll-arrow white'} onClick={() => parallaxRef.current.scrollTo(window.innerWidth < 685 ? 8.725 : 7.6)} />
                 </div>
               </div>
             </section>
