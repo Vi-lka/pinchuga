@@ -293,7 +293,7 @@ export default function HomeMobile() {
             </section>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={window.innerWidth < 768 ? 8.8 : 7.6} speed={0.1} factor={1} style={{ textAlign: 'center' }}>
+          <ParallaxLayer offset={window.innerWidth < 768 ? 9 : 7.9} speed={0.1} factor={1} style={{ textAlign: 'center' }}>
             <ModelsArray />
           </ParallaxLayer>
 
@@ -309,7 +309,7 @@ export default function HomeMobile() {
                     Представленные <b>керамические сосуды</b> не относятся к могильнику, но найдены на этом же памятнике и характерны для раннего железного века и неолита Приангарья.
                   </p>
 
-                  <ScrollArrow src={Arrow_scroll_white} className={'scroll-arrow white'} onClick={() => parallaxRef.current.scrollTo(window.innerWidth < 685 ? 8.725 : 7.6)} />
+                  <ScrollArrow src={Arrow_scroll_white} className={'scroll-arrow white'} onClick={() => parallaxRef.current.scrollTo(window.innerWidth < 685 ? 9 : 7.85)} />
                 </div>
               </div>
             </section>

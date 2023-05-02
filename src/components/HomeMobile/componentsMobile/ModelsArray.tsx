@@ -13,15 +13,17 @@ import { animated, useSprings } from '@react-spring/web'
 import { useSpringCarousel } from 'react-spring-carousel'
 import mockedItems from '../../../utils/modelsItems'
 import parse from 'html-react-parser';
+import SuspenseImage from '../../../utils/SuspenseImage'
+import Arrow_scroll from '../../../assets/images/Arrow_scroll.webp'
 
 export default function ModelsArray() {
   const cards = [
     falcon_webp,
     eagle_webp,
     deer_webp,
-    disk_webp,
-    rectangular_buckle_webp,
     buckle_webp,
+    rectangular_buckle_webp,
+    disk_webp,
     pot_with_face_webp,
     pot_with_mesh_webp
   ]
@@ -45,22 +47,12 @@ export default function ModelsArray() {
 
   const to = (i: number) => ({
     x: Math.round(window.innerWidth > 1000 ? 
-      (
-        window.innerWidth > 1400 ?  
-          window.innerWidth / 6 * (Math.sin(theta(i - currentImg , 8))) 
-          : 
-          window.innerWidth / 5 * (Math.sin(theta(i - currentImg , 8)))
-      ) 
+      window.innerWidth / 7 * (Math.sin(theta(i - currentImg , 8))) 
       : 
       window.innerWidth / 3 * (Math.sin(theta(i - currentImg , 8)))),
 
     y: Math.round(window.innerWidth > 1000 ? 
-      (
-        window.innerWidth > 1400 ? 
-        window.innerWidth / 12 * (Math.cos(theta(i - currentImg , 8)))
-        :
-        window.innerWidth / 10 * (Math.cos(theta(i - currentImg , 8)))
-      ) 
+      window.innerWidth / 16 * (Math.cos(theta(i - currentImg , 8)))
       : 
       window.innerWidth / 6 * (Math.cos(theta(i - currentImg , 8)))),
     zIndex: i === currentImg ? 10 : 1,
@@ -75,14 +67,14 @@ export default function ModelsArray() {
     from: from(i),
   })) 
 
-  function nextImg(i: number) {
-    currentImg = i
-    api.start(i => to(i))
-    slideToItem(i)
-  }
-
-  const { carouselFragment, slideToItem } = useSpringCarousel({
-    disableGestures: true,
+  const { 
+    carouselFragment, 
+    useListenToCustomEvent,
+    slideToItem, 
+    slideToPrevItem, 
+    slideToNextItem  
+  } = useSpringCarousel({
+    disableGestures: false,
     withLoop: true,
     items: mockedItems.map((i) => ({
       id: i.id,
@@ -101,15 +93,57 @@ export default function ModelsArray() {
     })),
   });
 
+  function calcutaleCurrentImg(current: number) {
+    if (current < 0) {
+      currentImg = cards.length - 1
+    } else if (current > (cards.length - 1)) {
+      currentImg = 0
+    } else {
+      currentImg = current
+    }
+  }
+
+  function changeImg(i: number) {
+    currentImg = i
+    api.start(i => to(i))
+    slideToItem(i)
+  }
+
+  function nextImg(next: boolean) {
+    if (next) {
+      calcutaleCurrentImg(currentImg - 1)
+      api.start(currentImg => to(currentImg))
+      slideToPrevItem()
+    } else {
+      calcutaleCurrentImg(currentImg + 1)
+      api.start(currentImg => to(currentImg))
+      slideToNextItem()
+    }
+  }
+
+  useListenToCustomEvent((event) => {
+    if (event.eventName === "onSlideStartChange") {
+      const nextId = Number(event.nextItem.id) - 1
+
+      currentImg = nextId
+      api.start(nextId => to(nextId))
+    } 
+  });
+
   return (
     <div className='models-array'>
       <div className={'models-text-slider'}>
         {carouselFragment}
       </div>
 
+      <div className='models-arrows'>
+        <SuspenseImage src={Arrow_scroll} alt='scroll' onClick={() => nextImg(true)} />
+        <SuspenseImage src={Arrow_scroll} alt='scroll' onClick={() => nextImg(false)} />
+      </div>
+
       <div className={'container-models'}>
         {props.map(({ x, y, zIndex, scale }, i) => (
-          <animated.div className='deck' key={i} style={{ x, y, zIndex, scale }} onClick={(e) => nextImg(i)}>
+          <animated.div className='deck' key={i} style={{ x, y, zIndex, scale }} onClick={() => changeImg(i)}>
             <animated.div
               style={{
                 backgroundImage: `url(${cards[i]})`,

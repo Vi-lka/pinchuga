@@ -1,4 +1,5 @@
 .models-array {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -6,10 +7,35 @@
     justify-content: center;
 }
 
+.models-arrows {
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.models-arrows img {
+    width: 50%;
+    max-width: 15px;
+    padding: 0 20px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.models-arrows img:nth-of-type(1) {
+    transform: rotate(90deg);
+    transition: 0.3s ease-in-out;
+}
+
+.models-arrows img:nth-of-type(2) {
+    transform: rotate(-90deg);
+    transition: 0.3s ease-in-out;
+}
+
 .models-text-slider {
     width: 100%;
     height: fit-content;
-    margin-bottom: 10px;
+    margin-bottom: 4px;
 }
 
 .use-spring-carousel-item {
@@ -50,7 +76,7 @@
     color: #2b2b2b;
     font-size: 1.8vw;
     letter-spacing: 0.05ch;
-    line-height: 1.1;
+    line-height: 1.15;
     text-align:justify;
 }
 
@@ -166,6 +192,10 @@
         font-size: 12px;
         padding: 8px 10px;
     }
+
+    .models-arrows img {
+        max-width: 10px;
+    }
 }
 
 @media (min-width: 650px) and (max-width: 768px) {
@@ -182,6 +212,19 @@
         font-size: 14px;
         padding: 10px 12px;
     }
+
+    .models-arrows img {
+        max-width: 12px;
+        margin-bottom: 10px;
+    }
+
+    .container-models .deck:nth-of-type(1),
+    .container-models .deck:nth-of-type(2) {
+        width: 30%;
+        max-width: 180px;
+        height: 30%;
+        max-height: 400px;
+    }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
@@ -193,41 +236,22 @@
     }
 
     .container-models .deck:nth-of-type(1),
-    .container-models .deck:nth-of-type(2) {
-        width: 40%;
-        max-width: 350px;
-        height: 40%;
+    .container-models .deck:nth-of-type(2),
+    .container-models .deck:nth-of-type(3),
+    .container-models .deck:nth-of-type(4),
+    .container-models .deck:nth-of-type(5),
+    .container-models .deck:nth-of-type(6),
+    .container-models .deck:nth-of-type(7),
+    .container-models .deck:nth-of-type(8) {
+        width: 30%;
+        max-width: 150px;
+        height: 30%;
         max-height: 400px;
     }
 
-    .container-models .deck:nth-of-type(3) {
-        width: 35%;
-        max-width: 320px;
-        height: 40%;
-        max-height: 320px;
-    }
-    
-    .container-models .deck:nth-of-type(4) {
-        width: 35%;
-        max-width: 320px;
-        height: 40%;
-        max-height: 320px;
-    }
-    
-    .container-models .deck:nth-of-type(5),
-    .container-models .deck:nth-of-type(6) {
-        width: 35%;
-        max-width: 310px;
-        height: 30%;
-        max-height: 200px;
-    }
-
-    .container-models .deck:nth-of-type(7),
-    .container-models .deck:nth-of-type(8) {
-        width: 35%;
-        max-width: 350px;
-        height: 35%;
-        max-height: 250px;
+    .models-arrows img {
+        max-width: 10px;
+        margin-bottom: 0px;
     }
 }
 
@@ -248,65 +272,87 @@
     }
 
     .container-models .deck:nth-of-type(1) {
-        width: 40%;
-        max-width: 250px;
-        height: 40%;
-        max-height: 330px;
-    }
-
-    .container-models .deck:nth-of-type(2) {
-        width: 34%;
-        max-width: 250px;
-        height: 34%;
-        max-height: 330px;
+        max-height: 200px !important;
     }
 
     .container-models .deck:nth-of-type(3) {
-        width: 40%;
-        max-width: 280px;
-        height: 40%;
-        max-height: 330px;
+        max-width: 185px !important;
     }
 
-    .container-models .deck:nth-of-type(4) {
-        width: 34%;
-        max-width: 250px;
-        height: 34%;
-        max-height: 320px;
-    }
-
-    .container-models .deck:nth-of-type(5) {
-        width: 34%;
-        max-width: 260px;
-        height: 34%;
-        max-height: 320px;
-    }
-
-    .container-models .deck:nth-of-type(6) {
-        width: 34%;
-        max-width: 240px;
-        height: 34%;
-        max-height: 300px;
-    }
-
-    .container-models .deck:nth-of-type(7) {
-        width: 34%;
-        max-width: 270px;
-        height: 34%;
-        max-height: 330px;
-    }
-
+    .container-models .deck:nth-of-type(5),
+    .container-models .deck:nth-of-type(6),
+    .container-models .deck:nth-of-type(7),
     .container-models .deck:nth-of-type(8) {
-        width: 34%;
-        max-width: 250px;
-        height: 34%;
-        max-height: 330px;
+        max-width: 170px !important;
+    }
+
+    .container-models .deck:nth-of-type(1),
+    .container-models .deck:nth-of-type(2),
+    .container-models .deck:nth-of-type(3),
+    .container-models .deck:nth-of-type(4),
+    .container-models .deck:nth-of-type(5),
+    .container-models .deck:nth-of-type(6),
+    .container-models .deck:nth-of-type(7),
+    .container-models .deck:nth-of-type(8) {
+        width: 30%;
+        max-width: 150px;
+        height: 30%;
+        max-height: 400px;
+    }
+
+    .models-arrows img {
+        width: 12px;
+        max-width: 12px;
+        margin-bottom: 0px;
+    }
+}
+
+@media (min-width: 1400px) and (max-width: 1720px) {
+    .container-models .deck:nth-of-type(1) {
+        max-height: 240px !important;
+    }
+
+    .container-models .deck:nth-of-type(3) {
+        max-width: 210px !important;
+    }
+
+    .container-models .deck:nth-of-type(5),
+    .container-models .deck:nth-of-type(6),
+    .container-models .deck:nth-of-type(7),
+    .container-models .deck:nth-of-type(8) {
+        max-width: 190px !important;
+    }
+
+    .container-models .deck:nth-of-type(1),
+    .container-models .deck:nth-of-type(2),
+    .container-models .deck:nth-of-type(3),
+    .container-models .deck:nth-of-type(4),
+    .container-models .deck:nth-of-type(5),
+    .container-models .deck:nth-of-type(6),
+    .container-models .deck:nth-of-type(7),
+    .container-models .deck:nth-of-type(8) {
+        width: 30%;
+        max-width: 180px;
+        height: 30%;
+        max-height: 400px;
+    }
+
+    .models-arrows img {
+        width: 12px;
+        max-width: 12px;
+        margin-bottom: 0px;
     }
 }
 
 @media (min-width: 1720px) {
     .models-text-slider {
         margin-bottom: 50px;
+    }
+
+    .models-arrows img {
+        width: 16px;
+        max-width: 16px;
+        margin-bottom: 0px;
     }
 
     .models-text-slider-item {
