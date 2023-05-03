@@ -25,13 +25,11 @@
     max-width: 1448px !important;
     height: 100%;
     max-height: 1024px !important;
-    object-fit: fill;
+    object-fit: contain;
     margin-left: 0;
     padding-left: 0;
     margin: 0;
-    /* border-right: 2px solid #fff;
-    border-top: 2px solid #fff;
-    border-bottom: 2px solid #fff; */
+    border: none;
 }
 
 .migration-text {
@@ -63,18 +61,10 @@
         flex-direction: column;
         justify-content: center;
     }
-/* 
-    .container-migration div {
-        display: block !important;
-    } */
 
     .migration-img {
         width: 100%;
-    }
-
-    .migration-img img {
-        width: 100%;
-        border: none;
+        height: 45%;
     }
 
     .migration-text {
@@ -85,5 +75,13 @@
     .migration-text > p {
         width: 90%;
         font-size: 12px;
+    }
+}
+
+@media (max-width: 300px) {
+
+    .migration-img {
+        width: 100%;
+        height: 35.5%;
     }
 }

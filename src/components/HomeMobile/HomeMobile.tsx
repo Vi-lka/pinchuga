@@ -141,7 +141,7 @@ export default function HomeMobile() {
             <ScrollArrow src={Arrow_scroll} className={'scroll-arrow black'} onClick={() => parallaxRef.current.scrollTo(2.65)} />
           </ParallaxLayer>
 
-          <ParallaxLayer offset={1} speed={0.05} factor={1} style={{ background: '#2b2b2b' }}>
+          <ParallaxLayer offset={1} speed={0.2} factor={1} style={{ background: '#2b2b2b' }}>
             <section className="section">
               <div className="container-migration">
                 <div className="migration-img">
@@ -174,7 +174,7 @@ export default function HomeMobile() {
             <ScrollArrow src={Arrow_scroll} className={'scroll-arrow black'} onClick={() => parallaxRef.current.scrollTo(4.2)} />
           </ParallaxLayer>
 
-          <ParallaxLayer offset={3} speed={0.05} factor={0.42} style={{ background: '#2b2b2b' }}>
+          <ParallaxLayer offset={3} speed={0.2} factor={0.42} style={{ background: '#2b2b2b' }}>
             <section className="section">
               <div className="container-big-map">
                 <div className="big-map-text">
@@ -197,7 +197,7 @@ export default function HomeMobile() {
             <ScrollArrow src={Arrow_scroll} className={'scroll-arrow black'} onClick={() => parallaxRef.current.scrollTo(5.7)} />
           </ParallaxLayer>
 
-          <ParallaxLayer offset={4.42} speed={0.05} factor={0.52} style={{ background: '#2b2b2b' }}>
+          <ParallaxLayer offset={4.42} speed={0.2} factor={0.52} style={{ background: '#2b2b2b' }}>
             <section className="section">
               <div className="container-angara-map">
                 <div className="angara-map-text">
@@ -271,7 +271,7 @@ export default function HomeMobile() {
             </div>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={5.94} speed={0.05} factor={0.6} style={{ background: '#2b2b2b' }}>
+          <ParallaxLayer offset={5.94} speed={0.2} factor={0.6} style={{ background: '#2b2b2b' }}>
             <section className="section">
               <div className="container-funeral-pure">
                 <div className="funeral-pure-text">
@@ -297,7 +297,7 @@ export default function HomeMobile() {
             <ModelsArray />
           </ParallaxLayer>
 
-          <ParallaxLayer offset={9.54} speed={0.05} factor={0.46} style={{ background: '#2b2b2b' }}>
+          <ParallaxLayer offset={9.54} speed={0.2} factor={0.46} style={{ background: '#2b2b2b' }}>
             <section className="section">
               <div className="container-items">
                 <div className="items-text">
