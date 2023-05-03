@@ -10,11 +10,11 @@
 .section {
     width: 100%;
     height: 100%;
-    margin-top: 1vh;
+    /* margin-top: 1vh; */
 }
 
 .margin-top {
-    margin-top: 18vh !important;
+    margin-top: 70px !important;
 }
 
 .scroll-arrow {

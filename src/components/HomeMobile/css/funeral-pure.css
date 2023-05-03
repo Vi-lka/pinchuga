@@ -9,6 +9,7 @@
 
 .funeral-pure-img {
     width: 45%;
+    max-width: 880px !important;
     margin: 0 auto;
 }
 

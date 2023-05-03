@@ -28,17 +28,6 @@ export default function ModelsArray() {
     pot_with_mesh_webp
   ]
 
-  // const cards = [
-  //   falcon_webp,
-  //   pot_with_mesh_webp,
-  //   pot_with_face_webp,
-  //   rectangular_buckle_webp,
-  //   disk_webp,
-  //   deer_webp,
-  //   buckle_webp,
-  //   eagle_webp, 
-  // ]
-
   function theta(i: number, count: number) {
     return 2 * Math.PI * (i / count)
   }

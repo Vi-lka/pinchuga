@@ -14,10 +14,18 @@
 
 .migration-img {
     width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .migration-img img {
     width: 100%;
+    max-width: 1448px !important;
+    height: 100%;
+    max-height: 1024px !important;
+    object-fit: fill;
     margin-left: 0;
     padding-left: 0;
     margin: 0;
