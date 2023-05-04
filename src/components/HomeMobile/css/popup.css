@@ -12,7 +12,6 @@
 .modalWrapper {
     width: 95vw;
     height: 95vh;
-    background: #f6f6f6;
     color: #2b2b2b;
     display: flex;
     justify-content: center;
@@ -56,4 +55,12 @@
     background: #2b2b2b;
     color: #f6f6f6;
     transition: 0.15s ease-in-out;
+}
+
+.canvasMobile {
+    width: 98%;
+    height: 98%;
+    margin: 0;
+    padding: 0;
+    border-radius: 10px;
 }

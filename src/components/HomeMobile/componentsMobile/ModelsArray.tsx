@@ -17,6 +17,7 @@ import SuspenseImage from '../../../utils/SuspenseImage'
 import Arrow_scroll from '../../../assets/images/Arrow_scroll.webp'
 import { useState } from 'react'
 import PopupModel from './PopupModel'
+import MobileCanvas from './MobileCanvas'
 
 export default function ModelsArray(
   { 
@@ -88,12 +89,6 @@ export default function ModelsArray(
               <p>
                 {parse(i.text)}
               </p>
-              <button className='open-model-mobile' onClick={
-                  (e: any) => {
-                    setShowModal(true)
-                    setCurrentModel(Number(i.id))
-                  }
-                }>3D модель</button>
           </div>
       ),
     })),
@@ -141,6 +136,12 @@ export default function ModelsArray(
       <div className='models-array'>
         <div className={'models-text-slider'}>
           {carouselFragment}
+          <button className='open-model-mobile' onClick={
+            (e: any) => {
+              setShowModal(true)
+              setCurrentModel(currentImg)
+            }
+          }>3D модель</button>
         </div>
 
         <div className='models-arrows'>
@@ -159,6 +160,7 @@ export default function ModelsArray(
             </animated.div>
           ))}
         </div>
+        {/* <MobileCanvas currentModel={currentModel} /> */}
       </div>
     </>
   )

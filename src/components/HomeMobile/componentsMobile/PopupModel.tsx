@@ -1,6 +1,7 @@
 import { animated, useSpring } from '@react-spring/web'
 import React, { createRef, useCallback, useEffect } from 'react'
 import '../css/popup.css'
+import MobileCanvas from './MobileCanvas'
 
 export default function PopupModel(
     { 
@@ -20,10 +21,15 @@ export default function PopupModel(
 
     const animation = useSpring({
         config: {
-          duration: 250
+            mass: 1,
+            friction: 80,
+            tension: 260,
+            duration: 250
         },
         opacity: showModal ? 1 : 0,
-        transform: showModal ? `scale(1) translateY(0%)` : `scale(0) translateY(-100%)`
+        transform: showModal ? `scale(1)` : `scale(0.95)`,
+        background: showModal ? '#f6f6f6' : 'transparent',
+        borderRadius: '10px',
     })
 
     const closeModal = (e: any) => {
@@ -59,7 +65,7 @@ export default function PopupModel(
             <animated.div style={animation}>
               <div className='modalWrapper' style={{display: showModal ? 'flex' : 'none'}}>
                 <div className='modalContent'>
-                  <h1>{currentModel}</h1>
+                    <MobileCanvas currentModel={currentModel} />
                 </div>
                 <button className='closeModal' onClick={() => {
                     setShowModal(false)
