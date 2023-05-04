@@ -33,6 +33,7 @@ import { AnimHrR } from './componentsMobile/AnimHrR';
 import { AnimHrL } from './componentsMobile/AnimHrL';
 import ScrollArrow from './componentsMobile/ScrollArrow';
 import ModelsArray from './componentsMobile/ModelsArray';
+import PopupModel from './componentsMobile/PopupModel';
 
 export default function HomeMobile() {
 
@@ -90,6 +91,9 @@ export default function HomeMobile() {
     friction: 35,
     tension: 200,
   }
+
+  const [showModal, setShowModal] = useState(false)
+  const [currentModel, setCurrentModel] = useState(-1)
 
   return (
     <Suspense fallback={<h1 style={{ color: 'black' }}>Loading...</h1>}>
@@ -294,7 +298,12 @@ export default function HomeMobile() {
           </ParallaxLayer>
 
           <ParallaxLayer offset={10.2} speed={0.05} factor={1} style={{ textAlign: 'center' }}>
-            <ModelsArray />
+            <ModelsArray
+              showModal={showModal} 
+              setShowModal={setShowModal}
+              currentModel={currentModel} 
+              setCurrentModel={setCurrentModel}
+            />
           </ParallaxLayer>
 
           <ParallaxLayer offset={9.54} speed={0.2} factor={0.46} style={{ background: '#2b2b2b' }}>
@@ -316,6 +325,12 @@ export default function HomeMobile() {
           </ParallaxLayer>
 
         </Parallax>
+        <PopupModel 
+          showModal={showModal} 
+          setShowModal={setShowModal}
+          currentModel={currentModel} 
+          setCurrentModel={setCurrentModel}
+        />
       </anim.div>
     </Suspense>
   )

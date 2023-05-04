@@ -15,8 +15,23 @@ import mockedItems from '../../../utils/modelsItems'
 import parse from 'html-react-parser';
 import SuspenseImage from '../../../utils/SuspenseImage'
 import Arrow_scroll from '../../../assets/images/Arrow_scroll.webp'
+import { useState } from 'react'
+import PopupModel from './PopupModel'
 
-export default function ModelsArray() {
+export default function ModelsArray(
+  { 
+      showModal,
+      setShowModal,
+      currentModel, 
+      setCurrentModel
+       
+  } : { 
+      showModal: boolean,
+      setShowModal:   React.Dispatch<React.SetStateAction<boolean>> ,
+      currentModel: number,    
+      setCurrentModel: React.Dispatch<React.SetStateAction<number>>
+  }
+) {
   const cards = [
     falcon_webp,
     eagle_webp,
@@ -75,6 +90,8 @@ export default function ModelsArray() {
               </p>
               <button className='open-model-mobile' onClick={
                   (e: any) => {
+                    setShowModal(true)
+                    setCurrentModel(Number(i.id))
                   }
                 }>3D модель</button>
           </div>
@@ -120,27 +137,29 @@ export default function ModelsArray() {
   });
 
   return (
-    <div className='models-array'>
-      <div className={'models-text-slider'}>
-        {carouselFragment}
-      </div>
+    <>
+      <div className='models-array'>
+        <div className={'models-text-slider'}>
+          {carouselFragment}
+        </div>
 
-      <div className='models-arrows'>
-        <SuspenseImage src={Arrow_scroll} alt='scroll' onClick={() => nextImg(true)} />
-        <SuspenseImage src={Arrow_scroll} alt='scroll' onClick={() => nextImg(false)} />
-      </div>
+        <div className='models-arrows'>
+          <SuspenseImage src={Arrow_scroll} alt='scroll' onClick={() => nextImg(true)} />
+          <SuspenseImage src={Arrow_scroll} alt='scroll' onClick={() => nextImg(false)} />
+        </div>
 
-      <div className={'container-models'}>
-        {props.map(({ x, y, zIndex, scale }, i) => (
-          <animated.div className='deck' key={i} style={{ x, y, zIndex, scale }} onClick={() => changeImg(i)}>
-            <animated.div
-              style={{
-                backgroundImage: `url(${cards[i]})`,
-              }}
-            />
-          </animated.div>
-        ))}
+        <div className={'container-models'}>
+          {props.map(({ x, y, zIndex, scale }, i) => (
+            <animated.div className='deck' key={i} style={{ x, y, zIndex, scale }} onClick={() => changeImg(i)}>
+              <animated.div
+                style={{
+                  backgroundImage: `url(${cards[i]})`,
+                }}
+              />
+            </animated.div>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   )
 }

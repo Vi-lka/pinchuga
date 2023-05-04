@@ -104,7 +104,7 @@
 .open-model-mobile:focus {
     color: #f6f6f6;
     border: 1px solid #f6f6f6;
-    border-radius: 12px;
+    border-radius: 10px;
     background-color: #2b2b2b;
     transition: 0.15s ease-in-out;
 }
