@@ -49,6 +49,7 @@
     cursor: pointer;
     transition: 0.15s ease-in-out;
     border-radius: 6px;
+    z-index: 1000 !important;
 }
 
 .closeModal:hover {
@@ -58,9 +59,10 @@
 }
 
 .canvasMobile {
-    width: 98%;
-    height: 98%;
+    width: 90% !important;
+    height: 90% !important;
     margin: 0;
     padding: 0;
     border-radius: 10px;
+    z-index: 100 !important;
 }

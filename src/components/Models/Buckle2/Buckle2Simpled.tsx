@@ -31,7 +31,9 @@ export function Buckle2Simpled(props: JSX.IntrinsicElements['group']) {
   useFrame((s, delta) => {
     const page = (pageLerp.current = THREE.MathUtils.lerp(pageLerp.current, state.top / stateThree.size.height, delta * 6))
 
-    modelRef.current.visible = page > 19.2 ? (page > 22.5 ? false : true) : false
+    if (!state.lowMode) {
+      modelRef.current.visible = page > 19.2 ? (page > 22.5 ? false : true) : false
+    }
   })
 
   return (

@@ -13,6 +13,8 @@ const state = {
   model8Pos: [-12.5, 49.5, -6.5],
   selectedModel: 0,
   zoomGlobal: false,
+  lowMode: false,
+  currentModel: 0
 }
 
 export default state

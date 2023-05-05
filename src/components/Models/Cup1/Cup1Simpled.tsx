@@ -31,7 +31,9 @@ export function Cup1Simpled(props: JSX.IntrinsicElements['group']) {
   useFrame((s, delta) => {
     const page = (pageLerp.current = THREE.MathUtils.lerp(pageLerp.current, state.top / stateThree.size.height, delta * 6))
 
-    modelRef.current.visible = page > 27.7 ? (page > 31 ? false : true) : false
+    if (!state.lowMode) {
+      modelRef.current.visible = page > 27.7 ? (page > 31 ? false : true) : false
+    }
   })
 
   return (

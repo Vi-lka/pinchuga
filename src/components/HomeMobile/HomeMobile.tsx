@@ -34,8 +34,11 @@ import { AnimHrL } from './componentsMobile/AnimHrL';
 import ScrollArrow from './componentsMobile/ScrollArrow';
 import ModelsArray from './componentsMobile/ModelsArray';
 import PopupModel from './componentsMobile/PopupModel';
+import state from '../../utils/state';
 
 export default function HomeMobile() {
+
+  state.lowMode = true
 
   const mainContainer = useRef<HTMLDivElement>(null!)
 
@@ -93,7 +96,6 @@ export default function HomeMobile() {
   }
 
   const [showModal, setShowModal] = useState(false)
-  const [currentModel, setCurrentModel] = useState(-1)
 
   return (
     <Suspense fallback={<h1 style={{ color: 'black' }}>Loading...</h1>}>
@@ -301,8 +303,6 @@ export default function HomeMobile() {
             <ModelsArray
               showModal={showModal} 
               setShowModal={setShowModal}
-              currentModel={currentModel} 
-              setCurrentModel={setCurrentModel}
             />
           </ParallaxLayer>
 
@@ -328,8 +328,6 @@ export default function HomeMobile() {
         <PopupModel 
           showModal={showModal} 
           setShowModal={setShowModal}
-          currentModel={currentModel} 
-          setCurrentModel={setCurrentModel}
         />
       </anim.div>
     </Suspense>

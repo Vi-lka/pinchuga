@@ -8,6 +8,8 @@ import { Perf, PerfHeadless, usePerf } from 'r3f-perf'
 
 export default function Home() {
 
+  state.lowMode = false
+
   const [pages, setPages] = useState(0)
 
   const scrollArea = useRef<HTMLDivElement>(null)

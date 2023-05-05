@@ -31,7 +31,9 @@ export function DiskSimpled(props: JSX.IntrinsicElements['group']) {
   useFrame((s, delta) => {
     const page = (pageLerp.current = THREE.MathUtils.lerp(pageLerp.current, state.top / stateThree.size.height, delta * 6))
 
-    modelRef.current.visible = page > 22 ? (page > 25.3 ? false : true) : false
+    if (!state.lowMode) {
+      modelRef.current.visible = page > 22 ? (page > 25.3 ? false : true) : false
+    }
   })
 
   return (

@@ -15,22 +15,16 @@ import mockedItems from '../../../utils/modelsItems'
 import parse from 'html-react-parser';
 import SuspenseImage from '../../../utils/SuspenseImage'
 import Arrow_scroll from '../../../assets/images/Arrow_scroll.webp'
-import { useState } from 'react'
-import PopupModel from './PopupModel'
-import MobileCanvas from './MobileCanvas'
+import state from '../../../utils/state'
 
 export default function ModelsArray(
   { 
       showModal,
-      setShowModal,
-      currentModel, 
-      setCurrentModel
+      setShowModal
        
   } : { 
       showModal: boolean,
-      setShowModal:   React.Dispatch<React.SetStateAction<boolean>> ,
-      currentModel: number,    
-      setCurrentModel: React.Dispatch<React.SetStateAction<number>>
+      setShowModal:   React.Dispatch<React.SetStateAction<boolean>>
   }
 ) {
   const cards = [
@@ -108,6 +102,7 @@ export default function ModelsArray(
     currentImg = i
     api.start(i => to(i))
     slideToItem(i)
+    state.currentModel = currentImg
   }
 
   function nextImg(next: boolean) {
@@ -115,10 +110,12 @@ export default function ModelsArray(
       calcutaleCurrentImg(currentImg - 1)
       api.start(currentImg => to(currentImg))
       slideToPrevItem()
+      state.currentModel = currentImg
     } else {
       calcutaleCurrentImg(currentImg + 1)
       api.start(currentImg => to(currentImg))
       slideToNextItem()
+      state.currentModel = currentImg
     }
   }
 
@@ -128,6 +125,7 @@ export default function ModelsArray(
 
       currentImg = nextId
       api.start(nextId => to(nextId))
+      state.currentModel = currentImg
     } 
   });
 
@@ -139,7 +137,6 @@ export default function ModelsArray(
           <button className='open-model-mobile' onClick={
             (e: any) => {
               setShowModal(true)
-              setCurrentModel(currentImg)
             }
           }>3D модель</button>
         </div>
@@ -160,7 +157,6 @@ export default function ModelsArray(
             </animated.div>
           ))}
         </div>
-        {/* <MobileCanvas currentModel={currentModel} /> */}
       </div>
     </>
   )

@@ -2,19 +2,16 @@ import { animated, useSpring } from '@react-spring/web'
 import React, { createRef, useCallback, useEffect } from 'react'
 import '../css/popup.css'
 import MobileCanvas from './MobileCanvas'
+import state from '../../../utils/state'
 
 export default function PopupModel(
     { 
         showModal,
-        setShowModal,
-        currentModel, 
-        setCurrentModel
+        setShowModal
          
     } : { 
         showModal: boolean,
-        setShowModal:   React.Dispatch<React.SetStateAction<boolean>> ,
-        currentModel: number,    
-        setCurrentModel: React.Dispatch<React.SetStateAction<number>>
+        setShowModal:   React.Dispatch<React.SetStateAction<boolean>>
     }
 ) {
     const modalRef = createRef<HTMLDivElement>()
@@ -35,7 +32,6 @@ export default function PopupModel(
     const closeModal = (e: any) => {
         if (modalRef.current === e.target) {
           setShowModal(false)
-          setCurrentModel(-1)
         }
     }
 
@@ -43,10 +39,9 @@ export default function PopupModel(
         (e: any) => {
           if (e.key === 'Escape' && showModal) {
             setShowModal(false)
-            setCurrentModel(-1)
           }
         },
-        [setCurrentModel, setShowModal, showModal]
+        [setShowModal, showModal]
     )
 
     useEffect(
@@ -65,11 +60,10 @@ export default function PopupModel(
             <animated.div style={animation}>
               <div className='modalWrapper' style={{display: showModal ? 'flex' : 'none'}}>
                 <div className='modalContent'>
-                    <MobileCanvas currentModel={currentModel} />
+                    <MobileCanvas />
                 </div>
                 <button className='closeModal' onClick={() => {
                     setShowModal(false)
-                    setCurrentModel(-1)
                 }}>
                     X
                 </button>

@@ -30,8 +30,10 @@ export function Cup2Simpled(props: JSX.IntrinsicElements['group']) {
 
   useFrame((s, delta) => {
     const page = (pageLerp.current = THREE.MathUtils.lerp(pageLerp.current, state.top / stateThree.size.height, delta * 6))
-
-    modelRef.current.visible = page > 24.8 ? (page > 28.2 ? false : true) : false
+    
+    if (!state.lowMode) {
+      modelRef.current.visible = page > 24.8 ? (page > 28.2 ? false : true) : false
+    }
   })
 
   return (

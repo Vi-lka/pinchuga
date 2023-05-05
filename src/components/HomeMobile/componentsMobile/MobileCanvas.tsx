@@ -1,10 +1,19 @@
-import { Bounds, Center as DreiCenter, Html, Loader, Preload, Sphere, useProgress } from '@react-three/drei'
+import { Bounds, ContactShadows, Center as DreiCenter, Html, Loader, OrbitControls, Preload, Sphere, useProgress } from '@react-three/drei'
 import { Canvas, useThree } from '@react-three/fiber'
 import React, { Suspense, useEffect, useState } from 'react'
 import { Bird1Simpled } from '../../Models/Bird1/Bird1Simpled'
 import { Bird2Simpled } from '../../Models/Bird2/Bird2Simpled'
+import state from '../../../utils/state'
+import { DeerSimpled } from '../../Models/Deer/DeerSimpled'
+import { Buckle1Simpled } from '../../Models/Buckle1/Buckle1Simpled'
+import { Buckle2Simpled } from '../../Models/Buckle2/Buckle2Simpled'
+import { DiskSimpled } from '../../Models/DIsk/DiskSimpled'
+import { Cup2Simpled } from '../../Models/Cup2/Cup2Simpled'
+import { Cup1Simpled } from '../../Models/Cup1/Cup1Simpled'
 
-export default function MobileCanvas({ currentModel } : { currentModel: number }) {
+export default function MobileCanvas() {
+
+  console.log(state.currentModel)
 
     const { active } = useProgress()
     const [loadingState, setloadingState] = useState<boolean>(true)
@@ -30,64 +39,122 @@ export default function MobileCanvas({ currentModel } : { currentModel: number }
 
         return (
             <>
-            <Bounds
-              fit={loadingState}
-              clip={loadingState}
-              observe
-              damping={0}
-              margin={1.2}
-            >
-              <DreiCenter
-                // rotation={[0, 1.5, 0]}
+              <Bounds
+                fit={loadingState}
+                clip={loadingState}
+                observe
+                damping={0}
+                margin={1.2}
               >
-                {/* {
-                    (currentModel === 0) ? 
+                <DreiCenter>
+                  {
+                    (state.currentModel === 0) ? 
                     (
-                        <Suspense fallback={
-                            <Sphere scale={1.2} position={[0, 0, 0]}>
-                              <meshStandardMaterial color='gray' roughness={0.4} metalness={0.2} />
-                            </Sphere>
-                          }>
-                            <Bird1Simpled
-                              position={[0, 0, 0]}
-                              rotation={[0, 0, 0]}
-                              scale={0.52}
-                            />
-                        </Suspense>
-                    ) 
-                    : 
-                    (currentModel === 1) ? 
-                    (
-                        <Suspense fallback={
-                            <Sphere scale={1.2} position={[0, 0, 0]}>
-                              <meshStandardMaterial color='gray' roughness={0.4} metalness={0.2} />
-                            </Sphere>
-                          }>
-                            <Bird2Simpled
-                              position={[0, 0, 0]}
-                              rotation={[0, 0, 0]}
-                              scale={0.52}
-                            />
-                        </Suspense>
-                    )
-                    :
-                    null
-
-                } */}
-
-                    <Suspense fallback={
-                        <Sphere scale={1.2} position={[0, 0, 0]}>
-                          <meshStandardMaterial color='gray' roughness={0.4} metalness={0.2} />
-                        </Sphere>
-                      }>
+                      <Suspense>
                         <Bird1Simpled
                           position={[0, 0, 0]}
                           rotation={[0, 0, 0]}
-                          scale={0.52}
+                          scale={0.48}
                         />
-                    </Suspense>
+                      </Suspense>
+                    ) 
+                    : 
+                    (state.currentModel === 1) ? 
+                    (
+                      <Suspense>
+                        <Bird2Simpled
+                          position={[0, 0, 0]}
+                          rotation={[0, 3.1, 0]}
+                          scale={3}
+                        />
+                      </Suspense>
+                    )
+                    : 
+                    (state.currentModel === 2) ? 
+                    (
+                      <Suspense>
+                        <DeerSimpled
+                          position={[0, 0, 0]}
+                          rotation={[0, 0, -1]}
+                          scale={3.6}
+                        />
+                      </Suspense>
+                    )
+                    : 
+                    (state.currentModel === 3) ? 
+                    (
+                      <Suspense>
+                        <Buckle1Simpled
+                          position={[0, 0, 0]}
+                          rotation={[0, -0.6, 0]}
+                          scale={1.6}
+                        />
+                      </Suspense>
+                    )
+                    : 
+                    (state.currentModel === 4) ? 
+                    (
+                      <Suspense>
+                        <Buckle2Simpled
+                          position={[0, 0, 0]}
+                          rotation={[0, 0, -1.6]}
+                          scale={0.8}
+                        />
+                      </Suspense>
+                    )
+                    : 
+                    (state.currentModel === 5) ? 
+                    (
+                      <Suspense>
+                        <DiskSimpled
+                          position={[0, 0, 0]}
+                          rotation={[1.55, 0, -1.5]}
+                          scale={4.8}
+                        />
+                      </Suspense>
+                    )
+                    : 
+                    (state.currentModel === 6) ? 
+                    (
+                      <Suspense>
+                        <Cup2Simpled
+                          position={[0, 0, 0]}
+                          rotation={[0, 1.25, 0.1]}
+                          scale={1}
+                        />
+                      </Suspense>
+                    )
+                    : 
+                    (state.currentModel === 7) ? 
+                    (
+                      <Suspense>
+                        <Cup1Simpled
+                          position={[0, 0, 0]}
+                          rotation={[-1.8, 0.05, 3]}
+                          scale={1.2}
+                        />
+                      </Suspense>
+                    )
+                    :
+                    null
+                  }
                 </DreiCenter>
               </Bounds>
+
+              {/* <ContactShadows
+                frames={1}
+                // position={[0, -(sceneSize.y / 2), 0]}
+                blur={2}
+                far={10}
+                opacity={0.8}
+              /> */}
+
+              <AdaptivePixelRatio />
+
+              <OrbitControls
+                // enabled={!textHovered}
+                makeDefault
+              />
             </>
         )
     }
@@ -123,6 +190,12 @@ export default function MobileCanvas({ currentModel } : { currentModel: number }
 
         <Scene />
 
+        <directionalLight position={[-3, -15, -15]} />
+        <directionalLight position={[-3, 15, 15]} />
+        
+        <directionalLight position={[-3, -15, -15]} />
+        <directionalLight position={[-3, 15, 15]} />
+        
         <directionalLight position={[-3, -15, -15]} />
         <directionalLight position={[-3, 15, 15]} />
 
