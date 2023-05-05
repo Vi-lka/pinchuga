@@ -25,7 +25,7 @@ export default function PopupModel(
         },
         opacity: showModal ? 1 : 0,
         transform: showModal ? `scale(1)` : `scale(0.95)`,
-        background: showModal ? '#f6f6f6' : 'transparent',
+        background: showModal ? '#f0f0f0' : 'transparent',
         borderRadius: '10px',
     })
 

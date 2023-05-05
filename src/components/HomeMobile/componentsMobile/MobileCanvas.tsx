@@ -1,4 +1,4 @@
-import { Bounds, ContactShadows, Center as DreiCenter, Html, Loader, OrbitControls, Preload, Sphere, useProgress } from '@react-three/drei'
+import { Bounds, ContactShadows, Center as DreiCenter, Html, Loader, OrbitControls, Preload, Sphere, Stage, useProgress } from '@react-three/drei'
 import { Canvas, useThree } from '@react-three/fiber'
 import React, { Suspense, useEffect, useState } from 'react'
 import { Bird1Simpled } from '../../Models/Bird1/Bird1Simpled'
@@ -12,8 +12,6 @@ import { Cup2Simpled } from '../../Models/Cup2/Cup2Simpled'
 import { Cup1Simpled } from '../../Models/Cup1/Cup1Simpled'
 
 export default function MobileCanvas() {
-
-  console.log(state.currentModel)
 
     const { active } = useProgress()
     const [loadingState, setloadingState] = useState<boolean>(true)
@@ -30,10 +28,10 @@ export default function MobileCanvas() {
         })
 
         function AdaptivePixelRatio() {
-            const current = useThree(state => state.performance.current)
+            const currentPerformance = useThree(state => state.performance.current)
             useEffect(() => {
-              stateThree.gl.setPixelRatio(0.95 * (window.devicePixelRatio * current))
-            })
+              stateThree.gl.setPixelRatio((window.devicePixelRatio * currentPerformance))
+            }, [currentPerformance])
             return null
         }
 
@@ -52,9 +50,22 @@ export default function MobileCanvas() {
                     (
                       <Suspense>
                         <Bird1Simpled
+                          castShadow
+                          receiveShadow
                           position={[0, 0, 0]}
                           rotation={[0, 0, 0]}
                           scale={0.48}
+                        />
+
+                        <directionalLight position={[-10, 15, 10]} />
+                        <directionalLight position={[10, 15, -10]} />
+
+                        <ContactShadows
+                          frames={1}
+                          position={[0, -2.2, 0]}
+                          blur={1.5}
+                          far={10}
+                          opacity={0.5}
                         />
                       </Suspense>
                     ) 
@@ -67,6 +78,16 @@ export default function MobileCanvas() {
                           rotation={[0, 3.1, 0]}
                           scale={3}
                         />
+
+                        <directionalLight position={[0, -10, 10]} intensity={0.6} />
+
+                        <ContactShadows
+                          frames={1}
+                          position={[0, -1.85, 0]}
+                          blur={1.5}
+                          far={10}
+                          opacity={0.5}
+                        />
                       </Suspense>
                     )
                     : 
@@ -77,6 +98,16 @@ export default function MobileCanvas() {
                           position={[0, 0, 0]}
                           rotation={[0, 0, -1]}
                           scale={3.6}
+                        />
+
+                        <directionalLight position={[0, -10, -10]} intensity={0.5} />
+
+                        <ContactShadows
+                          frames={1}
+                          position={[0, -0.95, 0]}
+                          blur={1.8}
+                          far={10}
+                          opacity={0.5}
                         />
                       </Suspense>
                     )
@@ -89,6 +120,14 @@ export default function MobileCanvas() {
                           rotation={[0, -0.6, 0]}
                           scale={1.6}
                         />
+
+                        <ContactShadows
+                          frames={1}
+                          position={[0, -1.12, 0]}
+                          blur={1.4}
+                          far={10}
+                          opacity={0.5}
+                        />
                       </Suspense>
                     )
                     : 
@@ -99,6 +138,14 @@ export default function MobileCanvas() {
                           position={[0, 0, 0]}
                           rotation={[0, 0, -1.6]}
                           scale={0.8}
+                        />
+
+                        <ContactShadows
+                          frames={1}
+                          position={[0, -1.14, 0]}
+                          blur={1.5}
+                          far={10}
+                          opacity={0.5}
                         />
                       </Suspense>
                     )
@@ -111,6 +158,14 @@ export default function MobileCanvas() {
                           rotation={[1.55, 0, -1.5]}
                           scale={4.8}
                         />
+
+                        <ContactShadows
+                          frames={1}
+                          position={[0, -1.95, 0]}
+                          blur={1.3}
+                          far={10}
+                          opacity={0.5}
+                        />
                       </Suspense>
                     )
                     : 
@@ -121,6 +176,14 @@ export default function MobileCanvas() {
                           position={[0, 0, 0]}
                           rotation={[0, 1.25, 0.1]}
                           scale={1}
+                        />
+
+                        <ContactShadows
+                          frames={1}
+                          position={[0, -1.94, 0]}
+                          blur={1.6}
+                          far={10}
+                          opacity={0.5}
                         />
                       </Suspense>
                     )
@@ -133,6 +196,14 @@ export default function MobileCanvas() {
                           rotation={[-1.8, 0.05, 3]}
                           scale={1.2}
                         />
+
+                        <ContactShadows
+                          frames={1}
+                          position={[0, -1.8, 0]}
+                          blur={1.8}
+                          far={10}
+                          opacity={0.5}
+                        />
                       </Suspense>
                     )
                     :
@@ -140,14 +211,6 @@ export default function MobileCanvas() {
                   }
                 </DreiCenter>
               </Bounds>
-
-              {/* <ContactShadows
-                frames={1}
-                // position={[0, -(sceneSize.y / 2), 0]}
-                blur={2}
-                far={10}
-                opacity={0.8}
-              /> */}
 
               <AdaptivePixelRatio />
 
@@ -187,17 +250,19 @@ export default function MobileCanvas() {
         </Html>
       }
     >
+      <Scene />
 
-        <Scene />
+        
+      <directionalLight position={[0, 2, 10]} />
+      <directionalLight position={[0, 2, -10]} />
 
-        <directionalLight position={[-3, -15, -15]} />
-        <directionalLight position={[-3, 15, 15]} />
-        
-        <directionalLight position={[-3, -15, -15]} />
-        <directionalLight position={[-3, 15, 15]} />
-        
-        <directionalLight position={[-3, -15, -15]} />
-        <directionalLight position={[-3, 15, 15]} />
+      <directionalLight position={[0, 5, 10]} />
+      <directionalLight position={[0, 5, -10]} />
+      <directionalLight position={[0, 10, 10]} />
+      <directionalLight position={[0, 10, -10]} />
+
+      <directionalLight position={[-10, 15, 10]} intensity={0.5} />
+      <directionalLight position={[10, 15, -10]} intensity={0.5} />
 
       {/* <PerfHook /> */}
       {/* <Perf

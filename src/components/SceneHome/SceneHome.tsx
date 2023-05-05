@@ -1,4 +1,4 @@
-import { Text, Html, OrbitControls, useAspect, PerspectiveCamera, Stats, usePerformanceMonitor } from '@react-three/drei'
+import { Text, Html, OrbitControls, useAspect, PerspectiveCamera } from '@react-three/drei'
 import { Image as DreiImage } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 import { createRef, startTransition, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
