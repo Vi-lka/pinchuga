@@ -1,4 +1,4 @@
-import { Bounds, ContactShadows, Center as DreiCenter, Html, Loader, OrbitControls, Preload, Sphere, Stage, useProgress } from '@react-three/drei'
+import { Bounds, ContactShadows, Center as DreiCenter, Html, Loader, OrbitControls, Preload, useProgress } from '@react-three/drei'
 import { Canvas, useThree } from '@react-three/fiber'
 import React, { Suspense, useEffect, useState } from 'react'
 import { Bird1Simpled } from '../../Models/Bird1/Bird1Simpled'
@@ -50,8 +50,6 @@ export default function MobileCanvas() {
                     (
                       <Suspense>
                         <Bird1Simpled
-                          castShadow
-                          receiveShadow
                           position={[0, 0, 0]}
                           rotation={[0, 0, 0]}
                           scale={0.48}
@@ -214,63 +212,53 @@ export default function MobileCanvas() {
 
               <AdaptivePixelRatio />
 
-              <OrbitControls
-                // enabled={!textHovered}
-                makeDefault
-              />
+              <OrbitControls makeDefault />
             </>
         )
     }
 
   return (
     <Canvas
-        className="canvasMobile"
-        shadows={true}
-        camera={{
-            fov: 45,
-            near: 0.1,
-            far: 1000,
-            position: [0, 0, 10],
-        }}
-        gl={{ preserveDrawingBuffer: true, antialias: true }}
-        dpr={[0.8, 2]}
-        performance={{ min: 0.7 }}
-        frameloop='demand'
-        // onCreated={({ gl }) => gl.setClearColor('#f6f6f6')}
+      className="canvasMobile"
+      shadows={true}
+      camera={{
+          fov: 45,
+          near: 0.1,
+          far: 1000,
+          position: [0, 0, 10],
+      }}
+      gl={{ preserveDrawingBuffer: true, antialias: true }}
+      dpr={[0.8, 2]}
+      performance={{ min: 0.7 }}
+      frameloop='demand'
     >
 
-    <Suspense
-      fallback={
-        <Html>
-          <Loader
-            dataStyles={{ color: "#000000" }} // Text styles
-            dataInterpolation={(p) => `Loading ${p.toFixed(1)}%`} // Text
-            initialState={(active) => active} // Initial black out state
-          />
-        </Html>
-      }
-    >
-      <Scene />
+      <Suspense
+        fallback={
+          <Html>
+            <Loader
+              dataStyles={{ color: "#000000" }} // Text styles
+              dataInterpolation={(p) => `Loading ${p.toFixed(1)}%`} // Text
+              initialState={(active) => active} // Initial black out state
+            />
+          </Html>
+        }
+      >
+        <Scene />
+      
+        <directionalLight position={[0, 2, 10]} />
+        <directionalLight position={[0, 2, -10]} />
 
-        
-      <directionalLight position={[0, 2, 10]} />
-      <directionalLight position={[0, 2, -10]} />
+        <directionalLight position={[0, 5, 10]} />
+        <directionalLight position={[0, 5, -10]} />
+        <directionalLight position={[0, 10, 10]} />
+        <directionalLight position={[0, 10, -10]} />
 
-      <directionalLight position={[0, 5, 10]} />
-      <directionalLight position={[0, 5, -10]} />
-      <directionalLight position={[0, 10, 10]} />
-      <directionalLight position={[0, 10, -10]} />
-
-      <directionalLight position={[-10, 15, 10]} intensity={0.5} />
-      <directionalLight position={[10, 15, -10]} intensity={0.5} />
-
-      {/* <PerfHook /> */}
-      {/* <Perf
-        // deepAnalyze
-      /> */}
+        <directionalLight position={[-10, 15, 10]} intensity={0.5} />
+        <directionalLight position={[10, 15, -10]} intensity={0.5} />
 
         <Preload all />
-    </Suspense>
-  </Canvas>
+      </Suspense>
+    </Canvas>
   )
 }
