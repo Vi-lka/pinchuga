@@ -4,6 +4,7 @@ import { animated as anim, useInView, useScroll, useSpring } from '@react-spring
 
 import './homeMobile.css';
 import './css/title.css';
+import './css/start.css';
 import './css/migration.css';
 import './css/big-map.css';
 import './css/angara-map.css';
@@ -80,7 +81,7 @@ export default function HomeMobile() {
 
   const propsScroll = useSpring({
     from: { opacity: 0, y: 15, },
-    to: { opacity: 1, y: 0, },
+    to: { opacity: 1, y: 0 },
     config: {
       mass: 1,
       friction: 120,
@@ -108,22 +109,6 @@ export default function HomeMobile() {
           className='parallax-container'
         >
 
-          <ParallaxLayer offset={0.12} speed={0.4} factor={0.2} >
-            <anim.div className="title-imgs" style={propsImgs}>
-              <SuspenseImage src={img_draw_bird_1} alt='Орёл' />
-              <SuspenseImage src={img_draw_disk} alt='Диск' />
-              <SuspenseImage src={img_draw_bird_2} alt='Сокол' />
-            </anim.div>
-          </ParallaxLayer>
-
-          <ParallaxLayer offset={0.4} speed={0.3} factor={0.2}>
-            <div className="title-text">
-              <anim.h1 style={propsH1}>
-                Пункт<br />Прошлого
-              </anim.h1>
-            </div>
-          </ParallaxLayer>
-
           <ParallaxLayer offset={0.58} speed={0.2} factor={0.2}>
             <div className="title-text">
               <anim.h6 style={propsH6}>
@@ -132,7 +117,7 @@ export default function HomeMobile() {
             </div>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={0.9} speed={0.1} factor={0.1} className="title-scroll" onClick={() => parallaxRef.current.scrollTo(1)} >
+          <ParallaxLayer offset={0.9} speed={0.1} factor={0.1} className="title-scroll" onClick={() => parallaxRef.current.scrollTo(window.innerWidth / window.innerHeight > 1.5 ? 1.15 : 0.95)} >
             <anim.div style={propsScroll}>
               <p>
                 ПРОКРУТИТЕ ИЛИ НАЖМИТЕ, ЧТОБЫ ПРОДОЛЖИТЬ
@@ -141,13 +126,74 @@ export default function HomeMobile() {
             </anim.div>
           </ParallaxLayer>
 
+          {(window.innerWidth / window.innerHeight > 1.5 ? 
+            (
+              <>
+                <ParallaxLayer offset={0.12} speed={0.5} factor={0.2} >
+                  <anim.div className="title-imgs" style={propsImgs}>
+                    <SuspenseImage src={img_draw_bird_1} alt='Орёл' />
+                    <SuspenseImage src={img_draw_disk} alt='Диск' />
+                    <SuspenseImage src={img_draw_bird_2} alt='Сокол' />
+                  </anim.div>
+                </ParallaxLayer>
 
-          <ParallaxLayer offset={2} speed={0.05} factor={1} style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-            <SuspenseImage src={big_map} alt='Центральная Азия' className='big-map-img' />
-            <ScrollArrow src={Arrow_scroll} className={'scroll-arrow black'} onClick={() => parallaxRef.current.scrollTo(2.65)} />
+                <ParallaxLayer offset={0.4} speed={0.4} factor={0.2}>
+                  <div className="title-text">
+                    <anim.h1 style={propsH1}>
+                      Пункт<br />Прошлого
+                    </anim.h1>
+                  </div>
+                </ParallaxLayer>
+              </>
+            )
+            :
+            (
+              <ParallaxLayer offset={0} speed={-0.85} factor={0.1} sticky={{ start: 0, end: 0.88 }} style={{background: '#f6f6f6', height: '40%'}}>
+                <ParallaxLayer offset={0.12} speed={-0.04} factor={0.2} >
+                  <anim.div className="title-imgs" style={propsImgs}>
+                    <SuspenseImage src={img_draw_bird_1} alt='Орёл' />
+                    <SuspenseImage src={img_draw_disk} alt='Диск' />
+                    <SuspenseImage src={img_draw_bird_2} alt='Сокол' />
+                  </anim.div>
+                </ParallaxLayer>
+
+                <ParallaxLayer offset={0.4} speed={0.04} factor={0.2}>
+                  <div className="title-text">
+                    <anim.h1 style={propsH1}>
+                      Пункт<br />Прошлого
+                    </anim.h1>
+                  </div>
+                </ParallaxLayer>
+              </ParallaxLayer>
+            )
+          )}
+
+          <ParallaxLayer offset={1} speed={0.05} factor={1}>
+            <section className="section">
+              <div className="container-start">
+
+                <div className="start-text">
+                  <p>
+                    Проект <strong>«Пункт прошлого»</strong> - это история о древних вещах, рассказанная с помощью современных информационных технологий. 
+                    <br /><br />
+                    За ней стоят годы экспедиций и кропотливых научных исследований, новые технологические разработки и оригинальные дизайнерские решения. 
+                    <br /><br />
+                    Мы сделали все это, чтобы раскрыть информационный потенциал археологических памятников, показать их с новой другой стороны. 
+                    <br /><br />
+                    Надеемся, что проект приоткроет для вас дверь в увлекательный мир прошлого <b>Енисейской Сибири</b>. 
+                  </p>
+                </div>
+                <ScrollArrow src={Arrow_scroll} className={'scroll-arrow black'} onClick={() => parallaxRef.current.scrollTo(2)} />
+              </div>
+            </section>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={1} speed={0.2} factor={1} style={{ background: '#2b2b2b' }}>
+          <ParallaxLayer offset={3} speed={0.05} factor={1} style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+            <SuspenseImage src={big_map} alt='Центральная Азия' className='big-map-img' />
+            <ScrollArrow src={Arrow_scroll} className={'scroll-arrow black'} onClick={() => parallaxRef.current.scrollTo(3.8)} />
+          </ParallaxLayer>
+
+          <ParallaxLayer offset={2} speed={0.2} factor={1} style={{ background: '#2b2b2b' }}>
             <section className="section">
               <div className="container-migration">
                 <div className="migration-img">
@@ -167,7 +213,7 @@ export default function HomeMobile() {
                     Спустя почти полтора века, в 354 г. н.э., они стали известны в Европе под именем <b>«гунны»</b>, как суровые и безжалостные завоеватели.
                   </p>
 
-                  <ScrollArrow src={Arrow_scroll_white} className={'scroll-arrow white'} onClick={() => parallaxRef.current.scrollTo(2)} />
+                  <ScrollArrow src={Arrow_scroll_white} className={'scroll-arrow white'} onClick={() => parallaxRef.current.scrollTo(3)} />
 
                 </div>
 
@@ -175,12 +221,12 @@ export default function HomeMobile() {
             </section>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={3.42} speed={0.05} factor={1} style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+          <ParallaxLayer offset={4.42} speed={0.05} factor={1} style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
             <SuspenseImage src={angara_map} alt='Ангара и Енисей' className='angara-map-img' />
-            <ScrollArrow src={Arrow_scroll} className={'scroll-arrow black'} onClick={() => parallaxRef.current.scrollTo(4.2)} />
+            <ScrollArrow src={Arrow_scroll} className={'scroll-arrow black'} onClick={() => parallaxRef.current.scrollTo(5.2)} />
           </ParallaxLayer>
 
-          <ParallaxLayer offset={3} speed={0.2} factor={0.42} style={{ background: '#2b2b2b' }}>
+          <ParallaxLayer offset={4} speed={0.2} factor={0.42} style={{ background: '#2b2b2b' }}>
             <section className="section">
               <div className="container-big-map">
                 <div className="big-map-text">
@@ -192,18 +238,18 @@ export default function HomeMobile() {
                     Сейчас, на основании последних <b>полевых работ</b> мы можем говорить об этом уверенно.
                   </p>
 
-                  <ScrollArrow src={Arrow_scroll_white} className={'scroll-arrow white'} onClick={() => parallaxRef.current.scrollTo(3.42)} />
+                  <ScrollArrow src={Arrow_scroll_white} className={'scroll-arrow white'} onClick={() => parallaxRef.current.scrollTo(4.42)} />
                 </div>
               </div>
             </section>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={4.94} speed={0.05} factor={1} style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+          <ParallaxLayer offset={5.94} speed={0.05} factor={1} style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
             <SuspenseImage src={funeral_pure} alt='Могильник Пинчуга-6' className='funeral-pure-img' />
-            <ScrollArrow src={Arrow_scroll} className={'scroll-arrow black'} onClick={() => parallaxRef.current.scrollTo(5.7)} />
+            <ScrollArrow src={Arrow_scroll} className={'scroll-arrow black'} onClick={() => parallaxRef.current.scrollTo(6.65)} />
           </ParallaxLayer>
 
-          <ParallaxLayer offset={4.42} speed={0.2} factor={0.52} style={{ background: '#2b2b2b' }}>
+          <ParallaxLayer offset={5.42} speed={0.2} factor={0.52} style={{ background: '#2b2b2b' }}>
             <section className="section">
               <div className="container-angara-map">
                 <div className="angara-map-text">
@@ -216,13 +262,13 @@ export default function HomeMobile() {
                     Он изучался археологами <b>Сибирского федерального университета</b> с 2018 по 2022 год и стал первым полностью раскопанным некрополем эпохи Великого переселения народов на Ангаре.
                   </p>
 
-                  <ScrollArrow src={Arrow_scroll_white} className={'scroll-arrow white'} onClick={() => parallaxRef.current.scrollTo(4.94)} />
+                  <ScrollArrow src={Arrow_scroll_white} className={'scroll-arrow white'} onClick={() => parallaxRef.current.scrollTo(5.94)} />
                 </div>
               </div>
             </section>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={6.54} speed={0.05} factor={3} style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+          <ParallaxLayer offset={7.54} speed={0.05} factor={3} style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
             <div className="items-img-container">
               <div>
                 <div>
@@ -273,11 +319,11 @@ export default function HomeMobile() {
                 </div>
               </div>
 
-              <ScrollArrow src={Arrow_scroll} className={'scroll-arrow black margin-top'} onClick={() => parallaxRef.current.scrollTo(9.25)} />
+              <ScrollArrow src={Arrow_scroll} className={'scroll-arrow black margin-top'} onClick={() => parallaxRef.current.scrollTo(10.25)} />
             </div>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={5.94} speed={0.2} factor={0.6} style={{ background: '#2b2b2b' }}>
+          <ParallaxLayer offset={6.94} speed={0.2} factor={0.6} style={{ background: '#2b2b2b' }}>
             <section className="section">
               <div className="container-funeral-pure">
                 <div className="funeral-pure-text">
@@ -293,20 +339,20 @@ export default function HomeMobile() {
                     Упор сделан на изделиях из бронзы, красивых, ярких и обладающих <b>художественной ценностью</b>.
                   </p>
 
-                  <ScrollArrow src={Arrow_scroll_white} className={'scroll-arrow white'} onClick={() => parallaxRef.current.scrollTo(6.55)} />
+                  <ScrollArrow src={Arrow_scroll_white} className={'scroll-arrow white'} onClick={() => parallaxRef.current.scrollTo(7.55)} />
                 </div>
               </div>
             </section>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={10.2} speed={0.05} factor={1} style={{ textAlign: 'center' }}>
+          <ParallaxLayer offset={11.2} speed={0.05} factor={1} style={{ textAlign: 'center' }}>
             <ModelsArray
               showModal={showModal} 
               setShowModal={setShowModal}
             />
           </ParallaxLayer>
 
-          <ParallaxLayer offset={9.54} speed={0.2} factor={0.46} style={{ background: '#2b2b2b' }}>
+          <ParallaxLayer offset={10.54} speed={0.2} factor={0.46} style={{ background: '#2b2b2b' }}>
             <section className="section">
               <div className="container-items">
                 <div className="items-text">
@@ -318,17 +364,20 @@ export default function HomeMobile() {
                     Представленные <b>керамические сосуды</b> не относятся к могильнику, но найдены на этом же памятнике и характерны для раннего железного века и неолита Приангарья.
                   </p>
 
-                  <ScrollArrow src={Arrow_scroll_white} className={'scroll-arrow white'} onClick={() => parallaxRef.current.scrollTo(10.22)} />
+                  <ScrollArrow src={Arrow_scroll_white} className={'scroll-arrow white'} onClick={() => parallaxRef.current.scrollTo(11.22)} />
                 </div>
               </div>
             </section>
           </ParallaxLayer>
 
         </Parallax>
+
         <PopupModel 
           showModal={showModal} 
           setShowModal={setShowModal}
         />
+
+        
       </anim.div>
     </Suspense>
   )
