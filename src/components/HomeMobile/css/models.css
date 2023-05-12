@@ -48,7 +48,7 @@
 .models-text-slider-item {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
     width: 80%;
     margin: 0 auto;
     background: #f6f6f6;
@@ -67,7 +67,6 @@
     font-size: 2vw;
     letter-spacing: 0.05ch;
     line-height: 1.2;
-    margin-bottom: 10px;
 }
 
 .models-text-slider-item p {

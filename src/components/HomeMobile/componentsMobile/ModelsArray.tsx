@@ -80,6 +80,7 @@ export default function ModelsArray(
       renderItem: (
           <div className='models-text-slider-item'>
               <b className='title-models'>{i.title}</b>
+              <br />
               <p>
                 {parse(i.text)}
               </p>

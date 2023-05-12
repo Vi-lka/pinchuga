@@ -199,7 +199,7 @@ export default function HomeMobile() {
                 <div className="migration-img">
                   <SuspenseImage src={great_migration} alt='Великое переселение народов' />
                 </div>
-
+                <br />
                 <div className="migration-text">
                   <p>
                     <strong>Эпоха Великого переселения народов</strong> – один из ключевых моментов истории Евразии вообще и Сибири в частности.
