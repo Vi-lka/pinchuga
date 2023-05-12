@@ -105,7 +105,7 @@ export default function HomeMobile() {
         <Parallax
           ref={parallaxRef}
           // pages={window.innerWidth < 685 ? 9.725 : 8.6}
-          pages={13.5}
+          pages={13.6}
           config={config}
           className='parallax-container'
         >
@@ -393,6 +393,9 @@ export default function HomeMobile() {
                 </div>
               </div>
             </section>
+          </ParallaxLayer>
+
+          <ParallaxLayer offset={13.4} speed={0.2} factor={1} style={{ background: '#2b2b2b' }}>
           </ParallaxLayer>
 
         </Parallax>
