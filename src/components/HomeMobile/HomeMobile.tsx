@@ -10,6 +10,7 @@ import './css/big-map.css';
 import './css/angara-map.css';
 import './css/funeral-pure.css';
 import './css/items.css';
+import './css/team.css';
 
 import Arrow_scroll from '../../assets/images/Arrow_scroll.webp'
 import Arrow_scroll_white from '../../assets/images/Arrow_scroll_white.webp'
@@ -104,7 +105,7 @@ export default function HomeMobile() {
         <Parallax
           ref={parallaxRef}
           // pages={window.innerWidth < 685 ? 9.725 : 8.6}
-          pages={14}
+          pages={13.5}
           config={config}
           className='parallax-container'
         >
@@ -350,6 +351,7 @@ export default function HomeMobile() {
               showModal={showModal} 
               setShowModal={setShowModal}
             />
+            <ScrollArrow src={Arrow_scroll} className={'scroll-arrow black margin-top'} onClick={() => parallaxRef.current.scrollTo(12.6)} />
           </ParallaxLayer>
 
           <ParallaxLayer offset={10.54} speed={0.2} factor={0.46} style={{ background: '#2b2b2b' }}>
@@ -365,6 +367,29 @@ export default function HomeMobile() {
                   </p>
 
                   <ScrollArrow src={Arrow_scroll_white} className={'scroll-arrow white'} onClick={() => parallaxRef.current.scrollTo(11.22)} />
+                </div>
+              </div>
+            </section>
+          </ParallaxLayer>
+
+          <ParallaxLayer offset={12.6} speed={0.2} factor={1} style={{ background: '#2b2b2b' }}>
+            <section className="section">
+              <div className="container-team">
+                <h6>Команда проекта</h6>
+                <div className="team-text">
+                  <p>доделать....</p>
+                  <br/>
+                  <p>
+                    Тексты: 
+                  </p>
+                  <br/>
+                  <p>
+                    Иллюстрации: 
+                  </p>
+                  <br/>
+                  <p>
+                    Программирование: 
+                  </p>
                 </div>
               </div>
             </section>
