@@ -395,7 +395,7 @@ export default function HomeMobile() {
             </section>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={13.4} speed={0.2} factor={1} style={{ background: '#2b2b2b' }}>
+          <ParallaxLayer offset={13.2} speed={0.2} factor={1} style={{ background: '#2b2b2b' }}>
           </ParallaxLayer>
 
         </Parallax>
