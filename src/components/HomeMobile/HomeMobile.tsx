@@ -12,6 +12,9 @@ import './css/funeral-pure.css';
 import './css/items.css';
 import './css/team.css';
 
+import DHLab_logo_white from '../../assets/images/DHLab_logo_white.png'
+import arch_lab_white from '../../assets/images/arch_lab_white.png'
+
 import Arrow_scroll from '../../assets/images/Arrow_scroll.webp'
 import Arrow_scroll_white from '../../assets/images/Arrow_scroll_white.webp'
 
@@ -375,27 +378,76 @@ export default function HomeMobile() {
           <ParallaxLayer offset={12.6} speed={0.2} factor={1} style={{ background: '#2b2b2b' }}>
             <section className="section">
               <div className="container-team">
+                <a className='dhLab' href='https://dh-lab.ru/' target="__blank">
+                  <img src={DHLab_logo_white} alt="Digital Humanities Lab"/>
+                </a>
                 <h6>Команда проекта</h6>
                 <div className="team-text">
-                  <p>доделать....</p>
-                  <br/>
                   <p>
-                    Тексты: 
+                    Проект был создан сотрудниками <a href='https://www.sfu-kras.ru/' target="__blank">СФУ</a>:
                   </p>
+
+                  <ul>
+                    <li>
+                      <a href='https://dh-lab.ru/' target="__blank">Лаборатория Digital Humanities - DHlab</a>
+                    </li>
+                    <li>
+                      <a href='https://structure.sfu-kras.ru/node/359' target="__blank">Лаборатория археологии Енисейской Сибири</a> 
+                    </li>
+                  </ul>
+
+                  <br/><br/>
+
+                  <div>
+                    <p>
+                      <span>Текст:</span> 
+                    </p>
+                    <p className='profile-name'>
+                      <a href='https://structure.sfu-kras.ru/node/3908' target="__blank">Сенотрусова Полина Олеговна</a>
+                    </p>
+                    <p className='profile-link'>
+                      <a href='mailto:example@example.com' target="__blank">psenotrusova@sfu-kras.ru</a>
+                    </p>
+                  </div>
+
                   <br/>
-                  <p>
-                    Иллюстрации: 
-                  </p>
+
+                  <div>
+                    <p>
+                      <span>Иллюстрации:</span>
+                    </p>
+                    <p className='profile-name'>
+                      <a href='https://structure.sfu-kras.ru/node/3908' target="__blank">Example Александра Example</a>
+                    </p>
+                    <p className='profile-link'>
+                      <a href='mailto:example@example.com' target="__blank">example@example.com</a>
+                    </p>
+                  </div>
+
                   <br/>
-                  <p>
-                    Программирование: 
-                  </p>
+
+                  <div>
+                    <p>
+                      <span>Web-разработка:</span>
+                    </p>
+                    <p className='profile-name'>
+                      <a href='https://structure.sfu-kras.ru/node/3908' target="__blank">Пермяков Виталий Алексеевич</a>
+                    </p>
+                    <p className='profile-link'>
+                      <a href='mailto:example@example.com' target="__blank">vitalya.permyakov155@gmail.com</a>
+                    </p>
+                  </div>
                 </div>
               </div>
             </section>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={13.2} speed={0.2} factor={1} style={{ background: '#2b2b2b' }}>
+          <ParallaxLayer offset={13.35} speed={0.2} factor={1} style={{ background: '#2b2b2b' }}>
+            <div className="container-team-end">
+              <a className='archLab' href='https://structure.sfu-kras.ru/node/359' target="__blank">
+                <img src={arch_lab_white} alt="Лаборатория археологии Енисейской Сибири"/>
+              </a>
+            </div>
           </ParallaxLayer>
 
         </Parallax>
