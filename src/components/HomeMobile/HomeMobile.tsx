@@ -3,6 +3,7 @@ import { IParallax, Parallax, ParallaxLayer } from '@react-spring/parallax';
 import { animated as anim, useInView, useScroll, useSpring } from '@react-spring/web';
 
 import './homeMobile.css';
+import './css/menu.css';
 import './css/title.css';
 import './css/start.css';
 import './css/migration.css';
@@ -110,6 +111,7 @@ export default function HomeMobile() {
   return (
     <Suspense fallback={<h1 style={{ color: 'black' }}>Loading...</h1>}>
 
+      <anim.div ref={mainContainer} className="homeMobile-container">
       <div className='container-burger-menu'>
         <div 
           className={openMenu ? "burger-menu burger-menu--opened" : "burger-menu burger-menu--closed"}
@@ -121,7 +123,67 @@ export default function HomeMobile() {
         </div>
       </div>
 
-      <anim.div ref={mainContainer} className="homeMobile-container">
+      <div className={openMenu ? "container-offcanvas-menu container-offcanvas-menu--opened" : "container-offcanvas-menu container-offcanvas-menu--closed"}>
+        <div className='offcanvas-menu'>
+          <ul>
+            <li onClick={() => { 
+              parallaxRef.current.scrollTo(window.innerWidth / window.innerHeight > 1.5 ? 1.15 : 0.95)
+              setOpenMenu(!openMenu)
+            }}>
+              Начало
+            </li>
+
+            <li onClick={() => { 
+              parallaxRef.current.scrollTo(2)
+              setOpenMenu(!openMenu)
+            }}>
+              Великое переселение народов
+            </li>
+
+            <li onClick={() => { 
+              parallaxRef.current.scrollTo(3.8)
+              setOpenMenu(!openMenu)
+            }}>
+              Миграция
+            </li>
+
+            <li onClick={() => { 
+              parallaxRef.current.scrollTo(5.2)
+              setOpenMenu(!openMenu)
+            }}>
+              Ангара и Енисей
+            </li>
+
+            <li onClick={() => { 
+              parallaxRef.current.scrollTo(6.65)
+              setOpenMenu(!openMenu)
+            }}>
+              Пинчуга-6
+            </li>
+
+            <li onClick={() => { 
+              parallaxRef.current.scrollTo(10.25)
+              setOpenMenu(!openMenu)
+            }}>
+              Предметы
+            </li>
+
+            <li onClick={() => { 
+              parallaxRef.current.scrollTo(11.22)
+              setOpenMenu(!openMenu)
+            }}>
+              3D-модели
+            </li>
+
+            <li onClick={() => { 
+              parallaxRef.current.scrollTo(12.57)
+              setOpenMenu(!openMenu)
+            }}>
+              Команда проекта
+            </li>
+          </ul>
+        </div>
+      </div>
         <Parallax
           ref={parallaxRef}
           // pages={window.innerWidth < 685 ? 9.725 : 8.6}
