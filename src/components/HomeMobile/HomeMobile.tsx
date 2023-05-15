@@ -15,6 +15,9 @@ import './css/team.css';
 import DHLab_logo_white from '../../assets/images/DHLab_logo_white.png'
 import arch_lab_white from '../../assets/images/arch_lab_white.png'
 
+import DHLab_logo from '../../assets/images/DHLab_logo.svg'
+import arch_lab from '../../assets/images/arch_lab.svg'
+
 import Arrow_scroll from '../../assets/images/Arrow_scroll.webp'
 import Arrow_scroll_white from '../../assets/images/Arrow_scroll_white.webp'
 
@@ -102,8 +105,22 @@ export default function HomeMobile() {
 
   const [showModal, setShowModal] = useState(false)
 
+  const [openMenu, setOpenMenu] = useState(false)
+
   return (
     <Suspense fallback={<h1 style={{ color: 'black' }}>Loading...</h1>}>
+
+      <div className='container-burger-menu'>
+        <div 
+          className={openMenu ? "burger-menu burger-menu--opened" : "burger-menu burger-menu--closed"}
+          onClick={() => setOpenMenu(!openMenu)}
+        >
+          <div className="bar"></div>
+          <div className="bar"></div>
+          <div className="bar"></div>
+        </div>
+      </div>
+
       <anim.div ref={mainContainer} className="homeMobile-container">
         <Parallax
           ref={parallaxRef}
@@ -112,7 +129,6 @@ export default function HomeMobile() {
           config={config}
           className='parallax-container'
         >
-
           <ParallaxLayer offset={0.58} speed={0.2} factor={0.2}>
             <div className="title-text">
               <anim.h6 style={propsH6}>
@@ -133,6 +149,18 @@ export default function HomeMobile() {
           {(window.innerWidth / window.innerHeight > 1.5 ? 
             (
               <>
+                <ParallaxLayer offset={0} speed={0} factor={1}>
+                  <div className="title-icons">
+                    <a className='dhLab' href='https://dh-lab.ru/' target="__blank">
+                      <img src={DHLab_logo} alt="Digital Humanities Lab"/>
+                    </a>
+
+                    <a className='archLab' href='https://structure.sfu-kras.ru/node/359' target="__blank">
+                      <img src={arch_lab} alt="Лаборатория археологии Енисейской Сибири"/>
+                    </a>
+                  </div>
+                </ParallaxLayer>
+
                 <ParallaxLayer offset={0.12} speed={0.5} factor={0.2} >
                   <anim.div className="title-imgs" style={propsImgs}>
                     <SuspenseImage src={img_draw_bird_1} alt='Орёл' />
@@ -153,7 +181,20 @@ export default function HomeMobile() {
             :
             (
               <ParallaxLayer offset={0} speed={-0.85} factor={0.1} sticky={{ start: 0, end: 0.88 }} style={{background: '#f6f6f6', height: '40%'}}>
-                <ParallaxLayer offset={0.12} speed={-0.04} factor={0.2} >
+
+                <ParallaxLayer offset={0} speed={-0.08} factor={0.2}>
+                  <div className="title-icons">
+                    <a className='dhLab' href='https://dh-lab.ru/' target="__blank">
+                      <img src={DHLab_logo} alt="Digital Humanities Lab"/>
+                    </a>
+
+                    <a className='archLab' href='https://structure.sfu-kras.ru/node/359' target="__blank">
+                      <img src={arch_lab} alt="Лаборатория археологии Енисейской Сибири"/>
+                    </a>
+                  </div>
+                </ParallaxLayer>
+
+                <ParallaxLayer offset={0.12} speed={-0.04} factor={0.2}>
                   <anim.div className="title-imgs" style={propsImgs}>
                     <SuspenseImage src={img_draw_bird_1} alt='Орёл' />
                     <SuspenseImage src={img_draw_disk} alt='Диск' />
@@ -161,7 +202,7 @@ export default function HomeMobile() {
                   </anim.div>
                 </ParallaxLayer>
 
-                <ParallaxLayer offset={0.4} speed={0.04} factor={0.2}>
+                <ParallaxLayer offset={0.4} speed={0.04} factor={0.1}>
                   <div className="title-text">
                     <anim.h1 style={propsH1}>
                       Пункт<br />Прошлого

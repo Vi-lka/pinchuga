@@ -5,6 +5,7 @@
     height: 100%;
     color: #2b2b2b;
     /* background-color: #2b2b2b; */
+    z-index: 10;
 }
 
 .section {
