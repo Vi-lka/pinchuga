@@ -354,7 +354,7 @@ export default function HomeMobile() {
               showModal={showModal} 
               setShowModal={setShowModal}
             />
-            <ScrollArrow src={Arrow_scroll} className={'scroll-arrow black margin-top'} onClick={() => parallaxRef.current.scrollTo(12.6)} />
+            <ScrollArrow src={Arrow_scroll} className={'scroll-arrow black margin-top'} onClick={() => parallaxRef.current.scrollTo(12.57)} />
           </ParallaxLayer>
 
           <ParallaxLayer offset={10.54} speed={0.2} factor={0.46} style={{ background: '#2b2b2b' }}>
@@ -375,16 +375,18 @@ export default function HomeMobile() {
             </section>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={12.6} speed={0.2} factor={1} style={{ background: '#2b2b2b' }}>
+          <ParallaxLayer offset={12.6} speed={0.2} factor={1.4} style={{ background: '#2b2b2b' }}>
             <section className="section">
               <div className="container-team">
                 <a className='dhLab' href='https://dh-lab.ru/' target="__blank">
                   <img src={DHLab_logo_white} alt="Digital Humanities Lab"/>
                 </a>
+
                 <h6>Команда проекта</h6>
+
                 <div className="team-text">
                   <p>
-                    Проект был создан сотрудниками <a href='https://www.sfu-kras.ru/' target="__blank">СФУ</a>:
+                    Проект создан сотрудниками <a href='https://www.sfu-kras.ru/' target="__blank">СФУ</a>:
                   </p>
 
                   <ul>
@@ -396,7 +398,21 @@ export default function HomeMobile() {
                     </li>
                   </ul>
 
-                  <br/><br/>
+                  <br/>
+
+                  <div>
+                    <p>
+                      <span>Концепция:</span>
+                    </p>
+                    <p className='profile-name'>
+                      <a href='https://structure.sfu-kras.ru/node/1262' target="__blank">Пиков Никита Олегович</a>
+                    </p>
+                    <p className='profile-link'>
+                      <a href='mailto:npikov@sfu-kras.ru' target="__blank">npikov@sfu-kras.ru</a>
+                    </p>
+                  </div>
+
+                  <br/>
 
                   <div>
                     <p>
@@ -406,7 +422,7 @@ export default function HomeMobile() {
                       <a href='https://structure.sfu-kras.ru/node/3908' target="__blank">Сенотрусова Полина Олеговна</a>
                     </p>
                     <p className='profile-link'>
-                      <a href='mailto:example@example.com' target="__blank">psenotrusova@sfu-kras.ru</a>
+                      <a href='mailto:psenotrusova@sfu-kras.ru' target="__blank">psenotrusova@sfu-kras.ru</a>
                     </p>
                   </div>
 
@@ -417,10 +433,10 @@ export default function HomeMobile() {
                       <span>Иллюстрации:</span>
                     </p>
                     <p className='profile-name'>
-                      <a href='https://structure.sfu-kras.ru/node/3908' target="__blank">Example Александра Example</a>
+                      <a href='https://t.me/chocoladic' target="__blank">Эккердт Александра Александровна</a>
                     </p>
                     <p className='profile-link'>
-                      <a href='mailto:example@example.com' target="__blank">example@example.com</a>
+                      <a href='mailto:ekkerdta@mail.ru' target="__blank">ekkerdta@mail.ru</a>
                     </p>
                   </div>
 
@@ -431,23 +447,20 @@ export default function HomeMobile() {
                       <span>Web-разработка:</span>
                     </p>
                     <p className='profile-name'>
-                      <a href='https://structure.sfu-kras.ru/node/3908' target="__blank">Пермяков Виталий Алексеевич</a>
+                      <a href='https://t.me/vi_lka7' target="__blank">Пермяков Виталий Алексеевич</a>
                     </p>
                     <p className='profile-link'>
-                      <a href='mailto:example@example.com' target="__blank">vitalya.permyakov155@gmail.com</a>
+                      <a href='mailto:vitalya.permyakov155@gmail.com' target="__blank">vitalya.permyakov155@gmail.com</a>
                     </p>
                   </div>
                 </div>
+
+                <a className='archLab' href='https://structure.sfu-kras.ru/node/359' target="__blank">
+                  <img src={arch_lab_white} alt="Лаборатория археологии Енисейской Сибири"/>
+                </a>
+
               </div>
             </section>
-          </ParallaxLayer>
-
-          <ParallaxLayer offset={13.35} speed={0.2} factor={1} style={{ background: '#2b2b2b' }}>
-            <div className="container-team-end">
-              <a className='archLab' href='https://structure.sfu-kras.ru/node/359' target="__blank">
-                <img src={arch_lab_white} alt="Лаборатория археологии Енисейской Сибири"/>
-              </a>
-            </div>
           </ParallaxLayer>
 
         </Parallax>

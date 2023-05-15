@@ -1,19 +1,11 @@
 .container-team {
     width: 100%;
-    height: 100%;
+    height: 75%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-}
-
-.container-team-end {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+    margin-top: 20px;
 }
 
 .container-team h6 {
@@ -36,15 +28,14 @@
     margin-top: 6%;
 }
 
-.container-team-end .archLab {
+.container-team .archLab {
     width: 5%;
     min-width: 60px;
     max-width: 60px;
-    margin-top: 20px;
 }
 
 .container-team .dhLab img,
-.container-team-end .archLab img {
+.container-team .archLab img {
     width: 100%;
     height: 100%;
 }
@@ -59,7 +50,7 @@
 }
 
 .team-text div {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .team-text div p {
@@ -178,7 +169,7 @@
 
 @media (max-width: 450px) {
     .team-text div {
-        margin-bottom: 5px;
+        margin-bottom: 0px;
     }
 
     .team-text {
