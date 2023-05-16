@@ -32,6 +32,8 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
 
   const [currentArea, setCurrentArea] = useState(0)
 
+  const [visible, setVisible] = useState(false)
+
   const mapRef = createRef<any>()
 
   useEffect(() => {
@@ -51,6 +53,14 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
 
   useFrame((s, delta) => {
     const page = (pageLerp.current = THREE.MathUtils.lerp(pageLerp.current, state.top / stateThree.size.height, delta * 6))
+
+    if (page > 0.2) {
+      console.log(visible)
+      setVisible(true)
+    } else {
+      console.log(visible)
+      setVisible(false)
+    }
 
     if (page > 1) {
       mapRef.current.position.x = THREE.MathUtils.lerp(mapRef.current.position.x, 0.044 * stateThree.viewport.width, delta * 6)
@@ -166,6 +176,7 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
   return (
     <group
       ref={mapRef}
+      visible={visible}
       position={[0.05 * stateThree.viewport.width, 0.32 * (stateThree.viewport.height / 6), 0]}
     >
       {

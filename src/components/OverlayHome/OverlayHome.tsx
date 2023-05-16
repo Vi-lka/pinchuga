@@ -16,8 +16,6 @@ function OverlayHome({zoom, setZoom} : {zoom: boolean, setZoom: any}) {
   const closeZoomRef = createRef<any>()
 
   useFrame(() => {
-    console.log(height / 1.01)
-    console.log(state.top)
     closeZoomRef.current && (closeZoomRef.current.style.display = zoom ? 'block' : 'none')
 
     state.top > height / 1.0069 ? setLogosColor(true) : setLogosColor(false)
