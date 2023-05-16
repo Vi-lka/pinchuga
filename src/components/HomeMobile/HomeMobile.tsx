@@ -178,7 +178,7 @@ export default function HomeMobile() {
             </li>
 
             <li onClick={() => { 
-              parallaxRef.current.scrollTo(10.28)
+              parallaxRef.current.scrollTo(10.255)
               setOpenMenu(!openMenu)
             }}>
               Команда проекта
@@ -189,7 +189,7 @@ export default function HomeMobile() {
         <Parallax
           ref={parallaxRef}
           // pages={window.innerWidth < 685 ? 9.725 : 8.6}
-          pages={11.41}
+          pages={11.285}
           config={config}
           className='parallax-container'
         >
@@ -412,7 +412,7 @@ export default function HomeMobile() {
               showModal={showModal} 
               setShowModal={setShowModal}
             />
-            <ScrollArrow src={Arrow_scroll} className={'scroll-arrow black margin-top'} onClick={() => parallaxRef.current.scrollTo(10.28)} />
+            <ScrollArrow src={Arrow_scroll} className={'scroll-arrow black margin-top'} onClick={() => parallaxRef.current.scrollTo(10.255)} />
           </ParallaxLayer>
 
           <ParallaxLayer offset={8.95} speed={0.2} factor={0.46} style={{ background: '#2b2b2b' }}>
@@ -433,19 +433,12 @@ export default function HomeMobile() {
             </section>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={10.3} speed={0.2} factor={1.2} style={{ background: '#2b2b2b' }}>
+          <ParallaxLayer offset={10.3} speed={0.2} factor={1.05} style={{ background: '#2b2b2b' }}>
             <section className="section">
               <div className="container-team">
-                <div className='team-imgs'>
-                  <a className='dhLab' href='https://dh-lab.ru/' target="__blank">
-                    <img src={DHLab_logo_white} alt="Digital Humanities Lab"/>
-                  </a>
 
-                  <a className='archLab' href='https://structure.sfu-kras.ru/node/359' target="__blank">
-                    <img src={arch_lab_white} alt="Лаборатория археологии Енисейской Сибири"/>
-                  </a>
-                </div>
                 <h6>Команда проекта</h6>
+                
                 <div className="team-text">
                   <p>
                     Проект создан сотрудниками <a href='https://www.sfu-kras.ru/' target="__blank">СФУ</a>:
@@ -537,9 +530,19 @@ export default function HomeMobile() {
                   </div>
                 </div>
 
-                <a className='priority' href='https://priority2030.ru/' target="__blank">
-                  <img src={priority_logo_white} alt="Приоритет 2030"/>
-                </a>
+                <div className='team-imgs'>
+                  <a className='dhLab' href='https://dh-lab.ru/' target="__blank">
+                    <img src={DHLab_logo_white} alt="Digital Humanities Lab"/>
+                  </a>
+
+                  <a className='archLab' href='https://structure.sfu-kras.ru/node/359' target="__blank">
+                    <img src={arch_lab_white} alt="Лаборатория археологии Енисейской Сибири"/>
+                  </a>
+
+                  <a className='priority' href='https://priority2030.ru/' target="__blank">
+                    <img src={priority_logo_white} alt="Приоритет 2030"/>
+                  </a>
+                </div>
               </div>
             </section>
           </ParallaxLayer>

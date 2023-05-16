@@ -25,46 +25,50 @@
     text-transform: uppercase;
 }
 
-.container-team .priority {
-    width: 100%;
-    text-align: center;
-    margin-top: 2vh;
-}
-
-.container-team .priority img {
-    width: 40%;
-    max-width: 200px;
-    margin: 0 auto;
-    object-fit: contain;
-}
 
 .container-team .team-imgs {
-    width: 100%;
+    width: 90%;
+    max-width: 1200px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
     text-align: center;
 }
 
-.container-team .team-imgs .dhLab {
+.container-team .team-imgs .dhLab,
+.container-team .team-imgs .archLab,
+.container-team .team-imgs .priority {
+    width: 30%;
+    height: 100%;
+    object-fit: contain;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.container-team .team-imgs .dhLab img {
     width: 5%;
     min-width: 80px;
     max-width: 100px;
-    /* margin-top: 2vh; */
-    margin-bottom: 4vh;
 }
 
-.container-team .team-imgs .archLab {
+.container-team .team-imgs .archLab img {
     width: 5%;
     min-width: 60px;
     max-width: 60px;
 }
 
+.container-team .team-imgs .priority img {
+    width: 5%;
+    min-width: 160px;
+    max-width: 180px;
+}
+
 .container-team .team-imgs .dhLab img,
-.container-team .team-imgs .archLab img {
-    width: 100%;
-    height: 100%;
+.container-team .team-imgs .archLab img,
+.container-team .team-imgs .priority img {
     object-fit: contain;
 }
 
@@ -183,16 +187,6 @@
     .team-text p span {
         font-size: 12px;
     }
-
-    .container-team .team-imgs .dhLab {
-        margin-bottom: 2vh;
-    }
-
-    .container-team .team-imgs .dhLab img,
-    .container-team .team-imgs .archLab img {
-    width: 80%;
-    height: 80%;
-}
 }
 
 @media (max-width: 768px) {
@@ -207,15 +201,24 @@
     .team-text p:first-of-type {
         font-size: 16px;
     }
+
+    .container-team .team-imgs .dhLab img {
+        min-width: 60px;
+        max-width: 70px;
+    }
+    
+    .container-team .team-imgs .archLab img {
+        min-width: 40px;
+        max-width: 50px;
+    }
+    
+    .container-team .team-imgs .priority img {
+        min-width: 120px;
+        max-width: 130px;
+    }
 }
 
 @media (max-width: 450px) {
-    .container-team .team-imgs .dhLab img,
-    .container-team .team-imgs .archLab img {
-        width: 85%;
-        height: 85%;
-    }
-
     .team-text div {
         margin-bottom: 0px;
     }
@@ -235,5 +238,38 @@
     .team-text ul li {
         font-size: 12px;
         margin-bottom: 5px;
+    }
+
+    .container-team .team-imgs .dhLab img {
+        min-width: 60px;
+        max-width: 65px;
+    }
+    
+    .container-team .team-imgs .archLab img {
+        min-width: 35px;
+        max-width: 45px;
+    }
+    
+    .container-team .team-imgs .priority img {
+        min-width: 110px;
+        max-width: 115px;
+    }
+}
+
+@media (max-width: 300px) {
+
+    .container-team .team-imgs .dhLab img {
+        min-width: 50px;
+        max-width: 55px;
+    }
+    
+    .container-team .team-imgs .archLab img {
+        min-width: 30px;
+        max-width: 35px;
+    }
+    
+    .container-team .team-imgs .priority img {
+        min-width: 90px;
+        max-width: 95px;
     }
 }
