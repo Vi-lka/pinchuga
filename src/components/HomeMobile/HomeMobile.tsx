@@ -229,7 +229,7 @@ export default function HomeMobile() {
             </div>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={0.9} speed={0.1} factor={0.1} className="title-scroll" onClick={() => parallaxRef.current.scrollTo(0.82)} >
+          <ParallaxLayer offset={0.86} speed={0.1} factor={0.1} className="title-scroll" onClick={() => parallaxRef.current.scrollTo(0.82)} >
             <anim.div style={propsScroll}>
               <p>
                 ПРОКРУТИТЕ ИЛИ НАЖМИТЕ<span>&#8595;</span>, ЧТОБЫ ПРОДОЛЖИТЬ
