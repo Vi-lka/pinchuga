@@ -5,6 +5,7 @@ import { Suspense, useEffect, useRef, useState } from 'react'
 import SceneHome from '../SceneHome/SceneHome'
 import state from '../../utils/state'
 import { Perf, PerfHeadless, usePerf } from 'r3f-perf'
+import LoadingScreen from '../HomeMobile/componentsMobile/LoadingScreen'
 
 export default function Home() {
 
@@ -173,12 +174,8 @@ export default function Home() {
 
         <Suspense
           fallback={
-            <Html>
-              <Loader
-                dataStyles={{ color: "#000000" }} // Text styles
-                dataInterpolation={(p) => `Loading ${p.toFixed(1)}%`} // Text
-                initialState={(active) => active} // Initial black out state
-              />
+            <Html center>
+              <LoadingScreen/>
             </Html>
           }
         >
