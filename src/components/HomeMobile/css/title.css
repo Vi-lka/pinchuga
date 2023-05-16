@@ -140,13 +140,26 @@
     letter-spacing: 0.1em;
     padding-left: 0.1em;
     margin-top: -1em;
-    margin-bottom: 0.1em;
+    margin-bottom: 0.6em;
+}
+
+.title-scroll p span {
+    font-weight: 500;
+    font-size: 16px;
+    margin-left: 4px;
 }
 
 .title-scroll img {
     width: 0.75vw;
     margin-top: 4px;
     height: auto;
+}
+
+@media (min-width:2000px) {
+
+    .title-scroll p span {
+        font-size: 20px;
+    }
 }
 
 @media (max-width:700px) {
@@ -192,7 +205,10 @@
         letter-spacing: 0.1em;
         padding-left: 0.1em;
         margin-top: 0.1em;
-        margin-bottom: 0.1em;
+    }
+
+    .title-scroll p span {
+        font-size: 12px;
     }
 
     .title-scroll img {

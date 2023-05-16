@@ -1,16 +1,20 @@
 .container-team {
     width: 100%;
-    height: 75%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    margin-top: 20px;
+}
+
+.profile-name.margin-custom {
+    margin-top: 15px;
 }
 
 .container-team h6 {
     width: 70%;
     margin: 0 auto;
+    /* margin-bottom: 2vh; */
     font-family: 'Lato';
     font-weight: 300;
     max-width: 800px;
@@ -21,23 +25,47 @@
     text-transform: uppercase;
 }
 
-.container-team .dhLab {
+.container-team .priority {
+    width: 100%;
+    text-align: center;
+    margin-top: 2vh;
+}
+
+.container-team .priority img {
+    width: 40%;
+    max-width: 200px;
+    margin: 0 auto;
+    object-fit: contain;
+}
+
+.container-team .team-imgs {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+}
+
+.container-team .team-imgs .dhLab {
     width: 5%;
     min-width: 80px;
     max-width: 100px;
-    margin-top: 6%;
+    /* margin-top: 2vh; */
+    margin-bottom: 4vh;
 }
 
-.container-team .archLab {
+.container-team .team-imgs .archLab {
     width: 5%;
     min-width: 60px;
     max-width: 60px;
 }
 
-.container-team .dhLab img,
-.container-team .archLab img {
+.container-team .team-imgs .dhLab img,
+.container-team .team-imgs .archLab img {
     width: 100%;
     height: 100%;
+    object-fit: contain;
 }
 
 
@@ -61,13 +89,13 @@
 .team-text p {
     font-family: 'Lato';
     font-weight: 200;
-    font-size: 16px;
+    font-size: 15px;
     letter-spacing: 0.15ch;
     color: #f6f6f6;
 }
 
 .team-text p:first-of-type {
-    font-size: 20px;
+    font-size: 18px;
     margin-top: 0;
 }
 
@@ -85,7 +113,7 @@
 
 .team-text p span {
     font-family: 'Lato';
-    font-weight: 400;
+    font-weight: 600;
     font-size: 16px;
     text-transform: uppercase;
 }
@@ -136,21 +164,35 @@
 }
 
 @media (max-width: 1100px) {
+    .team-text div {
+        margin-bottom: 5px;
+    }
+
     .container-team h6 {
-        font-size: 20px;
-    }
-
-    .team-text p {
-        font-size: 14px;
-    }
-
-    .team-text p:first-of-type {
         font-size: 18px;
     }
 
-    .team-text p span {
-        font-size: 14px;
+    .team-text p {
+        font-size: 12px;
     }
+
+    .team-text p:first-of-type {
+        font-size: 16px;
+    }
+
+    .team-text p span {
+        font-size: 12px;
+    }
+
+    .container-team .team-imgs .dhLab {
+        margin-bottom: 2vh;
+    }
+
+    .container-team .team-imgs .dhLab img,
+    .container-team .team-imgs .archLab img {
+    width: 80%;
+    height: 80%;
+}
 }
 
 @media (max-width: 768px) {
@@ -168,6 +210,12 @@
 }
 
 @media (max-width: 450px) {
+    .container-team .team-imgs .dhLab img,
+    .container-team .team-imgs .archLab img {
+        width: 85%;
+        height: 85%;
+    }
+
     .team-text div {
         margin-bottom: 0px;
     }
