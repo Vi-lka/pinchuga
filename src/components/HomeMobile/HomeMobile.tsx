@@ -46,6 +46,7 @@ import ScrollArrow from './componentsMobile/ScrollArrow';
 import ModelsArray from './componentsMobile/ModelsArray';
 import PopupModel from './componentsMobile/PopupModel';
 import state from '../../utils/state';
+import LoadingScreen from './componentsMobile/LoadingScreen';
 
 export default function HomeMobile() {
 
@@ -111,7 +112,7 @@ export default function HomeMobile() {
   const [openMenu, setOpenMenu] = useState(false)
 
   return (
-    <Suspense fallback={<h1 style={{ color: 'black' }}>Loading...</h1>}>
+    <Suspense fallback={<LoadingScreen/>}>
 
       <anim.div ref={mainContainer} className="homeMobile-container">
       <div className='container-burger-menu'>
