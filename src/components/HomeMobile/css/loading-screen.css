@@ -8,9 +8,13 @@
     text-align: center;
 }
 
+.loading-screen svg {
+    margin: 0 auto !important;
+    margin-bottom: 20px !important;
+}
+
 .loading-screen h6 {
     margin: 0 auto;
-    margin-top: 5px;
     font-family: 'Lato';
     font-weight: 300;
     font-size: 20px;

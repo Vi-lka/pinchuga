@@ -11,7 +11,7 @@ import img_draw_cup_1 from '../../assets/images/img_draw_cup_1.svg'
 import img_draw_cup_2 from '../../assets/images/img_draw_cup_2.svg'
 import img_draw_item_1 from '../../assets/images/img_draw_item_1.svg'
 import img_draw_item_2 from '../../assets/images/img_draw_item_2.svg'
-import great_migration from '../../assets/images/great_migration.svg'
+import great_migration_white from '../../assets/images/great_migration_white.svg'
 import big_map from '../../assets/images/big_map.svg'
 import angara_map from '../../assets/images/angara_map.svg'
 import funeral_pure from '../../assets/images/funeral_pure.svg'
@@ -355,7 +355,7 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
 
           <DreiImage
             ref={dreiImage1Ref}
-            url={great_migration}
+            url={great_migration_white}
             scale={[2, 1.8]}
             color={'white'}
             toneMapped={true}

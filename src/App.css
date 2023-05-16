@@ -1,0 +1,4 @@
+html, body, #root {
+    overflow: hidden !important;
+    font-family: 'Lato';
+}
