@@ -231,8 +231,11 @@ export default function HomeMobile() {
 
           <ParallaxLayer offset={0.85} speed={0.1} factor={0.1} className="title-scroll" onClick={() => parallaxRef.current.scrollTo(0.82)} >
             <anim.div style={propsScroll}>
-              <p>
+              {/* <p>
                 ПРОКРУТИТЕ ИЛИ НАЖМИТЕ<span>&#8595;</span>, ЧТОБЫ ПРОДОЛЖИТЬ
+              </p> */}
+              <p>
+                ПРОКРУТИТЕ ИЛИ НАЖМИТЕ, ЧТОБЫ ПРОДОЛЖИТЬ
               </p>
               <SuspenseImage src={Arrow_scroll} alt='scroll' />
             </anim.div>
