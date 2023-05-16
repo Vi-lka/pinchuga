@@ -1,0 +1,21 @@
+.loading-screen {
+    width: 100vw;
+    height: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.loading-screen h6 {
+    margin: 0 auto;
+    margin-top: 5px;
+    font-family: 'Lato';
+    font-weight: 300;
+    font-size: 20px;
+    letter-spacing: 0.1em;
+    color: #2b2b2b;
+    text-align: center;
+    text-transform: uppercase;
+}

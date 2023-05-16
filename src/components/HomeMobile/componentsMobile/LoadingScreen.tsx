@@ -1,8 +1,9 @@
 import React from 'react'
+import '../css/loading-screen.css'
 
 export default function LoadingScreen() {
   return (
-    <div className=''>
+    <div className='loading-screen'>
         <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" style={{margin: "auto", background: "none", display: "block", shapeRendering: "auto"}} width="200px" height="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
           <rect x="19" y="19" width="20" height="20" fill="#2b2b2b">
             <animate attributeName="fill" values="#f6f6f6;#2b2b2b;#2b2b2b" keyTimes="0;0.125;1" dur="1s" repeatCount="indefinite" begin="0s" calcMode="discrete"></animate>
@@ -22,6 +23,7 @@ export default function LoadingScreen() {
             <animate attributeName="fill" values="#f6f6f6;#2b2b2b;#2b2b2b" keyTimes="0;0.125;1" dur="1s" repeatCount="indefinite" begin="0.5s" calcMode="discrete"></animate>
           </rect>
         </svg>
+        <h6>Загрузка...</h6>
     </div>
   )
 }
