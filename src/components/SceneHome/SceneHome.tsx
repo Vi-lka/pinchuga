@@ -3,6 +3,7 @@ import { Image as DreiImage } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 import { createRef, startTransition, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
+import priority_logo_white from '../../assets/images/priority_logo_white.png'
 import img_draw_bird_1 from '../../assets/images/img_draw_bird_1.svg'
 import img_draw_bird_2 from '../../assets/images/img_draw_bird_2.svg'
 import img_draw_disk from '../../assets/images/img_draw_disk.svg'
@@ -125,13 +126,14 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
     titleRef.current!.position.lerp(vec.set(0, -(page), page * 5), delta * 11)
     mainTextRef.current!.position.lerp(vec.set(0, -3.85, (page >= startModelsArray) ? 35 : 4), delta * 8)
     modelsArrayRef.current!.position.lerp(vec.set(page >= startModelsArray ? -1 : 50, 6.25, 1), delta * 8)
-    footerTitleRef.current!.position.lerp(vec.set(page > 30.8 ? 0 : -8, page > 30.8 ? 60.5 : 80, -10), delta * 8)
+    // footerTitleRef.current!.position.lerp(vec.set(page > 30.8 ? 0 : -8, page > 30.8 ? 60.5 : 80, -10), delta * 8)
+    footerTitleRef.current!.position.lerp(vec.set(page > 30.8 ? 0 : 40, 55.3, -10), delta * 8)
 
     titleRef.current!.visible = (page > 6.21) ? false : true
     mainTextRef.current!.visible = (page > 0.4) ? (page > 6.21 ? false : true) : false
     modelsArrayRef.current!.visible = (page > 6.19) ? true : false
     bgRef.current!.visible = (page > 6.21) ? false : true
-    footerTitleRef.current!.visible = (page > 30.75) ? true : false
+    footerTitleRef.current!.visible = (page > 30.5) ? true : false
 
     // Position of Camera
     if (!zoom) {
@@ -171,8 +173,8 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
       if (page > 27.7 && page < 30.8) { ghostMeshRef.current!.position.lerp(vec.set(-5, 50, -12), delta * 4) }
 
       //End
-      if (page >= 30.8) { stateThree.camera.position.lerp(vec.set(0, 55, 0), delta * 4) }
-      if (page >= 30.8) { ghostMeshRef.current!.position.lerp(vec.set(0, 55, -10), delta * 4) }
+      if (page >= 30.8) { stateThree.camera.position.lerp(vec.set(0, 50, 0), delta * 4) }
+      if (page >= 30.8) { ghostMeshRef.current!.position.lerp(vec.set(0, 50, -10), delta * 4) }
 
     } else {
 
@@ -545,43 +547,118 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
   function FooterTitle({ onReflow }: any) {
 
     return (
-      <>
         <Box dir="column" align={"center"} justify="center" width="100%" height="auto" minHeight="100%">
 
           <HeightReporter onReflow={onReflow} />
 
-          <DreiImage position={[Math.max(-1.4, (stateThree.size.width * 0.0006) * (-1.4)), 1.2, 4.2]} transparent scale={[Math.min(0.77, (stateThree.size.width * 0.0006) * 0.73), Math.min(1, (stateThree.size.width * 0.0006) * 0.95)]} url={img_draw_bird_1} />
-          <DreiImage position={[0, 1.2, 4.2]} transparent scale={[Math.min(0.98, (stateThree.size.width * 0.0006) * 0.94), Math.min(1, (stateThree.size.width * 0.0006) * 0.95)]} url={img_draw_disk} />
-          <DreiImage position={[Math.min(1.4, (stateThree.size.width * 0.0006) * 1.4), 1.2, 4.2]} transparent scale={[Math.min(0.65, (stateThree.size.width * 0.0006) * 0.61), Math.min(1, (stateThree.size.width * 0.0006) * 0.95)]} url={img_draw_bird_2} />
+          <mesh position={[0, 0, -1]}>
+            <planeBufferGeometry args={[50, 50]} />
+            <meshBasicMaterial color={"#2b2b2b"} toneMapped={false} />
+          </mesh>
 
-          <Text
-            position={[0, -0.23, 3]}
-            font={"../fonts/FoglihtenNo06/FoglihtenNo06.otf"}
-            color="black"
-            fontSize={Math.min(0.9, stateThree.viewport.width / 14)}
-            textAlign="center"
-            letterSpacing={0.28}
-            lineHeight={1.05}
+          <Html  
+            as='div'
+            wrapperClass='wrapperClass_footer'
+            center
           >
-            {`Пункт\nПрошлого`}
-          </Text>
+            <section className="section">
+              <div className="container-team">
 
-          <Text
-            position={[0, -1.8, 1]}
-            font={"../fonts/Lato/Lato-Light.ttf"}
-            color="black"
-            anchorX="center"
-            anchorY="middle"
-            fontSize={Math.min(0.16, stateThree.viewport.width / 40)}
-            maxWidth={(stateThree.viewport.width / 5) * 4}
-            textAlign="center"
-            letterSpacing={0.15}
-          >
-            {`3D ОБЗОР НАХОДОК ИЗ АРХЕОЛОГИЧЕСКОГО КОМПЛЕКСА ПИНЧУГА-6`}
-          </Text>
+                <h6>Команда проекта</h6>
+                
+                <div className="team-text">
+                  <p>
+                    Проект создан сотрудниками <a href='https://www.sfu-kras.ru/' target="__blank">СФУ</a>:
+                  </p>
 
+                  <ul>
+                    <li>
+                      <a href='https://dh-lab.ru/' target="__blank">Лаборатория Digital Humanities - DHlab</a>
+                    </li>
+                    <li>
+                      <a href='https://structure.sfu-kras.ru/node/359' target="__blank">Лаборатория археологии Енисейской Сибири</a> 
+                    </li>
+                  </ul>
+
+                  <br/>
+
+                  <div>
+                    <p>
+                      <span>Концепция:</span>
+                    </p>
+                    <p className='profile-name'>
+                      <a href='https://structure.sfu-kras.ru/rumyancev' target="__blank">Румянцев Максим Валерьевич</a>
+                    </p>
+                    <p className='profile-link'>
+                      <a href='mailto:rector@sfu-kras.ru' target="__blank">rector@sfu-kras.ru</a>
+                    </p>
+
+                    <p className='profile-name margin-custom'>
+                      <a href='https://structure.sfu-kras.ru/node/1262' target="__blank">Пиков Никита Олегович</a>
+                    </p>
+                    <p className='profile-link'>
+                      <a href='mailto:npikov@sfu-kras.ru' target="__blank">npikov@sfu-kras.ru</a>
+                    </p>
+                  </div>
+
+                  <br/>
+
+                  <div>
+                    <p>
+                      <span>Исследования и раскопки:</span> 
+                    </p>
+                    <p className='profile-name'>
+                      <a href='https://structure.sfu-kras.ru/mandryka' target="__blank">Мандрыка Павел Владимирович</a>
+                    </p>
+                    <p className='profile-link'>
+                      <a href='mailto:PMandrika@sfu-kras.ru' target="__blank">pmandrika@sfu-kras.ru</a>
+                    </p>
+                    <p className='profile-name margin-custom'>
+                      <a href='https://structure.sfu-kras.ru/node/3908' target="__blank">Сенотрусова Полина Олеговна</a>
+                    </p>
+                    <p className='profile-link'>
+                      <a href='mailto:psenotrusova@sfu-kras.ru' target="__blank">psenotrusova@sfu-kras.ru</a>
+                    </p>
+                  </div>
+
+                  <br/>
+
+                  <div>
+                    <p>
+                      <span>Иллюстрации:</span>
+                    </p>
+                    <p className='profile-name'>
+                      <a href='https://t.me/chocoladic' target="__blank">Эккердт Александра Александровна</a>
+                    </p>
+                    <p className='profile-link'>
+                      <a href='mailto:ekkerdta@mail.ru' target="__blank">ekkerdta@mail.ru</a>
+                    </p>
+                  </div>
+
+                  <br/>
+
+                  <div>
+                    <p>
+                      <span>Web-разработка:</span>
+                    </p>
+                    <p className='profile-name'>
+                      <a href='https://t.me/vi_lka7' target="__blank">Пермяков Виталий Алексеевич</a>
+                    </p>
+                    <p className='profile-link'>
+                      <a href='mailto:vitalya.permyakov155@gmail.com' target="__blank">vitalya.permyakov155@gmail.com</a>
+                    </p>
+                  </div>
+                </div>
+
+                <div className='team-imgs'>
+                  <a className='priority' href='https://priority2030.ru/' target="__blank">
+                    <img src={priority_logo_white} alt="Приоритет 2030"/>
+                  </a>
+                </div>
+              </div>
+            </section>
+          </Html>
         </Box>
-      </>
     )
   }
 

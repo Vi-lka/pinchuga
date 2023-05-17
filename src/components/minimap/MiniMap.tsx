@@ -27,7 +27,7 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
     'Диск с циркулярным орнаментом',
     'Горшок с личиной',
     'Горшок с оттисками «сетки-плетенки»',
-    'О проекте'
+    'Команда проекта'
   ]
 
   const [currentArea, setCurrentArea] = useState(0)
@@ -55,10 +55,8 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
     const page = (pageLerp.current = THREE.MathUtils.lerp(pageLerp.current, state.top / stateThree.size.height, delta * 6))
 
     if (page > 0.2) {
-      console.log(visible)
       setVisible(true)
     } else {
-      console.log(visible)
       setVisible(false)
     }
 
@@ -121,7 +119,7 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
       <group scale={0.016} position={[posXAspect, posYAspect, -1]}>
         <Line
           points={[-0.5, 0.5, 0, 0.5, 0.5, 0, 0.5, -0.5, 0, -0.5, -0.5, 0, -0.5, 0.5, 0]}
-          color={pageLerp.current > 1 ? (pageLerp.current > 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
+          color={currentArea >= 1 ? (currentArea >= 2 ? (currentArea > 13 ? "#ffffff" : "#2b2b2b") : "#ffffff") : "#2b2b2b"}
           transparent
           opacity={0.75}
           linewidth={(hovered || currentArea === index) ? 2 : 0}
@@ -138,8 +136,8 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
           <circleGeometry />
           <meshPhongMaterial
             transparent
-            color={pageLerp.current > 1 ? (pageLerp.current > 2 ? "#ffffff" : "#2b2b2b") : "#ffffff"}
-            emissive={pageLerp.current > 1 ? (pageLerp.current > 2 ? "#ffffff" : "#2b2b2b") : "#ffffff"}
+            color={currentArea >= 1 ? (currentArea >= 2 ? (currentArea > 13 ? "#2b2b2b" : "#ffffff") : "#2b2b2b") : "#ffffff"}
+            emissive={currentArea >= 1 ? (currentArea >= 2 ? (currentArea > 13 ? "#2b2b2b" : "#ffffff") : "#2b2b2b") : "#ffffff"}
             opacity={(hovered || currentArea === index) ? 0 : 0.01}
           />
         </mesh>
@@ -154,8 +152,8 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
           <circleGeometry />
           <meshPhongMaterial
             transparent
-            color={pageLerp.current > 1 ? (pageLerp.current > 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
-            emissive={pageLerp.current > 1 ? (pageLerp.current > 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
+            color={currentArea >= 1 ? (currentArea >= 2 ? (currentArea > 13 ? "#ffffff" : "#2b2b2b") : "#ffffff") : "#2b2b2b"}
+            emissive={currentArea >= 1 ? (currentArea >= 2 ? (currentArea > 13 ? "#ffffff" : "#2b2b2b") : "#ffffff") : "#2b2b2b"}
             opacity={(hovered || currentArea === index) ? 0.05 : 0.75}
           />
         </mesh>
@@ -196,11 +194,11 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
         positionX={posXAspect}
         scrollSpeed={29}
         scrollDelay={0}
-        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
+        color={currentArea >= 1 ? (currentArea >= 2 ? (currentArea > 13 ? "#ffffff" : "#2b2b2b") : "#ffffff") : "#2b2b2b"}
       />
       <Line
         points={[[0, -0.06 * (stateThree.viewport.height / 6), 0], [0, -0.09 * (stateThree.viewport.height / 6), 0]]}
-        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
+        color={currentArea >= 1 ? (currentArea >= 2 ? (currentArea > 13 ? "#ffffff" : "#2b2b2b") : "#ffffff") : "#2b2b2b"}
         transparent
         opacity={currentArea >= 1 ? 0.8 : 0}
         linewidth={2}
@@ -214,11 +212,11 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
         positionX={posXAspect}
         scrollSpeed={24}
         scrollDelay={0.85}
-        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
+        color={currentArea >= 1 ? (currentArea >= 2 ? (currentArea > 13 ? "#ffffff" : "#2b2b2b") : "#ffffff") : "#2b2b2b"}
       />
       <Line
         points={[[0, -0.06 * (stateThree.viewport.height / 6), 0], [0, -0.09 * (stateThree.viewport.height / 6), 0]]}
-        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
+        color={currentArea >= 1 ? (currentArea >= 2 ? (currentArea > 13 ? "#ffffff" : "#2b2b2b") : "#ffffff") : "#2b2b2b"}
         transparent
         opacity={currentArea >= 2 ? 0.8 : 0}
         linewidth={2}
@@ -232,11 +230,11 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
         positionX={posXAspect}
         scrollSpeed={29}
         scrollDelay={1.95}
-        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
+        color={currentArea >= 1 ? (currentArea >= 2 ? (currentArea > 13 ? "#ffffff" : "#2b2b2b") : "#ffffff") : "#2b2b2b"}
       />
       <Line
         points={[[0, -0.06 * (stateThree.viewport.height / 6), 0], [0, -0.09 * (stateThree.viewport.height / 6), 0]]}
-        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
+        color={currentArea >= 1 ? (currentArea >= 2 ? (currentArea > 13 ? "#ffffff" : "#2b2b2b") : "#ffffff") : "#2b2b2b"}
         transparent
         opacity={currentArea >= 3 ? 0.8 : 0}
         linewidth={2}
@@ -250,11 +248,11 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
         positionX={posXAspect}
         scrollSpeed={28.5}
         scrollDelay={2.98}
-        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
+        color={currentArea >= 1 ? (currentArea >= 2 ? (currentArea > 13 ? "#ffffff" : "#2b2b2b") : "#ffffff") : "#2b2b2b"}
       />
       <Line
         points={[[0, -0.06 * (stateThree.viewport.height / 6), 0], [0, -0.09 * (stateThree.viewport.height / 6), 0]]}
-        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
+        color={currentArea >= 1 ? (currentArea >= 2 ? (currentArea > 13 ? "#ffffff" : "#2b2b2b") : "#ffffff") : "#2b2b2b"}
         transparent
         opacity={currentArea >= 4 ? 0.8 : 0}
         linewidth={2}
@@ -268,11 +266,11 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
         positionX={posXAspect}
         scrollSpeed={27.5}
         scrollDelay={3.98}
-        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
+        color={currentArea >= 1 ? (currentArea >= 2 ? (currentArea > 13 ? "#ffffff" : "#2b2b2b") : "#ffffff") : "#2b2b2b"}
       />
       <Line
         points={[[0, -0.06 * (stateThree.viewport.height / 6), 0], [0, -0.09 * (stateThree.viewport.height / 6), 0]]}
-        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
+        color={currentArea >= 1 ? (currentArea >= 2 ? (currentArea > 13 ? "#ffffff" : "#2b2b2b") : "#ffffff") : "#2b2b2b"}
         transparent
         opacity={currentArea >= 5 ? 0.8 : 0}
         linewidth={2}
@@ -286,11 +284,11 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
         positionX={posXAspect}
         scrollSpeed={24}
         scrollDelay={4.98}
-        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
+        color={currentArea >= 1 ? (currentArea >= 2 ? (currentArea > 13 ? "#ffffff" : "#2b2b2b") : "#ffffff") : "#2b2b2b"}
       />
       <Line
         points={[[0, -0.06 * (stateThree.viewport.height / 6), 0], [0, -0.09 * (stateThree.viewport.height / 6), 0]]}
-        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
+        color={currentArea >= 1 ? (currentArea >= 2 ? (currentArea > 13 ? "#ffffff" : "#2b2b2b") : "#ffffff") : "#2b2b2b"}
         transparent
         opacity={currentArea >= 6 ? 0.8 : 0}
         linewidth={2}
@@ -304,11 +302,11 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
         positionX={posXAspect}
         scrollSpeed={7.5}
         scrollDelay={6.15}
-        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
+        color={currentArea >= 1 ? (currentArea >= 2 ? (currentArea > 13 ? "#ffffff" : "#2b2b2b") : "#ffffff") : "#2b2b2b"}
       />
       <Line
         points={[[0, -0.06 * (stateThree.viewport.height / 6), 0], [0, -0.09 * (stateThree.viewport.height / 6), 0]]}
-        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
+        color={currentArea >= 1 ? (currentArea >= 2 ? (currentArea > 13 ? "#ffffff" : "#2b2b2b") : "#ffffff") : "#2b2b2b"}
         transparent
         opacity={currentArea >= 7 ? 0.8 : 0}
         linewidth={2}
@@ -322,11 +320,11 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
         positionX={posXAspect}
         scrollSpeed={9.8}
         scrollDelay={10}
-        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
+        color={currentArea >= 1 ? (currentArea >= 2 ? (currentArea > 13 ? "#ffffff" : "#2b2b2b") : "#ffffff") : "#2b2b2b"}
       />
       <Line
         points={[[0, -0.06 * (stateThree.viewport.height / 6), 0], [0, -0.09 * (stateThree.viewport.height / 6), 0]]}
-        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
+        color={currentArea >= 1 ? (currentArea >= 2 ? (currentArea > 13 ? "#ffffff" : "#2b2b2b") : "#ffffff") : "#2b2b2b"}
         transparent
         opacity={currentArea >= 8 ? 0.8 : 0}
         linewidth={2}
@@ -340,11 +338,11 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
         positionX={posXAspect}
         scrollSpeed={9.5}
         scrollDelay={13}
-        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
+        color={currentArea >= 1 ? (currentArea >= 2 ? (currentArea > 13 ? "#ffffff" : "#2b2b2b") : "#ffffff") : "#2b2b2b"}
       />
       <Line
         points={[[0, -0.06 * (stateThree.viewport.height / 6), 0], [0, -0.09 * (stateThree.viewport.height / 6), 0]]}
-        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
+        color={currentArea >= 1 ? (currentArea >= 2 ? (currentArea > 13 ? "#ffffff" : "#2b2b2b") : "#ffffff") : "#2b2b2b"}
         transparent
         opacity={currentArea >= 9 ? 0.8 : 0}
         linewidth={2}
@@ -358,11 +356,11 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
         positionX={posXAspect}
         scrollSpeed={9.5}
         scrollDelay={16.2}
-        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
+        color={currentArea >= 1 ? (currentArea >= 2 ? (currentArea > 13 ? "#ffffff" : "#2b2b2b") : "#ffffff") : "#2b2b2b"}
       />
       <Line
         points={[[0, -0.06 * (stateThree.viewport.height / 6), 0], [0, -0.09 * (stateThree.viewport.height / 6), 0]]}
-        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
+        color={currentArea >= 1 ? (currentArea >= 2 ? (currentArea > 13 ? "#ffffff" : "#2b2b2b") : "#ffffff") : "#2b2b2b"}
         transparent
         opacity={currentArea >= 10 ? 0.8 : 0}
         linewidth={2}
@@ -376,11 +374,11 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
         positionX={posXAspect}
         scrollSpeed={9.8}
         scrollDelay={19.1}
-        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
+        color={currentArea >= 1 ? (currentArea >= 2 ? (currentArea > 13 ? "#ffffff" : "#2b2b2b") : "#ffffff") : "#2b2b2b"}
       />
       <Line
         points={[[0, -0.06 * (stateThree.viewport.height / 6), 0], [0, -0.09 * (stateThree.viewport.height / 6), 0]]}
-        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
+        color={currentArea >= 1 ? (currentArea >= 2 ? (currentArea > 13 ? "#ffffff" : "#2b2b2b") : "#ffffff") : "#2b2b2b"}
         transparent
         opacity={currentArea >= 11 ? 0.8 : 0}
         linewidth={2}
@@ -394,11 +392,11 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
         positionX={posXAspect}
         scrollSpeed={9.8}
         scrollDelay={21.9}
-        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
+        color={currentArea >= 1 ? (currentArea >= 2 ? (currentArea > 13 ? "#ffffff" : "#2b2b2b") : "#ffffff") : "#2b2b2b"}
       />
       <Line
         points={[[0, -0.06 * (stateThree.viewport.height / 6), 0], [0, -0.09 * (stateThree.viewport.height / 6), 0]]}
-        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
+        color={currentArea >= 1 ? (currentArea >= 2 ? (currentArea > 13 ? "#ffffff" : "#2b2b2b") : "#ffffff") : "#2b2b2b"}
         transparent
         opacity={currentArea >= 12 ? 0.8 : 0}
         linewidth={2}
@@ -412,11 +410,11 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
         positionX={posXAspect}
         scrollSpeed={9.6}
         scrollDelay={24.7}
-        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
+        color={currentArea >= 1 ? (currentArea >= 2 ? (currentArea > 13 ? "#ffffff" : "#2b2b2b") : "#ffffff") : "#2b2b2b"}
       />
       <Line
         points={[[0, -0.06 * (stateThree.viewport.height / 6), 0], [0, -0.09 * (stateThree.viewport.height / 6), 0]]}
-        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
+        color={currentArea >= 1 ? (currentArea >= 2 ? (currentArea > 13 ? "#ffffff" : "#2b2b2b") : "#ffffff") : "#2b2b2b"}
         transparent
         opacity={currentArea >= 13 ? 0.8 : 0}
         linewidth={2}
@@ -430,11 +428,11 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
         positionX={posXAspect}
         scrollSpeed={9}
         scrollDelay={27.6}
-        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
+        color={currentArea >= 1 ? (currentArea >= 2 ? (currentArea > 13 ? "#ffffff" : "#2b2b2b") : "#ffffff") : "#2b2b2b"}
       />
       <Line
         points={[[0, -0.06 * (stateThree.viewport.height / 6), 0], [0, -0.09 * (stateThree.viewport.height / 6), 0]]}
-        color={currentArea >= 1 ? (currentArea >= 2 ? "#2b2b2b" : "#ffffff") : "#2b2b2b"}
+        color={currentArea >= 1 ? (currentArea >= 2 ? (currentArea > 13 ? "#ffffff" : "#2b2b2b") : "#ffffff") : "#2b2b2b"}
         transparent
         opacity={currentArea >= 14 ? 0.8 : 0}
         linewidth={2}

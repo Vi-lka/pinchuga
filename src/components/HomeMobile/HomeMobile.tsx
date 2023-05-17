@@ -19,6 +19,7 @@ import DHLab_logo_white from '../../assets/images/DHLab_logo_white.png'
 import arch_lab_white from '../../assets/images/arch_lab_white.png'
 
 import DHLab_logo from '../../assets/images/DHLab_logo.svg'
+// import DHLab_logo_stroke from '../../assets/images/DHLab_logo_stroke.png'
 import arch_lab from '../../assets/images/arch_lab.svg'
 
 import Arrow_scroll from '../../assets/images/Arrow_scroll.webp'
@@ -115,78 +116,78 @@ export default function HomeMobile() {
     <Suspense fallback={<LoadingScreen/>}>
 
       <anim.div ref={mainContainer} className="homeMobile-container">
-      <div className='container-burger-menu'>
-        <div 
-          className={openMenu ? "burger-menu burger-menu--opened" : "burger-menu burger-menu--closed"}
-          onClick={() => setOpenMenu(!openMenu)}
-        >
-          <div className="bar"></div>
-          <div className="bar"></div>
-          <div className="bar"></div>
+        <div className='container-burger-menu'>
+          <div 
+            className={openMenu ? "burger-menu burger-menu--opened" : "burger-menu burger-menu--closed"}
+            onClick={() => setOpenMenu(!openMenu)}
+          >
+            <div className="bar"></div>
+            <div className="bar"></div>
+            <div className="bar"></div>
+          </div>
         </div>
-      </div>
 
-      <div className={openMenu ? "container-offcanvas-menu container-offcanvas-menu--opened" : "container-offcanvas-menu container-offcanvas-menu--closed"}>
-        <div className='offcanvas-menu'>
-          <ul>
-            <li onClick={() => { 
-              parallaxRef.current.scrollTo(0.82)
-              setOpenMenu(!openMenu)
-            }}>
-              Начало
-            </li>
+        <div className={openMenu ? "container-offcanvas-menu container-offcanvas-menu--opened" : "container-offcanvas-menu container-offcanvas-menu--closed"}>
+          <div className='offcanvas-menu'>
+            <ul>
+              <li onClick={() => { 
+                parallaxRef.current.scrollTo(0.82)
+                setOpenMenu(!openMenu)
+              }}>
+                Начало
+              </li>
 
-            <li onClick={() => { 
-              parallaxRef.current.scrollTo(2.05)
-              setOpenMenu(!openMenu)
-            }}>
-              Великое переселение народов
-            </li>
+              <li onClick={() => { 
+                parallaxRef.current.scrollTo(2.05)
+                setOpenMenu(!openMenu)
+              }}>
+                Великое переселение народов
+              </li>
 
-            <li onClick={() => { 
-              parallaxRef.current.scrollTo(3.2)
-              setOpenMenu(!openMenu)
-            }}>
-              Миграция
-            </li>
+              <li onClick={() => { 
+                parallaxRef.current.scrollTo(3.2)
+                setOpenMenu(!openMenu)
+              }}>
+                Миграция
+              </li>
 
-            <li onClick={() => { 
-              parallaxRef.current.scrollTo(4.4)
-              setOpenMenu(!openMenu)
-            }}>
-              Ангара и Енисей
-            </li>
+              <li onClick={() => { 
+                parallaxRef.current.scrollTo(4.4)
+                setOpenMenu(!openMenu)
+              }}>
+                Ангара и Енисей
+              </li>
 
-            <li onClick={() => { 
-              parallaxRef.current.scrollTo(5.5)
-              setOpenMenu(!openMenu)
-            }}>
-              Пинчуга-6
-            </li>
+              <li onClick={() => { 
+                parallaxRef.current.scrollTo(5.5)
+                setOpenMenu(!openMenu)
+              }}>
+                Пинчуга-6
+              </li>
 
-            <li onClick={() => { 
-              parallaxRef.current.scrollTo(8.6)
-              setOpenMenu(!openMenu)
-            }}>
-              Предметы
-            </li>
+              <li onClick={() => { 
+                parallaxRef.current.scrollTo(8.6)
+                setOpenMenu(!openMenu)
+              }}>
+                Предметы
+              </li>
 
-            <li onClick={() => { 
-              parallaxRef.current.scrollTo(9.255)
-              setOpenMenu(!openMenu)
-            }}>
-              3D-модели
-            </li>
+              <li onClick={() => { 
+                parallaxRef.current.scrollTo(9.255)
+                setOpenMenu(!openMenu)
+              }}>
+                3D-модели
+              </li>
 
-            <li onClick={() => { 
-              parallaxRef.current.scrollTo(10.255)
-              setOpenMenu(!openMenu)
-            }}>
-              Команда проекта
-            </li>
-          </ul>
+              <li onClick={() => { 
+                parallaxRef.current.scrollTo(10.255)
+                setOpenMenu(!openMenu)
+              }}>
+                Команда проекта
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
         <Parallax
           ref={parallaxRef}
           // pages={window.innerWidth < 685 ? 9.725 : 8.6}
@@ -458,7 +459,7 @@ export default function HomeMobile() {
 
                   <div>
                     <p>
-                      <span>Идея:</span>
+                      <span>Концепция:</span>
                     </p>
                     <p className='profile-name'>
                       <a href='https://structure.sfu-kras.ru/rumyancev' target="__blank">Румянцев Максим Валерьевич</a>
@@ -466,15 +467,8 @@ export default function HomeMobile() {
                     <p className='profile-link'>
                       <a href='mailto:rector@sfu-kras.ru' target="__blank">rector@sfu-kras.ru</a>
                     </p>
-                  </div>
 
-                  <br/>
-
-                  <div>
-                    <p>
-                      <span>Концепция:</span>
-                    </p>
-                    <p className='profile-name'>
+                    <p className='profile-name margin-custom'>
                       <a href='https://structure.sfu-kras.ru/node/1262' target="__blank">Пиков Никита Олегович</a>
                     </p>
                     <p className='profile-link'>
@@ -492,7 +486,7 @@ export default function HomeMobile() {
                       <a href='https://structure.sfu-kras.ru/mandryka' target="__blank">Мандрыка Павел Владимирович</a>
                     </p>
                     <p className='profile-link'>
-                      <a href='mailto:PMandrika@sfu-kras.ru' target="__blank">PMandrika@sfu-kras.ru</a>
+                      <a href='mailto:PMandrika@sfu-kras.ru' target="__blank">pmandrika@sfu-kras.ru</a>
                     </p>
                     <p className='profile-name margin-custom'>
                       <a href='https://structure.sfu-kras.ru/node/3908' target="__blank">Сенотрусова Полина Олеговна</a>
