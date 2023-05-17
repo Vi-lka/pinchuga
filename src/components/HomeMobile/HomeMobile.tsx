@@ -456,72 +456,78 @@ export default function HomeMobile() {
                   </ul>
 
                   <br/>
+                  
+                  <div className='profile-blocks'>
+                    <div>
+                      <div>
+                        <p>
+                          <span>Концепция:</span>
+                        </p>
+                        <p className='profile-name'>
+                          <a href='https://structure.sfu-kras.ru/rumyancev' target="__blank">Румянцев Максим Валерьевич</a>
+                        </p>
+                        <p className='profile-link'>
+                          <a href='mailto:rector@sfu-kras.ru' target="__blank">rector@sfu-kras.ru</a>
+                        </p>
 
-                  <div>
-                    <p>
-                      <span>Концепция:</span>
-                    </p>
-                    <p className='profile-name'>
-                      <a href='https://structure.sfu-kras.ru/rumyancev' target="__blank">Румянцев Максим Валерьевич</a>
-                    </p>
-                    <p className='profile-link'>
-                      <a href='mailto:rector@sfu-kras.ru' target="__blank">rector@sfu-kras.ru</a>
-                    </p>
+                        <p className='profile-name margin-custom'>
+                          <a href='https://structure.sfu-kras.ru/node/1262' target="__blank">Пиков Никита Олегович</a>
+                        </p>
+                        <p className='profile-link'>
+                          <a href='mailto:npikov@sfu-kras.ru' target="__blank">npikov@sfu-kras.ru</a>
+                        </p>
+                      </div>
 
-                    <p className='profile-name margin-custom'>
-                      <a href='https://structure.sfu-kras.ru/node/1262' target="__blank">Пиков Никита Олегович</a>
-                    </p>
-                    <p className='profile-link'>
-                      <a href='mailto:npikov@sfu-kras.ru' target="__blank">npikov@sfu-kras.ru</a>
-                    </p>
-                  </div>
+                      <br/>
 
-                  <br/>
+                      <div>
+                        <p>
+                          <span>Исследования и раскопки:</span> 
+                        </p>
+                        <p className='profile-name'>
+                          <a href='https://structure.sfu-kras.ru/mandryka' target="__blank">Мандрыка Павел Владимирович</a>
+                        </p>
+                        <p className='profile-link'>
+                          <a href='mailto:PMandrika@sfu-kras.ru' target="__blank">pmandrika@sfu-kras.ru</a>
+                        </p>
+                        <p className='profile-name margin-custom'>
+                          <a href='https://structure.sfu-kras.ru/node/3908' target="__blank">Сенотрусова Полина Олеговна</a>
+                        </p>
+                        <p className='profile-link'>
+                          <a href='mailto:psenotrusova@sfu-kras.ru' target="__blank">psenotrusova@sfu-kras.ru</a>
+                        </p>
+                      </div>
 
-                  <div>
-                    <p>
-                      <span>Исследования и раскопки:</span> 
-                    </p>
-                    <p className='profile-name'>
-                      <a href='https://structure.sfu-kras.ru/mandryka' target="__blank">Мандрыка Павел Владимирович</a>
-                    </p>
-                    <p className='profile-link'>
-                      <a href='mailto:PMandrika@sfu-kras.ru' target="__blank">pmandrika@sfu-kras.ru</a>
-                    </p>
-                    <p className='profile-name margin-custom'>
-                      <a href='https://structure.sfu-kras.ru/node/3908' target="__blank">Сенотрусова Полина Олеговна</a>
-                    </p>
-                    <p className='profile-link'>
-                      <a href='mailto:psenotrusova@sfu-kras.ru' target="__blank">psenotrusova@sfu-kras.ru</a>
-                    </p>
-                  </div>
+                      <br/>
+                    </div>
 
-                  <br/>
+                    <div>
+                      <div>
+                        <p>
+                          <span>Иллюстрации:</span>
+                        </p>
+                        <p className='profile-name'>
+                          <a href='https://t.me/chocoladic' target="__blank">Эккердт Александра Александровна</a>
+                        </p>
+                        <p className='profile-link'>
+                          <a href='mailto:ekkerdta@mail.ru' target="__blank">ekkerdta@mail.ru</a>
+                        </p>
+                      </div>
 
-                  <div>
-                    <p>
-                      <span>Иллюстрации:</span>
-                    </p>
-                    <p className='profile-name'>
-                      <a href='https://t.me/chocoladic' target="__blank">Эккердт Александра Александровна</a>
-                    </p>
-                    <p className='profile-link'>
-                      <a href='mailto:ekkerdta@mail.ru' target="__blank">ekkerdta@mail.ru</a>
-                    </p>
-                  </div>
+                      <br/>
 
-                  <br/>
-
-                  <div>
-                    <p>
-                      <span>Web-разработка:</span>
-                    </p>
-                    <p className='profile-name'>
-                      <a href='https://t.me/vi_lka7' target="__blank">Пермяков Виталий Алексеевич</a>
-                    </p>
-                    <p className='profile-link'>
-                      <a href='mailto:vitalya.permyakov155@gmail.com' target="__blank">vitalya.permyakov155@gmail.com</a>
-                    </p>
+                      <div>
+                        <p>
+                          <span>Web-разработка:</span>
+                        </p>
+                        <p className='profile-name'>
+                          <a href='https://t.me/vi_lka7' target="__blank">Пермяков Виталий Алексеевич</a>
+                        </p>
+                        <p className='profile-link'>
+                          <a href='mailto:vitalya.permyakov155@gmail.com' target="__blank">vitalya.permyakov155@gmail.com</a>
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
 

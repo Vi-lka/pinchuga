@@ -44,8 +44,6 @@ export default function ModelsArray(
 
   let currentImg = 0
 
-  console.log(window.innerWidth)
-
   const to = (i: number) => ({
     x: Math.round(window.innerWidth > 1000 ? 
       window.innerWidth / 7 * (Math.sin(theta(i - currentImg , 8))) 

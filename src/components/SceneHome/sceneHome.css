@@ -134,6 +134,30 @@
     background: transparent;
 }
 
+.wrapperClass_footer > div > .section .container-team .profile-blocks {
+    width: 90%;
+    height: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 4vh;
+    margin-bottom: 10px;
+}
+
+.wrapperClass_footer > div > .section .container-team .profile-blocks > div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.wrapperClass_footer > div > .section .container-team .profile-blocks > div > div {
+    width: 50%;
+}
+
 @media (max-width: 1280px) {
     .mainText1 {
         width: 30vw;
