@@ -29,9 +29,6 @@ export default function ScrollArrow({ src, className, onClick }: { src: string, 
 
   return (
     <animated.div ref={ref} style={springs} className={className} onClick={onClick}>
-      {/* <p>
-        ПРОДОЛЖИТЬ
-      </p> */}
       <SuspenseImage src={src} alt='scroll' />
     </animated.div>
   )

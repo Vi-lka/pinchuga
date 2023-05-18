@@ -84,6 +84,28 @@
     margin: 15px auto;
 }
 
+.title-text-area {
+    width: 52%;
+    min-width: 300px;
+    max-width: 1000px;
+    color:#2b2b2b;
+    font-family: 'Lato';
+    font-weight: 300;
+    font-size: 18px;
+    letter-spacing: 0.1ch;
+    /* text-align:le; */
+}
+
+.title-text-area p {
+    width: 100%;
+    color:#2b2b2b;
+    font-family: 'Lato';
+    font-weight: 300;
+    font-size: 18px;
+    letter-spacing: 0.1ch;
+    padding-left: 3%;
+}
+
 .mainText1,
 .mainText2,
 .mainText3,
@@ -132,6 +154,18 @@
 .wrapperClass_footer > div > .section .container-team,
 .wrapperClass_footer > div > .section .container-team * {
     background: transparent;
+}
+
+.wrapperClass_footer > div > .section .container-team .team-imgs {
+    justify-content: center;
+}
+
+.wrapperClass_footer > div > .section .container-team .team-imgs .dhri {
+    width: 20%;
+}
+
+.wrapperClass_footer > div > .section .container-team .team-imgs .priority {
+    width: 15%;
 }
 
 .wrapperClass_footer > div > .section .container-team .profile-blocks {

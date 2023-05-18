@@ -1,8 +1,9 @@
 import { Text, Html, OrbitControls, useAspect, PerspectiveCamera } from '@react-three/drei'
 import { Image as DreiImage } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
-import { createRef, startTransition, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { createRef, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
+import DHRI_logo from '../../assets/images/DHRI_logo.png'
 import priority_logo_white from '../../assets/images/priority_logo_white.png'
 import img_draw_bird_1 from '../../assets/images/img_draw_bird_1.svg'
 import img_draw_bird_2 from '../../assets/images/img_draw_bird_2.svg'
@@ -119,14 +120,12 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
 
       (page > 3 ? (page >= startModelsArray ? -20 : -page) : 5)
     ), delta * 8)
-    // bgMaterialRef.current!.opacity = ((page < 0.8) ? 0 : (0 + (page - 1) * 2))
     bgMaterialRef.current!.opacity = ((page < 0.8) ? 0 : THREE.MathUtils.lerp(bgMaterialRef.current.opacity, 0 + (page - 1) * 2, delta * 8))
 
     // Inner Flex element positions
-    titleRef.current!.position.lerp(vec.set(0, -(page), page * 5), delta * 11)
+    titleRef.current!.position.lerp(vec.set(0, (page * 10), page * 10), delta * 11)
     mainTextRef.current!.position.lerp(vec.set(0, -3.85, (page >= startModelsArray) ? 35 : 4), delta * 8)
     modelsArrayRef.current!.position.lerp(vec.set(page >= startModelsArray ? -1 : 50, 6.25, 1), delta * 8)
-    // footerTitleRef.current!.position.lerp(vec.set(page > 30.8 ? 0 : -8, page > 30.8 ? 60.5 : 80, -10), delta * 8)
     footerTitleRef.current!.position.lerp(vec.set(page > 30.8 ? 0 : 40, 55.3, -10), delta * 8)
 
     titleRef.current!.visible = (page > 6.21) ? false : true
@@ -225,17 +224,35 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
 
   function Title({ onReflow }: any) {
 
+    const titleTextMainRef = createRef<any>()
+    const titleArrowRef = createRef<any>()
+    const titleTextDescriptionRef = createRef<any>()
+
+    useFrame((s, delta) => {
+      // Scroll value 
+      const page = (pageLerp.current = THREE.MathUtils.lerp(pageLerp.current, state.top / stateThree.size.height, delta * 6))
+
+      titleTextMainRef.current?.position.lerp(vec.set(0, page < 0.58 ? -13*page - 0.23 : -10.6556 + page*5, 3 - 15*page), delta * 12)   
+      titleArrowRef.current?.position.lerp(vec.set(0, page < 0.58 ? -17.2*page - 3.4 : (page > 0.9 ? -15 : -8.5*page - 8.5), -1-4*page), delta * 12)  
+
+      titleTextDescriptionRef.current &&
+        (titleTextDescriptionRef.current.style.display = (page >= 0.9) ? 'none' : 'block')
+    })
+
     return (
       <>
         <Box dir="column" align={"center"} justify="center" width="100%" height="auto" minHeight="100%">
 
           <HeightReporter onReflow={onReflow} />
 
-          <DreiImage position={[Math.max(-1.4, (stateThree.size.width * 0.0006) * (-1.4)), 1.2, 4.2]} transparent scale={[Math.min(0.77, (stateThree.size.width * 0.0006) * 0.73), Math.min(1, (stateThree.size.width * 0.0006) * 0.95)]} url={img_draw_bird_1} />
-          <DreiImage position={[0, 1.2, 4.2]} transparent scale={[Math.min(0.985, (stateThree.size.width * 0.0006) * 0.945), Math.min(1, (stateThree.size.width * 0.0006) * 0.95)]} url={img_draw_disk} />
-          <DreiImage position={[Math.min(1.4, (stateThree.size.width * 0.0006) * 1.4), 1.2, 4.2]} transparent scale={[Math.min(0.65, (stateThree.size.width * 0.0006) * 0.61), Math.min(1, (stateThree.size.width * 0.0006) * 0.95)]} url={img_draw_bird_2} />
-
+          <group>
+            <DreiImage position={[Math.max(-1.4, (stateThree.size.width * 0.0006) * (-1.4)), 1.2, 4.2]} transparent scale={[Math.min(0.77, (stateThree.size.width * 0.0006) * 0.73), Math.min(1, (stateThree.size.width * 0.0006) * 0.95)]} url={img_draw_bird_1} />
+            <DreiImage position={[0, 1.2, 4.2]} transparent scale={[Math.min(0.985, (stateThree.size.width * 0.0006) * 0.945), Math.min(1, (stateThree.size.width * 0.0006) * 0.95)]} url={img_draw_disk} />
+            <DreiImage position={[Math.min(1.4, (stateThree.size.width * 0.0006) * 1.4), 1.2, 4.2]} transparent scale={[Math.min(0.65, (stateThree.size.width * 0.0006) * 0.61), Math.min(1, (stateThree.size.width * 0.0006) * 0.95)]} url={img_draw_bird_2} />
+          </group>
+         
           <Text
+            ref={titleTextMainRef}
             position={[0, -0.23, 3]}
             font={"../fonts/FoglihtenNo06/FoglihtenNo06.otf"}
             color="black"
@@ -275,7 +292,25 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
             {`ПРОКРУТИТЕ, ЧТОБЫ ПРОДОЛЖИТЬ`}
           </Text>
 
-          <DreiImage position={[0, -3.4, -1]} transparent scale={[0.09, 0.36]} url={Arrow_scroll} />
+          <DreiImage ref={titleArrowRef} position={[0, -3.4, -1]} transparent scale={[0.09, 0.36]} url={Arrow_scroll} />
+
+          <group position={[0, -10.9, -2.5]}>
+            <Html
+              as='div'
+              wrapperClass="title-text-area"
+              center
+            >
+              <p ref={titleTextDescriptionRef}>
+                Проект <strong>«Пункт прошлого»</strong> - это история о древних вещах, рассказанная с помощью современных информационных технологий. 
+                <br /><br />
+                За ней стоят годы экспедиций и кропотливых научных исследований, новые технологические разработки и оригинальные дизайнерские решения. 
+                <br /><br />
+                Мы сделали все это, чтобы раскрыть информационный потенциал археологических памятников, показать их с новой другой стороны. 
+                <br /><br />
+                Надеемся, что проект приоткроет для вас дверь в увлекательный мир прошлого <b>Енисейской Сибири</b>. 
+              </p>
+            </Html>
+          </group>
 
         </Box>
       </>
@@ -546,6 +581,15 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
 
   function FooterTitle({ onReflow }: any) {
 
+    const footerTextRef = createRef<any>()
+
+    useFrame((s, delta) => {
+      const page = (pageLerp.current = THREE.MathUtils.lerp(pageLerp.current, state.top / stateThree.size.height, delta * 6))
+
+      footerTextRef.current &&
+        (footerTextRef.current.style.display = (page >= 30.8) ? 'block' : 'none')
+    })
+
     return (
         <Box dir="column" align={"center"} justify="center" width="100%" height="auto" minHeight="100%">
 
@@ -561,7 +605,7 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
             wrapperClass='wrapperClass_footer'
             center
           >
-            <section className="section">
+            <section ref={footerTextRef} className="section">
               <div className="container-team">
 
                 <h6>Команда проекта</h6>
@@ -657,6 +701,10 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
                 </div>
 
                 <div className='team-imgs'>
+                  <a className='dhri' href='http://dhri.ru/' target="__blank">
+                    <img src={DHRI_logo} alt="Digital Humanities Research Institute"/>
+                  </a>
+
                   <a className='priority' href='https://priority2030.ru/' target="__blank">
                     <img src={priority_logo_white} alt="Приоритет 2030"/>
                   </a>
@@ -668,20 +716,9 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
     )
   }
 
-  // const gl = useThree((state) => state.gl)
-  // useControls({
-  //   screenshot: button(() => {
-  //     const link = document.createElement('a')
-  //     link.setAttribute('download', 'canvas.png')
-  //     link.setAttribute('href', gl.domElement.toDataURL('image/png').replace('image/png', 'image/octet-stream'))
-  //     link.click()
-  //   })
-  // })
-
   // SceneHome RETURN
   return (
     <>
-      {/* <Stats /> */}
       <OverlayHome zoom={zoom} setZoom={setZoom} />
       <MiniMap
         handleScrollTo={handleScrollTo}

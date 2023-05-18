@@ -14,7 +14,6 @@
 .container-team h6 {
     width: 70%;
     margin: 0 auto;
-    /* margin-bottom: 2vh; */
     font-family: 'Lato';
     font-weight: 300;
     max-width: 800px;
@@ -36,9 +35,9 @@
 }
 
 .container-team .team-imgs .dhLab,
+.container-team .team-imgs .dhri,
 .container-team .team-imgs .archLab,
 .container-team .team-imgs .priority {
-    width: 30%;
     height: 100%;
     object-fit: contain;
     display: flex;
@@ -46,6 +45,21 @@
     align-items: center;
 }
 
+.container-team .team-imgs .dhLab {
+    width: 20%;
+}
+
+.container-team .team-imgs .dhri {
+    width: 17%;
+}
+
+.container-team .team-imgs .archLab {
+    width: 12%;
+}
+
+.container-team .team-imgs .priority {
+    width: 30%;
+}
 
 .container-team .team-imgs .dhLab img {
     width: 5%;
@@ -53,10 +67,16 @@
     max-width: 100px;
 }
 
+.container-team .team-imgs .dhri img {
+    width: 5%;
+    min-width: 70px;
+    max-width: 80px;
+}
+
 .container-team .team-imgs .archLab img {
     width: 5%;
-    min-width: 60px;
-    max-width: 60px;
+    min-width: 45px;
+    max-width: 50px;
 }
 
 .container-team .team-imgs .priority img {
@@ -66,6 +86,7 @@
 }
 
 .container-team .team-imgs .dhLab img,
+.container-team .team-imgs .dhri img,
 .container-team .team-imgs .archLab img,
 .container-team .team-imgs .priority img {
     object-fit: contain;
@@ -233,6 +254,11 @@
         min-width: 60px;
         max-width: 70px;
     }
+
+    .container-team .team-imgs .dhri img {
+        min-width: 55px;
+        max-width: 60px;
+    }
     
     .container-team .team-imgs .archLab img {
         min-width: 40px;
@@ -268,18 +294,23 @@
     }
 
     .container-team .team-imgs .dhLab img {
-        min-width: 60px;
-        max-width: 65px;
+        min-width: 55px;
+        max-width: 60px;
+    }
+
+    .container-team .team-imgs .dhri img {
+        min-width: 45px;
+        max-width: 50px;
     }
     
     .container-team .team-imgs .archLab img {
-        min-width: 35px;
-        max-width: 45px;
+        min-width: 30px;
+        max-width: 35px;
     }
     
     .container-team .team-imgs .priority img {
-        min-width: 110px;
-        max-width: 115px;
+        min-width: 95px;
+        max-width: 100px;
     }
 }
 
@@ -289,14 +320,20 @@
         min-width: 50px;
         max-width: 55px;
     }
+
+    .container-team .team-imgs .dhri img {
+        min-width: 45px;
+        max-width: 50px;
+    }
+    
     
     .container-team .team-imgs .archLab img {
-        min-width: 30px;
-        max-width: 35px;
+        min-width: 25px;
+        max-width: 30px;
     }
     
     .container-team .team-imgs .priority img {
-        min-width: 90px;
-        max-width: 95px;
+        min-width: 80px;
+        max-width: 85px;
     }
 }

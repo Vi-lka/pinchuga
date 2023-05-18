@@ -1,6 +1,6 @@
-import React, { Suspense, createRef, useEffect, useRef, useState } from 'react'
+import React, { Suspense, useRef, useState } from 'react'
 import { IParallax, Parallax, ParallaxLayer } from '@react-spring/parallax';
-import { animated as anim, useInView, useScroll, useSpring } from '@react-spring/web';
+import { animated as anim, useSpring } from '@react-spring/web';
 
 import './homeMobile.css';
 import './css/menu.css';
@@ -17,9 +17,9 @@ import priority_logo_white from '../../assets/images/priority_logo_white.png'
 
 import DHLab_logo_white from '../../assets/images/DHLab_logo_white.png'
 import arch_lab_white from '../../assets/images/arch_lab_white.png'
+import DHRI_logo from '../../assets/images/DHRI_logo.png'
 
 import DHLab_logo from '../../assets/images/DHLab_logo.svg'
-// import DHLab_logo_stroke from '../../assets/images/DHLab_logo_stroke.png'
 import arch_lab from '../../assets/images/arch_lab.svg'
 
 import Arrow_scroll from '../../assets/images/Arrow_scroll.webp'
@@ -38,8 +38,8 @@ import big_map from '../../assets/images/big_map.svg'
 import angara_map from '../../assets/images/angara_map.svg'
 import funeral_pure from '../../assets/images/funeral_pure.svg'
 
-import { AnimTextR } from './componentsMobile/AnimTextR';
 import SuspenseImage from '../../utils/SuspenseImage';
+import { AnimTextR } from './componentsMobile/AnimTextR';
 import { AnimTextL } from './componentsMobile/AnimTextL';
 import { AnimHrR } from './componentsMobile/AnimHrR';
 import { AnimHrL } from './componentsMobile/AnimHrL';
@@ -190,7 +190,6 @@ export default function HomeMobile() {
         </div>
         <Parallax
           ref={parallaxRef}
-          // pages={window.innerWidth < 685 ? 9.725 : 8.6}
           pages={11.285}
           config={config}
           className='parallax-container'
@@ -536,6 +535,10 @@ export default function HomeMobile() {
                     <img src={DHLab_logo_white} alt="Digital Humanities Lab"/>
                   </a>
 
+                  <a className='dhri' href='http://dhri.ru/' target="__blank">
+                    <img src={DHRI_logo} alt="Digital Humanities Research Institute"/>
+                  </a>
+
                   <a className='archLab' href='https://structure.sfu-kras.ru/node/359' target="__blank">
                     <img src={arch_lab_white} alt="Лаборатория археологии Енисейской Сибири"/>
                   </a>
@@ -555,7 +558,6 @@ export default function HomeMobile() {
           setShowModal={setShowModal}
         />
 
-        
       </anim.div>
     </Suspense>
   )

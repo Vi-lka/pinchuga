@@ -60,7 +60,7 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
       setVisible(false)
     }
 
-    if (page > 1) {
+    if (page > 0.34) {
       mapRef.current.position.x = THREE.MathUtils.lerp(mapRef.current.position.x, 0.044 * stateThree.viewport.width, delta * 6)
     } else {
       mapRef.current.position.x = THREE.MathUtils.lerp(mapRef.current.position.x, 0.1 * stateThree.viewport.width, delta * 6)

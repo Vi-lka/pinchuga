@@ -2,7 +2,6 @@ import { animated, useSpring } from '@react-spring/web'
 import React, { createRef, useCallback, useEffect } from 'react'
 import '../css/popup.css'
 import MobileCanvas from './MobileCanvas'
-import state from '../../../utils/state'
 
 export default function PopupModel(
     { 

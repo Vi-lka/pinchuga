@@ -4,12 +4,11 @@ import DHLab_logo_white from '../../assets/images/DHLab_logo_white.png'
 import arch_lab from '../../assets/images/arch_lab.svg'
 import arch_lab_white from '../../assets/images/arch_lab_white.png'
 import { createRef, useState } from 'react'
-import { useFrame, useThree } from '@react-three/fiber'
+import { useFrame } from '@react-three/fiber'
 import { Html } from '@react-three/drei'
 import state from '../../utils/state'
 
 function OverlayHome({zoom, setZoom} : {zoom: boolean, setZoom: any}) {
-  const gl = useThree((state) => state.gl)
 
   const [logosColor, setLogosColor] = useState(false)
 

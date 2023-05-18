@@ -1,10 +1,10 @@
 import './home.css'
 import { Canvas } from '@react-three/fiber'
-import { Html, Loader, PerformanceMonitor } from '@react-three/drei'
+import { Html } from '@react-three/drei'
 import { Suspense, useEffect, useRef, useState } from 'react'
 import SceneHome from '../SceneHome/SceneHome'
 import state from '../../utils/state'
-import { Perf, PerfHeadless, usePerf } from 'r3f-perf'
+// import { Perf, PerfHeadless, usePerf } from 'r3f-perf'
 import LoadingScreen from '../HomeMobile/componentsMobile/LoadingScreen'
 
 export default function Home() {
@@ -27,8 +27,8 @@ export default function Home() {
     const height = (state.pages * window.innerHeight)
     switch (index) {
       case 0:
-        state.top = 0
-        scrollArea.current?.scroll(0, 0)
+        state.top = height / 53.5
+        scrollArea.current?.scroll(0, height / 53.5)
         break
       case 1:
         state.top = height / 20
@@ -96,24 +96,44 @@ export default function Home() {
 
       // UP
       if ((e.deltaY > 0) && (state.top < height)) {
+
+        if (state.top / window.innerHeight < 0.9) {
+
+          state.top = state.top + (e.deltaY / 4)
+          scrollArea.current?.scrollBy(0, e.deltaY / 4)
+
+        } else if (state.top / window.innerHeight < 6.2) {
+
         // Models area or not
-        if (state.top / window.innerHeight < 6.2) {
           state.top = state.top + (e.deltaY / 1.8)
           scrollArea.current?.scrollBy(0, e.deltaY / 1.8)
+
         } else {
+
           state.top = state.top + (e.deltaY * 1.5)
           scrollArea.current?.scrollBy(0, e.deltaY * 1.5)
+
         }
 
         // DOWN
       } else if ((e.deltaY < 0) && (state.top > 0)) {
+
+        if (state.top / window.innerHeight < 0.9) {
+
+          state.top = state.top + (e.deltaY / 4)
+          scrollArea.current?.scrollBy(0, e.deltaY / 4)
+
+        } else if (state.top / window.innerHeight < 6.2) {
+
         // Models area or not
-        if (state.top / window.innerHeight < 6.2) {
           state.top = state.top + (e.deltaY / 1.8)
           scrollArea.current?.scrollBy(0, e.deltaY / 1.8)
+
         } else {
+
           state.top = state.top + (e.deltaY * 1.5)
           scrollArea.current?.scrollBy(0, e.deltaY * 1.5)
+
         }
       }
 
@@ -135,10 +155,28 @@ export default function Home() {
     if (!state.zoomGlobal) {
       let touchMove = e.targetTouches[0].clientY
 
+       // DOWN
       if ((touchMove < touchStart) && (state.top < height)) {
-        state.top = state.top + ((touchStart - touchMove) / 3)
+
+        if (state.top / window.innerHeight < 0.9) {
+          state.top = state.top + ((touchStart - touchMove) / 25)
+          scrollArea.current?.scrollBy(0, ((touchStart - touchMove) / 25))
+        } else {
+          state.top = state.top + ((touchStart - touchMove) / 10)
+          scrollArea.current?.scrollBy(0, ((touchStart - touchMove) / 10))
+        }
+        
+      // UP
       } else if ((touchMove > touchStart) && (state.top > 0)) {
-        state.top = state.top - ((touchMove - touchStart) / 3)
+
+        if (state.top / window.innerHeight < 0.9) {
+          state.top = state.top - ((touchMove - touchStart) / 25)
+          scrollArea.current?.scrollBy(0, ((touchStart - touchMove) / 25))
+        } else {
+          state.top = state.top - ((touchStart - touchMove) / 10)
+          scrollArea.current?.scrollBy(0, ((touchStart - touchMove) / 10))
+        }        
+      
       }
 
       if (state.top < 0) state.top = 0
@@ -146,16 +184,16 @@ export default function Home() {
     }
   }
 
-  function PerfHook() {
+  // function PerfHook() {
 
-    const [gl, log, getReport]: any = usePerf((s) => [s.gl, s.log, s.getReport])
-    console.log(gl, log, getReport())
+  //   const [gl, log, getReport]: any = usePerf((s) => [s.gl, s.log, s.getReport])
+  //   console.log(gl, log, getReport())
 
-    if (log && (log.fps < 40)) {
-      console.log("Warning! Low FPS: " + Math.round(log.fps))
-    }
-    return <PerfHeadless />
-  }
+  //   if (log && (log.fps < 40)) {
+  //     console.log("Warning! Low FPS: " + Math.round(log.fps))
+  //   }
+  //   return <PerfHeadless />
+  // }
 
   return (
     <>
@@ -165,11 +203,9 @@ export default function Home() {
         gl={{ preserveDrawingBuffer: true, antialias: true }}
         dpr={[0.8, 2]}
         performance={{ min: 0.8 }}
-        // onCreated={({ gl }) => gl.setClearColor('#f6f6f6')}
         onWheel={onScroll}
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
-      // onTouchEnd={onTouchEnd}
       >
 
         <Suspense
