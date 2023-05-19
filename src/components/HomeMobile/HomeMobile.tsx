@@ -531,12 +531,12 @@ export default function HomeMobile() {
                 </div>
 
                 <div className='team-imgs'>
-                  <a className='dhLab' href='https://dh-lab.ru/' target="__blank">
-                    <img src={DHLab_logo_white} alt="Digital Humanities Lab"/>
-                  </a>
-
                   <a className='dhri' href='http://dhri.ru/' target="__blank">
                     <img src={DHRI_logo} alt="Digital Humanities Research Institute"/>
+                  </a>
+
+                  <a className='dhLab' href='https://dh-lab.ru/' target="__blank">
+                    <img src={DHLab_logo_white} alt="Digital Humanities Lab"/>
                   </a>
 
                   <a className='archLab' href='https://structure.sfu-kras.ru/node/359' target="__blank">
