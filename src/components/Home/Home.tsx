@@ -4,7 +4,7 @@ import { Html } from '@react-three/drei'
 import { Suspense, useEffect, useRef, useState } from 'react'
 import SceneHome from '../SceneHome/SceneHome'
 import state from '../../utils/state'
-// import { Perf, PerfHeadless, usePerf } from 'r3f-perf'
+import { Perf, PerfHeadless, usePerf } from 'r3f-perf'
 import LoadingScreen from '../HomeMobile/componentsMobile/LoadingScreen'
 
 export default function Home() {
@@ -184,16 +184,17 @@ export default function Home() {
     }
   }
 
-  // function PerfHook() {
+  function PerfHook() {
 
-  //   const [gl, log, getReport]: any = usePerf((s) => [s.gl, s.log, s.getReport])
-  //   console.log(gl, log, getReport())
+    const [gl, log, getReport]: any = usePerf((s) => [s.gl, s.log, s.getReport])
 
-  //   if (log && (log.fps < 40)) {
-  //     console.log("Warning! Low FPS: " + Math.round(log.fps))
-  //   }
-  //   return <PerfHeadless />
-  // }
+    const report = getReport()
+
+    if (log) {
+      // console.log(log.fps)
+    }
+    return <PerfHeadless />
+  }
 
   return (
     <>
@@ -220,7 +221,7 @@ export default function Home() {
             onReflow={setPages}
             handleScrollTo={handleScrollTo}
           />
-          {/* <PerfHook /> */}
+          <PerfHook />
 
           {/* <Perf
             // deepAnalyze

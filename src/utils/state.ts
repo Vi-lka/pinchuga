@@ -14,7 +14,8 @@ const state = {
   selectedModel: 0,
   zoomGlobal: false,
   lowMode: false,
-  currentModel: 0
+  currentModel: 0,
+  confirmLowFunctionCanceled: false
 }
 
 export default state

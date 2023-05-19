@@ -25,6 +25,7 @@ import disableScroll from 'disable-scroll'
 import OverlayHome from '../OverlayHome/OverlayHome'
 import Models from '../Models/Models'
 import MiniMap from '../minimap/MiniMap'
+import { useNavigate } from 'react-router-dom'
 
 function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo(index: number): void }) {
 
@@ -97,7 +98,34 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
   const startMainText = 0.9
   const startModelsArray = 6.2
 
+  // Frame Counter
+  const navigate = useNavigate()
+
+  let frameRateCounter = 0
+
+  function confirmLowFunction() {
+    // eslint-disable-next-line no-restricted-globals
+    const result = confirm("Мы заметили низкий FPS. Перейти на версию для слабых ПК?")
+    if (result === true) {
+      state.confirmLowFunctionCanceled = true
+      state.zoomGlobal = false
+      disableScroll.off()
+      state.selectedModel = 0
+      navigate("/low")
+    } else {
+      state.confirmLowFunctionCanceled = true
+    }
+  }
+
   useFrame((s, delta) => {
+
+    // Frame Counter
+    if (1/delta < 30) {
+      ++frameRateCounter
+      console.log(frameRateCounter)
+      if ((frameRateCounter >= 20) && (!state.confirmLowFunctionCanceled)) confirmLowFunction()
+    }
+
     // Scroll value 
     const page = (pageLerp.current = THREE.MathUtils.lerp(pageLerp.current, state.top / stateThree.size.height, delta * 6))
 

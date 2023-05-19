@@ -105,13 +105,17 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
 
     function handlePointerOverDot(event: MouseEvent) {
       event.stopPropagation()
-      startTransition(() => setHovered(true))
+      startTransition(() => {
+        setHovered(true)
+      })
       stateThree.gl.domElement.style.cursor = 'pointer'
     }
 
     function handlePointerOutDot(event: MouseEvent) {
       event.stopPropagation()
-      startTransition(() => setHovered(false))
+      startTransition(() => {
+        setHovered(false)
+      })
       stateThree.gl.domElement.style.cursor = 'default'
     }
 
@@ -127,7 +131,7 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
         />
 
         <mesh
-          scale={1.5}
+          scale={1.8}
           onPointerOver={(e: any) => { startTransition(() => handlePointerOverDot(e)) }}
           onPointerOut={(e: any) => { startTransition(() => handlePointerOutDot(e)) }}
           onClick={(e: any) => { startTransition(() => handleScrollTo(index)) }}
@@ -161,10 +165,12 @@ export default function MiniMap({ handleScrollTo }: { handleScrollTo(index: numb
         <Html
           as='div'
           wrapperClass='wrapperClass_miniMap'
-          prepend
           center
         >
-          <div className={hovered ? 'cooltipz--custom cooltipz--left cooltipz--visible' : 'cooltipz--custom cooltipz--left'} aria-label={value}>
+          <div 
+            className={hovered ? 'cooltipz--custom cooltipz--left cooltipz--visible' : 'cooltipz--custom cooltipz--left'} 
+            aria-label={value}
+          >
           </div>
         </Html>
       </group>
