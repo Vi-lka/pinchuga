@@ -122,7 +122,6 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
     // Frame Counter
     if (1 / delta < 24) {
       ++frameRateCounter
-      console.log(frameRateCounter)
       if ((frameRateCounter >= 30) && (!state.confirmLowFunctionCanceled)) confirmLowFunction()
     }
 
