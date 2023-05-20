@@ -123,7 +123,7 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
     if (1 / delta < 24) {
       ++frameRateCounter
       console.log(frameRateCounter)
-      if ((frameRateCounter >= 20) && (!state.confirmLowFunctionCanceled)) confirmLowFunction()
+      if ((frameRateCounter >= 30) && (!state.confirmLowFunctionCanceled)) confirmLowFunction()
     }
 
     // Scroll value 
