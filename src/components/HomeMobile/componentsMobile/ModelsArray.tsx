@@ -12,19 +12,19 @@ import '../css/models.css';
 import { animated, useSprings } from '@react-spring/web'
 import { useSpringCarousel } from 'react-spring-carousel'
 import mockedItems from '../../../utils/modelsItems'
-import parse from 'html-react-parser';
+import parse from 'html-react-parser'
 import SuspenseImage from '../../../utils/SuspenseImage'
 import Arrow_scroll from '../../../assets/images/Arrow_scroll.webp'
 import state from '../../../utils/state'
 
 export default function ModelsArray(
-  { 
-      showModal,
-      setShowModal
-       
-  } : { 
-      showModal: boolean,
-      setShowModal:   React.Dispatch<React.SetStateAction<boolean>>
+  {
+    showModal,
+    setShowModal
+
+  }: {
+    showModal: boolean,
+    setShowModal: React.Dispatch<React.SetStateAction<boolean>>
   }
 ) {
   const cards = [
@@ -45,15 +45,15 @@ export default function ModelsArray(
   let currentImg = 0
 
   const to = (i: number) => ({
-    x: Math.round(window.innerWidth > 1000 ? 
-      window.innerWidth / 7 * (Math.sin(theta(i - currentImg , 8))) 
-      : 
-      window.innerWidth / 3 * (Math.sin(theta(i - currentImg , 8)))),
+    x: Math.round(window.innerWidth > 1000 ?
+      window.innerWidth / 7 * (Math.sin(theta(i - currentImg, 8)))
+      :
+      window.innerWidth / 3 * (Math.sin(theta(i - currentImg, 8)))),
 
-    y: Math.round(window.innerWidth > 1000 ? 
-      window.innerWidth / 16 * (Math.cos(theta(i - currentImg , 8)))
-      : 
-      window.innerWidth / 6 * (Math.cos(theta(i - currentImg , 8)))),
+    y: Math.round(window.innerWidth > 1000 ?
+      window.innerWidth / 16 * (Math.cos(theta(i - currentImg, 8)))
+      :
+      window.innerWidth / 6 * (Math.cos(theta(i - currentImg, 8)))),
     zIndex: i === currentImg ? 10 : 1,
     rot: 0,
     scale: i === currentImg ? 1 : 0.35,
@@ -64,27 +64,27 @@ export default function ModelsArray(
   const [props, api] = useSprings(cards.length, i => ({
     ...to(i),
     from: from(i),
-  })) 
+  }))
 
-  const { 
-    carouselFragment, 
+  const {
+    carouselFragment,
     useListenToCustomEvent,
-    slideToItem, 
-    slideToPrevItem, 
-    slideToNextItem  
+    slideToItem,
+    slideToPrevItem,
+    slideToNextItem
   } = useSpringCarousel({
     disableGestures: false,
     withLoop: true,
     items: mockedItems.map((i) => ({
       id: i.id,
       renderItem: (
-          <div className='models-text-slider-item'>
-              <b className='title-models'>{i.title}</b>
-              <br />
-              <p>
-                {parse(i.text)}
-              </p>
-          </div>
+        <div className='models-text-slider-item'>
+          <b className='title-models'>{i.title}</b>
+          <br />
+          <p>
+            {parse(i.text)}
+          </p>
+        </div>
       ),
     })),
   });
@@ -127,7 +127,7 @@ export default function ModelsArray(
       currentImg = nextId
       api.start(nextId => to(nextId))
       state.currentModel = currentImg
-    } 
+    }
   });
 
   return (

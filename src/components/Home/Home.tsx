@@ -4,7 +4,6 @@ import { Html } from '@react-three/drei'
 import { Suspense, useEffect, useRef, useState } from 'react'
 import SceneHome from '../SceneHome/SceneHome'
 import state from '../../utils/state'
-import { Perf, PerfHeadless, usePerf } from 'r3f-perf'
 import LoadingScreen from '../HomeMobile/componentsMobile/LoadingScreen'
 
 export default function Home() {
@@ -104,7 +103,7 @@ export default function Home() {
 
         } else if (state.top / window.innerHeight < 6.2) {
 
-        // Models area or not
+          // Models area or not
           state.top = state.top + (e.deltaY / 1.8)
           scrollArea.current?.scrollBy(0, e.deltaY / 1.8)
 
@@ -125,7 +124,7 @@ export default function Home() {
 
         } else if (state.top / window.innerHeight < 6.2) {
 
-        // Models area or not
+          // Models area or not
           state.top = state.top + (e.deltaY / 1.8)
           scrollArea.current?.scrollBy(0, e.deltaY / 1.8)
 
@@ -155,7 +154,7 @@ export default function Home() {
     if (!state.zoomGlobal) {
       let touchMove = e.targetTouches[0].clientY
 
-       // DOWN
+      // DOWN
       if ((touchMove < touchStart) && (state.top < height)) {
 
         if (state.top / window.innerHeight < 0.9) {
@@ -165,8 +164,8 @@ export default function Home() {
           state.top = state.top + ((touchStart - touchMove) / 10)
           scrollArea.current?.scrollBy(0, ((touchStart - touchMove) / 10))
         }
-        
-      // UP
+
+        // UP
       } else if ((touchMove > touchStart) && (state.top > 0)) {
 
         if (state.top / window.innerHeight < 0.9) {
@@ -175,25 +174,13 @@ export default function Home() {
         } else {
           state.top = state.top - ((touchStart - touchMove) / 10)
           scrollArea.current?.scrollBy(0, ((touchStart - touchMove) / 10))
-        }        
-      
+        }
+
       }
 
       if (state.top < 0) state.top = 0
       if (state.top > height) state.top = height
     }
-  }
-
-  function PerfHook() {
-
-    const [gl, log, getReport]: any = usePerf((s) => [s.gl, s.log, s.getReport])
-
-    const report = getReport()
-
-    if (log) {
-      // console.log(log.fps)
-    }
-    return <PerfHeadless />
   }
 
   return (
@@ -212,7 +199,7 @@ export default function Home() {
         <Suspense
           fallback={
             <Html center>
-              <LoadingScreen/>
+              <LoadingScreen />
             </Html>
           }
         >
@@ -221,11 +208,7 @@ export default function Home() {
             onReflow={setPages}
             handleScrollTo={handleScrollTo}
           />
-          <PerfHook />
 
-          {/* <Perf
-            // deepAnalyze
-          /> */}
         </Suspense>
       </Canvas>
       <div

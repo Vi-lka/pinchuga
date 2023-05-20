@@ -120,7 +120,7 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
   useFrame((s, delta) => {
 
     // Frame Counter
-    if (1/delta < 30) {
+    if (1 / delta < 24) {
       ++frameRateCounter
       console.log(frameRateCounter)
       if ((frameRateCounter >= 20) && (!state.confirmLowFunctionCanceled)) confirmLowFunction()
@@ -260,8 +260,8 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
       // Scroll value 
       const page = (pageLerp.current = THREE.MathUtils.lerp(pageLerp.current, state.top / stateThree.size.height, delta * 6))
 
-      titleTextMainRef.current?.position.lerp(vec.set(0, page < 0.58 ? -13*page - 0.23 : -10.6556 + page*5, 3 - 15*page), delta * 12)   
-      titleArrowRef.current?.position.lerp(vec.set(0, page < 0.58 ? -17.2*page - 3.4 : (page > 0.9 ? -15 : -8.5*page - 8.5), -1-4*page), delta * 12)  
+      titleTextMainRef.current?.position.lerp(vec.set(0, page < 0.58 ? -13 * page - 0.23 : -10.6556 + page * 5, 3 - 15 * page), delta * 12)
+      titleArrowRef.current?.position.lerp(vec.set(0, page < 0.58 ? -17.2 * page - 3.4 : (page > 0.9 ? -15 : -8.5 * page - 8.5), -1 - 4 * page), delta * 12)
 
       titleTextDescriptionRef.current &&
         (titleTextDescriptionRef.current.style.display = (page >= 0.9) ? 'none' : 'block')
@@ -278,7 +278,7 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
             <DreiImage position={[0, 1.2, 4.2]} transparent scale={[Math.min(0.985, (stateThree.size.width * 0.0006) * 0.945), Math.min(1, (stateThree.size.width * 0.0006) * 0.95)]} url={img_draw_disk} />
             <DreiImage position={[Math.min(1.4, (stateThree.size.width * 0.0006) * 1.4), 1.2, 4.2]} transparent scale={[Math.min(0.65, (stateThree.size.width * 0.0006) * 0.61), Math.min(1, (stateThree.size.width * 0.0006) * 0.95)]} url={img_draw_bird_2} />
           </group>
-         
+
           <Text
             ref={titleTextMainRef}
             position={[0, -0.23, 3]}
@@ -329,13 +329,13 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
               center
             >
               <p ref={titleTextDescriptionRef}>
-                Проект <strong>«Пункт прошлого»</strong> - это история о древних вещах, рассказанная с помощью современных информационных технологий. 
+                Проект <strong>«Пункт прошлого»</strong> - это история о древних вещах, рассказанная с помощью современных информационных технологий.
                 <br /><br />
-                За ней стоят годы экспедиций и кропотливых научных исследований, новые технологические разработки и оригинальные дизайнерские решения. 
+                За ней стоят годы экспедиций и кропотливых научных исследований, новые технологические разработки и оригинальные дизайнерские решения.
                 <br /><br />
-                Мы сделали все это, чтобы раскрыть информационный потенциал археологических памятников, показать их с новой другой стороны. 
+                Мы сделали все это, чтобы раскрыть информационный потенциал археологических памятников, показать их с новой другой стороны.
                 <br /><br />
-                Надеемся, что проект приоткроет для вас дверь в увлекательный мир прошлого <b>Енисейской Сибири</b>. 
+                Надеемся, что проект приоткроет для вас дверь в увлекательный мир прошлого <b>Енисейской Сибири</b>.
               </p>
             </Html>
           </group>
@@ -619,128 +619,128 @@ function SceneHome({ onReflow, handleScrollTo }: { onReflow: any, handleScrollTo
     })
 
     return (
-        <Box dir="column" align={"center"} justify="center" width="100%" height="auto" minHeight="100%">
+      <Box dir="column" align={"center"} justify="center" width="100%" height="auto" minHeight="100%">
 
-          <HeightReporter onReflow={onReflow} />
+        <HeightReporter onReflow={onReflow} />
 
-          <mesh position={[0, 0, -1]}>
-            <planeBufferGeometry args={[50, 50]} />
-            <meshBasicMaterial color={"#2b2b2b"} toneMapped={false} />
-          </mesh>
+        <mesh position={[0, 0, -1]}>
+          <planeBufferGeometry args={[50, 50]} />
+          <meshBasicMaterial color={"#2b2b2b"} toneMapped={false} />
+        </mesh>
 
-          <Html  
-            as='div'
-            wrapperClass='wrapperClass_footer'
-            center
-          >
-            <section ref={footerTextRef} className="section">
-              <div className="container-team">
+        <Html
+          as='div'
+          wrapperClass='wrapperClass_footer'
+          center
+        >
+          <section ref={footerTextRef} className="section">
+            <div className="container-team">
 
-                <h6>Команда проекта</h6>
-                
-                <div className="team-text">
-                  <p>
-                    Проект создан сотрудниками <a href='https://www.sfu-kras.ru/' target="__blank">СФУ</a>:
-                  </p>
+              <h6>Команда проекта</h6>
 
-                  <ul>
-                    <li>
-                      <a href='https://dh-lab.ru/' target="__blank">Лаборатория Digital Humanities - DHlab</a>
-                    </li>
-                    <li>
-                      <a href='https://structure.sfu-kras.ru/node/359' target="__blank">Лаборатория археологии Енисейской Сибири</a> 
-                    </li>
-                  </ul>
+              <div className="team-text">
+                <p>
+                  Проект создан сотрудниками <a href='https://www.sfu-kras.ru/' target="__blank">СФУ</a>:
+                </p>
 
-                  <br/>
+                <ul>
+                  <li>
+                    <a href='https://dh-lab.ru/' target="__blank">Лаборатория Digital Humanities - DHlab</a>
+                  </li>
+                  <li>
+                    <a href='https://structure.sfu-kras.ru/node/359' target="__blank">Лаборатория археологии Енисейской Сибири</a>
+                  </li>
+                </ul>
 
-                  <div className='profile-blocks'>
+                <br />
+
+                <div className='profile-blocks'>
+                  <div>
                     <div>
-                      <div>
-                        <p>
-                          <span>Концепция:</span>
-                        </p>
-                        <p className='profile-name'>
-                          <a href='https://structure.sfu-kras.ru/rumyancev' target="__blank">Румянцев Максим Валерьевич</a>
-                        </p>
-                        <p className='profile-link'>
-                          <a href='mailto:rector@sfu-kras.ru' target="__blank">rector@sfu-kras.ru</a>
-                        </p>
+                      <p>
+                        <span>Концепция:</span>
+                      </p>
+                      <p className='profile-name'>
+                        <a href='https://structure.sfu-kras.ru/rumyancev' target="__blank">Румянцев Максим Валерьевич</a>
+                      </p>
+                      <p className='profile-link'>
+                        <a href='mailto:rector@sfu-kras.ru' target="__blank">rector@sfu-kras.ru</a>
+                      </p>
 
-                        <p className='profile-name margin-custom'>
-                          <a href='https://structure.sfu-kras.ru/node/1262' target="__blank">Пиков Никита Олегович</a>
-                        </p>
-                        <p className='profile-link'>
-                          <a href='mailto:npikov@sfu-kras.ru' target="__blank">npikov@sfu-kras.ru</a>
-                        </p>
-                      </div>
-
-                      <br/>
-
-                      <div>
-                        <p>
-                          <span>Исследования и раскопки:</span> 
-                        </p>
-                        <p className='profile-name'>
-                          <a href='https://structure.sfu-kras.ru/mandryka' target="__blank">Мандрыка Павел Владимирович</a>
-                        </p>
-                        <p className='profile-link'>
-                          <a href='mailto:PMandrika@sfu-kras.ru' target="__blank">pmandrika@sfu-kras.ru</a>
-                        </p>
-                        <p className='profile-name margin-custom'>
-                          <a href='https://structure.sfu-kras.ru/node/3908' target="__blank">Сенотрусова Полина Олеговна</a>
-                        </p>
-                        <p className='profile-link'>
-                          <a href='mailto:psenotrusova@sfu-kras.ru' target="__blank">psenotrusova@sfu-kras.ru</a>
-                        </p>
-                      </div>
-
-                      <br/>
+                      <p className='profile-name margin-custom'>
+                        <a href='https://structure.sfu-kras.ru/node/1262' target="__blank">Пиков Никита Олегович</a>
+                      </p>
+                      <p className='profile-link'>
+                        <a href='mailto:npikov@sfu-kras.ru' target="__blank">npikov@sfu-kras.ru</a>
+                      </p>
                     </div>
 
+                    <br />
+
                     <div>
-                      <div>
-                        <p>
-                          <span>Иллюстрации:</span>
-                        </p>
-                        <p className='profile-name'>
-                          <a href='https://t.me/chocoladic' target="__blank">Эккердт Александра Александровна</a>
-                        </p>
-                        <p className='profile-link'>
-                          <a href='mailto:ekkerdta@mail.ru' target="__blank">ekkerdta@mail.ru</a>
-                        </p>
-                      </div>
+                      <p>
+                        <span>Исследования и раскопки:</span>
+                      </p>
+                      <p className='profile-name'>
+                        <a href='https://structure.sfu-kras.ru/mandryka' target="__blank">Мандрыка Павел Владимирович</a>
+                      </p>
+                      <p className='profile-link'>
+                        <a href='mailto:PMandrika@sfu-kras.ru' target="__blank">pmandrika@sfu-kras.ru</a>
+                      </p>
+                      <p className='profile-name margin-custom'>
+                        <a href='https://structure.sfu-kras.ru/node/3908' target="__blank">Сенотрусова Полина Олеговна</a>
+                      </p>
+                      <p className='profile-link'>
+                        <a href='mailto:psenotrusova@sfu-kras.ru' target="__blank">psenotrusova@sfu-kras.ru</a>
+                      </p>
+                    </div>
 
-                      <br/>
+                    <br />
+                  </div>
 
-                      <div>
-                        <p>
-                          <span>Web-разработка:</span>
-                        </p>
-                        <p className='profile-name'>
-                          <a href='https://t.me/vi_lka7' target="__blank">Пермяков Виталий Алексеевич</a>
-                        </p>
-                        <p className='profile-link'>
-                          <a href='mailto:vitalya.permyakov155@gmail.com' target="__blank">vitalya.permyakov155@gmail.com</a>
-                        </p>
-                      </div>
+                  <div>
+                    <div>
+                      <p>
+                        <span>Иллюстрации:</span>
+                      </p>
+                      <p className='profile-name'>
+                        <a href='https://t.me/chocoladic' target="__blank">Эккердт Александра Александровна</a>
+                      </p>
+                      <p className='profile-link'>
+                        <a href='mailto:ekkerdta@mail.ru' target="__blank">ekkerdta@mail.ru</a>
+                      </p>
+                    </div>
+
+                    <br />
+
+                    <div>
+                      <p>
+                        <span>Web-разработка:</span>
+                      </p>
+                      <p className='profile-name'>
+                        <a href='https://t.me/vi_lka7' target="__blank">Пермяков Виталий Алексеевич</a>
+                      </p>
+                      <p className='profile-link'>
+                        <a href='mailto:vitalya.permyakov155@gmail.com' target="__blank">vitalya.permyakov155@gmail.com</a>
+                      </p>
                     </div>
                   </div>
                 </div>
-
-                <div className='team-imgs'>
-                  <a className='dhri' href='http://dhri.ru/' target="__blank">
-                    <img src={DHRI_logo} alt="Digital Humanities Research Institute"/>
-                  </a>
-
-                  <a className='priority' href='https://priority2030.ru/' target="__blank">
-                    <img src={priority_logo_white} alt="Приоритет 2030"/>
-                  </a>
-                </div>
               </div>
-            </section>
-          </Html>
-        </Box>
+
+              <div className='team-imgs'>
+                <a className='dhri' href='http://dhri.ru/' target="__blank">
+                  <img src={DHRI_logo} alt="Digital Humanities Research Institute" />
+                </a>
+
+                <a className='priority' href='https://priority2030.ru/' target="__blank">
+                  <img src={priority_logo_white} alt="Приоритет 2030" />
+                </a>
+              </div>
+            </div>
+          </section>
+        </Html>
+      </Box>
     )
   }
 
